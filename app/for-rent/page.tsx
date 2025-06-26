@@ -114,23 +114,23 @@ export default async function ForRentPage({
               )}
             </div>
             
-            {/* Property Type Filters */}
-            <div className="flex space-x-2">
+            {/* Responsive Property Type Filters */}
+            <div className="flex flex-col sm:flex-row gap-2 sm:space-x-2 w-full sm:w-auto">
               <Link 
                 href="/for-sale" 
-                className="px-4 py-2 text-gray-600 hover:text-primary-600 text-sm font-medium"
+                className="px-3 sm:px-4 py-2 text-center text-gray-600 hover:text-primary-600 text-sm font-medium transition-colors duration-200 rounded hover:bg-gray-50"
               >
                 For Sale
               </Link>
               <Link 
                 href="/for-rent" 
-                className="px-4 py-2 bg-primary-600 text-white rounded text-sm font-medium"
+                className="px-3 sm:px-4 py-2 text-center bg-primary-600 text-white rounded text-sm font-medium"
               >
                 For Rent
               </Link>
               <Link 
                 href="/commercial" 
-                className="px-4 py-2 text-gray-600 hover:text-primary-600 text-sm font-medium"
+                className="px-3 sm:px-4 py-2 text-center text-gray-600 hover:text-primary-600 text-sm font-medium transition-colors duration-200 rounded hover:bg-gray-50"
               >
                 Commercial
               </Link>

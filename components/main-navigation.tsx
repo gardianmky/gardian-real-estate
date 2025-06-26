@@ -54,15 +54,15 @@ function Dropdown({ sections, label, icon, isMobile = false }: DropdownProps) {
         <div className="w-full">
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`flex items-center w-full px-4 py-3 rounded-md transition-colors duration-200 text-left
-              ${isActive ? "bg-teal-500 text-white" : "bg-gray-50 text-gray-700 hover:bg-gray-100"}
+            className={`flex items-center w-full px-4 py-3 rounded-lg transition-all duration-200 text-left font-medium
+              ${isActive ? "bg-teal-500 text-white shadow-md" : "bg-gray-50 text-gray-700 hover:bg-gray-100 hover:text-teal-600"}
             `}
           >
             {icon}
-            <span className="ml-2">{label}</span>
+            <span className="ml-3 flex-1">{label}</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className={`h-4 w-4 ml-auto transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+              className={`h-4 w-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -72,19 +72,19 @@ function Dropdown({ sections, label, icon, isMobile = false }: DropdownProps) {
           </button>
 
           {isOpen && (
-            <div className="mt-2 ml-6 space-y-2">
+            <div className="mt-2 ml-6 space-y-2 animate-in slide-in-from-top-2 duration-200">
               {sections.map((section, index) => (
                 <div key={index} className="space-y-1">
-                  <h3 className="font-medium text-gray-500 text-sm px-2">{section.title}</h3>
+                  <h3 className="font-semibold text-gray-500 text-sm px-3 py-1">{section.title}</h3>
                   <ul className="space-y-1">
                     {section.items.map((item, idx) => (
                       <li key={idx}>
                         <Link
                           href={item.href}
-                          className={`block px-4 py-2 rounded transition-colors duration-200
+                          className={`block px-4 py-2 rounded-lg transition-all duration-200 text-sm
                             ${pathname === item.href || pathname.startsWith(`${item.href}/`)
-                              ? "bg-teal-100 text-teal-700"
-                              : "text-gray-600 hover:bg-gray-50"}
+                              ? "bg-teal-100 text-teal-700 font-medium"
+                              : "text-gray-600 hover:bg-gray-50 hover:text-teal-600"}
                           `}
                           onClick={() => setIsOpen(false)}
                         >
@@ -101,12 +101,13 @@ function Dropdown({ sections, label, icon, isMobile = false }: DropdownProps) {
       ) : (
         <div className="relative group">
           <button
-            className={`flex items-center px-4 py-2 rounded-md transition-colors duration-200
-              ${isActive ? "bg-teal-500 text-white" : "text-gray-700 hover:bg-gray-100"}
+            className={`flex items-center px-3 lg:px-4 py-2 rounded-lg transition-all duration-200 text-sm lg:text-base font-medium
+              ${isActive ? "bg-teal-500 text-white shadow-md" : "text-gray-700 hover:bg-gray-100 hover:text-teal-600"}
             `}
           >
             {icon}
-            <span className="ml-2">{label}</span>
+            <span className="ml-2 hidden lg:inline">{label}</span>
+            <span className="ml-2 lg:hidden">{label.split(' ')[0]}</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-4 w-4 ml-1 transition-transform duration-200 group-hover:rotate-180"
@@ -118,17 +119,17 @@ function Dropdown({ sections, label, icon, isMobile = false }: DropdownProps) {
             </svg>
           </button>
 
-          <div className="absolute left-0 mt-2 w-64 bg-white rounded-lg shadow-lg z-50 py-4 border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-            <div className="grid grid-cols-1 gap-4">
+          <div className="absolute left-0 mt-2 w-72 bg-white rounded-xl shadow-xl z-50 py-6 border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-1">
+            <div className="grid grid-cols-1 gap-6">
               {sections.map((section, index) => (
-                <div key={index} className="px-4">
-                  <h3 className="font-semibold text-gray-800 mb-2">{section.title}</h3>
-                  <ul className="space-y-1">
+                <div key={index} className="px-6">
+                  <h3 className="font-semibold text-gray-800 mb-3 text-sm uppercase tracking-wide">{section.title}</h3>
+                  <ul className="space-y-2">
                     {section.items.map((item, idx) => (
                       <li key={idx}>
                         <Link
                           href={item.href}
-                          className={`block text-gray-600 hover:text-teal-600 hover:bg-teal-50 px-2 py-1 rounded transition-colors duration-200
+                          className={`block text-gray-600 hover:text-teal-600 hover:bg-teal-50 px-3 py-2 rounded-lg transition-all duration-200 text-sm font-medium
                             ${pathname === item.href || pathname.startsWith(`${item.href}/`) ? "text-teal-600 bg-teal-50" : ""}
                           `}
                         >
@@ -257,42 +258,44 @@ export default function MainNavigation() {
   }
 
   return (
-    <nav className="w-full bg-white py-3 md:py-4 border-b border-gray-100 sticky top-0 z-50">
-      <div className="container mx-auto px-3 md:px-4">
+    <nav className="w-full bg-white/95 backdrop-blur-sm py-2 md:py-4 border-b border-gray-100 sticky top-0 z-50 shadow-sm">
+      <div className="container mx-auto px-3 md:px-6">
+        {/* Mobile Header */}
         <div className="flex items-center justify-between md:hidden">
-          <Link href="/" className="h-12 w-auto flex items-center">
+          <Link href="/" className="h-10 w-auto flex items-center">
             <Image
               src="/images/gardian-logo.webp"
               alt="GARDIAN Real Estate"
               width={120}
-              height={48}
-              className="h-10 w-auto object-contain"
+              height={40}
+              className="h-8 sm:h-10 w-auto object-contain"
               priority
             />
           </Link>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-md bg-gray-50 text-gray-700"
+            className="p-2 rounded-lg bg-gray-50 text-gray-700 hover:bg-gray-100 transition-colors"
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           >
             {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
 
-        <div className="hidden md:flex md:flex-row md:justify-between md:items-center md:gap-4">
+        {/* Desktop Header */}
+        <div className="hidden md:flex md:flex-row md:justify-between md:items-center md:gap-6">
           <div className="flex items-center">
-            <Link href="/" className="h-12 w-auto flex items-center mr-8">
+            <Link href="/" className="h-12 w-auto flex items-center mr-8 lg:mr-12">
               <Image
                 src="/images/gardian-logo.webp"
                 alt="Gardian Real Estate - Mackay's Best Real Estate"
-                width={120}
-                height={48}
-                className="h-12 w-auto object-contain"
+                width={140}
+                height={56}
+                className="h-10 lg:h-12 w-auto object-contain hover:scale-105 transition-transform duration-300"
                 priority
               />
             </Link>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1 lg:gap-2">
               <Dropdown sections={realEstateDropdown.sections} label={realEstateDropdown.label} icon={realEstateDropdown.icon} />
               <Dropdown sections={rentalsDropdown.sections} label={rentalsDropdown.label} icon={rentalsDropdown.icon} />
               <Dropdown sections={commercialDropdown.sections} label={commercialDropdown.label} icon={commercialDropdown.icon} />
@@ -300,27 +303,33 @@ export default function MainNavigation() {
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
-            {mainLinks.slice(0, 5).map((link) => ( // Keep only the first five items
+          <div className="flex items-center gap-1 lg:gap-2">
+            {mainLinks.slice(0, 4).map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
-                className={`flex items-center px-4 py-2 rounded-md transition-colors duration-200
-                  ${isActive(link.href) ? "bg-teal-500 text-white" : "text-gray-700 hover:bg-gray-100"}
+                className={`flex items-center px-3 lg:px-4 py-2 rounded-lg transition-all duration-200 text-sm lg:text-base font-medium
+                  ${isActive(link.href) 
+                    ? "bg-teal-500 text-white shadow-md" 
+                    : "text-gray-700 hover:bg-gray-100 hover:text-teal-600"}
                 `}
                 prefetch={true}
               >
                 {link.icon}
-                <span className="ml-2">{link.label}</span>
+                <span className="ml-2 hidden lg:inline">{link.label}</span>
+                <span className="ml-2 lg:hidden">{link.label.split(' ')[0]}</span>
               </Link>
             ))}
           </div>
         </div>
 
+        {/* Enhanced Mobile Menu */}
         <div
-          className={`md:hidden ${mobileMenuOpen ? "block" : "hidden"} mt-4 transition-all duration-300 ease-in-out`}
+          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+            mobileMenuOpen ? "max-h-screen opacity-100 mt-4" : "max-h-0 opacity-0"
+          }`}
         >
-          <div className="flex flex-col gap-2">
+          <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-4 space-y-2">
             <Dropdown
               sections={realEstateDropdown.sections}
               label={realEstateDropdown.label}
@@ -346,20 +355,24 @@ export default function MainNavigation() {
               isMobile={true}
             />
 
-            {mainLinks.slice(0, 5).map((link) => ( // Keep only the first five items
-              <Link
-                key={link.label}
-                href={link.href}
-                className={`flex items-center px-4 py-3 rounded-md transition-colors duration-200
-                  ${isActive(link.href) ? "bg-teal-500 text-white" : "bg-gray-50 text-gray-700 hover:bg-gray-100"}
-                `}
-                prefetch={true}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {link.icon}
-                <span className="ml-2">{link.label}</span>
-              </Link>
-            ))}
+            <div className="border-t border-gray-200 pt-2 mt-4">
+              {mainLinks.slice(0, 4).map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className={`flex items-center px-4 py-3 rounded-lg transition-all duration-200 mb-1
+                    ${isActive(link.href) 
+                      ? "bg-teal-500 text-white shadow-md" 
+                      : "bg-gray-50 text-gray-700 hover:bg-gray-100 hover:text-teal-600"}
+                  `}
+                  prefetch={true}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {link.icon}
+                  <span className="ml-3 font-medium">{link.label}</span>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </div>
