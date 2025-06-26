@@ -18,7 +18,6 @@ export const dynamic = 'force-dynamic';
 
 interface AgentsPageProps {
   searchParams: { 
-    page?: string;
     [key: string]: string | undefined;
   };
 }
@@ -100,75 +99,23 @@ function AgentCard({ agent }: { agent: any }) {
   );
 }
 
-// Pagination Component
-function Pagination({ 
-  currentPage, 
-  totalPages, 
-  basePath = '/agents'
-}: { 
-  currentPage: number; 
-  totalPages: number; 
-  basePath?: string;
-}) {
-  if (totalPages <= 1) return null;
 
-  return (
-    <div className="flex justify-center items-center space-x-2 mt-12">
-      {currentPage > 1 && (
-        <a
-          href={`${basePath}?page=${currentPage - 1}`}
-          className="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
-        >
-          Previous
-        </a>
-      )}
-
-      {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-        <a
-          key={page}
-          href={`${basePath}?page=${page}`}
-          className={`px-4 py-2 rounded-lg transition-colors ${
-            currentPage === page
-              ? 'bg-primary-600 text-white'
-              : 'border border-gray-300 text-gray-700 hover:bg-gray-50'
-          }`}
-        >
-          {page}
-        </a>
-      ))}
-
-      {currentPage < totalPages && (
-        <a
-          href={`${basePath}?page=${currentPage + 1}`}
-          className="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
-        >
-          Next
-        </a>
-      )}
-    </div>
-  );
-}
-
-async function getAgents(page: number) {
+async function getAllAgents() {
   try {
-    const { agents, pagination } = await fetchAgents(page, { resultsPerPage: 12 });
-    return { agents, pagination };
+    // Fetch all agents without pagination
+    const { agents, pagination } = await fetchAgents(1, { resultsPerPage: 100 }); // Large number to get all
+    return { agents, totalAgents: agents.length };
   } catch (error) {
     console.error('Error fetching agents:', error);
     return { 
       agents: [], 
-      pagination: { 
-        currentPage: 1, 
-        totalPages: 1, 
-        totalResults: 0 
-      } 
+      totalAgents: 0 
     };
   }
 }
 
 export default async function AgentsPage({ searchParams }: AgentsPageProps) {
-  const currentPage = parseInt(searchParams.page || '1', 10);
-  const { agents, pagination } = await getAgents(currentPage);
+  const { agents, totalAgents } = await getAllAgents();
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -193,39 +140,30 @@ export default async function AgentsPage({ searchParams }: AgentsPageProps) {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between">
             <div>
               <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-                Our Real Estate Agents
+                All Our Real Estate Agents
               </h2>
               <p className="text-gray-600">
-                {agents.length} {agents.length === 1 ? 'agent' : 'agents'} available to help you
-                {currentPage > 1 && ` (Page ${currentPage} of ${pagination.totalPages})`}
+                {totalAgents} professional {totalAgents === 1 ? 'agent' : 'agents'} ready to help you with all your property needs
               </p>
             </div>
-            {pagination.totalPages > 1 && (
-              <div className="mt-4 md:mt-0">
-                <span className="bg-primary-100 text-primary-800 px-3 py-1 rounded-full text-sm font-medium">
-                  Page {pagination.currentPage} of {pagination.totalPages}
-                </span>
-              </div>
-            )}
+            <div className="mt-4 md:mt-0">
+              <span className="bg-primary-100 text-primary-800 px-4 py-2 rounded-full text-sm font-medium">
+                <svg className="w-4 h-4 inline mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Complete Team
+              </span>
+            </div>
           </div>
         </div>
 
         {/* Agents Grid */}
         {agents.length > 0 ? (
-          <>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
-              {agents.map((agent: any) => (
-                <AgentCard key={agent.agentID} agent={agent} />
-              ))}
-            </div>
-
-            {/* Pagination */}
-            <Pagination 
-              currentPage={pagination.currentPage} 
-              totalPages={pagination.totalPages}
-              basePath="/agents"
-            />
-          </>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
+            {agents.map((agent: any) => (
+              <AgentCard key={agent.agentID} agent={agent} />
+            ))}
+          </div>
         ) : (
           <div className="text-center py-12">
             <div className="bg-white rounded-lg shadow-sm p-8 max-w-md mx-auto">

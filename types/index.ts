@@ -16,11 +16,18 @@ export interface Listing {
   garages?: number;
   area?: number;
   landSize?: number;
-  address: {
-    street: string;
-    suburb: string;
-    state: string;
-    postcode: string;
+  address?: {
+    agentID: number;
+    name: string | null;
+    title: string | null;
+    phone: string | null;
+    mobile: string | null;
+  } | {
+    street?: string;
+    suburb?: string;
+    state?: string;
+    postcode?: string;
+    displayAddress?: string;
   };
   agents?: Agent[];
   // Enhanced properties for dynamic data

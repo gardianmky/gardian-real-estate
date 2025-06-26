@@ -119,7 +119,7 @@ function Dropdown({ sections, label, icon, isMobile = false }: DropdownProps) {
             </svg>
           </button>
 
-          <div className="absolute left-0 mt-2 w-72 bg-white rounded-xl shadow-xl z-50 py-6 border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-1">
+          <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-72 bg-white rounded-xl shadow-xl z-50 py-6 border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 group-hover:translate-y-1">
             <div className="grid grid-cols-1 gap-6">
               {sections.map((section, index) => (
                 <div key={index} className="px-6">
@@ -161,7 +161,6 @@ export default function MainNavigation() {
         items: [
           { label: "All Properties", href: "/buy" },
           { label: "For Sale", href: "/for-sale" },
-          { label: "Open Homes", href: "/open-homes" },
           { label: "Recently Sold", href: "/sold" },
         ],
       },
@@ -273,34 +272,35 @@ export default function MainNavigation() {
           </button>
         </div>
 
-        {/* Desktop Header */}
-        <div className="hidden md:flex md:flex-row md:justify-between md:items-center md:gap-6">
-          <div className="flex items-center">
-            <Link href="/" className="h-12 w-auto flex items-center mr-8 lg:mr-12">
-              <Image
-                src="/images/gardian-logo.webp"
-                alt="Gardian Real Estate - Mackay's Best Real Estate"
-                width={140}
-                height={56}
-                className="h-10 lg:h-12 w-auto object-contain hover:scale-105 transition-transform duration-300"
-                priority
-              />
-            </Link>
+        {/* Desktop Header - Fitted Layout */}
+        <div className="hidden md:flex md:flex-row md:justify-between md:items-center md:gap-4 lg:gap-6">
+          {/* Logo */}
+          <Link href="/" className="h-12 w-auto flex items-center flex-shrink-0">
+            <Image
+              src="/images/gardian-logo.webp"
+              alt="Gardian Real Estate - Mackay's Best Real Estate"
+              width={140}
+              height={56}
+              className="h-10 lg:h-12 w-auto object-contain hover:scale-105 transition-transform duration-300"
+              priority
+            />
+          </Link>
 
-            <div className="flex items-center gap-1 lg:gap-2">
-              <Dropdown sections={realEstateDropdown.sections} label={realEstateDropdown.label} icon={realEstateDropdown.icon} />
-              <Dropdown sections={rentalsDropdown.sections} label={rentalsDropdown.label} icon={rentalsDropdown.icon} />
-              <Dropdown sections={commercialDropdown.sections} label={commercialDropdown.label} icon={commercialDropdown.icon} />
-              <Dropdown sections={propertyManagementDropdown.sections} label={propertyManagementDropdown.label} icon={propertyManagementDropdown.icon} />
-            </div>
+          {/* Centered Navigation */}
+          <div className="flex items-center gap-1 lg:gap-2 flex-1 justify-center">
+            <Dropdown sections={realEstateDropdown.sections} label={realEstateDropdown.label} icon={realEstateDropdown.icon} />
+            <Dropdown sections={rentalsDropdown.sections} label={rentalsDropdown.label} icon={rentalsDropdown.icon} />
+            <Dropdown sections={commercialDropdown.sections} label={commercialDropdown.label} icon={commercialDropdown.icon} />
+            <Dropdown sections={propertyManagementDropdown.sections} label={propertyManagementDropdown.label} icon={propertyManagementDropdown.icon} />
           </div>
-
-          <div className="flex items-center gap-1 lg:gap-2">
-            {mainLinks.slice(0, 4).map((link) => (
+          
+          {/* Right Side Navigation Links */}
+          <div className="flex items-center gap-1 lg:gap-2 flex-shrink-0">
+            {mainLinks.filter(link => link.label !== "Open Homes").map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
-                className={`flex items-center px-3 lg:px-4 py-2 rounded-lg transition-all duration-200 text-sm lg:text-base font-medium
+                className={`flex items-center px-2 lg:px-3 py-2 rounded-lg transition-all duration-200 text-sm lg:text-base font-medium
                   ${isActive(link.href) 
                     ? "bg-teal-500 text-white shadow-md" 
                     : "text-gray-700 hover:bg-gray-100 hover:text-teal-600"}

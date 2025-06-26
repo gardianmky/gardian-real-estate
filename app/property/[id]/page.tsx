@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { fetchListingById } from "@/lib/api";
 import { PropertyFeaturesGrid } from "@/components/ui/property-features";
+import PropertyImageCarousel from "@/components/property/PropertyImageCarousel";
 import type { Metadata } from 'next';
 
 export const dynamic = 'force-dynamic';
@@ -135,49 +136,12 @@ export default async function PropertyDetailPage({
       </div>
 
       <div className="container mx-auto px-4 py-8">
-        {/* Property Images */}
+        {/* Property Images Carousel */}
         <div className="mb-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            {/* Main Image */}
-            <div className="lg:col-span-1">
-              {property.images && property.images.length > 0 ? (
-                <div className="relative h-96 lg:h-[500px] rounded-lg overflow-hidden">
-                  <Image
-                    src={property.images[0].url}
-                    alt={property.heading || 'Property'}
-                    fill
-                    className="object-cover"
-                    priority
-                  />
-                </div>
-              ) : (
-                <div className="h-96 lg:h-[500px] bg-gray-200 rounded-lg flex items-center justify-center">
-                  <span className="text-gray-400">No Image Available</span>
-                </div>
-              )}
-            </div>
-            
-            {/* Additional Images */}
-            <div className="lg:col-span-1">
-              <div className="grid grid-cols-2 gap-4 h-[500px]">
-                {property.images && property.images.slice(1, 5).map((image: any, index: number) => (
-                  <div key={index} className="relative rounded-lg overflow-hidden">
-                    <Image
-                      src={image.url}
-                      alt={`Property image ${index + 2}`}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                ))}
-                {property.images && property.images.length > 5 && (
-                  <div className="relative rounded-lg overflow-hidden bg-black bg-opacity-50 flex items-center justify-center">
-                    <span className="text-white font-medium">+{property.images.length - 4} more</span>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
+          <PropertyImageCarousel 
+            images={property.images || []} 
+            alt={property.heading || 'Property'} 
+          />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

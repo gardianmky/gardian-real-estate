@@ -260,9 +260,15 @@ export async function fetchListingsIndex({
       }
     }
 
+    // Remove duplicates based on listingID or id
+    let uniqueListings = allListings.filter((listing, index, self) => {
+      const id = listing.listingID || listing.id;
+      return index === self.findIndex(l => (l.listingID || l.id) === id);
+    });
+
     // Enhanced category filtering - support multiple sources
     if (categories.length > 0) {
-      allListings = allListings.filter((listing: any) => {
+      uniqueListings = uniqueListings.filter((listing: any) => {
         // Check multiple possible category fields
         const possibleCategories = [
           listing.categories,
@@ -290,7 +296,7 @@ export async function fetchListingsIndex({
     }
 
     // Enhanced data mapping for consistent structure
-    const enhancedListings = allListings.map((listing: any) => ({
+    const enhancedListings = uniqueListings.map((listing: any) => ({
       ...listing,
       id: listing.id || listing.listingID,
       listingID: listing.listingID || listing.id,

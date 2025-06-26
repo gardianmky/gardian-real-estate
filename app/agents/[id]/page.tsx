@@ -61,22 +61,35 @@ export default async function AgentProfilePage({ params }: PageProps) {
   let error = null;
 
   try {
-    // Fetch agent details
+    // Fetch agent details with better error handling
+    console.log('Fetching agent details for ID:', id);
     const agentRes = await RealEstateAPI.getAgentDetails(id);
+    console.log('Agent response:', agentRes);
+    
     agent = Array.isArray(agentRes.data) ? agentRes.data[0] : agentRes.data;
+    console.log('Processed agent:', agent);
 
     if (!agent) {
       error = "Agent not found";
+      console.log('No agent data found');
     } else {
-      // Fetch agent's listings
-      const listingsRes = await fetchListingsIndex({
-        agentID: id,
-        fetchAll: true, // Fetch all agent listings
-        resultsPerPage: 20,
-        orderBy: "dateListed",
-        orderDirection: "desc"
-      });
-      listings = listingsRes.listings || [];
+      try {
+        // Fetch agent's listings with fallback
+        console.log('Fetching listings for agent:', id);
+        const listingsRes = await fetchListingsIndex({
+          agentID: id,
+          fetchAll: true, // Fetch all agent listings
+          resultsPerPage: 20,
+          orderBy: "dateListed",
+          orderDirection: "desc"
+        });
+        listings = listingsRes.listings || [];
+        console.log('Agent listings found:', listings.length);
+      } catch (listingsErr) {
+        console.error("Error fetching agent listings:", listingsErr);
+        // Don't fail the page if listings can't be fetched
+        listings = [];
+      }
     }
   } catch (err) {
     error = "Failed to load agent profile";
