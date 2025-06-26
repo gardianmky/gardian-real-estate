@@ -3,6 +3,7 @@ import Image from "next/image";
 import { fetchListingById } from "@/lib/api";
 import { PropertyFeaturesGrid } from "@/components/ui/property-features";
 import PropertyImageCarousel from "@/components/property/PropertyImageCarousel";
+import { cleanPropertyTitle } from "@/lib/utils";
 import type { Metadata } from 'next';
 
 export const dynamic = 'force-dynamic';
@@ -75,8 +76,8 @@ export default async function PropertyDetailPage({
     return (
       <div className="min-h-screen bg-gray-50">
         {/* Header */}
-        <div className="bg-teal-700 text-white py-2 text-center text-sm">
-          Gardian Real Estate - Mackay's Best Real Estate
+        <div className="bg-primary-600 text-white py-2 text-center text-sm">
+          Premium Property Details
         </div>
         
         <div className="bg-white shadow-sm border-b border-gray-200">
@@ -109,8 +110,8 @@ export default async function PropertyDetailPage({
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-teal-700 text-white py-2 text-center text-sm">
-        Gardian Real Estate - Mackay's Best Real Estate
+      <div className="bg-primary-600 text-white py-2 text-center text-sm">
+        Premium Property Details
       </div>
       
       <div className="bg-white shadow-sm border-b border-gray-200">
@@ -150,7 +151,7 @@ export default async function PropertyDetailPage({
             <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
               <div className="mb-6">
                 <h1 className="text-3xl font-bold text-gray-800 mb-2">
-                  {property.heading || 'Property Details'}
+                  {cleanPropertyTitle(property.heading)}
                 </h1>
                 
                 {/* Property Type & Categories */}

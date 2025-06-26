@@ -10,28 +10,32 @@ export const dynamic = 'force-dynamic';
 
 async function getFeaturedProperties() {
   try {
+    // Specifically fetch premium residential properties for homepage
     const res = await fetchListingsIndex({
       disposalMethod: 'forSale',
-      type: 'Residential',
-      fetchAll: false,
-      resultsPerPage: 6,
+      type: 'Residential', // Explicitly residential properties only
+      fetchAll: false, // Changed from true to false to prevent over-fetching
+      resultsPerPage: 6, // Optimized to fetch 6 for hero carousel
       orderBy: 'dateListed',
       orderDirection: 'desc'
     });
     
+    // Filter and prioritize premium residential properties, removing duplicates
     const residentialProperties = (res.listings || []).filter(property => {
       const isResidential = property.type === 'Residential' || 
                            property.propertyType === 'Residential' ||
                            property.category === 'Residential' ||
-                           !property.type;
+                           !property.type; // Default to residential if no type specified
       return isResidential;
     });
     
+    // Remove any remaining duplicates based on listingID
     const uniqueProperties = residentialProperties.filter((property, index, self) => {
       const id = property.listingID || property.id;
       return index === self.findIndex(p => (p.listingID || p.id) === id);
     });
     
+    // Limit to 6 properties for homepage display and hero carousel
     return uniqueProperties.slice(0, 6);
     
   } catch (error) {
@@ -47,6 +51,7 @@ export default async function HomePage() {
     <div className="bg-white min-h-screen">
       <AnimatedHeroSection />
 
+      {/* Featured Property Hero Section */}
       <section className="py-10 bg-white">
         <div className="container mx-auto px-4">
           <FeaturedPropertyHero 
@@ -64,6 +69,7 @@ export default async function HomePage() {
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">Discover exceptional residential homes for sale in Mackay and surrounding areas. Find your perfect family home today.</p>
           </div>
           
+          {/* Enhanced Responsive Tab Controls */}
           <div className="flex justify-center mb-12 px-2">
             <div className="bg-white rounded-2xl p-1 sm:p-2 shadow-lg border border-gray-100 w-full max-w-sm sm:max-w-md lg:max-w-lg">
               <div className="flex flex-col sm:flex-row gap-1 sm:gap-0">
@@ -106,17 +112,19 @@ export default async function HomePage() {
 
           {featuredProperties && featuredProperties.length > 0 ? (
             <>
+              {/* Featured Badge */}
               <div className="text-center mb-8">
                 <span className="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold">
                   <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                   </svg>
-                  {featuredProperties.length} Premium Residential Homes Available
+                  4 Premium Residential Homes Available
                 </span>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 mb-12">
                 {featuredProperties.map((property: any, index: number) => {
+                  // Ensure unique key for each property
                   const uniqueKey = property?.listingID || property?.id || `property-${index}`;
                   
                   return (
@@ -149,6 +157,7 @@ export default async function HomePage() {
                         {cleanPropertyTitle(property?.heading || property?.address?.displayAddress)}
                       </h3>
                       
+                      {/* Enhanced Price Display with Multiple Field Support */}
                       {(() => {
                         const priceValue = property?.price || 
                                          property?.displayPrice || 
@@ -171,6 +180,7 @@ export default async function HomePage() {
                             </div>
                           );
                         } else {
+                          // Show "Contact for Price" if no price available
                           return (
                             <div className="mb-4">
                               <p className="text-lg font-semibold text-gray-600 bg-gray-50 px-3 py-2 rounded-lg border">
@@ -181,8 +191,10 @@ export default async function HomePage() {
                         }
                       })()}
                       
+                      {/* Bed/Bath/Car Features */}
                       <div className="flex items-center gap-4 mb-4 text-gray-600">
                         {(() => {
+                          // Extract bed, bath, car from bedBathCarLand array
                           const extractBedBathCar = (data: any[]) => {
                             const result: { bed: number | null, bath: number | null, car: number | null } = { bed: null, bath: null, car: null };
                             data?.forEach(item => {
@@ -244,8 +256,7 @@ export default async function HomePage() {
                     </div>
                   </div>
                   );
-                })}
-              </div>
+                })}              </div>
             </>
           ) : (
             <div className="text-center py-20">
@@ -348,7 +359,9 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Gardian Finance Insurance CTA Section */}
       <section className="py-16 bg-gradient-to-br from-primary-25 via-primary-50 to-emerald-50 relative overflow-hidden">
+        {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-10 left-10 w-32 h-32 bg-primary-200 rounded-full blur-xl"></div>
           <div className="absolute bottom-10 right-10 w-40 h-40 bg-emerald-200 rounded-full blur-xl"></div>

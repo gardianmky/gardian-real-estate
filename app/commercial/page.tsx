@@ -69,8 +69,8 @@ export default async function CommercialPage({
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header - Gardian Style */}
-      <div className="bg-teal-700 text-white py-2 text-center text-sm">
-        Gardian Real Estate - Mackay's Best Real Estate
+      <div className="bg-primary-600 text-white py-2 text-center text-sm">
+        Commercial Properties
       </div>
       
       <div className="bg-white shadow-sm border-b border-gray-200">

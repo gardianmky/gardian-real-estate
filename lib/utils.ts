@@ -6,6 +6,26 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+/**
+ * Clean up property titles by removing duplicate agency branding
+ * @param title The original property title/heading
+ * @returns Clean title without agency duplication
+ */
+export function cleanPropertyTitle(title?: string): string {
+  if (!title) return 'Property';
+  
+  const cleanTitle = title
+    .replace(/Gardian Real Estate/gi, '')
+    .replace(/Mackay's Best Real Estate/gi, '')
+    .replace(/\s*-\s*/g, ' - ')
+    .replace(/^\s*-\s*/, '')
+    .replace(/\s*-\s*$/, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+    
+  return cleanTitle || title || 'Property';
+}
+
 export function extractBedBathCarLand(listing: Listing) {
   if (!listing?.bedBathCarLand) {
     return { beds: "0", baths: "0", cars: "0", land: "N/A", floorArea: "N/A" };

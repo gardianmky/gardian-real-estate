@@ -3,6 +3,7 @@ import Image from "next/image"
 import { Home, Bath } from "lucide-react"
 import type { Listing } from "@/types/listing"
 import { PropertyFeaturesInline } from "@/components/ui/property-features"
+import { cleanPropertyTitle } from "@/lib/utils"
 
 interface ListingsGridProps {
   listings: Listing[]
@@ -55,7 +56,9 @@ function ListingCard({ listing }: ListingCardProps) {
 
       {/* Property Details */}
       <div className="p-4 flex-grow flex flex-col">
-        <h3 className="text-lg font-semibold mb-1 line-clamp-1">{heading}</h3>
+        <h3 className="text-lg font-semibold mb-1 line-clamp-1">
+          {cleanPropertyTitle(heading)}
+        </h3>
         <p className="text-gray-600 text-sm mb-3 line-clamp-1">{formattedAddress}</p>
 
         {/* Property Features */}

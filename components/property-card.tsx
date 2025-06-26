@@ -1,5 +1,6 @@
 import { Listing } from "@/types/listing";
 import { PropertyFeaturesInline } from "@/components/ui/property-features";
+import { cleanPropertyTitle } from "@/lib/utils";
 
 interface PropertyCardProps {
   listing: Listing;
@@ -47,7 +48,7 @@ export default function PropertyCard({ listing }: PropertyCardProps) {
         </div>
         <div className="p-6 flex flex-col flex-grow">
           <h3 className="font-bold text-lg text-gray-900 mb-2 line-clamp-1 group-hover:text-primary-600 transition-colors duration-300 capitalize">
-            {listing.heading?.toLowerCase()}
+            {cleanPropertyTitle(listing.heading).toLowerCase()}
           </h3>
           <p className="text-sm text-gray-500 mb-3 line-clamp-1">{address}</p>
           <p className="font-bold text-xl text-primary-600 mb-4">{price}</p>

@@ -8,6 +8,7 @@ import Gallery from 'react-image-gallery';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaShare } from 'react-icons/fa';
 import { Listing } from 'types/listing';
+import { cleanPropertyTitle } from '@/lib/utils';
 
 interface ListingClientProps {
   listing: Listing;
@@ -79,7 +80,7 @@ export default function ListingClient({ listing }: ListingClientProps) {
               transition={{ duration: 0.5 }}
               className="text-4xl font-bold mb-4"
             >
-              {listing.heading}
+              {cleanPropertyTitle(listing.heading)}
             </motion.h1>
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -95,7 +96,9 @@ export default function ListingClient({ listing }: ListingClientProps) {
         <div className="p-8">
           <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-8">
             <div>
-              <h2 className="text-3xl md:text-4xl font-semibold mb-2">{listing.heading}</h2>
+              <h2 className="text-3xl md:text-4xl font-semibold mb-2">
+                {cleanPropertyTitle(listing.heading)}
+              </h2>
               <p className="text-gray-600 text-lg">
                 {listing.address.street}, {listing.address.suburb} {listing.address.state} {listing.address.postcode}
               </p>

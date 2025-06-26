@@ -129,6 +129,20 @@ export default async function AgentsPage({ searchParams }: AgentsPageProps) {
             <p className="text-xl text-primary-100 max-w-3xl mx-auto">
               Our experienced real estate professionals are here to guide you through every step of your property journey in Mackay and surrounding areas.
             </p>
+            
+            {/* API Status Notice */}
+            <div className="mt-6 max-w-2xl mx-auto">
+              <div className="bg-amber-100/20 border border-amber-200/30 rounded-lg p-4 backdrop-blur-sm">
+                <div className="flex items-center justify-center">
+                  <svg className="w-5 h-5 text-amber-200 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                  </svg>
+                  <p className="text-sm text-amber-100 font-medium">
+                    <strong>Note:</strong> Our agent directory is currently being updated. For immediate assistance, please contact us directly.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -167,20 +181,25 @@ export default async function AgentsPage({ searchParams }: AgentsPageProps) {
         ) : (
           <div className="text-center py-12">
             <div className="bg-white rounded-lg shadow-sm p-8 max-w-md mx-auto">
-              <div className="text-gray-400 mb-4">
+              <div className="text-amber-500 mb-4">
                 <svg className="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">No Agents Available</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Agent Directory Temporarily Unavailable</h3>
               <p className="text-gray-600 mb-4">
-                We're currently updating our agent directory. Please contact us directly for assistance.
+                We're currently updating our agent directory system. Our experienced team is still available to assist you with all your property needs.
               </p>
+              <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-4">
+                <p className="text-sm text-amber-800">
+                  <strong>API Status:</strong> Our agent directory is undergoing maintenance. Please contact us directly for immediate assistance.
+                </p>
+              </div>
               <a 
                 href="/contact" 
                 className="inline-flex items-center bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors"
               >
-                Contact Us
+                Contact Our Team
               </a>
             </div>
           </div>
