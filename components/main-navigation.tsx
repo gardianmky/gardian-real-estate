@@ -173,14 +173,6 @@ export default function MainNavigation() {
           { label: "Book Appointment", href: "/book-appointment" },
         ],
       },
-      {
-        title: "Locations",
-        items: [
-          { label: "Northern Beaches", href: "/browse/northern-beaches" },
-          { label: "Mackay City", href: "/browse/mackay-city" },
-          { label: "Pioneer Valley", href: "/browse/pioneer-valley" },
-        ],
-      },
     ],
   }
 
