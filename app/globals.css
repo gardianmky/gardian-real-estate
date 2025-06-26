@@ -1,0 +1,343 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 248, 250, 252;
+  --primary-color: 0, 124, 105;
+  --accent-color: 255, 175, 0;
+  --teal-color: 42, 157, 157;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+  font-family: "Inter", sans-serif;
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-r from-teal-600 to-teal-700;
+    @apply text-white px-6 py-3 rounded-full;
+    @apply shadow-md hover:shadow-lg transition-all duration-300;
+    @apply hover:scale-[1.02];
+    @apply focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-teal-700 border border-teal-200 px-4 py-2 rounded-md 
+           shadow-sm hover:shadow-md transition-all duration-300 hover:border-teal-400 
+           focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-soft hover:translate-y-[-5px];
+  }
+
+  .link-hover {
+    @apply text-gray-300 hover:text-teal-300 transition-colors duration-200 
+           underline-offset-2 hover:underline;
+  }
+
+  .animated-gradient {
+    background-size: 300% 300%;
+    animation: gradient-animation 15s ease infinite;
+  }
+
+  .hero-section {
+    @apply rounded-2xl shadow-xl overflow-hidden mx-4 md:mx-8 lg:mx-12 my-8 animated-gradient relative;
+    background-image: linear-gradient(
+      135deg,
+      rgb(var(--accent-color)) 0%,
+      rgb(var(--teal-color)) 50%,
+      rgb(var(--accent-color)) 100%
+    );
+  }
+
+  .hero-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+    opacity: 0.3;
+  }
+
+  .property-badge {
+    @apply absolute top-3 right-3 z-20 bg-teal-500 text-white px-3 py-1 rounded-full text-sm font-medium flex items-center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .property-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .property-badge::before {
+    content: "🏠";
+    margin-right: 4px;
+    font-size: 12px;
+  }
+
+  .agent-avatar {
+    @apply relative h-10 w-10 overflow-hidden rounded-full border-2 border-white shadow-sm transition-transform duration-300;
+  }
+
+  .agent-avatar:hover {
+    transform: scale(1.1);
+  }
+
+  .nav-link {
+    @apply relative text-gray-600 hover:text-teal-600 transition-colors duration-200 py-2;
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: rgb(var(--teal-color));
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .footer-link {
+    @apply text-gray-300 hover:text-teal-300 transition-colors duration-200 flex items-center;
+  }
+
+  .footer-link svg {
+    @apply mr-2 h-4 w-4;
+    transition: transform 0.2s ease;
+  }
+
+  .footer-link:hover svg {
+    transform: translateX(3px);
+  }
+
+  .contact-info {
+    @apply flex items-center text-gray-300 mb-2;
+  }
+
+  .contact-info svg {
+    @apply mr-2 h-5 w-5 text-teal-300;
+  }
+
+  .social-icon {
+    @apply h-8 w-8 rounded-full bg-gray-700 flex items-center justify-center text-white transition-all duration-300;
+  }
+
+  .social-icon:hover {
+    @apply bg-teal-600 transform scale-110;
+  }
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Slideshow animations */
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 0.5;
+  }
+}
+
+@keyframes slide-out {
+  from {
+    transform: translateX(0);
+    opacity: 0.5;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 1s forwards;
+}
+
+.animate-slide-out {
+  animation: slide-out 1s forwards;
+}
+
+/* Hero section animations */
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradientFlow {
+  animation: gradientFlow 15s ease infinite;
+}
+
+@keyframes orbFloat {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translate(30px, 20px) rotate(5deg) scale(1.05);
+  }
+  100% {
+    transform: translate(-20px, 40px) rotate(-5deg) scale(0.95);
+  }
+}
+
+.animate-orbFloat {
+  animation: orbFloat 20s infinite ease-in-out alternate;
+}
+
+.animate-orbFloatAlt {
+  animation: orbFloat 15s infinite ease-in-out alternate-reverse;
+  animation-delay: 2s;
+}
+
+@keyframes particleFloat {
+  0%,
+  100% {
+    transform: translateZ(0) translate(0, 0);
+    opacity: 0;
+  }
+  10% {
+    opacity: var(--max-opacity);
+  }
+  90% {
+    opacity: var(--max-opacity);
+  }
+  50% {
+    transform: translateZ(var(--depth)) translate(var(--move-x), var(--move-y));
+  }
+}
+
+@keyframes textScrollSlow {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-textScrollSlow {
+  animation: textScrollSlow 120s linear infinite;
+}
+
+@keyframes textScrollReverseSlow {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.animate-textScrollReverseSlow {
+  animation: textScrollReverseSlow 150s linear infinite;
+}
+
+/* Add these new animations for the floating balls */
+@keyframes floatSlow {
+  0% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-20px) translateX(10px);
+  }
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+}
+
+@keyframes floatSlowReverse {
+  0% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(20px) translateX(-10px);
+  }
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+}
+
+/* Add these animation classes */
+.animate-float-slow {
+  animation: floatSlow 15s ease-in-out infinite;
+}
+
+.animate-float-slow-reverse {
+  animation: floatSlowReverse 18s ease-in-out infinite;
+}
+
+/* Slow down the pulse animation by 50 times */
+.animate-pulse-slow {
+  animation: pulse 50s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-shadow-sm {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  .text-shadow-md {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-accent-500 to-teal-500 text-transparent bg-clip-text;
+  }
+
+  .perspective-1000px {
+    perspective: 1000px;
+  }
+
+  .transform-style-preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .will-change-transform {
+    will-change: transform;
+  }
+}
