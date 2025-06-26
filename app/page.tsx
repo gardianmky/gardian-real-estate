@@ -13,6 +13,7 @@ async function getFeaturedProperties() {
     const res = await fetchListingsIndex({
       disposalMethod: 'forSale',
       type: 'Residential',
+      fetchAll: true, // Fetch all results for comprehensive listing
       resultsPerPage: 6,
       orderBy: 'dateListed',
       orderDirection: 'desc'

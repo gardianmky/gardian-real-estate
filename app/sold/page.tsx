@@ -20,6 +20,9 @@ interface PageProps {
     bedrooms?: string;
     bathrooms?: string;
     category?: string;
+    categories?: string;
+    propertyType?: string;
+    agent?: string;
   }>;
 }
 
@@ -35,10 +38,11 @@ export default async function SoldPage({
   let error = null;
 
   try {
-    // Fetch sold properties using the centralized API function
+    // Fetch ALL sold properties using the centralized API function
     const res = await fetchListingsIndex({
       disposalMethod: "sold",
       type: "Residential",
+      fetchAll: true, // Fetch all results for comprehensive listing
       page,
       resultsPerPage: GRID_PAGE_SIZE,
       orderBy: "dateListed",
@@ -49,7 +53,11 @@ export default async function SoldPage({
       maxPrice: params?.maxPrice ? Number(params.maxPrice) : undefined,
       bedrooms: params?.bedrooms ? Number(params.bedrooms) : undefined,
       bathrooms: params?.bathrooms ? Number(params.bathrooms) : undefined,
-      category: typeof params?.category === 'string' ? params.category : undefined
+      category: typeof params?.category === 'string' ? params.category : undefined,
+      propertyType: typeof params?.propertyType === 'string' ? params.propertyType : undefined,
+      agentID: typeof params?.agent === 'string' ? params.agent : undefined,
+      // Add categories filter support
+      categories: params?.categories ? params.categories.split(',').filter(Boolean) : []
     });
     
     listings = res.listings || [];

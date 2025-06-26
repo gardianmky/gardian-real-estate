@@ -204,7 +204,11 @@ export async function fetchListingsIndex({
       });
 
       if (!response.ok) {
-        console.warn(`API request failed with status: ${response.status}`);
+        console.warn(`API request failed with status: ${response.status} for URL: ${url}`);
+        if (response.status === 429) {
+          console.warn('Rate limit hit, backing off...');
+          await new Promise(resolve => setTimeout(resolve, 2000));
+        }
         break;
       }
 
@@ -256,14 +260,30 @@ export async function fetchListingsIndex({
       }
     }
 
-    // If API doesn't support multiple category filtering, do it client-side
+    // Enhanced category filtering - support multiple sources
     if (categories.length > 0) {
       allListings = allListings.filter((listing: any) => {
-        if (!listing.categories) return false;
-        const listingCategories = Array.isArray(listing.categories) ? listing.categories : [listing.categories];
-        return categories.some(cat => 
-          listingCategories.some((listingCat: string) => 
-            listingCat.toLowerCase().includes(cat.toLowerCase())
+        // Check multiple possible category fields
+        const possibleCategories = [
+          listing.categories,
+          listing.category,
+          listing.propertyCategory,
+          listing.type,
+          listing.propertyType
+        ].filter(Boolean);
+
+        if (possibleCategories.length === 0) return false;
+
+        // Flatten all categories into a single array
+        const allCategories = possibleCategories.flatMap(cat => 
+          Array.isArray(cat) ? cat : [cat]
+        );
+
+        // Check if any requested category matches any listing category
+        return categories.some(requestedCat => 
+          allCategories.some((listingCat: string) => 
+            listingCat && typeof listingCat === 'string' && 
+            listingCat.toLowerCase().includes(requestedCat.toLowerCase())
           )
         );
       });

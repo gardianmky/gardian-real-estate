@@ -20,6 +20,9 @@ interface PageProps {
     maxPrice?: string;
     category?: string;
     disposalMethod?: string;
+    categories?: string;
+    propertyType?: string;
+    agent?: string;
   }>;
 }
 
@@ -35,10 +38,11 @@ export default async function CommercialPage({
   let error = null;
 
   try {
-    // Fetch commercial properties using the centralized API function
+    // Fetch ALL commercial properties using the centralized API function
     const res = await fetchListingsIndex({
       disposalMethod: (params?.disposalMethod as any) || "forSale",
       type: "Commercial",
+      fetchAll: true, // Fetch all results for comprehensive listing
       page,
       resultsPerPage: GRID_PAGE_SIZE,
       orderBy: "dateListed",
@@ -47,7 +51,11 @@ export default async function CommercialPage({
       suburb: typeof params?.suburb === 'string' ? params.suburb : undefined,
       minPrice: params?.minPrice ? Number(params.minPrice) : undefined,
       maxPrice: params?.maxPrice ? Number(params.maxPrice) : undefined,
-      category: typeof params?.category === 'string' ? params.category : undefined
+      category: typeof params?.category === 'string' ? params.category : undefined,
+      propertyType: typeof params?.propertyType === 'string' ? params.propertyType : undefined,
+      agentID: typeof params?.agent === 'string' ? params.agent : undefined,
+      // Add categories filter support
+      categories: params?.categories ? params.categories.split(',').filter(Boolean) : []
     });
     
     listings = res.listings || [];

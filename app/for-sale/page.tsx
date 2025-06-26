@@ -21,6 +21,7 @@ interface PageProps {
     bathrooms?: string;
     propertyType?: string;
     agent?: string;
+    categories?: string;
   }>;
 }
 
@@ -37,10 +38,11 @@ export default async function ForSalePage({
   let error = null;
 
   try {
-    // Fetch residential properties for sale using the centralized API function
+    // Fetch ALL residential properties for sale using the centralized API function
     const res = await fetchListingsIndex({
       disposalMethod: "forSale",
       type: "Residential",
+      fetchAll: true, // Fetch all results for comprehensive listing
       page,
       resultsPerPage: GRID_PAGE_SIZE,
       orderBy: "dateListed",
@@ -52,7 +54,9 @@ export default async function ForSalePage({
       bedrooms: params?.bedrooms ? Number(params.bedrooms) : undefined,
       bathrooms: params?.bathrooms ? Number(params.bathrooms) : undefined,
       propertyType: typeof params?.propertyType === 'string' ? params.propertyType : undefined,
-      agentID: typeof params?.agent === 'string' ? params.agent : undefined
+      agentID: typeof params?.agent === 'string' ? params.agent : undefined,
+      // Add categories filter support
+      categories: params?.categories ? params.categories.split(',').filter(Boolean) : []
     });
     
     listings = res.listings || [];

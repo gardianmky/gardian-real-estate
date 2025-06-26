@@ -117,6 +117,7 @@ async function getListings(page: number) {
       page,
       disposalMethod: 'forSale',
       type: 'Residential',
+      fetchAll: true, // Fetch all results for comprehensive listing
       resultsPerPage: 12,
       orderBy: 'dateListed',
       orderDirection: 'desc'

@@ -71,6 +71,7 @@ export default async function AgentProfilePage({ params }: PageProps) {
       // Fetch agent's listings
       const listingsRes = await fetchListingsIndex({
         agentID: id,
+        fetchAll: true, // Fetch all agent listings
         resultsPerPage: 20,
         orderBy: "dateListed",
         orderDirection: "desc"
