@@ -4,6 +4,8 @@ import type { Metadata } from "next"
 import { Inter } from 'next/font/google'
 import ClientLayout from "./ClientLayout"
 import { SearchProvider } from "context/search-context";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const inter = Inter({
   subsets: ['latin'],
@@ -207,20 +209,21 @@ export default function RootLayout({
               <div className="lg:pl-6">
                 <h3 className="text-xl font-semibold mb-6 text-gray-800">Ready to Sell?</h3>
                 
-                {/* Green Looking to Sell Button */}
+                {/* Looking to Sell Button - Standardized */}
                 <div className="mb-8">
-                  <a 
-                    href="/appraisal-request" 
-                    className="inline-flex items-center justify-center w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 group"
-                  >
-                    <svg className="w-5 h-5 mr-3 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                    </svg>
-                    Looking to Sell?
-                    <svg className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </a>
+                  <Button asChild variant="primary" size="lg" className="w-full">
+                    <Link href="/appraisal-request">
+                      <span className="flex items-center justify-center">
+                        <svg className="w-5 h-5 mr-3 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                        </svg>
+                        Looking to Sell?
+                        <svg className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                      </span>
+                    </Link>
+                  </Button>
                   <p className="text-sm text-gray-600 mt-3 text-center">Get a free property appraisal today</p>
                 </div>
 
