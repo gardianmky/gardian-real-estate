@@ -12,11 +12,18 @@ export default function ClientLayout({
   return (
     <>
       <MainNavigation />
-      <div className="bg-[#00535c] text-white py-2.5 px-6 text-center text-sm shadow-md relative overflow-hidden">
-        <div className="absolute inset-0 bg-white/10 opacity-50"></div>
-        <div className="relative z-10 flex flex-col sm:flex-row items-center justify-center sm:space-x-2 space-y-1 sm:space-y-0 py-1 sm:py-0" style={{ margin: '0.5em' }}>
-          <span className="text-center font-normal text-xs sm:text-base sm:font-medium">Gardian Real Estate</span>
-          <span className="text-center font-light text-[10px] sm:text-base sm:font-medium">Mackay's Best Real Estate</span>
+      <div className="bg-gradient-to-r from-[#00535c] to-[#006b75] text-white py-3 px-4 shadow-lg relative overflow-hidden border-b border-white/20">
+        <div className="absolute inset-0 bg-white/5"></div>
+        <div className="container mx-auto relative z-10">
+          <div className="flex items-center justify-center gap-2 sm:gap-3">
+            <h1 className="text-sm sm:text-lg font-semibold tracking-wide">
+              Gardian Real Estate
+            </h1>
+            <div className="hidden sm:block w-1 h-1 bg-white/60 rounded-full"></div>
+            <p className="text-xs sm:text-base font-light tracking-wider text-white/90">
+              Mackay's Best Real Estate
+            </p>
+          </div>
         </div>
       </div>
       <main className="min-h-screen bg-gray-50 relative overflow-hidden">
