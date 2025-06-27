@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { fetchAgents } from '@/lib/api';
+import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
   title: 'Our Real Estate Agents | Gardian Real Estate Mackay',
@@ -79,19 +80,17 @@ function AgentCard({ agent }: { agent: any }) {
 
         {/* Action Buttons */}
         <div className="flex gap-2">
-          <Link
-            href={`/agents/${agent.agentID}`}
-            className="flex-1 bg-primary-600 text-white text-center py-2 px-4 rounded-lg hover:bg-primary-700 transition-colors font-medium text-sm"
-          >
-            View Profile
-          </Link>
+          <Button asChild variant="primary" size="sm" className="flex-1">
+            <Link href={`/agents/${agent.agentID}`}>
+              View Profile
+            </Link>
+          </Button>
           {agent.email && (
-            <a
-              href={`mailto:${agent.email}`}
-              className="flex-1 border border-gray-300 text-gray-700 text-center py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors font-medium text-sm"
-            >
-              Contact
-            </a>
+            <Button asChild variant="outline" size="sm" className="flex-1">
+              <a href={`mailto:${agent.email}`}>
+                Contact
+              </a>
+            </Button>
           )}
         </div>
       </div>

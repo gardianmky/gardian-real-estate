@@ -1,6 +1,8 @@
 import { Listing } from "@/types/listing";
 import { PropertyFeaturesInline } from "@/components/ui/property-features";
 import { cleanPropertyTitle } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 interface PropertyCardProps {
   listing: Listing;
@@ -57,15 +59,16 @@ export default function PropertyCard({ listing }: PropertyCardProps) {
             <PropertyFeaturesInline listing={listing} />
             
             {/* Click-through button to listing page */}
-            <a 
-              href={`/property/${listing.listingID || listing.id}`}
-              className="inline-flex items-center justify-center w-full bg-primary-600 text-white py-3 px-4 rounded-lg hover:bg-primary-700 transition-all duration-300 font-medium text-sm group-hover:bg-primary-700 transform hover:scale-105"
-            >
-              View Property Details
-              <svg className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
+            <Button asChild variant="primary" size="default" className="w-full">
+              <Link href={`/property/${listing.listingID || listing.id}`}>
+                <span className="flex items-center justify-center">
+                  View Property Details
+                  <svg className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </span>
+              </Link>
+            </Button>
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Calendar, MapPin, Clock, Phone } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
   title: 'Book Appointment - Gardian Real Estate',
@@ -120,12 +121,9 @@ export default function BookAppointmentPage() {
                   ></textarea>
                 </div>
 
-                <button
-                  type="submit"
-                  className="w-full bg-primary-600 text-white py-3 px-6 rounded-lg hover:bg-primary-700 transition-colors font-semibold"
-                >
+                <Button type="submit" variant="primary" size="lg" className="w-full">
                   Book Appointment
-                </button>
+                </Button>
               </form>
             </div>
 
