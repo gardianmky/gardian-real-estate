@@ -50,3 +50,14 @@ export const useSearchContext = () => {
   }
   return context;
 };
+
+// Export alias for compatibility
+export const useSearch = useSearchContext;
+
+// Export PropertyType enum
+export enum PropertyType {
+  RENT = 'rent',
+  BUY = 'buy',
+  SELL = 'sell',
+  COMMERCIAL = 'commercial'
+}

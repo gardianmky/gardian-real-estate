@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Home, Key, Building, Menu, X } from "lucide-react"
+import { Home, Key, Building, Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation"
 import Image from "next/image"
 import { useState } from "react"

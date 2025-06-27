@@ -15,7 +15,7 @@ export default function CategoryNav() {
           <Link
             key={category.name}
             href={category.href}
-            className="flex justify-center items-center h-16 rounded-lg border-2 border-blue-300 bg-white hover:bg-blue-50 transition-colors duration-300 text-blue-600 font-medium"
+            className="flex justify-center items-center h-16 rounded-lg border-2 border-teal-300 bg-white hover:bg-teal-50 transition-colors duration-300 text-teal-600 font-medium"
           >
             {category.name}
           </Link>

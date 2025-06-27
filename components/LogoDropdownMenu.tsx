@@ -22,7 +22,7 @@ const services: ServiceItem[] = [
     title: "Real Estate",
     subtitle: "Buy, sell, or rent your dream property",
     href: "/real-estate",
-    color: "from-blue-900 to-blue-800"
+    color: "from-teal-600 to-teal-500"
   },
   {
     id: "finance",
@@ -30,7 +30,7 @@ const services: ServiceItem[] = [
     title: "Finance / Home Loans",
     subtitle: "Get pre-approved with competitive rates",
     href: "/finance",
-    color: "from-blue-900 to-blue-800"
+    color: "from-teal-600 to-teal-500"
   },
   {
     id: "insurance",
@@ -38,7 +38,7 @@ const services: ServiceItem[] = [
     title: "Insurance",
     subtitle: "Protect your property and assets",
     href: "/insurance",
-    color: "from-blue-900 to-blue-800"
+    color: "from-teal-600 to-teal-500"
   },
   {
     id: "commercial",
@@ -46,7 +46,7 @@ const services: ServiceItem[] = [
     title: "Commercial Sales & Leasing",
     subtitle: "Find the perfect business location",
     href: "/commercial",
-    color: "from-blue-900 to-blue-800"
+    color: "from-teal-600 to-teal-500"
   },
   {
     id: "financial-planning",
@@ -54,7 +54,7 @@ const services: ServiceItem[] = [
     title: "Financial Planning",
     subtitle: "Build wealth with expert guidance",
     href: "/financial-planning",
-    color: "from-blue-900 to-blue-800"
+    color: "from-teal-600 to-teal-500"
   },
   {
     id: "property-management",
@@ -62,7 +62,7 @@ const services: ServiceItem[] = [
     title: "Property Management",
     subtitle: "Maximize your investment returns",
     href: "/property-management",
-    color: "from-blue-900 to-blue-800"
+    color: "from-teal-600 to-teal-500"
   }
 ]
 
@@ -175,11 +175,11 @@ export default function LogoDropdownMenu({ className = "" }: LogoDropdownMenuPro
           >
             <div className="bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden">
               {/* Header */}
-              <div className="bg-gradient-to-r from-blue-900 to-blue-800 p-4">
+              <div className="bg-gradient-to-r from-teal-600 to-teal-500 p-4">
                 <h3 className="text-white text-lg font-bold mb-1">
                   Gardian Services
                 </h3>
-                <p className="text-blue-100 text-sm">
+                <p className="text-teal-100 text-sm">
                   Your trusted partner for all property and financial needs
                 </p>
               </div>

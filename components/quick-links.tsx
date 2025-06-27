@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Home, Building, DollarSign, Users, Phone, CheckCircle, Key } from "lucide-react"
+import { Home, Building, DollarSign, Users, Phone, CheckCircle, Key } from "lucide-react";
 
 export default function QuickLinks() {
   const links = [

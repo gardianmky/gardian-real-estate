@@ -1,4 +1,5 @@
-import { Home, Bath, Car, Ruler, Building } from "lucide-react"
+import { Home, Bath, Car, Ruler, Building } from "lucide-react";
+
 import type { Listing } from "@/types/listing"
 import { formatPropertyFeatures } from "@/lib/utils"
 

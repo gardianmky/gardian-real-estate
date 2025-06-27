@@ -4,10 +4,10 @@ import type React from "react"
 
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
-import { Search, MapPin, Building, Home, DollarSign } from "lucide-react"
 import dynamic from "next/dynamic"
 import { fetchAgents } from "../lib/api"
 import type { Agent } from "../types/agent"
+import { Search, MapPin, Building, Home, DollarSign } from "lucide-react";
 
 const AgentCarousel = dynamic(() => import("./agents-section"), {
   loading: () => <div>Loading agents...</div>,

@@ -5,7 +5,7 @@ import type React from "react"
 import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { Search, Filter, ChevronDown } from "lucide-react"
+import { Search, Filter, ChevronDown } from "lucide-react";
 
 interface PropertyCard {
   id: string
@@ -167,15 +167,15 @@ export default function RealEstatePage() {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <Search className="absolute right-3 top-2.5 text-gray-400" size={20} />
+            <Search className="absolute right-3 top-2.5 text-gray-400" width={20} height={20} />
           </div>
           <button
             className="flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-md transition-colors duration-300"
             onClick={() => setIsFilterOpen(!isFilterOpen)}
           >
-            <Filter size={18} />
+            <Filter width={18} height={18} />
             Filters
-            <ChevronDown size={18} className={`transform transition-transform ${isFilterOpen ? "rotate-180" : ""}`} />
+            <ChevronDown width={18} height={18} className={`transform transition-transform ${isFilterOpen ? "rotate-180" : ""}`} />
           </button>
         </div>
 
