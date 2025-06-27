@@ -71,27 +71,9 @@ async function apiFetch(endpoint: string, params: Record<string, any> = {}, page
 
     const data = await response.json();
     
-    // Filter for Gardian Real Estate properties only
+    // Return data as-is for proper server-side pagination
+    // Client-side filtering should be minimal and only for data cleanup
     let filteredData = Array.isArray(data) ? data : [data];
-    
-    // Apply Gardian filtering if this is a listings endpoint
-    if (endpoint.includes('Listings') && Array.isArray(filteredData)) {
-      filteredData = filteredData.filter((item: any) => {
-        // Filter by agency ID
-        if (item.agencyID === API_CONFIG.AGENCY_ID) return true;
-        
-        // Filter by agent names
-        if (item.agents && Array.isArray(item.agents)) {
-          return item.agents.some((agent: any) =>
-            API_CONFIG.GARDIAN_AGENTS.some(gardianAgent => 
-              agent.name?.toLowerCase().includes(gardianAgent.toLowerCase())
-            )
-          );
-        }
-        
-        return false;
-      });
-    }
 
     return { data: filteredData, pagination };
 
@@ -127,7 +109,7 @@ export async function fetchListingById(id: string): Promise<Listing | null> {
   }
 }
 
-// Enhanced API with micro-specific filtering for index pages
+// Enhanced API with proper server-side pagination
 export async function fetchListingsIndex({ 
   page = 1, 
   type = '', 
@@ -136,7 +118,7 @@ export async function fetchListingsIndex({
   resultsPerPage = API_CONFIG.DEFAULT_PAGE_SIZE,
   orderBy = 'dateListed',
   orderDirection = 'desc',
-  fetchAll = false, // New option to fetch all results
+  fetchAll = false, // When true, gets more results for filtering
   ...filters 
 }: {
   page?: number;
@@ -164,138 +146,78 @@ export async function fetchListingsIndex({
       };
     }
 
-    // If fetchAll is true, start with a larger page size and potentially fetch multiple pages
-    const pageSize = fetchAll ? API_CONFIG.MAX_PAGE_SIZE : resultsPerPage;
-    let allListings: any[] = [];
-    let currentPage = page;
-    let hasMorePages = true;
+    // Build API request parameters
+    const params = new URLSearchParams();
+    params.append('page', page.toString());
+    params.append('resultsPerPage', (fetchAll ? API_CONFIG.MAX_PAGE_SIZE : resultsPerPage).toString());
+    params.append('disposalMethod', disposalMethod);
+    params.append('orderBy', orderBy);
+    params.append('orderDirection', orderDirection);
 
-    while (hasMorePages) {
-      const params = new URLSearchParams();
-      params.append('page', currentPage.toString());
-      params.append('resultsPerPage', pageSize.toString());
-      params.append('disposalMethod', disposalMethod);
-      params.append('orderBy', orderBy);
-      params.append('orderDirection', orderDirection);
+    // Add Gardian Real Estate agency filter to API request - this is CRITICAL for pagination
+    params.append('agencyID', API_CONFIG.AGENCY_ID);
 
-      // Add type filter if specified (e.g., 'Commercial', 'Residential')
-      if (type) {
-        params.append('type', type);
-      }
-
-      // Add multiple category filters - try API first, fallback to client-side
-      if (categories.length > 0) {
-        // Try comma-separated categories for API
-        params.append('category', categories.join(','));
-      }
-
-      // Add additional filters
-      Object.entries(filters).forEach(([key, value]) => {
-        if (value !== undefined && value !== null && value !== '') {
-          params.append(key, value.toString());
-        }
-      });
-
-      const url = `${API_CONFIG.BASE_URL}${ENDPOINTS.LISTINGS.ALL}?${params.toString()}`;
-
-      const response = await fetch(url, {
-        headers: API_CONFIG.HEADERS,
-        cache: 'no-store'
-      });
-
-      if (!response.ok) {
-        console.warn(`API request failed with status: ${response.status} for URL: ${url}`);
-        if (response.status === 429) {
-          console.warn('Rate limit hit, backing off...');
-          await new Promise(resolve => setTimeout(resolve, 2000));
-        }
-        break;
-      }
-
-      let listings = await response.json();
-      
-      // Ensure we have an array
-      listings = Array.isArray(listings) ? listings : [];
-
-      // Extract pagination info from response headers with fallbacks
-      const pagination = {
-        currentPage: parseInt(response.headers.get('x-currentPage') || response.headers.get('X-currentPage') || currentPage.toString()),
-        totalPages: parseInt(response.headers.get('x-totalPages') || response.headers.get('X-totalPages') || '1'),
-        nextPage: response.headers.get('x-NextPage') || response.headers.get('X-NextPage') ? 
-          parseInt(response.headers.get('x-NextPage') || response.headers.get('X-NextPage') || '0') : null,
-        resultsPerPage: parseInt(response.headers.get('x-resultsPerPage') || response.headers.get('X-resultsPerPage') || pageSize.toString()),
-        totalResults: parseInt(response.headers.get('x-totalResults') || response.headers.get('X-totalResults') || listings.length.toString()),
-      };
-
-      // Apply Gardian Real Estate filtering
-      const filteredListings = listings.filter((item: any) => {
-        // Filter by agency ID
-        if (item.agencyID === API_CONFIG.AGENCY_ID) return true;
-        
-        // Filter by agent names
-        if (item.agents && Array.isArray(item.agents)) {
-          return item.agents.some((agent: any) =>
-            API_CONFIG.GARDIAN_AGENTS.some(gardianAgent => 
-              agent.name?.toLowerCase().includes(gardianAgent.toLowerCase())
-            )
-          );
-        }
-        
-        return false;
-      });
-
-      allListings = allListings.concat(filteredListings);
-
-      // If not fetching all, or if we've reached the end, break
-      if (!fetchAll || currentPage >= pagination.totalPages || pagination.nextPage === null) {
-        hasMorePages = false;
-      } else {
-        currentPage++;
-      }
-
-      // Safety check to prevent infinite loops
-      if (currentPage > 50) {
-        console.warn('Reached maximum page limit (50) - stopping pagination');
-        break;
-      }
+    // Add type filter if specified
+    if (type) {
+      params.append('type', type);
     }
 
-    // Remove duplicates based on listingID or id
-    let uniqueListings = allListings.filter((listing, index, self) => {
-      const id = listing.listingID || listing.id;
-      return index === self.findIndex(l => (l.listingID || l.id) === id);
+    // Add category filters
+    if (categories.length > 0) {
+      params.append('category', categories.join(','));
+    }
+
+    // Add additional filters
+    Object.entries(filters).forEach(([key, value]) => {
+      if (value !== undefined && value !== null && value !== '') {
+        params.append(key, value.toString());
+      }
     });
 
-    // Enhanced category filtering - support multiple sources
-    if (categories.length > 0) {
-      uniqueListings = uniqueListings.filter((listing: any) => {
-        // Check multiple possible category fields
-        const possibleCategories = [
-          listing.categories,
-          listing.category,
-          listing.propertyCategory,
-          listing.type,
-          listing.propertyType
-        ].filter(Boolean);
+    const url = `${API_CONFIG.BASE_URL}${ENDPOINTS.LISTINGS.ALL}?${params.toString()}`;
 
-        if (possibleCategories.length === 0) return false;
+    const response = await fetch(url, {
+      headers: API_CONFIG.HEADERS,
+      cache: 'no-store'
+    });
 
-        // Flatten all categories into a single array
-        const allCategories = possibleCategories.flatMap(cat => 
-          Array.isArray(cat) ? cat : [cat]
-        );
-
-        // Check if any requested category matches any listing category
-        return categories.some(requestedCat => 
-          allCategories.some((listingCat: string) => 
-            listingCat && typeof listingCat === 'string' && 
-            listingCat.toLowerCase().includes(requestedCat.toLowerCase())
-          )
-        );
-      });
+    if (!response.ok) {
+      console.warn(`API request failed with status: ${response.status}`);
+      throw new Error(`API Error: ${response.status}`);
     }
 
-    // Enhanced data mapping for consistent structure
+    let listings = await response.json();
+    listings = Array.isArray(listings) ? listings : [];
+
+    // Extract pagination info from response headers
+    const totalResults = parseInt(response.headers.get('x-totalResults') || response.headers.get('X-totalResults') || '0');
+    const currentPageFromAPI = parseInt(response.headers.get('x-currentPage') || response.headers.get('X-currentPage') || page.toString());
+    const totalPagesFromAPI = parseInt(response.headers.get('x-totalPages') || response.headers.get('X-totalPages') || '1');
+    const nextPageFromAPI = response.headers.get('x-NextPage') || response.headers.get('X-NextPage');
+
+    // MINIMAL client-side filtering only for data cleanup - NOT for agency filtering
+    // (Agency filtering should be done server-side via agencyID parameter)
+    const cleanedListings = listings.filter((item: any) => {
+      // Remove obvious invalid entries
+      if (!item || (!item.id && !item.listingID)) return false;
+      
+      // Double-check agency filtering (fallback only)
+      if (item.agencyID && item.agencyID !== API_CONFIG.AGENCY_ID) {
+        // Log this case as it should be filtered server-side
+        console.warn('Client-side agency filter triggered - API may not be respecting agencyID param');
+        return false;
+      }
+      
+      return true;
+    });
+
+    // Remove duplicates
+    const uniqueListings = cleanedListings.filter((listing: any, index: number, self: any[]) => {
+      const id = listing.listingID || listing.id;
+      return index === self.findIndex((l: any) => (l.listingID || l.id) === id);
+    });
+
+    // Enhanced data mapping
     const enhancedListings = uniqueListings.map((listing: any) => ({
       ...listing,
       id: listing.id || listing.listingID,
@@ -308,44 +230,37 @@ export async function fetchListingsIndex({
       ],
       description: listing.description || '',
       agents: listing.agents || [],
-      // Convert images to HTTPS for security
       images: listing.images?.map((img: any) => ({
         ...img,
         url: img.url?.replace('http://', 'https://') || img.url
       })) || []
     }));
 
-    // For pagination, if we're fetching all, return all results but paginate for display
-    let paginatedListings = enhancedListings;
-    let finalPagination;
-
+    // For fetchAll, return all results with single page pagination
     if (fetchAll) {
-      // Return all listings but with pagination info for display
-      finalPagination = {
-        currentPage: 1,
-        totalPages: Math.max(1, Math.ceil(enhancedListings.length / resultsPerPage)),
-        nextPage: enhancedListings.length > resultsPerPage ? 2 : null,
-        resultsPerPage: resultsPerPage,
-        totalResults: enhancedListings.length,
-      };
-    } else {
-      // Standard pagination
-      const startIndex = (page - 1) * resultsPerPage;
-      const endIndex = startIndex + resultsPerPage;
-      paginatedListings = enhancedListings.slice(startIndex, endIndex);
-      
-      finalPagination = {
-        currentPage: page,
-        totalPages: Math.max(1, Math.ceil(enhancedListings.length / resultsPerPage)),
-        nextPage: page < Math.ceil(enhancedListings.length / resultsPerPage) ? page + 1 : null,
-        resultsPerPage: resultsPerPage,
-        totalResults: enhancedListings.length,
+      return {
+        listings: enhancedListings,
+        pagination: {
+          currentPage: 1,
+          totalPages: 1,
+          nextPage: null,
+          resultsPerPage: enhancedListings.length,
+          totalResults: enhancedListings.length
+        }
       };
     }
 
-    return { 
-      listings: fetchAll ? enhancedListings : paginatedListings, 
-      pagination: finalPagination 
+    // For normal pagination, use server-provided pagination info
+    // This is correct because we're now filtering server-side via agencyID parameter
+    return {
+      listings: enhancedListings,
+      pagination: {
+        currentPage: currentPageFromAPI,
+        totalPages: totalPagesFromAPI,
+        nextPage: nextPageFromAPI ? parseInt(nextPageFromAPI) : null,
+        resultsPerPage: resultsPerPage,
+        totalResults: totalResults
+      }
     };
 
   } catch (error) {

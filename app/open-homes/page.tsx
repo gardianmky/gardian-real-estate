@@ -1,5 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
+import { fetchListingsIndex } from "@/lib/api";
+import PropertyCard from "@/components/property-card";
+import { PropertyCardSkeleton } from "@/components/property-card-skeleton";
+import { Pagination } from "@/components/ui/pagination";
+import { Listing } from "@/types/listing";
 
 const GRID_PAGE_SIZE = 12;
 
@@ -13,15 +18,13 @@ interface PageProps {
   }>;
 }
 
-import { fetchListingsIndex } from "@/lib/api";
-
 async function getOpenHomes(params: any) {
   try {
     // Use centralized API function for consistent data fetching
     const res = await fetchListingsIndex({
       disposalMethod: "forSale",
       type: "Residential",
-      fetchAll: true,
+      fetchAll: false, // FIXED: Use proper pagination instead of fetching all
       page: params.page || 1,
       resultsPerPage: GRID_PAGE_SIZE,
       orderBy: "dateListed",
@@ -40,12 +43,21 @@ async function getOpenHomes(params: any) {
     
     return { 
       listings, 
-      totalCount: listings.length 
+      pagination: res.pagination
     };
     
   } catch (error) {
     console.error('Error fetching open homes:', error);
-    return { listings: [], totalCount: 0 };
+    return { 
+      listings: [], 
+      pagination: { 
+        currentPage: 1, 
+        totalPages: 1, 
+        nextPage: null, 
+        resultsPerPage: GRID_PAGE_SIZE, 
+        totalResults: 0 
+      } 
+    };
   }
 }
 
@@ -55,8 +67,9 @@ export default async function OpenHomesPage({
   const params = await searchParams;
   const page = Number(params?.page || 1);
   
-  const { listings, totalCount } = await getOpenHomes(params);
-  const totalPages = Math.max(1, Math.ceil(totalCount / GRID_PAGE_SIZE));
+  const { listings, pagination } = await getOpenHomes(params);
+  const totalPages = pagination.totalPages;
+  const totalCount = pagination.totalResults;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -264,44 +277,20 @@ export default async function OpenHomesPage({
         </div>
 
         {/* Pagination */}
+        {/* Pagination */}
         {totalPages > 1 && (
           <div className="flex justify-center mb-8">
-            <div className="flex space-x-2">
-              {page > 1 && (
-                <Link 
-                  href={`/open-homes?page=${page - 1}`}
-                  className="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
-                >
-                  Previous
-                </Link>
+            <Pagination
+              totalPages={totalPages}
+              currentPage={page}
+              basePath="/open-homes"
+              className="bg-white rounded-lg shadow-sm p-4"
+              searchParams={new URLSearchParams(
+                Object.entries(params || {})
+                  .filter(([_, value]) => value !== undefined)
+                  .map(([key, value]) => [key, String(value)])
               )}
-              
-              {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-                const pageNum = Math.max(1, Math.min(totalPages, page - 2 + i));
-                return (
-                  <Link
-                    key={pageNum}
-                    href={`/open-homes?page=${pageNum}`}
-                    className={`px-4 py-2 rounded-lg ${
-                      pageNum === page
-                        ? 'bg-primary-600 text-white'
-                        : 'bg-white border border-gray-300 hover:bg-gray-50'
-                    }`}
-                  >
-                    {pageNum}
-                  </Link>
-                );
-              })}
-              
-              {page < totalPages && (
-                <Link 
-                  href={`/open-homes?page=${page + 1}`}
-                  className="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
-                >
-                  Next
-                </Link>
-              )}
-            </div>
+            />
           </div>
         )}
 

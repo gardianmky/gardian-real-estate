@@ -38,11 +38,11 @@ export default async function CommercialPage({
   let error = null;
 
   try {
-    // Fetch ALL commercial properties using the centralized API function
+    // Fetch commercial properties with proper pagination
     const res = await fetchListingsIndex({
       disposalMethod: (params?.disposalMethod as any) || "forSale",
       type: "Commercial",
-      fetchAll: true, // Fetch all results for comprehensive listing
+      fetchAll: false, // FIXED: Use proper pagination instead of fetching all
       page,
       resultsPerPage: GRID_PAGE_SIZE,
       orderBy: "dateListed",

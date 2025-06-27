@@ -38,11 +38,11 @@ export default async function ForSalePage({
   let error = null;
 
   try {
-    // Fetch ALL residential properties for sale using the centralized API function
+    // Fetch residential properties for sale with proper pagination
     const res = await fetchListingsIndex({
       disposalMethod: "forSale",
       type: "Residential",
-      fetchAll: true, // Fetch all results for comprehensive listing
+      fetchAll: false, // FIXED: Use proper pagination instead of fetching all
       page,
       resultsPerPage: GRID_PAGE_SIZE,
       orderBy: "dateListed",

@@ -24,7 +24,7 @@ async function getLeasedProperties(page = 1) {
     const res = await fetchListingsIndex({
       disposalMethod: "forRent", // Use forRent and filter for leased/rented
       type: "Residential",
-      fetchAll: true,
+      fetchAll: false, // FIXED: Use proper pagination instead of fetching all
       page,
       resultsPerPage: 12,
       orderBy: "dateListed",

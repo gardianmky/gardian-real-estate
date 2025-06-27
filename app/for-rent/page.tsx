@@ -44,11 +44,11 @@ export default async function ForRentPage({
   let error = null;
 
   try {
-    // Fetch ALL residential properties for rent using the centralized API function
+    // Fetch residential properties for rent with proper pagination
     const res = await fetchListingsIndex({
       disposalMethod: "forRent",
       type: "Residential",
-      fetchAll: true, // Fetch all results for comprehensive listing
+      fetchAll: false, // FIXED: Use proper pagination instead of fetching all
       page,
       resultsPerPage: GRID_PAGE_SIZE,
       orderBy: "dateListed",
