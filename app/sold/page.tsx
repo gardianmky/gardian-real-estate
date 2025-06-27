@@ -184,7 +184,7 @@ export default async function SoldPage({
             
             {/* Market Insights - Mobile Responsive */}
             <div className="flex flex-wrap gap-2 sm:gap-3">
-              <div className="bg-blue-50 text-blue-700 px-2 sm:px-3 py-1 rounded-lg text-xs sm:text-sm font-medium">
+              <div className="bg-primary-50 text-primary-700 px-2 sm:px-3 py-1 rounded-lg text-xs sm:text-sm font-medium">
                 Live Data
               </div>
               <div className="bg-green-50 text-green-700 px-2 sm:px-3 py-1 rounded-lg text-xs sm:text-sm font-medium">
@@ -209,7 +209,7 @@ export default async function SoldPage({
                 <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">{error}</p>
                 <button 
                   onClick={() => window.location.reload()}
-                  className="w-full sm:w-auto bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                  className="w-full sm:w-auto bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors font-medium"
                 >
                   Try Again
                 </button>
@@ -226,10 +226,10 @@ export default async function SoldPage({
                   Try adjusting your search criteria or view our current listings.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                  <Link href="/for-sale" className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium text-center">
+                  <Link href="/for-sale" className="bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors font-medium text-center">
                     View Properties For Sale
                   </Link>
-                  <Link href="/for-rent" className="bg-white text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-lg hover:bg-blue-50 transition-colors font-medium text-center">
+                  <Link href="/for-rent" className="bg-white text-primary-600 border-2 border-primary-600 px-6 py-3 rounded-lg hover:bg-primary-50 transition-colors font-medium text-center">
                     View Rental Properties
                   </Link>
                 </div>

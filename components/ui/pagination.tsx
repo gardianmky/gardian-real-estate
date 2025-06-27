@@ -81,7 +81,7 @@ export function Pagination({
           href={generatePageUrl(page)}
           className={`px-3 py-2 rounded-lg border transition-colors ${
             page === currentPage
-              ? 'bg-blue-600 border-blue-600 text-white'
+              ? 'bg-primary-600 border-primary-600 text-white'
               : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400'
           }`}
         >

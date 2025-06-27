@@ -5,6 +5,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Home, Key, Building, Menu, X, User, Info, Mail } from "lucide-react"
 import Image from "next/image"
+import LogoDropdownMenu from "./LogoDropdownMenu"
 
 interface DropdownItem {
   label: string
@@ -188,6 +189,14 @@ export default function MainNavigation() {
           { label: "Rental Assistance", href: "/rental-assistance" },
         ],
       },
+      {
+        title: "Property Management",
+        items: [
+          { label: "Our Services", href: "/property-management" },
+          { label: "Landlord Resources", href: "/property-management/landlords" },
+          { label: "Tenant Resources", href: "/property-management/tenants" },
+        ],
+      },
     ],
   }
 
@@ -206,20 +215,6 @@ export default function MainNavigation() {
     ],
   }
 
-  const propertyManagementDropdown = {
-    label: "Management",
-    icon: <Building className="h-5 w-5" />,
-    sections: [
-      {
-        title: "GARDIAN Property Management",
-        items: [
-          { label: "Our Services", href: "/property-management" },
-          { label: "Landlord Resources", href: "/property-management/landlords" },
-          { label: "Tenant Resources", href: "/property-management/tenants" },
-        ],
-      },
-    ],
-  }
 
   const mainLinks = [
     {
@@ -274,24 +269,14 @@ export default function MainNavigation() {
 
         {/* Desktop Header - Fitted Layout */}
         <div className="hidden md:flex md:flex-row md:justify-between md:items-center md:gap-4 lg:gap-6">
-          {/* Logo */}
-          <Link href="/" className="h-12 w-auto flex items-center flex-shrink-0">
-            <Image
-              src="/images/gardian-logo.webp"
-              alt="Gardian Real Estate - Mackay's Best Real Estate"
-              width={140}
-              height={56}
-              className="h-10 lg:h-12 w-auto object-contain hover:scale-105 transition-transform duration-300"
-              priority
-            />
-          </Link>
+          {/* Logo with Dropdown Menu */}
+          <LogoDropdownMenu className="h-12 w-auto flex items-center flex-shrink-0" />
 
           {/* Centered Navigation */}
           <div className="flex items-center gap-1 lg:gap-2 flex-1 justify-center">
             <Dropdown sections={realEstateDropdown.sections} label={realEstateDropdown.label} icon={realEstateDropdown.icon} />
             <Dropdown sections={rentalsDropdown.sections} label={rentalsDropdown.label} icon={rentalsDropdown.icon} />
             <Dropdown sections={commercialDropdown.sections} label={commercialDropdown.label} icon={commercialDropdown.icon} />
-            <Dropdown sections={propertyManagementDropdown.sections} label={propertyManagementDropdown.label} icon={propertyManagementDropdown.icon} />
           </div>
           
           {/* Right Side Navigation Links */}
@@ -338,12 +323,6 @@ export default function MainNavigation() {
               sections={commercialDropdown.sections}
               label={commercialDropdown.label}
               icon={commercialDropdown.icon}
-              isMobile={true}
-            />
-            <Dropdown
-              sections={propertyManagementDropdown.sections}
-              label={propertyManagementDropdown.label}
-              icon={propertyManagementDropdown.icon}
               isMobile={true}
             />
 

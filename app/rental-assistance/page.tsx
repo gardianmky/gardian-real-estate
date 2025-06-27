@@ -31,7 +31,7 @@ export default function RentalAssistancePage() {
               </Link>
               <Link
                 href="/for-rent"
-                className="bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800 transition-colors text-center"
+                className="bg-primary-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-800 transition-colors text-center"
               >
                 Browse Available Rentals
               </Link>
@@ -236,7 +236,7 @@ export default function RentalAssistancePage() {
                 
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors font-semibold"
+                  className="w-full bg-primary-600 text-white py-3 px-6 rounded-lg hover:bg-primary-700 transition-colors font-semibold"
                 >
                   Request Rental Assistance
                 </button>
@@ -301,7 +301,7 @@ export default function RentalAssistancePage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact?service=rental-assistance"
-              className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+              className="bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors"
             >
               Start Your Search Today
             </Link>
