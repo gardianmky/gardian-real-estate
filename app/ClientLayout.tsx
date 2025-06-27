@@ -14,9 +14,9 @@ export default function ClientLayout({
       <MainNavigation />
       <div className="bg-[#00535c] text-white py-2.5 px-6 text-center text-sm shadow-md relative overflow-hidden">
         <div className="absolute inset-0 bg-white/10 opacity-50"></div>
-        <div className="relative z-10 flex flex-col sm:flex-row items-center justify-center sm:space-x-2 space-y-1 sm:space-y-0 py-1 sm:py-0">
-          <span className="text-center font-medium text-sm sm:text-base">Gardian Real Estate</span>
-          <span className="text-center font-medium text-sm sm:text-base">Mackay's Best Real Estate</span>
+        <div className="relative z-10 flex flex-col sm:flex-row items-center justify-center sm:space-x-2 space-y-1 sm:space-y-0 py-1 sm:py-0" style={{ margin: '0.5em' }}>
+          <span className="text-center font-normal text-xs sm:text-base sm:font-medium">Gardian Real Estate</span>
+          <span className="text-center font-light text-[10px] sm:text-base sm:font-medium">Mackay's Best Real Estate</span>
         </div>
       </div>
       <main className="min-h-screen bg-gray-50 relative overflow-hidden">
