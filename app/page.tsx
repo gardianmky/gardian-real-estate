@@ -248,8 +248,8 @@ export default async function HomePage() {
                 </span>
               </div>
               
-              {/* Property Grid - 6 tiles layout with dynamic types */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 sm:gap-6 lg:gap-4 xl:gap-3 mb-8 sm:mb-12">
+              {/* Property Grid - 3 tiles layout for desktop */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12">
                 {featuredProperties.map((property: any, index: number) => {
                   const uniqueKey = property?.listingID || property?.id || `property-${index}`;
                   
