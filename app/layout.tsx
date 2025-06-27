@@ -6,6 +6,8 @@ import ClientLayout from "./ClientLayout"
 import { SearchProvider } from "context/search-context";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import MasterCTATabs from "@/components/MasterCTATabs";
+
 
 const inter = Inter({
   subsets: ['latin'],
@@ -103,6 +105,8 @@ export default function RootLayout({
             </div>
           </div>
         </div>
+
+        <MasterCTATabs />
         <footer className="bg-gradient-to-br from-gray-50 to-white py-12 lg:py-16 border-t border-gray-200">
           <div className="container mx-auto px-4 lg:px-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
