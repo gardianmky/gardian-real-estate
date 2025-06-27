@@ -13,54 +13,38 @@ interface PageProps {
   }>;
 }
 
+import { fetchListingsIndex } from "@/lib/api";
+
 async function getOpenHomes(params: any) {
   try {
-    if (process.env.NEXT_PHASE === 'phase-production-build') {
-      return { listings: [], totalCount: 0 };
-    }
+    // Use centralized API function for consistent data fetching
+    const res = await fetchListingsIndex({
+      disposalMethod: "forSale",
+      type: "Residential",
+      fetchAll: true,
+      page: params.page || 1,
+      resultsPerPage: GRID_PAGE_SIZE,
+      orderBy: "dateListed",
+      orderDirection: "desc",
+      // Add search filters from URL params
+      suburb: typeof params?.suburb === 'string' ? params.suburb : undefined,
+      propertyType: typeof params?.propertyType === 'string' ? params.propertyType : undefined
+    });
     
-    const headers: HeadersInit = {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
+    // Filter for listings with open homes
+    // In production, this would be a proper API field
+    const listings = (res.listings || []).filter((listing: any) => {
+      // Simulate open homes availability - in production would check listing.openHomes or similar
+      return listing.status === 'Active' || Math.random() > 0.3;
+    });
+    
+    return { 
+      listings, 
+      totalCount: listings.length 
     };
     
-    if (process.env.RENET_API_TOKEN) {
-      headers['Authorization'] = `Bearer ${process.env.RENET_API_TOKEN}`;
-    }
-    
-    // Build query parameters for open homes
-    const queryParams = new URLSearchParams({
-      disposalMethod: 'forSale',
-      type: 'Residential',
-      page: params.page?.toString() || '1'
-    });
-    
-    if (params.suburb) queryParams.append('suburb', params.suburb);
-    
-    const res = await fetch(`https://api.renet.app/Website/Listings?${queryParams}`, {
-      next: { revalidate: 300 }, // 5 minutes cache
-      headers
-    });
-    
-    if (res.status === 401) {
-      return { listings: [], totalCount: 0 };
-    }
-    
-    if (!res.ok) {
-      return { listings: [], totalCount: 0 };
-    }
-    
-    const data = await res.json();
-    const allListings = Array.isArray(data) ? data : [];
-    
-    // Filter for listings with open homes (this would be handled by the API in production)
-    const listings = allListings.filter(() => Math.random() > 0.5); // Simulate some having open homes
-    
-    const totalCount = parseInt(res.headers.get('x-totalResults') || '0') || listings.length;
-    
-    return { listings, totalCount };
-    
   } catch (error) {
+    console.error('Error fetching open homes:', error);
     return { listings: [], totalCount: 0 };
   }
 }
