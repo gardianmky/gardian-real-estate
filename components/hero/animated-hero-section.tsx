@@ -129,7 +129,7 @@ export default function AnimatedHeroSection() {
       {/* Inject keyframes using a style tag */}
       <style dangerouslySetInnerHTML={{ __html: keyframes }} />
       
-      <section className="relative min-h-[90vh] sm:min-h-[85vh] bg-gradient-to-br from-primary-50 via-emerald-50 to-sky-50 overflow-hidden flex items-center" style={{ paddingBottom: '0.5em' }}>
+      <section className="relative min-h-[90vh] sm:min-h-[85vh] bg-gradient-to-br from-primary-50 via-emerald-50 to-teal-50 overflow-hidden flex items-center" style={{ paddingBottom: '0.5em' }}>
         {/* Enhanced Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           {/* Large floating orbs with enhanced animations - responsive sizes */}
@@ -137,11 +137,11 @@ export default function AnimatedHeroSection() {
                style={{
                  animation: 'float 30s ease-in-out infinite, drift 40s ease-in-out infinite'
                }}></div>
-          <div className="absolute top-3/4 right-1/4 w-40 h-40 sm:w-64 sm:h-64 lg:w-80 lg:h-80 bg-gradient-to-br from-sky-200/10 to-primary-200/10 rounded-full blur-3xl" 
+          <div className="absolute top-3/4 right-1/4 w-40 h-40 sm:w-64 sm:h-64 lg:w-80 lg:h-80 bg-gradient-to-br from-teal-200/10 to-primary-200/10 rounded-full blur-3xl" 
                style={{
                  animation: 'float 35s ease-in-out infinite 8s, drift 45s ease-in-out infinite 5s'
                }}></div>
-          <div className="absolute top-1/2 left-3/4 w-32 h-32 sm:w-48 sm:h-48 lg:w-64 lg:h-64 bg-gradient-to-br from-emerald-200/8 to-sky-200/8 rounded-full blur-2xl" 
+          <div className="absolute top-1/2 left-3/4 w-32 h-32 sm:w-48 sm:h-48 lg:w-64 lg:h-64 bg-gradient-to-br from-emerald-200/8 to-teal-200/8 rounded-full blur-2xl" 
                style={{
                  animation: 'float 28s ease-in-out infinite 12s, drift 38s ease-in-out infinite 3s'
                }}></div>
@@ -151,7 +151,7 @@ export default function AnimatedHeroSection() {
                style={{ animation: 'sparkle 6s ease-in-out infinite' }}></div>
           <div className="absolute top-2/3 left-1/5 w-2 h-2 sm:w-3 sm:h-3 bg-emerald-300/20 rounded-full" 
                style={{ animation: 'sparkle 6s ease-in-out infinite 3s' }}></div>
-          <div className="absolute top-1/5 right-1/5 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-sky-300/20 rounded-full" 
+          <div className="absolute top-1/5 right-1/5 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-teal-300/20 rounded-full" 
                style={{ animation: 'sparkle 6s ease-in-out infinite 6s' }}></div>
           
           {/* Enhanced wave patterns */}
@@ -223,7 +223,7 @@ export default function AnimatedHeroSection() {
             {[
               { href: "/buy", color: "primary", icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6", label: "Buying", delay: "0s" },
               { href: "/sell", color: "emerald", icon: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2", label: "Selling", delay: "0.1s" },
-              { href: "/rent", color: "sky", icon: "M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z", label: "Renting", delay: "0.2s" },
+              { href: "/rent", color: "teal", icon: "M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z", label: "Renting", delay: "0.2s" },
               { href: "/sold", color: "amber", icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z", label: "Auctions", delay: "0.3s" },
               { href: "/commercial", color: "violet", icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4", label: "Commercial", delay: "0.4s" }
             ].map((item, index) => (
@@ -245,7 +245,7 @@ export default function AnimatedHeroSection() {
                        style={{
                          background: item.color === 'primary' ? 'linear-gradient(135deg, #0c6473 0%, #0a4550 100%)' :
                                    item.color === 'emerald' ? 'linear-gradient(135deg, #10b981 0%, #059669 100%)' :
-                                   item.color === 'sky' ? 'linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)' :
+                                   item.color === 'teal' ? 'linear-gradient(135deg, #14b8a6 0%, #0d9488 100%)' :
                                    item.color === 'amber' ? 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)' :
                                    'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)'
                        }}>

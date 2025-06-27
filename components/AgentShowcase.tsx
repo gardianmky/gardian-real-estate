@@ -9,7 +9,7 @@ interface AgentShowcaseProps {
 
 export default function AgentShowcase({ agents }: AgentShowcaseProps) {
   return (
-    <section className="bg-sky-50 py-12">
+    <section className="bg-teal-50 py-12">
       <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-2xl font-bold mb-6 text-center">Meet Our Agents</h2>
         <div className="relative overflow-x-auto">

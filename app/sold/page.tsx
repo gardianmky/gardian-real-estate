@@ -71,18 +71,18 @@ export default async function SoldPage({
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section - Mobile Responsive */}
-      <section className="relative bg-gradient-to-br from-blue-25 via-blue-50 to-indigo-50 py-8 sm:py-12 lg:py-16 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-teal-25 via-teal-50 to-teal-50 py-8 sm:py-12 lg:py-16 overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-32 h-32 sm:w-48 sm:h-48 bg-blue-100/30 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-10 right-10 w-40 h-40 sm:w-64 sm:h-64 bg-indigo-100/30 rounded-full blur-3xl"></div>
+          <div className="absolute top-10 left-10 w-32 h-32 sm:w-48 sm:h-48 bg-teal-100/30 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 right-10 w-40 h-40 sm:w-64 sm:h-64 bg-teal-100/30 rounded-full blur-3xl"></div>
         </div>
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Breadcrumb - Mobile Responsive */}
           <nav className="mb-4 sm:mb-6" aria-label="Breadcrumb">
             <ol className="flex items-center space-x-1 sm:space-x-2 text-sm text-gray-500">
-              <li><Link href="/" className="hover:text-blue-600 transition-colors">Home</Link></li>
+              <li><Link href="/" className="hover:text-teal-600 transition-colors">Home</Link></li>
               <li><span className="mx-2">/</span></li>
               <li className="text-gray-800 font-medium">Recently Sold</li>
             </ol>
@@ -99,14 +99,14 @@ export default async function SoldPage({
             {/* Quick Stats - Mobile Responsive */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 mb-6 sm:mb-8">
               <div className="bg-white/80 backdrop-blur-sm rounded-xl p-3 sm:p-4 lg:p-6 border border-white/50 shadow-lg">
-                <div className="text-lg sm:text-xl lg:text-2xl font-bold text-blue-600 mb-1 sm:mb-2">
+                <div className="text-lg sm:text-xl lg:text-2xl font-bold text-teal-600 mb-1 sm:mb-2">
                   {totalCount > 0 ? totalCount : '0'}
                 </div>
                 <div className="text-xs sm:text-sm text-gray-600">Properties Sold</div>
               </div>
               
               <div className="bg-white/80 backdrop-blur-sm rounded-xl p-3 sm:p-4 lg:p-6 border border-white/50 shadow-lg">
-                <div className="text-lg sm:text-xl lg:text-2xl font-bold text-indigo-600 mb-1 sm:mb-2">
+                <div className="text-lg sm:text-xl lg:text-2xl font-bold text-teal-600 mb-1 sm:mb-2">
                   {totalPages > 1 ? `${page}/${totalPages}` : '1'}
                 </div>
                 <div className="text-xs sm:text-sm text-gray-600">Current Page</div>
@@ -124,7 +124,7 @@ export default async function SoldPage({
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center mb-6 sm:mb-8">
               <Link 
                 href="/for-sale" 
-                className="inline-flex items-center justify-center bg-white text-blue-600 border-2 border-blue-600 px-4 sm:px-6 py-2 sm:py-3 rounded-lg hover:bg-blue-50 transition-all duration-300 font-medium text-sm sm:text-base"
+                className="inline-flex items-center justify-center bg-white text-teal-600 border-2 border-teal-600 px-4 sm:px-6 py-2 sm:py-3 rounded-lg hover:bg-teal-50 transition-all duration-300 font-medium text-sm sm:text-base"
               >
                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
@@ -133,14 +133,14 @@ export default async function SoldPage({
               </Link>
               <Link 
                 href="/for-rent" 
-                className="inline-flex items-center justify-center bg-white text-blue-600 border-2 border-blue-600 px-4 sm:px-6 py-2 sm:py-3 rounded-lg hover:bg-blue-50 transition-all duration-300 font-medium text-sm sm:text-base"
+                className="inline-flex items-center justify-center bg-white text-teal-600 border-2 border-teal-600 px-4 sm:px-6 py-2 sm:py-3 rounded-lg hover:bg-teal-50 transition-all duration-300 font-medium text-sm sm:text-base"
               >
                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
                 </svg>
                 For Rent
               </Link>
-              <div className="inline-flex items-center justify-center bg-blue-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium text-sm sm:text-base shadow-lg">
+              <div className="inline-flex items-center justify-center bg-teal-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium text-sm sm:text-base shadow-lg">
                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -190,7 +190,7 @@ export default async function SoldPage({
               <div className="bg-green-50 text-green-700 px-2 sm:px-3 py-1 rounded-lg text-xs sm:text-sm font-medium">
                 Recent Sales
               </div>
-              <div className="bg-purple-50 text-purple-700 px-2 sm:px-3 py-1 rounded-lg text-xs sm:text-sm font-medium">
+              <div className="bg-teal-50 text-teal-700 px-2 sm:px-3 py-1 rounded-lg text-xs sm:text-sm font-medium">
                 Market Trends
               </div>
             </div>
@@ -268,15 +268,15 @@ export default async function SoldPage({
             <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-gray-800 text-center">Market Insights</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               <div className="text-center p-4 bg-blue-50 rounded-xl">
-                <div className="text-2xl sm:text-3xl font-bold text-blue-600 mb-2">{totalCount}</div>
+                <div className="text-2xl sm:text-3xl font-bold text-teal-600 mb-2">{totalCount}</div>
                 <div className="text-sm text-gray-600">Recent Sales</div>
               </div>
               <div className="text-center p-4 bg-green-50 rounded-xl">
                 <div className="text-2xl sm:text-3xl font-bold text-green-600 mb-2">Active</div>
                 <div className="text-sm text-gray-600">Market Status</div>
               </div>
-              <div className="text-center p-4 bg-purple-50 rounded-xl">
-                <div className="text-2xl sm:text-3xl font-bold text-purple-600 mb-2">Live</div>
+              <div className="text-center p-4 bg-teal-50 rounded-xl">
+                <div className="text-2xl sm:text-3xl font-bold text-teal-600 mb-2">Live</div>
                 <div className="text-sm text-gray-600">Data Updates</div>
               </div>
               <div className="text-center p-4 bg-orange-50 rounded-xl">
@@ -289,7 +289,7 @@ export default async function SoldPage({
 
         {/* Call to Action - Mobile Responsive */}
         {listings.length > 0 && (
-          <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-12 text-center text-white relative overflow-hidden">
+          <div className="bg-gradient-to-r from-teal-600 to-teal-700 rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-12 text-center text-white relative overflow-hidden">
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-10">
               <div className="absolute top-0 left-0 w-full h-full bg-white/5 rounded-xl sm:rounded-2xl"></div>
@@ -303,7 +303,7 @@ export default async function SoldPage({
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 lg:gap-6 justify-center">
                 <Link 
                   href="/appraisal-request" 
-                  className="inline-flex items-center justify-center bg-white text-blue-600 px-6 sm:px-8 py-3 sm:py-4 rounded-xl hover:bg-gray-50 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 group text-sm sm:text-base"
+                  className="inline-flex items-center justify-center bg-white text-teal-600 px-6 sm:px-8 py-3 sm:py-4 rounded-xl hover:bg-gray-50 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 group text-sm sm:text-base"
                 >
                   <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
@@ -315,7 +315,7 @@ export default async function SoldPage({
                 </Link>
                 <Link 
                   href="/agents" 
-                  className="inline-flex items-center justify-center border-2 border-white text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl hover:bg-white hover:text-blue-600 transition-all duration-300 font-semibold group text-sm sm:text-base"
+                  className="inline-flex items-center justify-center border-2 border-white text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl hover:bg-white hover:text-teal-600 transition-all duration-300 font-semibold group text-sm sm:text-base"
                 >
                   <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />

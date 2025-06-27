@@ -60,20 +60,20 @@ export default async function LeasedPage({
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+      <div className="bg-gradient-to-r from-teal-600 to-teal-800 text-white">
         <div className="container mx-auto px-4 py-16">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Recently Leased Properties
             </h1>
-            <p className="text-xl mb-8 text-blue-100">
+            <p className="text-xl mb-8 text-teal-100">
               Discover our successful rental outcomes and see what properties have been leased in your area. 
               Our expert team delivers results for both landlords and tenants.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/for-rent"
-                className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-center"
+                className="bg-white text-teal-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-center"
               >
                 View Current Rentals
               </Link>
@@ -93,15 +93,15 @@ export default async function LeasedPage({
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div className="p-6">
-              <div className="text-3xl font-bold text-blue-600 mb-2">250+</div>
+              <div className="text-3xl font-bold text-teal-600 mb-2">250+</div>
               <div className="text-gray-600">Properties Leased This Year</div>
             </div>
             <div className="p-6">
-              <div className="text-3xl font-bold text-blue-600 mb-2">14 Days</div>
+              <div className="text-3xl font-bold text-teal-600 mb-2">14 Days</div>
               <div className="text-gray-600">Average Time to Lease</div>
             </div>
             <div className="p-6">
-              <div className="text-3xl font-bold text-blue-600 mb-2">98%</div>
+              <div className="text-3xl font-bold text-teal-600 mb-2">98%</div>
               <div className="text-gray-600">Tenant Satisfaction Rate</div>
             </div>
           </div>

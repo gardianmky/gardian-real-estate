@@ -12,20 +12,20 @@ export default function HomeLoansPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+      <div className="bg-gradient-to-r from-teal-600 to-teal-800 text-white">
         <div className="container mx-auto px-4 py-16">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Home Loans & Finance Solutions
             </h1>
-            <p className="text-xl mb-8 text-blue-100">
+            <p className="text-xl mb-8 text-teal-100">
               Secure the right home loan for your property purchase. Our finance specialists 
               work with leading lenders to find competitive rates and terms that suit your needs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/contact?service=finance"
-                className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-center"
+                className="bg-white text-teal-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-center"
               >
                 Speak to Finance Specialist
               </Link>
@@ -62,7 +62,7 @@ export default function HomeLoansPage() {
                       <DollarSign className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
                       <input
                         type="text"
-                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                         placeholder="500,000"
                       />
                     </div>
@@ -74,7 +74,7 @@ export default function HomeLoansPage() {
                     </label>
                     <input
                       type="text"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                       placeholder="6.5"
                     />
                   </div>
@@ -83,7 +83,7 @@ export default function HomeLoansPage() {
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Loan Term (Years)
                     </label>
-                    <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent">
                       <option value="30">30 years</option>
                       <option value="25">25 years</option>
                       <option value="20">20 years</option>
@@ -133,7 +133,7 @@ export default function HomeLoansPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div className="bg-white rounded-xl p-6 shadow-lg">
-            <Home className="h-12 w-12 text-blue-600 mb-4" />
+            <Home className="h-12 w-12 text-teal-600 mb-4" />
             <h3 className="text-xl font-semibold mb-3">First Home Buyer Loans</h3>
             <p className="text-gray-600 mb-4">
               Special rates and government incentives available for first home buyers. 
@@ -156,7 +156,7 @@ export default function HomeLoansPage() {
           </div>
 
           <div className="bg-white rounded-xl p-6 shadow-lg">
-            <TrendingUp className="h-12 w-12 text-blue-600 mb-4" />
+            <TrendingUp className="h-12 w-12 text-teal-600 mb-4" />
             <h3 className="text-xl font-semibold mb-3">Investment Property Loans</h3>
             <p className="text-gray-600 mb-4">
               Build your property portfolio with competitive investment loan options 
@@ -179,7 +179,7 @@ export default function HomeLoansPage() {
           </div>
 
           <div className="bg-white rounded-xl p-6 shadow-lg">
-            <Calculator className="h-12 w-12 text-blue-600 mb-4" />
+            <Calculator className="h-12 w-12 text-teal-600 mb-4" />
             <h3 className="text-xl font-semibold mb-3">Refinancing</h3>
             <p className="text-gray-600 mb-4">
               Review your current home loan and potentially save thousands 
@@ -263,7 +263,7 @@ export default function HomeLoansPage() {
             }
           ].map((item, index) => (
             <div key={index} className="text-center">
-              <div className="bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
+              <div className="bg-teal-600 text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
                 {item.step}
               </div>
               <h3 className="text-lg font-semibold mb-2">{item.title}</h3>

@@ -6,7 +6,6 @@ import ClientLayout from "./ClientLayout"
 import { SearchProvider } from "context/search-context";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import MasterCTATabs from "@/components/MasterCTATabs";
 
 
 const inter = Inter({
@@ -106,7 +105,6 @@ export default function RootLayout({
           </div>
         </div>
 
-        <MasterCTATabs />
         <footer className="bg-gradient-to-br from-gray-50 to-white py-12 lg:py-16 border-t border-gray-200">
           <div className="container mx-auto px-4 lg:px-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
@@ -132,7 +130,7 @@ export default function RootLayout({
                       href="https://www.linkedin.com/in/showcase/gardian-real-estate" 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="bg-white p-3 rounded-lg shadow-sm border border-gray-200 text-gray-600 hover:text-blue-600 hover:border-blue-300 hover:shadow-md transition-all duration-300 group"
+                      className="bg-white p-3 rounded-lg shadow-sm border border-gray-200 text-gray-600 hover:text-teal-600 hover:border-teal-300 hover:shadow-md transition-all duration-300 group"
                       aria-label="Follow us on LinkedIn"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
@@ -168,7 +166,7 @@ export default function RootLayout({
                       href="https://www.facebook.com/gardiangroup" 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="bg-white p-3 rounded-lg shadow-sm border border-gray-200 text-gray-600 hover:text-blue-700 hover:border-blue-300 hover:shadow-md transition-all duration-300 group"
+                      className="bg-white p-3 rounded-lg shadow-sm border border-gray-200 text-gray-600 hover:text-teal-600 hover:border-teal-300 hover:shadow-md transition-all duration-300 group"
                       aria-label="Like us on Facebook"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">

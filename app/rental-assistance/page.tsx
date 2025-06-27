@@ -12,20 +12,20 @@ export default function RentalAssistancePage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+      <div className="bg-gradient-to-r from-teal-600 to-teal-800 text-white">
         <div className="container mx-auto px-4 py-16">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Rental Assistance Services
             </h1>
-            <p className="text-xl mb-8 text-blue-100">
+            <p className="text-xl mb-8 text-teal-100">
               Let our rental specialists help you find the perfect property that fits your needs and budget. 
               We&apos;ll guide you through every step of the rental process.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/contact?service=rental-assistance"
-                className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-center"
+                className="bg-white text-teal-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-center"
               >
                 Get Started Today
               </Link>
@@ -53,8 +53,8 @@ export default function RentalAssistancePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="text-center p-6">
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <SearchIcon className="h-8 w-8 text-blue-600" />
+              <div className="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <SearchIcon className="h-8 w-8 text-teal-600" />
               </div>
               <h3 className="text-xl font-semibold mb-3">Property Search</h3>
               <p className="text-gray-600">
@@ -63,8 +63,8 @@ export default function RentalAssistancePage() {
             </div>
 
             <div className="text-center p-6">
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <CalendarIcon className="h-8 w-8 text-blue-600" />
+              <div className="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <CalendarIcon className="h-8 w-8 text-teal-600" />
               </div>
               <h3 className="text-xl font-semibold mb-3">Inspection Coordination</h3>
               <p className="text-gray-600">
@@ -73,8 +73,8 @@ export default function RentalAssistancePage() {
             </div>
 
             <div className="text-center p-6">
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <FileTextIcon className="h-8 w-8 text-blue-600" />
+              <div className="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <FileTextIcon className="h-8 w-8 text-teal-600" />
               </div>
               <h3 className="text-xl font-semibold mb-3">Application Assistance</h3>
               <p className="text-gray-600">
@@ -83,8 +83,8 @@ export default function RentalAssistancePage() {
             </div>
 
             <div className="text-center p-6">
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <UsersIcon className="h-8 w-8 text-blue-600" />
+              <div className="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <UsersIcon className="h-8 w-8 text-teal-600" />
               </div>
               <h3 className="text-xl font-semibold mb-3">Negotiation Support</h3>
               <p className="text-gray-600">
@@ -93,8 +93,8 @@ export default function RentalAssistancePage() {
             </div>
 
             <div className="text-center p-6">
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <KeyIcon className="h-8 w-8 text-blue-600" />
+              <div className="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <KeyIcon className="h-8 w-8 text-teal-600" />
               </div>
               <h3 className="text-xl font-semibold mb-3">Move-in Support</h3>
               <p className="text-gray-600">
@@ -103,8 +103,8 @@ export default function RentalAssistancePage() {
             </div>
 
             <div className="text-center p-6">
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <HomeIcon className="h-8 w-8 text-blue-600" />
+              <div className="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <HomeIcon className="h-8 w-8 text-teal-600" />
               </div>
               <h3 className="text-xl font-semibold mb-3">Ongoing Support</h3>
               <p className="text-gray-600">
@@ -181,7 +181,7 @@ export default function RentalAssistancePage() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
                   <input
                     type="text"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     placeholder="Enter your full name"
                   />
                 </div>
@@ -190,7 +190,7 @@ export default function RentalAssistancePage() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
                   <input
                     type="email"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     placeholder="Enter your email"
                   />
                 </div>
@@ -199,14 +199,14 @@ export default function RentalAssistancePage() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
                   <input
                     type="tel"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     placeholder="Enter your phone number"
                   />
                 </div>
                 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Budget Range</label>
-                  <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                  <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent">
                     <option value="">Select budget range</option>
                     <option value="under-400">Under $400/week</option>
                     <option value="400-600">$400 - $600/week</option>
@@ -220,7 +220,7 @@ export default function RentalAssistancePage() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">Preferred Areas</label>
                   <input
                     type="text"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     placeholder="e.g., North Mackay, Andergrove"
                   />
                 </div>
@@ -229,7 +229,7 @@ export default function RentalAssistancePage() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">Additional Requirements</label>
                   <textarea
                     rows={3}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     placeholder="Tell us about your specific needs..."
                   ></textarea>
                 </div>

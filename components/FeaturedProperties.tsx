@@ -24,7 +24,7 @@ export default function FeaturedProperties({ listings }: FeaturedPropertiesProps
               <p className="text-gray-500">{listing.price}</p>
               <Link
                 href={`/listing/${listing.listingID}`}
-                className="text-sky-700 font-medium block mt-2"
+                className="text-teal-700 font-medium block mt-2"
               >
                 View Details
               </Link>

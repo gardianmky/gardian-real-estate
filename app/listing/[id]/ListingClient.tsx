@@ -5,10 +5,31 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Gallery from 'react-image-gallery';
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
-import { FaFacebookF, FaTwitter, FaLinkedinIn, FaShare } from 'react-icons/fa';
+import { AiFillHeart } from 'react-icons/ai';
+import { AiOutlineHeart } from 'react-icons/ai';
+import { FaFacebookF } from 'react-icons/fa';
+import { FaTwitter } from 'react-icons/fa';
+import { FaLinkedinIn } from 'react-icons/fa';
+import { FaShare } from 'react-icons/fa';
 import { Listing } from 'types/listing';
 import { cleanPropertyTitle } from '@/lib/utils';
+
+// Runtime check for icon validity
+if (
+  [AiFillHeart, AiOutlineHeart, FaFacebookF, FaTwitter, FaLinkedinIn, FaShare].some(
+    (icon) => typeof icon !== 'function'
+  )
+) {
+  console.error('One or more icon components are not functions:', {
+    AiFillHeart,
+    AiOutlineHeart,
+    FaFacebookF,
+    FaTwitter,
+    FaLinkedinIn,
+    FaShare,
+  });
+  throw new Error('One or more icon components are not valid React components.');
+}
 
 interface ListingClientProps {
   listing: Listing;
@@ -150,7 +171,9 @@ export default function ListingClient({ listing }: ListingClientProps) {
                 {cleanPropertyTitle(listing.heading)}
               </h2>
               <p className="text-gray-600 text-lg">
-                {listing.address.street}, {listing.address.suburb} {listing.address.state} {listing.address.postcode}
+                {'street' in (listing.address ?? {}) 
+                  ? `${listing.address?.street ?? ''}, ${listing.address?.suburb ?? ''} ${listing.address?.state ?? ''} ${listing.address?.postcode ?? ''}`.trim()
+                  : ''}
               </p>
             </div>
             <div className="text-2xl font-bold text-teal-600">{listing.price}</div>
@@ -331,13 +354,13 @@ export default function ListingClient({ listing }: ListingClientProps) {
                   className="absolute top-full left-0 mt-2 bg-white shadow-lg rounded-lg p-2 z-10"
                 >
                   <div className="flex gap-2">
-                    <button className="p-2 rounded-full bg-blue-600 text-white">
+                    <button className="p-2 rounded-full bg-teal-600 text-white">
                       <FaFacebookF />
                     </button>
-                    <button className="p-2 rounded-full bg-sky-500 text-white">
+                    <button className="p-2 rounded-full bg-teal-500 text-white">
                       <FaTwitter />
                     </button>
-                    <button className="p-2 rounded-full bg-blue-700 text-white">
+                    <button className="p-2 rounded-full bg-teal-700 text-white">
                       <FaLinkedinIn />
                     </button>
                   </div>
