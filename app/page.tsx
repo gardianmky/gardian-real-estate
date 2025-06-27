@@ -327,53 +327,6 @@ export default async function HomePage() {
                         }
                       })()}
                       
-                      <div className="flex items-center gap-2 sm:gap-4 mb-3 sm:mb-4 text-gray-600 flex-wrap">
-                        {(() => {
-                          const extractBedBathCar = (data: any[]) => {
-                            const result: { bed: number | null, bath: number | null, car: number | null } = { bed: null, bath: null, car: null };
-                            data?.forEach(item => {
-                              if (!item?.key || !item?.value) return;
-                              const val = parseInt(item.value);
-                              if (isNaN(val)) return;
-                              if (item.key.toLowerCase().includes("bed")) result.bed = val;
-                              if (item.key.toLowerCase().includes("bath")) result.bath = val;
-                              if (item.key.toLowerCase().includes("car")) result.car = val;
-                            });
-                            return result;
-                          };
-                          
-                          const { bed, bath, car } = extractBedBathCar(property?.bedBathCarLand || []);
-                          
-                          return (
-                            <>
-                              {bed !== null && (
-                                <div className="flex items-center gap-1">
-                                  <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2zm16-5v2a2 2 0 01-2 2H7a2 2 0 01-2-2V9a2 2 0 012-2h10a2 2 0 012 2z" />
-                                  </svg>
-                                  <span className="text-xs sm:text-sm font-medium">{bed} bed</span>
-                                </div>
-                              )}
-                              {bath !== null && (
-                                <div className="flex items-center gap-1">
-                                  <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
-                                  </svg>
-                                  <span className="text-xs sm:text-sm font-medium">{bath} bath</span>
-                                </div>
-                              )}
-                              {car !== null && (
-                                <div className="flex items-center gap-1">
-                                  <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 15l-6-6-6 6m12 0a2 2 0 01-2 2H7a2 2 0 01-2-2m14 0V9a2 2 0 00-2-2H5a2 2 0 00-2 2v6z" />
-                                  </svg>
-                                  <span className="text-xs sm:text-sm font-medium">{car} car</span>
-                                </div>
-                              )}
-                            </>
-                          );
-                        })()}
-                      </div>
                       
                       <div className="mb-4 sm:mb-6">
                         <PropertyFeaturesInline listing={property} className="text-xs sm:text-sm text-gray-600" />

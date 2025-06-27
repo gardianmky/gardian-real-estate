@@ -85,8 +85,11 @@ export function formatPropertyFeatures(listing: Listing, format: "standard" | "c
     });
   }
 
-  // Filter out zero values except for properties that legitimately might have 0 (like cars)
-  return features.filter(f => f.value && (f.key === "cars" || f.value !== "0"));
+  // Filter out zero values and empty/null values - show only meaningful data
+  return features.filter(f => {
+    const numValue = parseInt(f.value || '0');
+    return numValue > 0 && f.value !== "0" && f.value !== "" && f.value !== "N/A";
+  });
 }
 
 // Legacy function for backward compatibility

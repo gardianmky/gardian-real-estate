@@ -99,40 +99,44 @@ export default async function ForSalePage({
           </p>
           
           {/* Results Summary */}
-          <div className="flex items-center justify-between bg-white p-4 rounded-lg shadow-sm">
-            <div className="text-sm text-gray-600">
-              {totalCount > 0 ? (
-                <>
-                  <span className="font-semibold text-gray-800">{totalCount}</span> {totalCount === 1 ? "property" : "properties"} found
-                  {totalPages > 1 && (
-                    <span className="ml-2">• Page {page} of {totalPages}</span>
-                  )}
-                </>
-              ) : (
-                "No properties found"
-              )}
-            </div>
-            
-            {/* Property Type Filters */}
-            <div className="flex space-x-2">
-              <Link 
-                href="/for-sale" 
-                className="px-4 py-2 bg-primary-600 text-white rounded text-sm font-medium"
-              >
-                For Sale
-              </Link>
-              <Link 
-                href="/for-rent" 
-                className="px-4 py-2 text-gray-600 hover:text-primary-600 text-sm font-medium"
-              >
-                For Rent
-              </Link>
-              <Link 
-                href="/commercial" 
-                className="px-4 py-2 text-gray-600 hover:text-primary-600 text-sm font-medium"
-              >
-                Commercial
-              </Link>
+          <div className="bg-white p-4 rounded-lg shadow-sm">
+            <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+              <div className="text-sm text-gray-600">
+                {totalCount > 0 ? (
+                  <>
+                    <span className="font-semibold text-gray-800">{totalCount}</span> {totalCount === 1 ? "property" : "properties"} found
+                    {totalPages > 1 && (
+                      <span className="ml-2">• Page {page} of {totalPages}</span>
+                    )}
+                  </>
+                ) : (
+                  "No properties found"
+                )}
+              </div>
+              
+              {/* Property Type Filters - Enhanced Mobile */}
+              <div className="bg-gray-50 rounded-xl p-1 w-full lg:w-auto">
+                <div className="flex">
+                  <Link 
+                    href="/for-sale" 
+                    className="flex-1 lg:flex-none px-4 py-2 bg-primary-600 text-white rounded-lg text-sm font-medium text-center shadow-sm"
+                  >
+                    For Sale
+                  </Link>
+                  <Link 
+                    href="/for-rent" 
+                    className="flex-1 lg:flex-none px-4 py-2 text-gray-600 hover:text-primary-600 hover:bg-white rounded-lg text-sm font-medium text-center transition-all duration-200"
+                  >
+                    For Rent
+                  </Link>
+                  <Link 
+                    href="/commercial" 
+                    className="flex-1 lg:flex-none px-4 py-2 text-gray-600 hover:text-primary-600 hover:bg-white rounded-lg text-sm font-medium text-center transition-all duration-200"
+                  >
+                    Commercial
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>
