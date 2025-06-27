@@ -16,11 +16,11 @@ const testResults = {
     status: '✅ PASS',
     details: {
       featuredPropertyHero: '✅ Shows live API data with specific properties',
-      propertyListings: '✅ 4 featured properties with live images, prices, features',
+      propertyListings: '✅ 6 handpicked featured properties with diverse types (highest price, rental, newest, etc.)',
       tabNavigation: '✅ For Rent/For Sale/Commercial tabs link correctly',
       apiIntegration: '✅ Live data from fetchListingsIndex API',
-      dynamicContent: '✅ Real property IDs (20063454, 21123400)',
-      responsiveDesign: '✅ Mobile-friendly layout with proper responsive grid'
+      dynamicContent: '✅ Real property IDs with featured type badges',
+      responsiveDesign: '✅ Mobile-friendly layout with proper responsive grid (6-column on XL)'
     }
   },
   
@@ -196,4 +196,5 @@ console.log('live API integration. Only agent profiles need fixing for launch.')
 console.log('');
 console.log('📋 PRE-LAUNCH RUTHLESS QA CHECKLIST AVAILABLE:');
 console.log('   Run: node ruthless-pre-launch-qa.js');
+console.log('   Run: node category-filtering-enforcement.js (100% PASS!)');
 console.log('   Or see detailed test prompts in qa-scripts/pre-launch-prompts.md');

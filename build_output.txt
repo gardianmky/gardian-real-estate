@@ -1,0 +1,79 @@
+
+> my-v0-project@0.1.0 build
+> next build
+
+   ▲ Next.js 15.3.2
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 4.0s
+   Skipping validation of types
+   Skipping linting
+   Collecting page data ...
+   Generating static pages (0/34) ...
+   Generating static pages (8/34) 
+   Generating static pages (16/34) 
+   Generating static pages (25/34) 
+ ✓ Generating static pages (34/34)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS
+┌ ƒ /                                    6.33 kB         127 kB
+├ ○ /_not-found                            982 B         102 kB
+├ ○ /about                                 207 B         110 kB
+├ ƒ /agent/[id]                            207 B         110 kB
+├ ƒ /agents                                207 B         110 kB
+├ ƒ /agents/[id]                           207 B         110 kB
+├ ƒ /api/agents                            198 B         102 kB
+├ ƒ /api/agents/[id]                       198 B         102 kB
+├ ƒ /api/contact/landlord                  198 B         102 kB
+├ ƒ /api/contact/tenant                    198 B         102 kB
+├ ƒ /api/listings/[id]                     198 B         102 kB
+├ ƒ /api/listings/featured                 198 B         102 kB
+├ ○ /appraisal-request                     224 B         105 kB
+├ ○ /appraisals                            224 B         105 kB
+├ ○ /book-appointment                      224 B         105 kB
+├ ƒ /buy                                   198 B         102 kB
+├ ○ /buyer-agent-request                   224 B         105 kB
+├ ○ /careers                             5.86 kB         116 kB
+├ ƒ /commercial                            177 B         105 kB
+├ ○ /complaints                          3.37 kB         108 kB
+├ ○ /compliance                            224 B         105 kB
+├ ○ /contact                             3.38 kB         113 kB
+├ ƒ /contact-agent                         224 B         105 kB
+├ ○ /explore                               198 B         102 kB
+├ ○ /faq                                 3.42 kB         108 kB
+├ ○ /finance                               198 B         102 kB
+├ ○ /financial-planning                    198 B         102 kB
+├ ƒ /for-rent                            2.75 kB         108 kB
+├ ƒ /for-sale                            2.75 kB         108 kB
+├ ○ /home-loans                            224 B         105 kB
+├ ○ /insurance                             198 B         102 kB
+├ ○ /insurance-privacy                     224 B         105 kB
+├ ƒ /landlord-resources                    224 B         105 kB
+├ ƒ /leased                                224 B         105 kB
+├ ƒ /listing/[id]                        56.3 kB         173 kB
+├ ƒ /open-homes                            188 B         110 kB
+├ ○ /privacy                               224 B         105 kB
+├ ○ /property-management                   207 B         110 kB
+├ ○ /property-management/landlords       4.09 kB         111 kB
+├ ○ /property-management/tenants         4.41 kB         109 kB
+├ ƒ /property/[id]                       2.05 kB         112 kB
+├ ○ /real-estate                         3.63 kB         114 kB
+├ ○ /rent                                1.02 kB         119 kB
+├ ○ /rental-assistance                     224 B         105 kB
+├ ƒ /search                              2.04 kB         126 kB
+├ ○ /sell                                  224 B         105 kB
+├ ○ /sell-your-property                    207 B         110 kB
+├ ƒ /sold                                2.75 kB         108 kB
+├ ○ /terms                                 224 B         105 kB
+└ ○ /testimonials                          207 B         110 kB
++ First Load JS shared by all             101 kB
+  ├ chunks/1684-0d719aaf37e606a7.js      46.1 kB
+  ├ chunks/4bd1b696-e377ce5e072f235a.js  53.4 kB
+  └ other shared chunks (total)          1.92 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

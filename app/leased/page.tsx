@@ -22,7 +22,7 @@ async function getLeasedProperties(page = 1) {
   try {
     // Use centralized API function for consistent data fetching
     const res = await fetchListingsIndex({
-      disposalMethod: "forRent", // Use forRent and filter for leased/rented
+      disposalMethod: "leased", // Use proper leased disposal method
       type: "Residential",
       fetchAll: false, // FIXED: Use proper pagination instead of fetching all
       page,
@@ -31,11 +31,8 @@ async function getLeasedProperties(page = 1) {
       orderDirection: "desc"
     });
     
-    // Filter for recently leased properties
-    // In production, would use disposalMethod: "leased" or status filter
-    const listings = (res.listings || []).filter((listing: any) => {
-      return listing.status === 'Leased' || listing.status === 'Rented' || Math.random() > 0.7;
-    });
+    // Return leased properties directly from API
+    const listings = res.listings || [];
     
     return listings;
     

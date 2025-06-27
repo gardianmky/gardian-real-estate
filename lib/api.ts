@@ -124,7 +124,7 @@ export async function fetchListingsIndex({
   page?: number;
   type?: string;
   categories?: string[];
-  disposalMethod?: 'forSale' | 'forRent' | 'sold';
+  disposalMethod?: 'forSale' | 'forRent' | 'sold' | 'leased';
   resultsPerPage?: number;
   orderBy?: string;
   orderDirection?: 'asc' | 'desc';

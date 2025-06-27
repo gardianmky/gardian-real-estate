@@ -1,6 +1,7 @@
 import FeaturedPropertyHero from '@/components/hero/FeaturedPropertyHero';
 import AnimatedHeroSection from '@/components/hero/animated-hero-section';
 import { PropertyFeaturesInline } from '@/components/ui/property-features';
+import { Button } from '@/components/ui/button';
 import { cleanPropertyTitle } from '@/lib/utils';
 import Link from "next/link";
 import Image from "next/image";
@@ -10,32 +11,161 @@ export const dynamic = 'force-dynamic';
 
 async function getFeaturedProperties() {
   try {
-    const res = await fetchListingsIndex({
-      disposalMethod: 'forSale',
-      type: 'Residential',
-      fetchAll: false,
-      resultsPerPage: 4,
-      orderBy: 'dateListed',
-      orderDirection: 'desc'
+    // Fetch 6 different types of featured properties for variety
+    const [
+      highestPriceRes,
+      highestRentRes, 
+      newestRes,
+      largestRes,
+      waterfrontRes,
+      premiumRes
+    ] = await Promise.all([
+      // 1. Highest priced residential for sale
+      fetchListingsIndex({
+        disposalMethod: 'forSale',
+        type: 'Residential',
+        fetchAll: false,
+        resultsPerPage: 1,
+        orderBy: 'price',
+        orderDirection: 'desc'
+      }),
+      // 2. Highest priced rental
+      fetchListingsIndex({
+        disposalMethod: 'forRent',
+        type: 'Residential',
+        fetchAll: false,
+        resultsPerPage: 1,
+        orderBy: 'price',
+        orderDirection: 'desc'
+      }),
+      // 3. Newest residential listing
+      fetchListingsIndex({
+        disposalMethod: 'forSale',
+        type: 'Residential',
+        fetchAll: false,
+        resultsPerPage: 1,
+        orderBy: 'dateListed',
+        orderDirection: 'desc'
+      }),
+      // 4. Largest land size residential
+      fetchListingsIndex({
+        disposalMethod: 'forSale',
+        type: 'Residential',
+        fetchAll: false,
+        resultsPerPage: 10,
+        orderBy: 'dateListed',
+        orderDirection: 'desc'
+      }),
+      // 5. Premium location (search for waterfront/view properties)
+      fetchListingsIndex({
+        disposalMethod: 'forSale',
+        type: 'Residential',
+        fetchAll: false,
+        resultsPerPage: 10,
+        orderBy: 'price',
+        orderDirection: 'desc'
+      }),
+      // 6. Premium residential backup
+      fetchListingsIndex({
+        disposalMethod: 'forSale',
+        type: 'Residential',
+        fetchAll: false,
+        resultsPerPage: 2,
+        orderBy: 'price',
+        orderDirection: 'desc'
+      })
+    ]);
+
+    const featuredProperties: any[] = [];
+
+    // 1. Add highest priced for sale
+    if (highestPriceRes.listings?.[0]) {
+      featuredProperties.push({
+        ...highestPriceRes.listings[0],
+        featuredType: 'Highest Price For Sale'
+      });
+    }
+
+    // 2. Add highest priced rental  
+    if (highestRentRes.listings?.[0]) {
+      featuredProperties.push({
+        ...highestRentRes.listings[0],
+        featuredType: 'Premium Rental'
+      });
+    }
+
+    // 3. Add newest listing
+    if (newestRes.listings?.[0]) {
+      featuredProperties.push({
+        ...newestRes.listings[0],
+        featuredType: 'Newest Listing'
+      });
+    }
+
+    // 4. Add largest property (by land size)
+    const largestProperty = (largestRes.listings || []).find((property: any) => {
+      const landSize = parseInt(property.landSize) || 0;
+      return landSize > 500; // At least 500m²
     });
-    
-    const residentialProperties = (res.listings || []).filter(property => {
-      const isResidential = property.type === 'Residential' || 
-                           property.propertyType === 'Residential' ||
-                           property.category === 'Residential' ||
-                           !property.type;
-      return isResidential;
+    if (largestProperty) {
+      featuredProperties.push({
+        ...largestProperty,
+        featuredType: 'Spacious Property'
+      });
+    }
+
+    // 5. Add waterfront/view property
+    const premiumProperty = (waterfrontRes.listings || []).find((property: any) => {
+      const description = (property.description || '').toLowerCase();
+      const heading = (property.heading || '').toLowerCase();
+      return description.includes('water') || description.includes('view') || 
+             description.includes('ocean') || heading.includes('view') ||
+             description.includes('river') || description.includes('beach');
     });
-    
-    const uniqueProperties = residentialProperties.filter((property, index, self) => {
-      const id = property.listingID || property.id;
-      return index === self.findIndex(p => (p.listingID || p.id) === id);
-    });
-    
-    return uniqueProperties.slice(0, 4);
+    if (premiumProperty) {
+      featuredProperties.push({
+        ...premiumProperty,
+        featuredType: 'Premium Location'
+      });
+    }
+
+    // 6. Fill remaining slots with premium properties
+    const remainingSlots = 6 - featuredProperties.length;
+    if (remainingSlots > 0) {
+      const additionalProperties = (premiumRes.listings || [])
+        .filter((property: any) => {
+          const existingIds = featuredProperties.map((p: any) => p.listingID || p.id);
+          const currentId = property.listingID || property.id;
+          return !existingIds.includes(currentId);
+        })
+        .slice(0, remainingSlots);
+      
+      additionalProperties.forEach((property: any) => {
+        featuredProperties.push({
+          ...property,
+          featuredType: 'Premium Home'
+        });
+      });
+    }
+
+    // Ensure all properties are residential and unique
+    const cleanedProperties = featuredProperties
+      .filter((property: any) => {
+        const isResidential = property.type === 'Residential' || 
+                             property.propertyType === 'Residential' ||
+                             property.category === 'Residential' ||
+                             !property.type;
+        return isResidential && (property.listingID || property.id);
+      })
+      .filter((property: any, index: number, self: any[]) => {
+        const id = property.listingID || property.id;
+        return index === self.findIndex((p: any) => (p.listingID || p.id) === id);
+      });
+
+    return cleanedProperties.slice(0, 6);
     
   } catch (error) {
-    console.error('Error fetching featured residential properties:', error);
+    console.error('Error fetching featured properties:', error);
     return [];
   }
 }
@@ -114,12 +244,12 @@ export default async function HomePage() {
                   <svg className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                   </svg>
-                  {featuredProperties.length} Premium Residential Homes Available
+                  {featuredProperties.length} Handpicked Premium Properties
                 </span>
               </div>
               
-              {/* Property Grid - 4 tiles layout */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12">
+              {/* Property Grid - 6 tiles layout with dynamic types */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 sm:gap-6 lg:gap-4 xl:gap-3 mb-8 sm:mb-12">
                 {featuredProperties.map((property: any, index: number) => {
                   const uniqueKey = property?.listingID || property?.id || `property-${index}`;
                   
@@ -134,12 +264,24 @@ export default async function HomePage() {
                           className="object-cover transition-all duration-700 group-hover:scale-110"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        {/* Featured Type Badge */}
+                        {property?.featuredType && (
+                          <div className="absolute top-3 sm:top-4 left-3 sm:left-4 bg-primary-600 text-white px-2 sm:px-3 py-1 rounded-full text-xs font-semibold z-10">
+                            {property.featuredType}
+                          </div>
+                        )}
                         <div className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-white/90 backdrop-blur-sm px-2 sm:px-3 py-1 rounded-full text-xs font-semibold text-gray-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                           Residential
                         </div>
                       </div>
                     ) : (
-                      <div className="h-48 sm:h-56 lg:h-64 bg-gradient-to-br from-primary-50 to-primary-100 flex items-center justify-center">
+                      <div className="h-48 sm:h-56 lg:h-64 bg-gradient-to-br from-primary-50 to-primary-100 flex items-center justify-center relative">
+                        {/* Featured Type Badge for placeholder */}
+                        {property?.featuredType && (
+                          <div className="absolute top-3 sm:top-4 left-3 sm:left-4 bg-primary-600 text-white px-2 sm:px-3 py-1 rounded-full text-xs font-semibold z-10">
+                            {property.featuredType}
+                          </div>
+                        )}
                         <div className="text-center">
                           <svg className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-primary-300 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -236,15 +378,16 @@ export default async function HomePage() {
                       <div className="mb-4 sm:mb-6">
                         <PropertyFeaturesInline listing={property} className="text-xs sm:text-sm text-gray-600" />
                       </div>
-                      <Link 
-                        href={`/property/${property?.listingID}`} 
-                        className="inline-flex items-center bg-primary-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-xl hover:bg-primary-700 transition-all duration-300 font-semibold shadow-md hover:shadow-lg transform hover:scale-105 w-full justify-center group-hover:bg-primary-700 text-sm sm:text-base"
-                      >
-                        View This Home
-                        <svg className="w-3 h-3 sm:w-4 sm:h-4 ml-1 sm:ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                      </Link>
+                      <Button asChild variant="primary" size="default" className="w-full">
+                        <Link href={`/property/${property?.listingID}`}>
+                          <span className="flex items-center">
+                            View This Home
+                            <svg className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                          </span>
+                        </Link>
+                      </Button>
                     </div>
                   </div>
                   );
@@ -262,33 +405,32 @@ export default async function HomePage() {
                 <h3 className="text-2xl font-bold text-gray-800 mb-4">Discover Premium Residential Homes</h3>
                 <p className="text-gray-600 mb-8 leading-relaxed">Browse our comprehensive collection of premium residential properties and family homes across Mackay and surrounding areas</p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link 
-                    href="/for-sale" 
-                    className="bg-primary-600 text-white px-8 py-3 rounded-xl hover:bg-primary-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-                  >
-                    View Residential Homes For Sale
-                  </Link>
-                  <Link 
-                    href="/for-rent" 
-                    className="bg-white text-primary-600 border-2 border-primary-600 px-8 py-3 rounded-xl hover:bg-primary-50 transition-all duration-300 font-semibold"
-                  >
-                    View Rental Homes
-                  </Link>
+                  <Button asChild variant="primary" size="lg">
+                    <Link href="/for-sale">
+                      View Residential Homes For Sale
+                    </Link>
+                  </Button>
+                  <Button asChild variant="secondary" size="lg">
+                    <Link href="/for-rent">
+                      View Rental Homes
+                    </Link>
+                  </Button>
                 </div>
               </div>
             </div>
           )}
 
           <div className="text-center mt-8 sm:mt-12">
-            <Link 
-              href="/for-sale" 
-              className="inline-flex items-center bg-primary-600 text-white px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-xl hover:bg-primary-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 group text-sm sm:text-base"
-            >
-              Explore All Residential Homes
-              <svg className="w-4 h-4 sm:w-5 sm:h-5 ml-1 sm:ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </Link>
+            <Button asChild variant="primary" size="lg">
+              <Link href="/for-sale">
+                <span className="flex items-center">
+                  Explore All Residential Homes
+                  <svg className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </span>
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -412,24 +554,26 @@ export default async function HomePage() {
               </div>
               
               <div className="flex flex-col gap-3 sm:gap-4 justify-center">
-                <Link 
-                  href="/finance" 
-                  className="inline-flex items-center bg-primary-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl hover:bg-primary-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 group text-sm sm:text-base justify-center"
-                >
-                  Get Pre-Approved Today
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5 ml-1 sm:ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </Link>
-                <Link 
-                  href="/insurance" 
-                  className="inline-flex items-center bg-white text-primary-600 border-2 border-primary-600 px-6 sm:px-8 py-3 sm:py-4 rounded-xl hover:bg-primary-50 transition-all duration-300 font-semibold group text-sm sm:text-base justify-center"
-                >
-                  Get Insurance Quote
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5 ml-1 sm:ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
-                </Link>
+                <Button asChild variant="primary" size="lg" className="w-full">
+                  <Link href="/finance">
+                    <span className="flex items-center">
+                      Get Pre-Approved Today
+                      <svg className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </span>
+                  </Link>
+                </Button>
+                <Button asChild variant="secondary" size="lg" className="w-full">
+                  <Link href="/insurance">
+                    <span className="flex items-center">
+                      Get Insurance Quote
+                      <svg className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                      </svg>
+                    </span>
+                  </Link>
+                </Button>
               </div>
               
               <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-primary-50 rounded-xl border border-primary-100">

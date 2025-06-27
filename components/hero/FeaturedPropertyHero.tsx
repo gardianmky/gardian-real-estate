@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { PropertyFeaturesInline } from '@/components/ui/property-features';
+import { Button } from '@/components/ui/button';
 import type { Listing } from '@/types/listing';
 
 interface Property extends Partial<Listing> {
@@ -66,18 +67,16 @@ export default function FeaturedPropertyHero({
             Browse our exclusive selection of properties for sale and rent
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/for-sale"
-              className="inline-block bg-primary-600 text-white px-8 py-3 rounded-lg hover:bg-primary-700 transition-all duration-300 font-medium"
-            >
-              View Properties For Sale
-            </Link>
-            <Link
-              href="/for-rent"
-              className="inline-block bg-white text-primary-600 border border-primary-600 px-8 py-3 rounded-lg hover:bg-primary-50 transition-all duration-300 font-medium"
-            >
-              View Rental Properties
-            </Link>
+            <Button asChild variant="primary" size="lg">
+              <Link href="/for-sale">
+                View Properties For Sale
+              </Link>
+            </Button>
+            <Button asChild variant="secondary" size="lg">
+              <Link href="/for-rent">
+                View Rental Properties
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -90,10 +89,10 @@ export default function FeaturedPropertyHero({
   const secureImageUrl = imageUrl?.replace('http://', 'https://') || imageUrl;
 
   return (
-    <section className="relative bg-white overflow-hidden rounded-[32px] shadow-[0_10px_40px_rgba(0,0,0,0.1)] mb-16 transition-all duration-500 group">
-      <div className="grid md:grid-cols-2 items-center">
+    <section className="relative bg-white overflow-hidden rounded-3xl shadow-xl mb-16 transition-all duration-500 group border border-gray-50">
+      <div className="grid lg:grid-cols-2 items-stretch">
         {/* Property Image */}
-        <div className="relative h-[400px] md:h-[500px] w-full overflow-hidden rounded-l-[32px]">
+        <div className="relative h-[400px] lg:h-[500px] w-full overflow-hidden lg:rounded-l-3xl rounded-t-3xl lg:rounded-t-none">
           <Image
             src={secureImageUrl}
             alt={address}
@@ -102,49 +101,50 @@ export default function FeaturedPropertyHero({
             priority
           />
           {/* Enhanced overlay gradient */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
         </div>
 
         {/* Property Details */}
-        <div className="p-10 md:p-14">
-          <span className="text-sm uppercase text-primary-600 font-medium tracking-wider mb-3 block">
-            Featured Property
+        <div className="p-6 lg:p-12 flex flex-col justify-center">
+          <span className="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-6 w-fit">
+            ⭐ Featured Property
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
+          <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-800 mb-4 leading-tight">
             {address}
           </h2>
-          <p className="text-2xl md:text-3xl text-primary-700 font-semibold mb-6">{price}</p>
+          <p className="text-2xl lg:text-3xl text-primary-600 font-bold mb-6">{price}</p>
 
           {/* Property Features */}
           <div className="mb-8">
             <PropertyFeaturesInline 
               listing={property as any} 
-              className="flex flex-wrap gap-3" 
+              className="flex flex-wrap gap-4 text-gray-600" 
             />
           </div>
 
           {/* Description Preview */}
           {property?.description && (
-            <p className="text-gray-600 mb-6 line-clamp-2">
-              {property.description.slice(0, 120)}...
+            <p className="text-gray-600 mb-8 text-base leading-relaxed line-clamp-3">
+              {property.description.slice(0, 150)}...
             </p>
           )}
 
           {/* Enhanced CTA Button */}
-          <Link
-            href={`/property/${property?.listingID}`}
-            className="inline-flex items-center bg-primary-600 text-white px-8 py-4 rounded-lg hover:bg-primary-700 transition-all duration-300 font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 group"
-          >
-            View Property Details
-            <svg 
-              className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </Link>
+          <Button asChild variant="primary" size="xl" className="w-full lg:w-auto">
+            <Link href={`/property/${property?.listingID}`}>
+              <span className="flex items-center justify-center">
+                View Property Details
+                <svg 
+                  className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </span>
+            </Link>
+          </Button>
         </div>
       </div>
 
