@@ -111,7 +111,7 @@ const CTA_MATRIX = {
       title: 'Find a Rental You Love',
       subtitle: 'Discover the best rental properties in town.',
       cta: 'View Rentals',
-      href: '/real-estate/rent',
+      href: '/rent',
     },
     insurance: {
       title: 'Contents Insurance for Renters',

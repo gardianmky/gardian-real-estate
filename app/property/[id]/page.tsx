@@ -76,7 +76,7 @@ export default async function PropertyDetailPage({
     return (
       <div className="min-h-screen bg-gray-50">
         {/* Header */}
-        <div className="bg-primary-600 text-white py-2 text-center text-sm">
+        <div className="bg-teal-600 text-white py-2 text-center text-sm">
           Premium Property Details
         </div>
         
@@ -110,7 +110,7 @@ export default async function PropertyDetailPage({
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-primary-600 text-white py-2 text-center text-sm">
+      <div className="bg-teal-600 text-white py-2 text-center text-sm">
         Premium Property Details
       </div>
       

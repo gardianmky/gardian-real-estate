@@ -47,7 +47,7 @@ export default function SearchResults({ propertyType, data }: SearchResultsProps
   if (loading) {
     return (
       <div className="text-center py-10">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-600 mx-auto"></div>
         <p className="mt-4 text-gray-600">Searching properties...</p>
       </div>
     );
@@ -58,7 +58,7 @@ export default function SearchResults({ propertyType, data }: SearchResultsProps
       <div className="text-center py-10">
         <p className="text-red-500">{error}</p>
         <button 
-          className="mt-4 px-4 py-2 bg-primary-500 text-white rounded hover:bg-primary-600"
+          className="mt-4 px-4 py-2 bg-teal-500 text-white rounded hover:bg-teal-600"
           onClick={() => window.location.reload()}
         >
           Try Again

@@ -55,9 +55,9 @@ export default function FeaturedPropertyHero({
   // Fallback if no property available
   if (!property) {
     return (
-      <section className="relative bg-gradient-to-r from-primary-50 to-primary-100 overflow-hidden rounded-[32px] shadow-[0_10px_40px_rgba(0,0,0,0.1)] mb-16 transition-all duration-500">
+      <section className="relative bg-gradient-to-r from-teal-50 to-teal-100 overflow-hidden rounded-[32px] shadow-[0_10px_40px_rgba(0,0,0,0.1)] mb-16 transition-all duration-500">
         <div className="p-10 md:p-14 text-center">
-          <span className="text-sm uppercase text-primary-600 font-medium tracking-wider mb-2 block">
+          <span className="text-sm uppercase text-teal-600 font-medium tracking-wider mb-2 block">
             Featured Properties
           </span>
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -106,13 +106,13 @@ export default function FeaturedPropertyHero({
 
         {/* Property Details */}
         <div className="p-6 lg:p-12 flex flex-col justify-center">
-          <span className="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-6 w-fit">
+          <span className="inline-flex items-center px-4 py-2 bg-teal-100 text-teal-800 rounded-full text-sm font-semibold mb-6 w-fit">
             ⭐ Featured Property
           </span>
           <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-800 mb-4 leading-tight">
             {address}
           </h2>
-          <p className="text-2xl lg:text-3xl text-primary-600 font-bold mb-6">{price}</p>
+          <p className="text-2xl lg:text-3xl text-teal-600 font-bold mb-6">{price}</p>
 
           {/* Property Features */}
           <div className="mb-8">
@@ -157,7 +157,7 @@ export default function FeaturedPropertyHero({
               onClick={() => setIndex(i)}
               className={`h-3 w-3 rounded-full transition-all duration-300 ${
                 index === i 
-                  ? 'bg-primary-600 scale-110' 
+                  ? 'bg-teal-600 scale-110' 
                   : 'bg-white/60 hover:bg-white/80'
               }`}
               aria-label={`View property ${i + 1}`}

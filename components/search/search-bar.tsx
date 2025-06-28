@@ -38,12 +38,12 @@ const SearchBar = ({ variant = 'header', defaultPropertyType = 'rent' }: SearchB
             placeholder="Enter a suburb, postcode, or property address"
             value={locationInput}
             onChange={(e) => setLocationInput(e.target.value)}
-            className="w-full pl-12 pr-4 py-3 sm:py-4 rounded-xl sm:rounded-l-xl sm:rounded-r-none border-0 bg-gray-50 sm:bg-transparent focus:outline-none focus:ring-2 focus:ring-primary-500 focus:bg-white transition-all duration-200 text-sm sm:text-base placeholder-gray-500"
+            className="w-full pl-12 pr-4 py-3 sm:py-4 rounded-xl sm:rounded-l-xl sm:rounded-r-none border-0 bg-gray-50 sm:bg-transparent focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition-all duration-200 text-sm sm:text-base placeholder-gray-500"
           />
         </div>
         <button
           type="submit"
-          className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-primary-600 text-white rounded-xl sm:rounded-l-none sm:rounded-r-xl hover:bg-primary-700 transition-all duration-300 font-semibold text-sm sm:text-base shadow-md hover:shadow-lg transform hover:-translate-y-0.5 flex items-center justify-center group"
+          className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-teal-600 text-white rounded-xl sm:rounded-l-none sm:rounded-r-xl hover:bg-teal-700 transition-all duration-300 font-semibold text-sm sm:text-base shadow-md hover:shadow-lg transform hover:-translate-y-0.5 flex items-center justify-center group"
           style={{
             animation: 'pulse 3s ease-in-out infinite'
           }}
@@ -67,7 +67,7 @@ const SearchBar = ({ variant = 'header', defaultPropertyType = 'rent' }: SearchB
                 setLocation(location);
                 router.push(`/${defaultPropertyType}?location=${location}`);
               }}
-              className="px-3 py-1 bg-white rounded-full border border-gray-200 text-xs text-gray-600 hover:border-primary-300 hover:text-primary-600 transition-colors"
+              className="px-3 py-1 bg-white rounded-full border border-gray-200 text-xs text-gray-600 hover:border-teal-300 hover:text-teal-600 transition-colors"
             >
               {location}
             </button>

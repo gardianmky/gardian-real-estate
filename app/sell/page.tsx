@@ -148,7 +148,7 @@ export default function SellPage() {
           </div>
           <button
             type="submit"
-            className="bg-gradient-to-r from-primary-600 to-teal-600 text-white px-6 py-3 rounded-md shadow-md hover:shadow-lg transition-all duration-300"
+            className="bg-gradient-to-r from-teal-600 to-teal-600 text-white px-6 py-3 rounded-md shadow-md hover:shadow-lg transition-all duration-300"
           >
             Request Valuation
           </button>

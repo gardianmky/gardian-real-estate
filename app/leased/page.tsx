@@ -79,7 +79,7 @@ export default async function LeasedPage({
               </Link>
               <Link
                 href="/property-management"
-                className="bg-primary-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-800 transition-colors text-center"
+                className="bg-teal-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-teal-800 transition-colors text-center"
               >
                 Property Management
               </Link>
@@ -133,7 +133,7 @@ export default async function LeasedPage({
                 <p className="text-gray-600 mb-6">
                   Check back soon for updates on our latest successful leases.
                 </p>
-                <Link href="/for-rent" className="bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 transition-colors">
+                <Link href="/for-rent" className="bg-teal-600 text-white px-6 py-2 rounded-lg hover:bg-teal-700 transition-colors">
                   View Available Rentals
                 </Link>
               </div>
@@ -143,7 +143,7 @@ export default async function LeasedPage({
 
         {/* Load More Button */}
         <div className="text-center mt-12">
-          <button className="bg-primary-600 text-white px-8 py-3 rounded-lg hover:bg-primary-700 transition-colors">
+          <button className="bg-teal-600 text-white px-8 py-3 rounded-lg hover:bg-teal-700 transition-colors">
             Load More Properties
           </button>
         </div>
@@ -160,7 +160,7 @@ export default async function LeasedPage({
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors"
+              className="bg-teal-600 text-white px-6 py-3 rounded-lg hover:bg-teal-700 transition-colors"
             >
               Contact Our Team
             </Link>

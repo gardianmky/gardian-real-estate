@@ -33,9 +33,9 @@ export default function NavigationCards() {
         </svg>
       ),
       href: "/buy",
-      bgColor: "bg-gradient-to-br from-primary-50 to-primary-100",
-      textColor: "text-primary-700",
-      borderColor: "border-primary-200",
+      bgColor: "bg-gradient-to-br from-teal-50 to-teal-100",
+      textColor: "text-teal-700",
+      borderColor: "border-teal-200",
     },
     {
       title: "Sell",
@@ -81,9 +81,9 @@ export default function NavigationCards() {
         </svg>
       ),
       href: "/rent",
-      bgColor: "bg-gradient-to-br from-primary-50 to-primary-100",
-      textColor: "text-primary-700",
-      borderColor: "border-primary-200",
+      bgColor: "bg-gradient-to-br from-teal-50 to-teal-100",
+      textColor: "text-teal-700",
+      borderColor: "border-teal-200",
     },
     {
       title: "Commercial",

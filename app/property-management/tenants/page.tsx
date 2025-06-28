@@ -17,25 +17,25 @@ export default function TenantsPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-primary-600 to-primary-800 text-white py-16">
+      <div className="bg-gradient-to-r from-teal-600 to-teal-800 text-white py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Find Your Perfect Rental Home
             </h1>
-            <p className="text-xl text-primary-100 mb-8">
+            <p className="text-xl text-teal-100 mb-8">
               Discover quality rental properties in Mackay with professional tenant support and easy application process
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/for-rent"
-                className="bg-white text-primary-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+                className="bg-white text-teal-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
               >
                 Browse Rental Properties
               </Link>
               <a
                 href="#rental-application"
-                className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors"
+                className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-teal-600 transition-colors"
               >
                 Apply for Rental
               </a>
@@ -136,7 +136,7 @@ export default function TenantsPage() {
                 }
               ].map((step, index) => (
                 <div key={index} className="text-center">
-                  <div className="bg-primary-600 text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
+                  <div className="bg-teal-600 text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
                     {step.step}
                   </div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">{step.title}</h3>
@@ -173,14 +173,14 @@ export default function TenantsPage() {
                     "Pet documentation (If you have pets)"
                   ].map((requirement, index) => (
                     <li key={index} className="flex items-start">
-                      <span className="text-primary-600 mr-3 mt-1">✓</span>
+                      <span className="text-teal-600 mr-3 mt-1">✓</span>
                       <span className="text-gray-700">{requirement}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="bg-primary-50 rounded-2xl p-8">
+              <div className="bg-teal-50 rounded-2xl p-8">
                 <h3 className="text-xl font-bold text-gray-900 mb-6">Application Tips</h3>
                 <ul className="space-y-4">
                   {[
@@ -191,7 +191,7 @@ export default function TenantsPage() {
                     "Be prompt in responding to requests"
                   ].map((tip, index) => (
                     <li key={index} className="flex items-start">
-                      <span className="text-primary-600 mr-3 mt-1">💡</span>
+                      <span className="text-teal-600 mr-3 mt-1">💡</span>
                       <span className="text-gray-700">{tip}</span>
                     </li>
                   ))}
@@ -228,7 +228,7 @@ export default function TenantsPage() {
                     <input
                       type="text"
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                       placeholder="Enter your name"
                     />
                   </div>
@@ -239,7 +239,7 @@ export default function TenantsPage() {
                     <input
                       type="tel"
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                       placeholder="Enter your phone number"
                     />
                   </div>
@@ -252,7 +252,7 @@ export default function TenantsPage() {
                   <input
                     type="text"
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     placeholder="Enter your rental property address"
                   />
                 </div>
@@ -263,7 +263,7 @@ export default function TenantsPage() {
                   </label>
                   <select 
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                   >
                     <option value="">Select priority level</option>
                     <option value="emergency">Emergency (safety/security issue)</option>
@@ -280,7 +280,7 @@ export default function TenantsPage() {
                   <textarea
                     rows={5}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     placeholder="Please describe the maintenance issue in detail, including location within the property and any relevant circumstances..."
                   ></textarea>
                 </div>
@@ -291,14 +291,14 @@ export default function TenantsPage() {
                   </label>
                   <input
                     type="text"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     placeholder="e.g., Weekdays after 5pm, Weekends any time"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-primary-600 text-white py-4 px-8 rounded-lg hover:bg-primary-700 transition-colors font-semibold text-lg"
+                  className="w-full bg-teal-600 text-white py-4 px-8 rounded-lg hover:bg-teal-700 transition-colors font-semibold text-lg"
                 >
                   Submit Maintenance Request
                 </button>
@@ -309,26 +309,26 @@ export default function TenantsPage() {
       </div>
 
       {/* Contact Information */}
-      <div className="bg-primary-600 text-white py-12">
+      <div className="bg-teal-600 text-white py-12">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div>
               <h3 className="text-xl font-bold mb-4">Need Help?</h3>
-              <p className="text-primary-100 mb-2">General Enquiries</p>
+              <p className="text-teal-100 mb-2">General Enquiries</p>
               <a href="tel:0749577424" className="text-xl font-semibold">07 4957 7424</a>
-              <p className="text-primary-100 mt-4 mb-2">After Hours Emergency</p>
+              <p className="text-teal-100 mt-4 mb-2">After Hours Emergency</p>
               <a href="tel:0407440222" className="text-xl font-semibold">0407 440 222</a>
             </div>
             <div>
               <h3 className="text-xl font-bold mb-4">Visit Our Office</h3>
-              <p className="text-primary-100">
+              <p className="text-teal-100">
                 94 Victoria Street<br />
                 Mackay QLD 4740
               </p>
             </div>
             <div>
               <h3 className="text-xl font-bold mb-4">Email Us</h3>
-              <a href="mailto:info@gardianrealestate.com.au" className="text-primary-100 hover:text-white transition-colors">
+              <a href="mailto:info@gardianrealestate.com.au" className="text-teal-100 hover:text-white transition-colors">
                 info@gardianrealestate.com.au
               </a>
             </div>

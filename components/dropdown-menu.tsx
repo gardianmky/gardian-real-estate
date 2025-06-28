@@ -18,7 +18,7 @@ export default function DropdownMenu({ title, children, className = "" }: Dropdo
     <div className="border-t border-gray-200">
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className={`w-full flex flex-row items-center justify-between gap-2 py-2 px-3 text-left font-medium text-gray-700 hover:text-primary-600 transition-colors duration-200 ${className}`}
+        className={`w-full flex flex-row items-center justify-between gap-2 py-2 px-3 text-left font-medium text-gray-700 hover:text-teal-600 transition-colors duration-200 ${className}`}
       >
         <span>{title}</span>
         {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}

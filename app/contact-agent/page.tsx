@@ -22,7 +22,7 @@ export default async function ContactAgentPage({
       <div className="bg-white shadow-sm border-b border-gray-200">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center text-primary-600 hover:text-primary-700">
+            <Link href="/" className="flex items-center text-teal-600 hover:text-teal-700">
               <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
@@ -31,7 +31,7 @@ export default async function ContactAgentPage({
             
             {/* Breadcrumb */}
             <nav className="text-sm text-gray-500">
-              <Link href="/" className="hover:text-primary-600">Home</Link>
+              <Link href="/" className="hover:text-teal-600">Home</Link>
               <span className="mx-2">/</span>
               <span className="text-gray-800">Contact Agent</span>
             </nav>
@@ -69,7 +69,7 @@ export default async function ContactAgentPage({
                     id="firstName"
                     name="firstName"
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500"
                   />
                 </div>
 
@@ -82,7 +82,7 @@ export default async function ContactAgentPage({
                     id="lastName"
                     name="lastName"
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500"
                   />
                 </div>
               </div>
@@ -96,7 +96,7 @@ export default async function ContactAgentPage({
                   id="email"
                   name="email"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500"
                 />
               </div>
 
@@ -108,7 +108,7 @@ export default async function ContactAgentPage({
                   type="tel"
                   id="phone"
                   name="phone"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500"
                 />
               </div>
 
@@ -121,7 +121,7 @@ export default async function ContactAgentPage({
                   id="subject"
                   name="subject"
                   defaultValue={params.subject || (params.listingID ? 'Property Inquiry' : 'General Inquiry')}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500"
                 />
               </div>
 
@@ -135,7 +135,7 @@ export default async function ContactAgentPage({
                   rows={6}
                   required
                   defaultValue={params.listingID ? `Hi, I'm interested in this property (ID: ${params.listingID}). Please contact me with more information.` : ''}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500"
                   placeholder="Please provide details about your inquiry..."
                 />
               </div>
@@ -147,7 +147,7 @@ export default async function ContactAgentPage({
                 <select
                   id="contactMethod"
                   name="contactMethod"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500"
                 >
                   <option value="email">Email</option>
                   <option value="phone">Phone</option>
@@ -161,7 +161,7 @@ export default async function ContactAgentPage({
                   name="consent"
                   type="checkbox"
                   required
-                  className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+                  className="h-4 w-4 text-teal-600 focus:ring-teal-500 border-gray-300 rounded"
                 />
                 <label htmlFor="consent" className="ml-2 block text-sm text-gray-700">
                   I consent to being contacted by Gardian Real Estate regarding my inquiry. *
@@ -171,14 +171,14 @@ export default async function ContactAgentPage({
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
                   type="submit"
-                  className="flex-1 bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors font-medium"
+                  className="flex-1 bg-teal-600 text-white px-6 py-3 rounded-lg hover:bg-teal-700 transition-colors font-medium"
                 >
                   Send Message
                 </button>
                 
                 <Link
                   href={params.listingID ? `/listing/${params.listingID}` : '/'}
-                  className="flex-1 bg-white text-primary-600 border border-primary-600 px-6 py-3 rounded-lg hover:bg-primary-50 transition-colors font-medium text-center"
+                  className="flex-1 bg-white text-teal-600 border border-teal-600 px-6 py-3 rounded-lg hover:bg-teal-50 transition-colors font-medium text-center"
                 >
                   Go Back
                 </Link>
@@ -187,11 +187,11 @@ export default async function ContactAgentPage({
           </div>
 
           {/* Additional Contact Information */}
-          <div className="mt-8 bg-primary-50 rounded-lg p-6">
+          <div className="mt-8 bg-teal-50 rounded-lg p-6">
             <h2 className="text-xl font-semibold text-gray-800 mb-4">Other Ways to Contact Us</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="flex items-center gap-3">
-                <svg className="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
                 <div>
@@ -201,7 +201,7 @@ export default async function ContactAgentPage({
               </div>
               
               <div className="flex items-center gap-3">
-                <svg className="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
                 <div>
@@ -211,7 +211,7 @@ export default async function ContactAgentPage({
               </div>
               
               <div className="flex items-center gap-3">
-                <svg className="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
@@ -222,7 +222,7 @@ export default async function ContactAgentPage({
               </div>
               
               <div className="flex items-center gap-3">
-                <svg className="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <div>

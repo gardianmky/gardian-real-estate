@@ -78,9 +78,9 @@ export default function HomepageSearch() {
                 onClick={() => setPropertyType("sale")}
                 className={`px-5 py-3 text-sm font-medium flex items-center justify-center ${
                   propertyType === "sale"
-                    ? "bg-primary-500 text-white border border-primary-500"
-                    : "bg-white text-gray-700 hover:bg-gray-50 border border-gray-300 hover:border-primary-200"
-                } ${propertyType === "sale" ? "" : "hover:text-primary-600"} rounded-l-lg transition-colors duration-200`}
+                    ? "bg-teal-500 text-white border border-teal-500"
+                    : "bg-white text-gray-700 hover:bg-gray-50 border border-gray-300 hover:border-teal-200"
+                } ${propertyType === "sale" ? "" : "hover:text-teal-600"} rounded-l-lg transition-colors duration-200`}
               >
                 <Home className="h-4 w-4 mr-2" />
                 Buy
@@ -90,9 +90,9 @@ export default function HomepageSearch() {
                 onClick={() => setPropertyType("rent")}
                 className={`px-5 py-3 text-sm font-medium flex items-center justify-center ${
                   propertyType === "rent"
-                    ? "bg-primary-500 text-white border border-primary-500"
-                    : "bg-white text-gray-700 hover:bg-gray-50 border-t border-b border-gray-300 hover:border-primary-200"
-                } ${propertyType === "rent" ? "" : "hover:text-primary-600"} transition-colors duration-200`}
+                    ? "bg-teal-500 text-white border border-teal-500"
+                    : "bg-white text-gray-700 hover:bg-gray-50 border-t border-b border-gray-300 hover:border-teal-200"
+                } ${propertyType === "rent" ? "" : "hover:text-teal-600"} transition-colors duration-200`}
               >
                 <DollarSign className="h-4 w-4 mr-2" />
                 Rent
@@ -102,9 +102,9 @@ export default function HomepageSearch() {
                 onClick={() => setPropertyType("commercial")}
                 className={`px-5 py-3 text-sm font-medium flex items-center justify-center ${
                   propertyType === "commercial"
-                    ? "bg-primary-500 text-white border border-primary-500"
-                    : "bg-white text-gray-700 hover:bg-gray-50 border border-gray-300 hover:border-primary-200"
-                } ${propertyType === "commercial" ? "" : "hover:text-primary-600"} rounded-r-lg transition-colors duration-200`}
+                    ? "bg-teal-500 text-white border border-teal-500"
+                    : "bg-white text-gray-700 hover:bg-gray-50 border border-gray-300 hover:border-teal-200"
+                } ${propertyType === "commercial" ? "" : "hover:text-teal-600"} rounded-r-lg transition-colors duration-200`}
               >
                 <Building className="h-4 w-4 mr-2" />
                 Commercial
@@ -120,7 +120,7 @@ export default function HomepageSearch() {
               <input
                 type="text"
                 placeholder="Location (suburb, city, postcode)"
-                className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
               />
@@ -133,7 +133,7 @@ export default function HomepageSearch() {
               <input
                 type="text"
                 placeholder="Search by keywords, features..."
-                className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />

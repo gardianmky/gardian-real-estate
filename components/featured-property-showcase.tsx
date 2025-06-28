@@ -24,8 +24,8 @@ export default function FeaturedPropertyShowcase({ property }: FeaturedPropertyP
               {property.address.street}, {property.address.suburb},{" "}
               {property.address.state} {property.address.postcode}
             </p>
-            <p className="text-primary-600 text-xl font-semibold">{property.price}</p>
-            <button className="mt-4 bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 transition-colors">
+            <p className="text-teal-600 text-xl font-semibold">{property.price}</p>
+            <button className="mt-4 bg-teal-600 text-white px-6 py-2 rounded-lg hover:bg-teal-700 transition-colors">
               View Details
             </button>
           </div>

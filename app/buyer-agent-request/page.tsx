@@ -13,7 +13,7 @@ export default function BuyerAgentRequestPage() {
       {/* Header */}
       <div className="bg-white border-b">
         <div className="container mx-auto px-4 py-4">
-          <Link href="/" className="inline-flex items-center text-primary-600 hover:text-primary-700">
+          <Link href="/" className="inline-flex items-center text-teal-600 hover:text-teal-700">
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
@@ -35,17 +35,17 @@ export default function BuyerAgentRequestPage() {
           {/* Benefits Section */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             <div className="bg-white p-8 rounded-xl shadow-sm text-center">
-              <Search className="h-12 w-12 text-primary-600 mx-auto mb-4" />
+              <Search className="h-12 w-12 text-teal-600 mx-auto mb-4" />
               <h3 className="text-xl font-semibold mb-3">Expert Property Search</h3>
               <p className="text-gray-600">Access to exclusive listings and off-market properties</p>
             </div>
             <div className="bg-white p-8 rounded-xl shadow-sm text-center">
-              <UserPlus className="h-12 w-12 text-primary-600 mx-auto mb-4" />
+              <UserPlus className="h-12 w-12 text-teal-600 mx-auto mb-4" />
               <h3 className="text-xl font-semibold mb-3">Dedicated Agent</h3>
               <p className="text-gray-600">Personal agent working exclusively for your interests</p>
             </div>
             <div className="bg-white p-8 rounded-xl shadow-sm text-center">
-              <Mail className="h-12 w-12 text-primary-600 mx-auto mb-4" />
+              <Mail className="h-12 w-12 text-teal-600 mx-auto mb-4" />
               <h3 className="text-xl font-semibold mb-3">Negotiation Support</h3>
               <p className="text-gray-600">Professional negotiation to secure the best deal</p>
             </div>
@@ -63,7 +63,7 @@ export default function BuyerAgentRequestPage() {
                     <input
                       type="text"
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                     />
                   </div>
                   <div>
@@ -71,7 +71,7 @@ export default function BuyerAgentRequestPage() {
                     <input
                       type="text"
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                     />
                   </div>
                 </div>
@@ -81,7 +81,7 @@ export default function BuyerAgentRequestPage() {
                   <input
                     type="email"
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                   />
                 </div>
 
@@ -90,14 +90,14 @@ export default function BuyerAgentRequestPage() {
                   <input
                     type="tel"
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                   />
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Budget Range*</label>
-                    <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                    <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500">
                       <option value="">Select budget range</option>
                       <option value="300000-400000">$300,000 - $400,000</option>
                       <option value="400000-500000">$400,000 - $500,000</option>
@@ -109,7 +109,7 @@ export default function BuyerAgentRequestPage() {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Property Type*</label>
-                    <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                    <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500">
                       <option value="">Select property type</option>
                       <option value="house">House</option>
                       <option value="apartment">Apartment</option>
@@ -123,7 +123,7 @@ export default function BuyerAgentRequestPage() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Bedrooms</label>
-                    <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                    <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500">
                       <option value="">Any</option>
                       <option value="1">1+</option>
                       <option value="2">2+</option>
@@ -134,7 +134,7 @@ export default function BuyerAgentRequestPage() {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Bathrooms</label>
-                    <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                    <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500">
                       <option value="">Any</option>
                       <option value="1">1+</option>
                       <option value="2">2+</option>
@@ -144,7 +144,7 @@ export default function BuyerAgentRequestPage() {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Car Spaces</label>
-                    <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                    <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500">
                       <option value="">Any</option>
                       <option value="1">1+</option>
                       <option value="2">2+</option>
@@ -159,13 +159,13 @@ export default function BuyerAgentRequestPage() {
                   <input
                     type="text"
                     placeholder="e.g. North Mackay, West Mackay, Andergrove"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                   />
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Timeline</label>
-                  <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                  <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500">
                     <option value="">Select timeline</option>
                     <option value="immediate">Immediately</option>
                     <option value="1-3months">1-3 months</option>
@@ -179,14 +179,14 @@ export default function BuyerAgentRequestPage() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">Additional Requirements</label>
                   <textarea
                     rows={4}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                     placeholder="Tell us about any specific requirements, features you must have, or questions..."
                   ></textarea>
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-primary-600 text-white py-3 px-6 rounded-lg hover:bg-primary-700 transition-colors font-semibold"
+                  className="w-full bg-teal-600 text-white py-3 px-6 rounded-lg hover:bg-teal-700 transition-colors font-semibold"
                 >
                   Request Buyer's Agent
                 </button>
@@ -200,7 +200,7 @@ export default function BuyerAgentRequestPage() {
                 
                 <div className="space-y-6">
                   <div className="flex items-start">
-                    <div className="bg-primary-100 text-primary-600 rounded-full w-8 h-8 flex items-center justify-center font-semibold text-sm mr-4 mt-1">
+                    <div className="bg-teal-100 text-teal-600 rounded-full w-8 h-8 flex items-center justify-center font-semibold text-sm mr-4 mt-1">
                       1
                     </div>
                     <div>
@@ -210,7 +210,7 @@ export default function BuyerAgentRequestPage() {
                   </div>
                   
                   <div className="flex items-start">
-                    <div className="bg-primary-100 text-primary-600 rounded-full w-8 h-8 flex items-center justify-center font-semibold text-sm mr-4 mt-1">
+                    <div className="bg-teal-100 text-teal-600 rounded-full w-8 h-8 flex items-center justify-center font-semibold text-sm mr-4 mt-1">
                       2
                     </div>
                     <div>
@@ -220,7 +220,7 @@ export default function BuyerAgentRequestPage() {
                   </div>
                   
                   <div className="flex items-start">
-                    <div className="bg-primary-100 text-primary-600 rounded-full w-8 h-8 flex items-center justify-center font-semibold text-sm mr-4 mt-1">
+                    <div className="bg-teal-100 text-teal-600 rounded-full w-8 h-8 flex items-center justify-center font-semibold text-sm mr-4 mt-1">
                       3
                     </div>
                     <div>
@@ -230,7 +230,7 @@ export default function BuyerAgentRequestPage() {
                   </div>
                   
                   <div className="flex items-start">
-                    <div className="bg-primary-100 text-primary-600 rounded-full w-8 h-8 flex items-center justify-center font-semibold text-sm mr-4 mt-1">
+                    <div className="bg-teal-100 text-teal-600 rounded-full w-8 h-8 flex items-center justify-center font-semibold text-sm mr-4 mt-1">
                       4
                     </div>
                     <div>
@@ -241,22 +241,22 @@ export default function BuyerAgentRequestPage() {
                 </div>
               </div>
 
-              <div className="bg-primary-50 rounded-xl p-8">
-                <h3 className="text-xl font-semibold text-primary-900 mb-4">Questions?</h3>
-                <p className="text-primary-700 mb-6">
+              <div className="bg-teal-50 rounded-xl p-8">
+                <h3 className="text-xl font-semibold text-teal-900 mb-4">Questions?</h3>
+                <p className="text-teal-700 mb-6">
                   Speak directly with our team about buyer's agent services.
                 </p>
                 <div className="space-y-3">
                   <a
                     href="tel:0749577424"
-                    className="flex items-center text-primary-700 hover:text-primary-800"
+                    className="flex items-center text-teal-700 hover:text-teal-800"
                   >
                     <Phone className="h-5 w-5 mr-2" />
                     (07) 4957 7424
                   </a>
                   <a
                     href="mailto:info@gardianrealestate.com.au"
-                    className="flex items-center text-primary-700 hover:text-primary-800"
+                    className="flex items-center text-teal-700 hover:text-teal-800"
                   >
                     <Mail className="h-5 w-5 mr-2" />
                     info@gardianrealestate.com.au

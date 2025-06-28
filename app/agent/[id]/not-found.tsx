@@ -24,7 +24,7 @@ export default function AgentNotFound() {
         </p>
         <Link
           href="/agents"
-          className="inline-block bg-gradient-to-r from-primary-600 to-teal-600 text-white px-6 py-3 rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.02]"
+          className="inline-block bg-gradient-to-r from-teal-600 to-teal-600 text-white px-6 py-3 rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.02]"
         >
           View All Agents
         </Link>

@@ -88,7 +88,7 @@ function Pagination({
               href={`${basePath}?page=${page}&disposalMethod=forSale`}
               className={`px-3 py-2 rounded-lg transition-colors ${
                 currentPage === page
-                  ? 'bg-primary-600 text-white'
+                  ? 'bg-teal-600 text-white'
                   : 'border border-gray-300 text-gray-700 hover:bg-gray-50'
               }`}
             >
@@ -140,19 +140,20 @@ async function getListings(page: number) {
 }
 
 export default async function BuyPage({ searchParams }: BuyPageProps) {
-  const currentPage = parseInt(searchParams.page || '1', 10);
+  const resolvedSearchParams = await searchParams;
+  const currentPage = parseInt(resolvedSearchParams.page || '1', 10);
   const { listings, pagination } = await getListings(currentPage);
 
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-primary-600 to-primary-800 text-white py-16">
+      <div className="bg-gradient-to-r from-teal-600 to-teal-800 text-white py-16">
         <div className="container mx-auto px-4">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               Properties for Sale in Mackay
             </h1>
-            <p className="text-xl text-primary-100 max-w-3xl mx-auto">
+            <p className="text-xl text-teal-100 max-w-3xl mx-auto">
               Discover your dream home with Gardian Real Estate. Browse our extensive collection of properties for sale in Mackay and surrounding areas.
             </p>
           </div>
@@ -174,7 +175,7 @@ export default async function BuyPage({ searchParams }: BuyPageProps) {
               </p>
             </div>
             <div className="mt-4 md:mt-0">
-              <span className="bg-primary-100 text-primary-800 px-3 py-1 rounded-full text-sm font-medium">
+              <span className="bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-sm font-medium">
                 Page {pagination.currentPage} of {pagination.totalPages}
               </span>
             </div>
@@ -211,7 +212,7 @@ export default async function BuyPage({ searchParams }: BuyPageProps) {
               </p>
               <a 
                 href="/contact" 
-                className="inline-flex items-center bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors"
+                className="inline-flex items-center bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition-colors"
               >
                 Contact Us
               </a>
@@ -232,7 +233,7 @@ export default async function BuyPage({ searchParams }: BuyPageProps) {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
                 href="/contact" 
-                className="bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors font-medium"
+                className="bg-teal-600 text-white px-6 py-3 rounded-lg hover:bg-teal-700 transition-colors font-medium"
               >
                 Contact Our Team
               </a>

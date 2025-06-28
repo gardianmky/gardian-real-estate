@@ -64,7 +64,7 @@ export default async function AgentProfilePage({ params }: Props) {
       {/* Back Navigation */}
       <div className="bg-white border-b">
         <div className="container mx-auto px-4 py-4">
-          <Link href="/agents" className="inline-flex items-center text-primary-600 hover:text-primary-700">
+          <Link href="/agents" className="inline-flex items-center text-teal-600 hover:text-teal-700">
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
@@ -88,21 +88,21 @@ export default async function AgentProfilePage({ params }: Props) {
             </div>
             <div className="flex-1">
               <h1 className="text-3xl font-bold text-gray-900 mb-2">{agent.name}</h1>
-              <p className="text-xl text-primary-600 mb-4">{agent.title}</p>
+              <p className="text-xl text-teal-600 mb-4">{agent.title}</p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                 {agent.mobile && (
                   <div className="flex items-center">
-                    <Phone className="h-5 w-5 text-primary-600 mr-3" />
-                    <a href={`tel:${agent.mobile}`} className="text-gray-700 hover:text-primary-600">
+                    <Phone className="h-5 w-5 text-teal-600 mr-3" />
+                    <a href={`tel:${agent.mobile}`} className="text-gray-700 hover:text-teal-600">
                       {agent.mobile}
                     </a>
                   </div>
                 )}
                 {agent.email && (
                   <div className="flex items-center">
-                    <Mail className="h-5 w-5 text-primary-600 mr-3" />
-                    <a href={`mailto:${agent.email}`} className="text-gray-700 hover:text-primary-600">
+                    <Mail className="h-5 w-5 text-teal-600 mr-3" />
+                    <a href={`mailto:${agent.email}`} className="text-gray-700 hover:text-teal-600">
                       {agent.email}
                     </a>
                   </div>
@@ -116,13 +116,13 @@ export default async function AgentProfilePage({ params }: Props) {
               <div className="flex gap-4">
                 <a
                   href={`tel:${agent.mobile}`}
-                  className="bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors"
+                  className="bg-teal-600 text-white px-6 py-3 rounded-lg hover:bg-teal-700 transition-colors"
                 >
                   Call Now
                 </a>
                 <a
                   href={`mailto:${agent.email}`}
-                  className="bg-white text-primary-600 border border-primary-600 px-6 py-3 rounded-lg hover:bg-primary-50 transition-colors"
+                  className="bg-white text-teal-600 border border-teal-600 px-6 py-3 rounded-lg hover:bg-teal-50 transition-colors"
                 >
                   Send Email
                 </a>
@@ -139,7 +139,7 @@ export default async function AgentProfilePage({ params }: Props) {
               {agent.specialties.map((specialty, index) => (
                 <span
                   key={index}
-                  className="bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-sm font-medium"
+                  className="bg-teal-100 text-teal-700 px-4 py-2 rounded-full text-sm font-medium"
                 >
                   {specialty}
                 </span>
@@ -172,7 +172,7 @@ export default async function AgentProfilePage({ params }: Props) {
             <div className="text-center mt-8">
               <Link
                 href={`/for-sale?agent=${agent.agentID}`}
-                className="bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors"
+                className="bg-teal-600 text-white px-6 py-3 rounded-lg hover:bg-teal-700 transition-colors"
               >
                 View All {agent.totalListings} Listings
               </Link>

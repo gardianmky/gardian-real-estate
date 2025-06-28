@@ -54,7 +54,7 @@ export default function PropertyListing({ listing, category }: PropertyListingPr
 
         <div className="p-6">
           <div className="mb-3">
-            <h3 className="text-xl font-semibold line-clamp-1 group-hover:text-primary-600 transition-colors duration-200">
+            <h3 className="text-xl font-semibold line-clamp-1 group-hover:text-teal-600 transition-colors duration-200">
               {listing.heading}
             </h3>
             <p className="text-gray-600 text-sm mb-2">
@@ -62,13 +62,13 @@ export default function PropertyListing({ listing, category }: PropertyListingPr
             </p>
           </div>
 
-          <p className="text-xl font-bold text-primary-600 mb-2">{listing.price}</p>
+          <p className="text-xl font-bold text-teal-600 mb-2">{listing.price}</p>
 
           <div className="border-t border-gray-100 pt-4 mb-5">
             <PropertyFeaturesInline listing={listing} />
           </div>
 
-          <button className="w-full bg-gray-50 hover:bg-gray-100 text-primary-600 py-2 rounded-lg font-medium transition-colors duration-200 mt-auto">
+          <button className="w-full bg-gray-50 hover:bg-gray-100 text-teal-600 py-2 rounded-lg font-medium transition-colors duration-200 mt-auto">
             View Details
           </button>
         </div>

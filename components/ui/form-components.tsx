@@ -11,7 +11,7 @@ interface FormInputProps {
 }
 
 export function FormInput({ field, value, onChange, error }: FormInputProps) {
-  const baseClassName = `w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors ${
+  const baseClassName = `w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-colors ${
     error 
       ? 'border-red-300 bg-red-50' 
       : 'border-gray-300 focus:bg-white'
@@ -75,7 +75,7 @@ export function FormInput({ field, value, onChange, error }: FormInputProps) {
           checked={value || false}
           onChange={handleChange}
           required={field.required}
-          className="mt-1 h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded order-1"
+          className="mt-1 h-4 w-4 text-teal-600 focus:ring-teal-500 border-gray-300 rounded order-1"
         />
       )}
       

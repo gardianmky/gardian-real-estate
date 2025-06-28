@@ -50,7 +50,7 @@ export default function MobileFilterDrawer({ isOpen, onClose, propertyType }: Mo
           <h3 className="text-lg font-medium">
             Filters
             {activeFiltersCount > 0 && (
-              <span className="ml-2 bg-primary-100 text-primary-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+              <span className="ml-2 bg-teal-100 text-teal-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
                 {activeFiltersCount} active
               </span>
             )}

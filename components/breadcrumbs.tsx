@@ -38,7 +38,7 @@ export default function Breadcrumbs({ items = [], homeLabel = "Home", className 
                   {item.label}
                 </span>
               ) : (
-                <Link href={item.href} className="hover:text-primary-600 transition-colors duration-200">
+                <Link href={item.href} className="hover:text-teal-600 transition-colors duration-200">
                   {index === 0 ? (
                     <span className="flex items-center">
                       <Home className="h-4 w-4 mr-1" />

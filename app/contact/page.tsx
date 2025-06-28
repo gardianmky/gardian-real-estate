@@ -25,7 +25,7 @@ export default function ContactPage() {
       <div className="mb-8">
         <Link
           href="/"
-          className="inline-flex items-center text-primary-600 hover:text-primary-800 transition-colors duration-200"
+          className="inline-flex items-center text-teal-600 hover:text-teal-800 transition-colors duration-200"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
             <path
@@ -47,7 +47,7 @@ export default function ContactPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div>
-            <h2 className="text-2xl font-semibold mb-6 text-primary-600">Get in Touch</h2>
+            <h2 className="text-2xl font-semibold mb-6 text-teal-600">Get in Touch</h2>
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -60,7 +60,7 @@ export default function ContactPage() {
                     id="firstName"
                     name="firstName"
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                   />
                 </div>
 
@@ -73,7 +73,7 @@ export default function ContactPage() {
                     id="lastName"
                     name="lastName"
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                   />
                 </div>
               </div>
@@ -87,7 +87,7 @@ export default function ContactPage() {
                   id="email"
                   name="email"
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                 />
               </div>
 
@@ -99,7 +99,7 @@ export default function ContactPage() {
                   type="tel"
                   id="phone"
                   name="phone"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                 />
               </div>
 
@@ -112,7 +112,7 @@ export default function ContactPage() {
                   id="subject"
                   name="subject"
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                 />
               </div>
 
@@ -125,7 +125,7 @@ export default function ContactPage() {
                   name="message"
                   rows={5}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                 ></textarea>
               </div>
 
@@ -133,7 +133,7 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={formStatus === "submitting"}
-                  className="inline-flex items-center bg-gradient-to-r from-primary-600 to-teal-600 text-white px-6 py-3 rounded-md shadow-md hover:shadow-lg transition-all duration-300 disabled:opacity-70"
+                  className="inline-flex items-center bg-gradient-to-r from-teal-600 to-teal-600 text-white px-6 py-3 rounded-md shadow-md hover:shadow-lg transition-all duration-300 disabled:opacity-70"
                 >
                   {formStatus === "submitting" ? (
                     <>
@@ -183,7 +183,7 @@ export default function ContactPage() {
           </div>
 
           <div>
-            <h2 className="text-2xl font-semibold mb-6 text-primary-600">Our Office</h2>
+            <h2 className="text-2xl font-semibold mb-6 text-teal-600">Our Office</h2>
 
             <div className="relative h-[300px] w-full mb-8 rounded-lg overflow-hidden">
               <Image
@@ -197,7 +197,7 @@ export default function ContactPage() {
 
             <div className="space-y-6">
               <div className="flex items-start">
-                <MapPin className="h-6 w-6 text-primary-600 mt-1 mr-3 flex-shrink-0" />
+                <MapPin className="h-6 w-6 text-teal-600 mt-1 mr-3 flex-shrink-0" />
                 <div>
                   <h3 className="font-medium text-gray-900 text-lg">Address</h3>
                   <p className="text-gray-700">123 Real Estate Avenue, Mackay, QLD 4740</p>
@@ -205,7 +205,7 @@ export default function ContactPage() {
               </div>
 
               <div className="flex items-start">
-                <Phone className="h-6 w-6 text-primary-600 mt-1 mr-3 flex-shrink-0" />
+                <Phone className="h-6 w-6 text-teal-600 mt-1 mr-3 flex-shrink-0" />
                 <div>
                   <h3 className="font-medium text-gray-900 text-lg">Phone</h3>
                   <p className="text-gray-700">(07) 4957 7424</p>
@@ -213,7 +213,7 @@ export default function ContactPage() {
               </div>
 
               <div className="flex items-start">
-                <Mail className="h-6 w-6 text-primary-600 mt-1 mr-3 flex-shrink-0" />
+                <Mail className="h-6 w-6 text-teal-600 mt-1 mr-3 flex-shrink-0" />
                 <div>
                   <h3 className="font-medium text-gray-900 text-lg">Email</h3>
                   <p className="text-gray-700">info@gardianrealestate.com.au</p>
@@ -221,7 +221,7 @@ export default function ContactPage() {
               </div>
 
               <div className="flex items-start">
-                <Clock className="h-6 w-6 text-primary-600 mt-1 mr-3 flex-shrink-0" />
+                <Clock className="h-6 w-6 text-teal-600 mt-1 mr-3 flex-shrink-0" />
                 <div>
                   <h3 className="font-medium text-gray-900 text-lg">Office Hours</h3>
                   <p className="text-gray-700">Monday - Friday: 9:00 AM - 5:00 PM</p>

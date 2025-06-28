@@ -36,7 +36,7 @@ export default function RootLayout({
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-gray-800">
-                Mackay QLD <span className="text-primary-600">Real Estate</span>
+                Mackay QLD <span className="text-teal-600">Real Estate</span>
               </h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
                 Whether you're looking to buy, rent, or sell property in Mackay and surrounding suburbs,
@@ -47,16 +47,16 @@ export default function RootLayout({
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
               {/* Buy a Home */}
               <div className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
-                <div className="bg-gradient-to-br from-primary-500 to-primary-600 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="bg-gradient-to-br from-teal-500 to-teal-600 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                   <svg className="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-gray-800 group-hover:text-primary-600 transition-colors">Buy a home</h3>
+                <h3 className="text-2xl font-bold mb-4 text-gray-800 group-hover:text-teal-600 transition-colors">Buy a home</h3>
                 <p className="text-gray-600 mb-6 leading-relaxed">
                   A real estate agent can provide you with a clear breakdown of costs so that you can avoid surprise expenses.
                 </p>
-                <a href="/buy" className="inline-flex items-center text-primary-600 font-semibold hover:text-primary-700 transition-colors group-hover:translate-x-1 transform duration-200">
+                <a href="/buy" className="inline-flex items-center text-teal-600 font-semibold hover:text-teal-700 transition-colors group-hover:translate-x-1 transform duration-200">
                   Find a local agent 
                   <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -118,7 +118,7 @@ export default function RootLayout({
                   />
                 </div>
                 <p className="text-gray-600 mb-6 max-w-xl text-sm lg:text-base leading-relaxed">
-                  Contact us today at <a href="mailto:info@gardianrealestate.com.au" className="text-primary-600 hover:text-primary-700 font-medium">info@gardianrealestate.com.au</a> for a free consultation and discover how Gardian can become your trusted partner in building your real estate success story in Mackay.
+                  Contact us today at <a href="mailto:info@gardianrealestate.com.au" className="text-teal-600 hover:text-teal-700 font-medium">info@gardianrealestate.com.au</a> for a free consultation and discover how Gardian can become your trusted partner in building your real estate success story in Mackay.
                 </p>
                 
                 {/* Enhanced Social Media Section */}
@@ -182,32 +182,32 @@ export default function RootLayout({
                 <h3 className="text-xl font-semibold mb-6 text-gray-800">Contact Us</h3>
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
-                    <div className="bg-primary-100 p-2 rounded-lg">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div className="bg-teal-100 p-2 rounded-lg">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
                     </div>
                     <div>
                       <p className="text-gray-600 text-sm leading-tight">For all enquiries and after hours:</p>
-                      <a href="tel:0749577424" className="text-gray-800 hover:text-primary-600 transition-colors font-medium text-sm lg:text-base">07 4957 7424</a>
+                      <a href="tel:0749577424" className="text-gray-800 hover:text-teal-600 transition-colors font-medium text-sm lg:text-base">07 4957 7424</a>
                     </div>
                   </div>
 
                   <div className="flex items-start space-x-3">
-                    <div className="bg-primary-100 p-2 rounded-lg">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div className="bg-teal-100 p-2 rounded-lg">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
                     </div>
                     <div>
                       <p className="text-gray-600 text-sm leading-tight">After hours property management:</p>
-                      <a href="tel:0407440222" className="text-gray-800 hover:text-primary-600 transition-colors font-medium text-sm lg:text-base">0407 440 222</a>
+                      <a href="tel:0407440222" className="text-gray-800 hover:text-teal-600 transition-colors font-medium text-sm lg:text-base">0407 440 222</a>
                     </div>
                   </div>
 
                   <div className="flex items-start space-x-3">
-                    <div className="bg-primary-100 p-2 rounded-lg">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div className="bg-teal-100 p-2 rounded-lg">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
@@ -218,13 +218,13 @@ export default function RootLayout({
                   </div>
 
                   <div className="flex items-start space-x-3">
-                    <div className="bg-primary-100 p-2 rounded-lg">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div className="bg-teal-100 p-2 rounded-lg">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                       </svg>
                     </div>
                     <div>
-                      <a href="mailto:info@gardianrealestate.com.au" className="text-gray-800 hover:text-primary-600 transition-colors text-sm lg:text-base">Send us an email</a>
+                      <a href="mailto:info@gardianrealestate.com.au" className="text-gray-800 hover:text-teal-600 transition-colors text-sm lg:text-base">Send us an email</a>
                     </div>
                   </div>
                 </div>
@@ -255,12 +255,12 @@ export default function RootLayout({
                 <h4 className="text-lg font-semibold mb-4 text-gray-800">Quick Links</h4>
                 <ul className="space-y-3">
                   <li>
-                    <a href="/testimonials" className="text-gray-600 hover:text-primary-600 transition-colors text-sm lg:text-base">
+                    <a href="/testimonials" className="text-gray-600 hover:text-teal-600 transition-colors text-sm lg:text-base">
                       Testimonials
                     </a>
                   </li>
                   <li>
-                    <a href="/careers" className="text-gray-600 hover:text-primary-600 transition-colors text-sm lg:text-base">
+                    <a href="/careers" className="text-gray-600 hover:text-teal-600 transition-colors text-sm lg:text-base">
                       Careers
                     </a>
                   </li>
@@ -269,22 +269,22 @@ export default function RootLayout({
                 <h4 className="text-lg font-semibold mt-8 mb-4 text-gray-800">Legal</h4>
                 <ul className="space-y-3">
                   <li>
-                    <a href="/insurance-privacy" className="text-gray-600 hover:text-primary-600 transition-colors text-sm lg:text-base">
+                    <a href="/insurance-privacy" className="text-gray-600 hover:text-teal-600 transition-colors text-sm lg:text-base">
                       Insurance Privacy Policy
                     </a>
                   </li>
                   <li>
-                    <a href="/privacy" className="text-gray-600 hover:text-primary-600 transition-colors text-sm lg:text-base">
+                    <a href="/privacy" className="text-gray-600 hover:text-teal-600 transition-colors text-sm lg:text-base">
                       Privacy Policy
                     </a>
                   </li>
                   <li>
-                    <a href="/complaints" className="text-gray-600 hover:text-primary-600 transition-colors text-sm lg:text-base">
+                    <a href="/complaints" className="text-gray-600 hover:text-teal-600 transition-colors text-sm lg:text-base">
                       Complaints
                     </a>
                   </li>
                   <li>
-                    <a href="/compliance" className="text-gray-600 hover:text-primary-600 transition-colors text-sm lg:text-base">
+                    <a href="/compliance" className="text-gray-600 hover:text-teal-600 transition-colors text-sm lg:text-base">
                       Compliance
                     </a>
                   </li>

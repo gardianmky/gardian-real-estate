@@ -232,7 +232,7 @@ export default function SearchFilters({ category, className = "" }: SearchFilter
             <input
               type="text"
               placeholder="Location (suburb, city, postcode)"
-              className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+              className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
               value={location}
               onChange={(e) => setLocation(e.target.value)}
             />
@@ -250,7 +250,7 @@ export default function SearchFilters({ category, className = "" }: SearchFilter
 
           <button
             type="submit"
-            className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-2 rounded-lg transition-colors duration-200 flex items-center justify-center"
+            className="bg-teal-600 hover:bg-teal-700 text-white px-6 py-2 rounded-lg transition-colors duration-200 flex items-center justify-center"
           >
             <Search className="h-5 w-5 mr-2" />
             <span>Search</span>
@@ -267,7 +267,7 @@ export default function SearchFilters({ category, className = "" }: SearchFilter
                 <select
                   value={minPrice}
                   onChange={(e) => setMinPrice(e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                 >
                   {getPriceOptions().map((option) => (
                     <option key={`min-${option.value}`} value={option.value}>
@@ -282,7 +282,7 @@ export default function SearchFilters({ category, className = "" }: SearchFilter
                 <select
                   value={maxPrice}
                   onChange={(e) => setMaxPrice(e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                 >
                   {getPriceOptions().map((option) => (
                     <option key={`max-${option.value}`} value={option.value}>
@@ -298,7 +298,7 @@ export default function SearchFilters({ category, className = "" }: SearchFilter
                 <select
                   value={propertyType}
                   onChange={(e) => setPropertyType(e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                 >
                   {getPropertyTypeOptions().map((option) => (
                     <option key={option.value} value={option.value}>
@@ -316,7 +316,7 @@ export default function SearchFilters({ category, className = "" }: SearchFilter
                     <select
                       value={bedrooms}
                       onChange={(e) => setBedrooms(e.target.value)}
-                      className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                     >
                       <option value="">Any</option>
                       <option value="1">1+</option>
@@ -332,7 +332,7 @@ export default function SearchFilters({ category, className = "" }: SearchFilter
                     <select
                       value={bathrooms}
                       onChange={(e) => setBathrooms(e.target.value)}
-                      className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                     >
                       <option value="">Any</option>
                       <option value="1">1+</option>
@@ -352,7 +352,7 @@ export default function SearchFilters({ category, className = "" }: SearchFilter
                     <select
                       value={floorArea}
                       onChange={(e) => setFloorArea(e.target.value)}
-                      className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                     >
                       {getFloorAreaOptions().map((option) => (
                         <option key={option.value} value={option.value}>
@@ -367,7 +367,7 @@ export default function SearchFilters({ category, className = "" }: SearchFilter
                     <select
                       value={commercialType}
                       onChange={(e) => setCommercialType(e.target.value)}
-                      className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                     >
                       {getCommercialTypeOptions().map((option) => (
                         <option key={option.value} value={option.value}>
@@ -388,7 +388,7 @@ export default function SearchFilters({ category, className = "" }: SearchFilter
                       type="date"
                       value={availableFrom}
                       onChange={(e) => setAvailableFrom(e.target.value)}
-                      className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                     />
                   </div>
 
@@ -399,7 +399,7 @@ export default function SearchFilters({ category, className = "" }: SearchFilter
                         type="checkbox"
                         checked={furnished}
                         onChange={(e) => setFurnished(e.target.checked)}
-                        className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+                        className="h-4 w-4 text-teal-600 focus:ring-teal-500 border-gray-300 rounded"
                       />
                       <label htmlFor="furnished" className="ml-2 block text-sm text-gray-700">
                         Furnished
@@ -412,7 +412,7 @@ export default function SearchFilters({ category, className = "" }: SearchFilter
                         type="checkbox"
                         checked={petsAllowed}
                         onChange={(e) => setPetsAllowed(e.target.checked)}
-                        className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+                        className="h-4 w-4 text-teal-600 focus:ring-teal-500 border-gray-300 rounded"
                       />
                       <label htmlFor="petsAllowed" className="ml-2 block text-sm text-gray-700">
                         Pets Allowed
@@ -428,14 +428,14 @@ export default function SearchFilters({ category, className = "" }: SearchFilter
               <button
                 type="button"
                 onClick={resetFilters}
-                className="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                className="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
               >
                 Reset Filters
               </button>
 
               <button
                 type="submit"
-                className="px-4 py-2 bg-primary-600 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                className="px-4 py-2 bg-teal-600 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
               >
                 Apply Filters
               </button>

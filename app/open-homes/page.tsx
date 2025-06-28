@@ -77,7 +77,7 @@ export default async function OpenHomesPage({
       <div className="bg-white shadow-sm border-b border-gray-200">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center text-primary-600 hover:text-primary-700">
+            <Link href="/" className="flex items-center text-teal-600 hover:text-teal-700">
               <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
@@ -86,7 +86,7 @@ export default async function OpenHomesPage({
             
             {/* Breadcrumb */}
             <nav className="text-sm text-gray-500">
-              <Link href="/" className="hover:text-primary-600">Home</Link>
+              <Link href="/" className="hover:text-teal-600">Home</Link>
               <span className="mx-2">/</span>
               <span className="text-gray-800">Open Homes</span>
             </nav>
@@ -121,19 +121,19 @@ export default async function OpenHomesPage({
             <div className="flex space-x-2">
               <Link 
                 href="/open-homes" 
-                className="px-4 py-2 bg-primary-600 text-white rounded text-sm font-medium"
+                className="px-4 py-2 bg-teal-600 text-white rounded text-sm font-medium"
               >
                 Open Homes
               </Link>
               <Link 
                 href="/for-sale" 
-                className="px-4 py-2 text-gray-600 hover:text-primary-600 text-sm font-medium"
+                className="px-4 py-2 text-gray-600 hover:text-teal-600 text-sm font-medium"
               >
                 For Sale
               </Link>
               <Link 
                 href="/for-rent" 
-                className="px-4 py-2 text-gray-600 hover:text-primary-600 text-sm font-medium"
+                className="px-4 py-2 text-gray-600 hover:text-teal-600 text-sm font-medium"
               >
                 For Rent
               </Link>
@@ -150,12 +150,12 @@ export default async function OpenHomesPage({
               <input 
                 type="text" 
                 placeholder="Enter suburb..."
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-primary-500 focus:border-primary-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500"
               />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Date</label>
-              <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-primary-500 focus:border-primary-500">
+              <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500">
                 <option value="">All upcoming dates</option>
                 <option value="today">Today</option>
                 <option value="tomorrow">Tomorrow</option>
@@ -165,7 +165,7 @@ export default async function OpenHomesPage({
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Property Type</label>
-              <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-primary-500 focus:border-primary-500">
+              <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500">
                 <option value="">All types</option>
                 <option value="House">House</option>
                 <option value="Unit">Unit</option>
@@ -175,7 +175,7 @@ export default async function OpenHomesPage({
             </div>
           </div>
           <div className="mt-4">
-            <button className="bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 transition-colors">
+            <button className="bg-teal-600 text-white px-6 py-2 rounded-lg hover:bg-teal-700 transition-colors">
               Filter Results
             </button>
           </div>
@@ -194,10 +194,10 @@ export default async function OpenHomesPage({
                   There are currently no open home inspections scheduled. Check back soon or browse our available properties.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                  <Link href="/for-sale" className="bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 transition-colors">
+                  <Link href="/for-sale" className="bg-teal-600 text-white px-6 py-2 rounded-lg hover:bg-teal-700 transition-colors">
                     View Properties For Sale
                   </Link>
-                  <Link href="/book-appointment" className="bg-white text-primary-600 border border-primary-600 px-6 py-2 rounded-lg hover:bg-primary-50 transition-colors">
+                  <Link href="/book-appointment" className="bg-white text-teal-600 border border-teal-600 px-6 py-2 rounded-lg hover:bg-teal-50 transition-colors">
                     Book Private Inspection
                   </Link>
                 </div>
@@ -232,7 +232,7 @@ export default async function OpenHomesPage({
                       {listing?.address?.displayAddress || listing?.heading || 'Property Address'}
                     </h3>
                     {listing?.price && (
-                      <p className="text-lg font-bold text-primary-600 mb-2">
+                      <p className="text-lg font-bold text-teal-600 mb-2">
                         {listing.price}
                       </p>
                     )}
@@ -258,13 +258,13 @@ export default async function OpenHomesPage({
                     <div className="flex gap-2">
                       <Link 
                         href={`/property/${listing.listingID}`} 
-                        className="flex-1 text-center bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors text-sm font-medium"
+                        className="flex-1 text-center bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition-colors text-sm font-medium"
                       >
                         View Details
                       </Link>
                       <Link 
                         href={`/book-appointment?property=${listing.listingID}`} 
-                        className="flex-1 text-center bg-white text-primary-600 border border-primary-600 px-4 py-2 rounded-lg hover:bg-primary-50 transition-colors text-sm font-medium"
+                        className="flex-1 text-center bg-white text-teal-600 border border-teal-600 px-4 py-2 rounded-lg hover:bg-teal-50 transition-colors text-sm font-medium"
                       >
                         Book Private
                       </Link>
@@ -339,13 +339,13 @@ export default async function OpenHomesPage({
               <div className="space-y-3">
                 <Link 
                   href="/book-appointment" 
-                  className="block w-full bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors font-medium text-center"
+                  className="block w-full bg-teal-600 text-white px-6 py-3 rounded-lg hover:bg-teal-700 transition-colors font-medium text-center"
                 >
                   Book Private Inspection
                 </Link>
                 <Link 
                   href="/contact" 
-                  className="block w-full bg-white text-primary-600 border border-primary-600 px-6 py-3 rounded-lg hover:bg-primary-50 transition-colors font-medium text-center"
+                  className="block w-full bg-white text-teal-600 border border-teal-600 px-6 py-3 rounded-lg hover:bg-teal-50 transition-colors font-medium text-center"
                 >
                   Contact Our Team
                 </Link>

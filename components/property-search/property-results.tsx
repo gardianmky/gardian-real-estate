@@ -115,7 +115,7 @@ export default function PropertyResults({ listingType, propertyType }: PropertyR
 function LoadingState() {
   return (
     <div className="flex flex-col items-center justify-center py-12 bg-white rounded-lg shadow-sm">
-      <Loader2 className="h-12 w-12 text-primary-500 animate-spin mb-4" />
+      <Loader2 className="h-12 w-12 text-teal-500 animate-spin mb-4" />
       <p className="text-gray-600">Loading properties...</p>
     </div>
   )
@@ -136,7 +136,7 @@ function ResultsHeader({ count, hasFilters }: { count: number; hasFilters: boole
   return (
     <div className="mb-6 bg-white p-4 rounded-lg shadow-sm">
       <p className="text-gray-700">
-        Found <span className="font-semibold text-primary-600">{count}</span> properties
+        Found <span className="font-semibold text-teal-600">{count}</span> properties
         {hasFilters ? " matching your search criteria" : ""}
       </p>
     </div>

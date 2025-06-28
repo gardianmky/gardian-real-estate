@@ -346,7 +346,7 @@ export function TenantApplicationForm() {
                 <button
                   type="submit"
                   disabled={state.isSubmitting}
-                  className="w-full bg-primary-600 text-white py-4 px-8 rounded-lg hover:bg-primary-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors font-semibold text-lg flex items-center justify-center"
+                  className="w-full bg-teal-600 text-white py-4 px-8 rounded-lg hover:bg-teal-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors font-semibold text-lg flex items-center justify-center"
                 >
                   {state.isSubmitting ? (
                     <>

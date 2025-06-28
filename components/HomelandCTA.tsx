@@ -35,13 +35,13 @@ export default function HomelandCTA({
       </div>
 
       {/* Decorative Elements */}
-      <div className="absolute top-10 left-10 w-20 h-20 bg-primary-500 rounded-full opacity-10 animate-pulse" />
-      <div className="absolute bottom-10 right-10 w-32 h-32 bg-primary-400 rounded-full opacity-5 animate-bounce" />
+      <div className="absolute top-10 left-10 w-20 h-20 bg-teal-500 rounded-full opacity-10 animate-pulse" />
+      <div className="absolute bottom-10 right-10 w-32 h-32 bg-teal-400 rounded-full opacity-5 animate-bounce" />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           {/* Badge */}
-          <div className="inline-flex items-center px-4 py-2 bg-primary-500 bg-opacity-20 backdrop-blur-sm text-primary-300 rounded-full text-sm font-medium mb-6 border border-primary-400 border-opacity-30">
+          <div className="inline-flex items-center px-4 py-2 bg-teal-500 bg-opacity-20 backdrop-blur-sm text-teal-300 rounded-full text-sm font-medium mb-6 border border-teal-400 border-opacity-30">
             <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
               <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.84L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.84l-7-3z"/>
             </svg>
@@ -53,7 +53,7 @@ export default function HomelandCTA({
             {title.split(' ').map((word, index) => (
               <span 
                 key={index}
-                className={index === title.split(' ').length - 1 ? 'text-primary-400' : ''}
+                className={index === title.split(' ').length - 1 ? 'text-teal-400' : ''}
               >
                 {word}{' '}
               </span>
@@ -73,7 +73,7 @@ export default function HomelandCTA({
               { number: "15+", label: "Years Experience" }
             ].map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-primary-400 mb-2">
+                <div className="text-3xl md:text-4xl font-bold text-teal-400 mb-2">
                   {stat.number}
                 </div>
                 <div className="text-gray-300 text-sm uppercase tracking-wide">
@@ -87,7 +87,7 @@ export default function HomelandCTA({
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link
               href={primaryButtonHref}
-              className="inline-flex items-center px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl group"
+              className="inline-flex items-center px-8 py-4 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl group"
             >
               <svg className="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>

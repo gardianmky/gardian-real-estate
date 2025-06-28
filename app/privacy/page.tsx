@@ -6,7 +6,7 @@ export default function PrivacyPolicyPage() {
       <div className="mb-8">
         <Link
           href="/"
-          className="inline-flex items-center text-primary-600 hover:text-primary-800 transition-colors duration-200"
+          className="inline-flex items-center text-teal-600 hover:text-teal-800 transition-colors duration-200"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
             <path
@@ -24,7 +24,7 @@ export default function PrivacyPolicyPage() {
         <p className="text-gray-600 mb-8">Last updated: January 1, 2023</p>
 
         <div className="prose max-w-none">
-          <h2 className="text-2xl font-semibold text-primary-600 mb-4">Introduction</h2>
+          <h2 className="text-2xl font-semibold text-teal-600 mb-4">Introduction</h2>
           <p>
             Gardian Real Estate ("we," "our," or "us") respects your privacy and is committed to protecting your
             personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your
@@ -35,7 +35,7 @@ export default function PrivacyPolicyPage() {
             do not access the site or use our services.
           </p>
 
-          <h2 className="text-2xl font-semibold text-primary-600 mt-8 mb-4">Information We Collect</h2>
+          <h2 className="text-2xl font-semibold text-teal-600 mt-8 mb-4">Information We Collect</h2>
           <p>We may collect personal information that you voluntarily provide to us when you:</p>
           <ul className="list-disc pl-6 mb-6">
             <li>Register on our website</li>
@@ -52,7 +52,7 @@ export default function PrivacyPolicyPage() {
             <li>Other information relevant to customer surveys and/or offers</li>
           </ul>
 
-          <h2 className="text-2xl font-semibold text-primary-600 mt-8 mb-4">How We Use Your Information</h2>
+          <h2 className="text-2xl font-semibold text-teal-600 mt-8 mb-4">How We Use Your Information</h2>
           <p>We may use the information we collect from you for various purposes, including to:</p>
           <ul className="list-disc pl-6 mb-6">
             <li>Provide, operate, and maintain our website and services</li>
@@ -64,7 +64,7 @@ export default function PrivacyPolicyPage() {
             <li>Find and prevent fraud</li>
           </ul>
 
-          <h2 className="text-2xl font-semibold text-primary-600 mt-8 mb-4">Disclosure of Your Information</h2>
+          <h2 className="text-2xl font-semibold text-teal-600 mt-8 mb-4">Disclosure of Your Information</h2>
           <p>We may share your information in the following situations:</p>
           <ul className="list-disc pl-6 mb-6">
             <li>
@@ -89,7 +89,7 @@ export default function PrivacyPolicyPage() {
             </li>
           </ul>
 
-          <h2 className="text-2xl font-semibold text-primary-600 mt-8 mb-4">Security of Your Information</h2>
+          <h2 className="text-2xl font-semibold text-teal-600 mt-8 mb-4">Security of Your Information</h2>
           <p>
             We use administrative, technical, and physical security measures to protect your personal information. While
             we have taken reasonable steps to secure the personal information you provide to us, please be aware that no
@@ -97,7 +97,7 @@ export default function PrivacyPolicyPage() {
             any interception or other type of misuse.
           </p>
 
-          <h2 className="text-2xl font-semibold text-primary-600 mt-8 mb-4">Your Privacy Rights</h2>
+          <h2 className="text-2xl font-semibold text-teal-600 mt-8 mb-4">Your Privacy Rights</h2>
           <p>Depending on your location, you may have certain rights regarding your personal information, such as:</p>
           <ul className="list-disc pl-6 mb-6">
             <li>The right to access personal information we hold about you</li>
@@ -108,14 +108,14 @@ export default function PrivacyPolicyPage() {
             <li>The right to withdraw consent</li>
           </ul>
 
-          <h2 className="text-2xl font-semibold text-primary-600 mt-8 mb-4">Changes to This Privacy Policy</h2>
+          <h2 className="text-2xl font-semibold text-teal-600 mt-8 mb-4">Changes to This Privacy Policy</h2>
           <p>
             We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new
             Privacy Policy on this page and updating the "Last updated" date. You are advised to review this Privacy
             Policy periodically for any changes.
           </p>
 
-          <h2 className="text-2xl font-semibold text-primary-600 mt-8 mb-4">Contact Us</h2>
+          <h2 className="text-2xl font-semibold text-teal-600 mt-8 mb-4">Contact Us</h2>
           <p>If you have any questions about this Privacy Policy, please contact us at:</p>
           <p>
             Gardian Real Estate

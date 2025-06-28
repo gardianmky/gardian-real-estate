@@ -17,12 +17,6 @@ export interface Listing {
   area?: number;
   landSize?: number;
   address?: {
-    agentID: number;
-    name: string | null;
-    title: string | null;
-    phone: string | null;
-    mobile: string | null;
-  } | {
     street?: string;
     suburb?: string;
     state?: string;
@@ -70,10 +64,11 @@ export interface Agent {
 }
 
 export interface Pagination {
-  totalResults?: string | null;
-  resultsPerPage?: string | null;
-  currentPage?: string | null;
-  totalPages?: string | null;
+  totalResults?: number;
+  resultsPerPage?: number;
+  currentPage?: number;
+  totalPages?: number;
+  nextPage?: number | null;
 }
 
 export interface FetchListingsParams {

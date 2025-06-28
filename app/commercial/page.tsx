@@ -69,7 +69,7 @@ export default async function CommercialPage({
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header - Gardian Style */}
-      <div className="bg-primary-600 text-white py-2 text-center text-sm">
+      <div className="bg-teal-600 text-white py-2 text-center text-sm">
         Commercial Properties
       </div>
       

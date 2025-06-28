@@ -54,17 +54,15 @@ const HomepageFeature: React.FC<HomepageFeatureProps> = ({ featuredProperty }) =
             <Image
               src="/amethyst-flow.png"
               alt="Background"
-              layout="fill"
-              object="cover"
-              className={`pulse-animation ${showSecondImage ? "fade-out" : ""}`}
+              fill
+              className={`pulse-animation object-cover ${showSecondImage ? "fade-out" : ""}`}
               style={{ transition: "opacity 2s", opacity: showSecondImage ? "0.25" : "0.19", filter: "blur(5px)" }}
             />
             <Image
               src="/amens.png"
               alt="Amens"
-              layout="fill"
-              object="cover"
-              className={`absolute inset-0 ${showSecondImage ? "fade-in" : "opacity-0"}`}
+              fill
+              className={`absolute inset-0 object-cover ${showSecondImage ? "fade-in" : "opacity-0"}`}
               style={{ transition: "opacity 2s", opacity: showSecondImage ? "0.25" : "0.19", filter: "blur(5px)" }}
             />
           </div>
@@ -126,7 +124,8 @@ const HomepageFeature: React.FC<HomepageFeatureProps> = ({ featuredProperty }) =
                 <div className="absolute bottom-0 left-0 w-full bg-black/50 p-4">
                   <h3 className="text-lg font-semibold text-white">{featuredProperty.heading}</h3>
                   <p className="text-gray-300 text-sm">
-                    {featuredProperty.address.street}, {featuredProperty.address.suburb}
+                    {featuredProperty.address?.displayAddress || 
+                     `${featuredProperty.address?.street || ''}, ${featuredProperty.address?.suburb || ''}`.trim().replace(/^,\s*/, '')}
                   </p>
                   <div className="mt-2 text-white font-bold text-xl">${featuredProperty.price.toLocaleString()}</div>
                 </div>

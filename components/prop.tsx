@@ -2,11 +2,11 @@ import Link from "next/link";
 
 export default function PropertyManagementCTA() {
   return (
-    <section className="py-16 bg-primary-50">
+    <section className="py-16 bg-teal-50">
       <div className="container mx-auto px-4">
         <div className="bg-white rounded-xl shadow-lg overflow-hidden">
           <div className="md:flex">
-            <div className="md:w-3/5 p-8 md:p-12 bg-gradient-to-br from-primary-600 to-primary-800 text-white">
+            <div className="md:w-3/5 p-8 md:p-12 bg-gradient-to-br from-teal-600 to-teal-800 text-white">
               <div className="flex items-center mb-6">
                 <div className="w-10 h-10 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mr-3">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -16,7 +16,7 @@ export default function PropertyManagementCTA() {
                 <h2 className="text-2xl md:text-3xl font-bold">Gardian Property Management</h2>
               </div>
 
-              <p className="text-lg mb-6 text-primary-50">
+              <p className="text-lg mb-6 text-teal-50">
                 Maximize your rental income with professional property management services designed to protect your investment.
               </p>
 
@@ -28,7 +28,7 @@ export default function PropertyManagementCTA() {
                   "Detailed Monthly Reporting"
                 ].map((feature, index) => (
                   <div key={index} className="flex items-center space-x-2">
-                    <svg className="w-4 h-4 text-primary-200" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="w-4 h-4 text-teal-200" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
                     </svg>
                     <span className="text-sm font-medium">{feature}</span>
@@ -39,15 +39,15 @@ export default function PropertyManagementCTA() {
               <div className="grid grid-cols-3 gap-4 mb-8 p-4 bg-white bg-opacity-10 rounded-lg">
                 <div className="text-center">
                   <div className="text-xl font-bold">98%</div>
-                  <div className="text-xs text-primary-100">Occupancy</div>
+                  <div className="text-xs text-teal-100">Occupancy</div>
                 </div>
-                <div className="text-center border-x border-primary-400">
+                <div className="text-center border-x border-teal-400">
                   <div className="text-xl font-bold">500+</div>
-                  <div className="text-xs text-primary-100">Properties</div>
+                  <div className="text-xs text-teal-100">Properties</div>
                 </div>
                 <div className="text-center">
                   <div className="text-xl font-bold">15+</div>
-                  <div className="text-xs text-primary-100">Years</div>
+                  <div className="text-xs text-teal-100">Years</div>
                 </div>
               </div>
 
@@ -55,7 +55,7 @@ export default function PropertyManagementCTA() {
                 href="https://www.gardian.com.au/en/property-management"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-6 py-3 bg-white text-primary-700 font-medium rounded-lg hover:bg-gray-100 transition-colors"
+                className="inline-flex items-center px-6 py-3 bg-white text-teal-700 font-medium rounded-lg hover:bg-gray-100 transition-colors"
               >
                 Get Free Consultation
                 <svg className="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -66,7 +66,7 @@ export default function PropertyManagementCTA() {
 
             <div className="hidden md:block md:w-2/5 relative overflow-hidden group">
               <div className="absolute inset-0 bg-[url('/images/property-management-bg.jpg')] bg-cover bg-center transition-transform duration-500 group-hover:scale-110">
-                <div className="absolute inset-0 bg-gradient-to-t from-primary-800 to-transparent opacity-60"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-teal-800 to-transparent opacity-60"></div>
               </div>
               <div className="absolute bottom-[-3%] left-6 bg-white p-4 rounded-lg shadow-lg max-w-[200px] z-10">
                 <div className="flex mb-2">

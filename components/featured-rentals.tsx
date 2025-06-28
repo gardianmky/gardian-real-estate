@@ -41,7 +41,7 @@ export default function FeaturedRentals() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Featured <span className="text-primary-600">Rentals</span>
+              Featured <span className="text-teal-600">Rentals</span>
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               Discover our selection of quality rental properties in Mackay and surrounding areas.
@@ -74,7 +74,7 @@ export default function FeaturedRentals() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Featured <span className="text-primary-600">Rentals</span>
+            Featured <span className="text-teal-600">Rentals</span>
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Discover our selection of quality rental properties in Mackay and surrounding areas.
@@ -114,20 +114,20 @@ export default function FeaturedRentals() {
 
                   <div className="p-6">
                     <div className="mb-3">
-                      <h3 className="text-xl font-semibold line-clamp-1 group-hover:text-primary-600 transition-colors duration-200">
+                      <h3 className="text-xl font-semibold line-clamp-1 group-hover:text-teal-600 transition-colors duration-200">
                         {property.heading}
                       </h3>
                       <p className="text-gray-600 text-sm mb-2">{`${property.address.street}, ${property.address.suburb}, ${property.address.state} ${property.address.postcode}`}</p>
                     </div>
 
-                    <p className="text-xl font-bold text-primary-600 mb-2">{property.price}</p>
+                    <p className="text-xl font-bold text-teal-600 mb-2">{property.price}</p>
                     <p className="text-sm text-accent-600 font-medium mb-4">Available Now</p>
 
                     <div className="border-t border-gray-100 pt-4 mb-5">
                       <PropertyFeaturesInline listing={property} />
                     </div>
 
-                    <button className="w-full bg-gray-50 hover:bg-gray-100 text-primary-600 py-2 rounded-lg font-medium transition-colors duration-200 mt-auto">
+                    <button className="w-full bg-gray-50 hover:bg-gray-100 text-teal-600 py-2 rounded-lg font-medium transition-colors duration-200 mt-auto">
                       View Details
                     </button>
                   </div>
@@ -140,7 +140,7 @@ export default function FeaturedRentals() {
         <div className="text-center mt-10">
           <Link
             href="/rent"
-            className="inline-flex items-center bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg transition-colors duration-300"
+            className="inline-flex items-center bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-lg transition-colors duration-300"
           >
             <span>View All Rental Properties</span>
             <svg

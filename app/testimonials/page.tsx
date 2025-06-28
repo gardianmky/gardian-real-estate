@@ -124,7 +124,7 @@ export default function TestimonialsPage() {
       <div className="mb-8">
         <Link
           href="/"
-          className="inline-flex items-center text-primary-600 hover:text-primary-800 transition-colors duration-200"
+          className="inline-flex items-center text-teal-600 hover:text-teal-800 transition-colors duration-200"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
             <path
@@ -145,7 +145,7 @@ export default function TestimonialsPage() {
         </p>
 
         {/* Featured Testimonial */}
-        <div className="bg-gradient-to-r from-primary-50 to-teal-50 p-8 rounded-xl border border-primary-100 mb-12">
+        <div className="bg-gradient-to-r from-teal-50 to-teal-50 p-8 rounded-xl border border-teal-100 mb-12">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
             <div className="relative h-24 w-24 rounded-full overflow-hidden border-4 border-white shadow-md flex-shrink-0">
               <Image
@@ -176,7 +176,7 @@ export default function TestimonialsPage() {
           {testimonials.slice(1).map((testimonial) => (
             <div
               key={testimonial.id}
-              className="bg-gray-50 p-6 rounded-lg border border-gray-100 hover:border-primary-200 transition-colors duration-300"
+              className="bg-gray-50 p-6 rounded-lg border border-gray-100 hover:border-teal-200 transition-colors duration-300"
             >
               <div className="flex items-center mb-4">
                 {testimonial.image ? (
@@ -190,7 +190,7 @@ export default function TestimonialsPage() {
                     />
                   </div>
                 ) : (
-                  <div className="h-16 w-16 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center text-xl font-bold mr-4">
+                  <div className="h-16 w-16 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center text-xl font-bold mr-4">
                     {testimonial.name.charAt(0)}
                   </div>
                 )}
@@ -207,7 +207,7 @@ export default function TestimonialsPage() {
 
               <p className="text-gray-700 mb-4">{testimonial.text}</p>
 
-              <div className="text-sm text-primary-600 font-medium">
+              <div className="text-sm text-teal-600 font-medium">
                 Service: {getServiceLabel(testimonial.service)}
               </div>
             </div>
@@ -224,13 +224,13 @@ export default function TestimonialsPage() {
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/contact"
-              className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg transition-colors duration-300"
+              className="bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-lg transition-colors duration-300"
             >
               Contact Us Today
             </Link>
             <Link
               href="/agents"
-              className="bg-white text-primary-700 border border-primary-200 px-6 py-3 rounded-lg hover:bg-primary-50 transition-colors duration-300"
+              className="bg-white text-teal-700 border border-teal-200 px-6 py-3 rounded-lg hover:bg-teal-50 transition-colors duration-300"
             >
               Meet Our Team
             </Link>

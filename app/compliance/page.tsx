@@ -6,7 +6,7 @@ export default function CompliancePage() {
       <div className="mb-8">
         <Link
           href="/"
-          className="inline-flex items-center text-primary-600 hover:text-primary-800 transition-colors duration-200"
+          className="inline-flex items-center text-teal-600 hover:text-teal-800 transition-colors duration-200"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
             <path
@@ -28,7 +28,7 @@ export default function CompliancePage() {
             compliance with all relevant laws, regulations, and industry codes of practice.
           </p>
 
-          <h2 className="text-2xl font-semibold text-primary-600 mb-4">Regulatory Framework</h2>
+          <h2 className="text-2xl font-semibold text-teal-600 mb-4">Regulatory Framework</h2>
           <p>
             As a licensed real estate agency operating in Queensland, we comply with the following key legislation and
             regulations:
@@ -44,7 +44,7 @@ export default function CompliancePage() {
             <li>Work Health and Safety Act 2011 (Qld)</li>
           </ul>
 
-          <h2 className="text-2xl font-semibold text-primary-600 mt-8 mb-4">Licensing</h2>
+          <h2 className="text-2xl font-semibold text-teal-600 mt-8 mb-4">Licensing</h2>
           <p>
             All our real estate agents and property managers hold the appropriate licenses and registrations as required
             by the Property Occupations Act 2014 (Qld). Our agency holds a current Real Estate Agent License issued by
@@ -57,14 +57,14 @@ export default function CompliancePage() {
             <li>License Expiry: December 31, 2023</li>
           </ul>
 
-          <h2 className="text-2xl font-semibold text-primary-600 mt-8 mb-4">Professional Memberships</h2>
+          <h2 className="text-2xl font-semibold text-teal-600 mt-8 mb-4">Professional Memberships</h2>
           <p>
             Gardian Real Estate is a proud member of the Real Estate Institute of Queensland (REIQ) and adheres to their
             Code of Conduct. Our membership demonstrates our commitment to professional standards, ongoing education,
             and ethical business practices.
           </p>
 
-          <h2 className="text-2xl font-semibold text-primary-600 mt-8 mb-4">Anti-Money Laundering Compliance</h2>
+          <h2 className="text-2xl font-semibold text-teal-600 mt-8 mb-4">Anti-Money Laundering Compliance</h2>
           <p>
             We have implemented a comprehensive Anti-Money Laundering and Counter-Terrorism Financing (AML/CTF) program
             in accordance with our obligations under the AML/CTF Act. This includes:
@@ -77,7 +77,7 @@ export default function CompliancePage() {
             <li>Staff training and awareness</li>
           </ul>
 
-          <h2 className="text-2xl font-semibold text-primary-600 mt-8 mb-4">Privacy Compliance</h2>
+          <h2 className="text-2xl font-semibold text-teal-600 mt-8 mb-4">Privacy Compliance</h2>
           <p>
             We respect your privacy and are committed to protecting your personal information. Our Privacy Policy
             outlines how we collect, use, disclose, and safeguard your information in accordance with the Privacy Act
@@ -85,13 +85,13 @@ export default function CompliancePage() {
           </p>
           <p>
             For more information, please refer to our{" "}
-            <Link href="/privacy" className="text-primary-600 hover:text-primary-800">
+            <Link href="/privacy" className="text-teal-600 hover:text-teal-800">
               Privacy Policy
             </Link>
             .
           </p>
 
-          <h2 className="text-2xl font-semibold text-primary-600 mt-8 mb-4">Trust Account Management</h2>
+          <h2 className="text-2xl font-semibold text-teal-600 mt-8 mb-4">Trust Account Management</h2>
           <p>
             We maintain trust accounts in accordance with the Property Occupations Act 2014 (Qld) and Property
             Occupations Regulation 2014 (Qld). Our trust accounts are:
@@ -103,7 +103,7 @@ export default function CompliancePage() {
             <li>Protected by appropriate internal controls</li>
           </ul>
 
-          <h2 className="text-2xl font-semibold text-primary-600 mt-8 mb-4">Complaints Handling</h2>
+          <h2 className="text-2xl font-semibold text-teal-600 mt-8 mb-4">Complaints Handling</h2>
           <p>
             We have established a formal complaints handling procedure to address any concerns or issues raised by our
             clients. Our process is designed to ensure that complaints are handled fairly, efficiently, and in
@@ -111,13 +111,13 @@ export default function CompliancePage() {
           </p>
           <p>
             For more information, please refer to our{" "}
-            <Link href="/complaints" className="text-primary-600 hover:text-primary-800">
+            <Link href="/complaints" className="text-teal-600 hover:text-teal-800">
               Complaints Procedure
             </Link>
             .
           </p>
 
-          <h2 className="text-2xl font-semibold text-primary-600 mt-8 mb-4">Professional Development</h2>
+          <h2 className="text-2xl font-semibold text-teal-600 mt-8 mb-4">Professional Development</h2>
           <p>
             We are committed to ongoing professional development and training for all our staff. This ensures that our
             team remains up-to-date with:
@@ -129,7 +129,7 @@ export default function CompliancePage() {
             <li>Market trends and conditions</li>
           </ul>
 
-          <h2 className="text-2xl font-semibold text-primary-600 mt-8 mb-4">Contact Us</h2>
+          <h2 className="text-2xl font-semibold text-teal-600 mt-8 mb-4">Contact Us</h2>
           <p>
             If you have any questions or concerns regarding our compliance with legal and regulatory requirements,
             please contact our Compliance Officer:

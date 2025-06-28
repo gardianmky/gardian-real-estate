@@ -6,7 +6,7 @@ export default function SellYourPropertyPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-r from-primary-600 to-primary-700 text-white">
+      <div className="relative bg-gradient-to-r from-teal-600 to-teal-700 text-white">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.2),transparent_70%)] opacity-70"></div>
         </div>
@@ -22,7 +22,7 @@ export default function SellYourPropertyPage() {
               </p>
               <Link
                 href="#get-started"
-                className="inline-flex items-center bg-white text-primary-700 px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition-colors duration-300"
+                className="inline-flex items-center bg-white text-teal-700 px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition-colors duration-300"
               >
                 Get started
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -54,8 +54,8 @@ export default function SellYourPropertyPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
             {/* Feature 1 */}
             <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-              <div className="bg-primary-100 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4">
-                <Shield className="h-7 w-7 text-primary-600" />
+              <div className="bg-teal-100 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4">
+                <Shield className="h-7 w-7 text-teal-600" />
               </div>
               <h3 className="text-xl font-semibold mb-3">Expert market valuation</h3>
               <p className="text-gray-600">
@@ -66,8 +66,8 @@ export default function SellYourPropertyPage() {
 
             {/* Feature 2 */}
             <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-              <div className="bg-primary-100 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4">
-                <FileText className="h-7 w-7 text-primary-600" />
+              <div className="bg-teal-100 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4">
+                <FileText className="h-7 w-7 text-teal-600" />
               </div>
               <h3 className="text-xl font-semibold mb-3">Professional marketing</h3>
               <p className="text-gray-600">
@@ -77,8 +77,8 @@ export default function SellYourPropertyPage() {
 
             {/* Feature 3 */}
             <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-              <div className="bg-primary-100 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4">
-                <Zap className="h-7 w-7 text-primary-600" />
+              <div className="bg-teal-100 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4">
+                <Zap className="h-7 w-7 text-teal-600" />
               </div>
               <h3 className="text-xl font-semibold mb-3">Negotiation expertise</h3>
               <p className="text-gray-600">
@@ -89,8 +89,8 @@ export default function SellYourPropertyPage() {
 
             {/* Feature 4 */}
             <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-              <div className="bg-primary-100 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4">
-                <HelpCircle className="h-7 w-7 text-primary-600" />
+              <div className="bg-teal-100 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4">
+                <HelpCircle className="h-7 w-7 text-teal-600" />
               </div>
               <h3 className="text-xl font-semibold mb-3">End-to-end support</h3>
               <p className="text-gray-600">
@@ -105,8 +105,8 @@ export default function SellYourPropertyPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="text-center">
-                <div className="bg-primary-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold text-primary-600">1</span>
+                <div className="bg-teal-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl font-bold text-teal-600">1</span>
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Property Evaluation</h3>
                 <p className="text-gray-600">
@@ -115,8 +115,8 @@ export default function SellYourPropertyPage() {
               </div>
 
               <div className="text-center">
-                <div className="bg-primary-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold text-primary-600">2</span>
+                <div className="bg-teal-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl font-bold text-teal-600">2</span>
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Marketing & Exposure</h3>
                 <p className="text-gray-600">
@@ -125,8 +125,8 @@ export default function SellYourPropertyPage() {
               </div>
 
               <div className="text-center">
-                <div className="bg-primary-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold text-primary-600">3</span>
+                <div className="bg-teal-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl font-bold text-teal-600">3</span>
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Sale & Settlement</h3>
                 <p className="text-gray-600">
@@ -139,7 +139,7 @@ export default function SellYourPropertyPage() {
           {/* Get Started Section */}
           <div
             id="get-started"
-            className="bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl shadow-lg p-8 text-white"
+            className="bg-gradient-to-r from-teal-600 to-teal-700 rounded-xl shadow-lg p-8 text-white"
           >
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl font-bold mb-4">Ready to sell your property?</h2>
@@ -150,7 +150,7 @@ export default function SellYourPropertyPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Link
                   href="/contact"
-                  className="bg-white text-primary-700 px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition-colors duration-300"
+                  className="bg-white text-teal-700 px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition-colors duration-300"
                 >
                   Request an appraisal
                 </Link>
@@ -261,7 +261,7 @@ export default function SellYourPropertyPage() {
           </div>
 
           <div className="text-center mt-10">
-            <Link href="/faq" className="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium">
+            <Link href="/faq" className="inline-flex items-center text-teal-600 hover:text-teal-700 font-medium">
               View all FAQs
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>

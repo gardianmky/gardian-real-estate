@@ -22,9 +22,9 @@ export default function SecondaryNavigation() {
         </svg>
       ),
       href: "/property-management",
-      bgColor: "bg-primary-50",
-      textColor: "text-primary-700",
-      borderColor: "border-primary-200",
+      bgColor: "bg-teal-50",
+      textColor: "text-teal-700",
+      borderColor: "border-teal-200",
     },
     {
       title: "Rentals",

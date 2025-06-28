@@ -116,7 +116,7 @@ export default function Pagination({ totalPages, currentPage }: PaginationProps)
               <button
                 onClick={() => goToPage(page as number)}
                 className={`px-3 py-2 rounded-md ${
-                  currentPage === page ? "bg-primary-500 text-white" : "text-gray-700 hover:bg-gray-100"
+                  currentPage === page ? "bg-teal-500 text-white" : "text-gray-700 hover:bg-gray-100"
                 }`}
                 aria-label={`Page ${page}`}
                 aria-current={currentPage === page ? "page" : undefined}

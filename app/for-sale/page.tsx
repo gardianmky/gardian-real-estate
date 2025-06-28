@@ -73,7 +73,7 @@ export default async function ForSalePage({
       <div className="bg-white shadow-sm border-b border-gray-200">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center text-primary-600 hover:text-primary-700">
+            <Link href="/" className="flex items-center text-teal-600 hover:text-teal-700">
               <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
@@ -82,7 +82,7 @@ export default async function ForSalePage({
             
             {/* Breadcrumb */}
             <nav className="text-sm text-gray-500">
-              <Link href="/" className="hover:text-primary-600">Home</Link>
+              <Link href="/" className="hover:text-teal-600">Home</Link>
               <span className="mx-2">/</span>
               <span className="text-gray-800">Properties For Sale</span>
             </nav>
@@ -119,19 +119,19 @@ export default async function ForSalePage({
                 <div className="flex">
                   <Link 
                     href="/for-sale" 
-                    className="flex-1 lg:flex-none px-4 py-2 bg-primary-600 text-white rounded-lg text-sm font-medium text-center shadow-sm"
+                    className="flex-1 lg:flex-none px-4 py-2 bg-teal-600 text-white rounded-lg text-sm font-medium text-center shadow-sm"
                   >
                     For Sale
                   </Link>
                   <Link 
                     href="/for-rent" 
-                    className="flex-1 lg:flex-none px-4 py-2 text-gray-600 hover:text-primary-600 hover:bg-white rounded-lg text-sm font-medium text-center transition-all duration-200"
+                    className="flex-1 lg:flex-none px-4 py-2 text-gray-600 hover:text-teal-600 hover:bg-white rounded-lg text-sm font-medium text-center transition-all duration-200"
                   >
                     For Rent
                   </Link>
                   <Link 
                     href="/commercial" 
-                    className="flex-1 lg:flex-none px-4 py-2 text-gray-600 hover:text-primary-600 hover:bg-white rounded-lg text-sm font-medium text-center transition-all duration-200"
+                    className="flex-1 lg:flex-none px-4 py-2 text-gray-600 hover:text-teal-600 hover:bg-white rounded-lg text-sm font-medium text-center transition-all duration-200"
                   >
                     Commercial
                   </Link>
@@ -161,7 +161,7 @@ export default async function ForSalePage({
                 <p className="text-gray-600 mb-6">{error}</p>
                 <button 
                   onClick={() => window.location.reload()}
-                  className="bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 transition-colors"
+                  className="bg-teal-600 text-white px-6 py-2 rounded-lg hover:bg-teal-700 transition-colors"
                 >
                   Try Again
                 </button>
@@ -184,10 +184,10 @@ export default async function ForSalePage({
                   Try adjusting your search criteria or browse our other property types.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                  <Link href="/for-rent" className="bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 transition-colors">
+                  <Link href="/for-rent" className="bg-teal-600 text-white px-6 py-2 rounded-lg hover:bg-teal-700 transition-colors">
                     View Rentals
                   </Link>
-                  <Link href="/commercial" className="bg-white text-primary-600 border border-primary-600 px-6 py-2 rounded-lg hover:bg-primary-50 transition-colors">
+                  <Link href="/commercial" className="bg-white text-teal-600 border border-teal-600 px-6 py-2 rounded-lg hover:bg-teal-50 transition-colors">
                     Commercial Properties
                   </Link>
                 </div>
@@ -229,13 +229,13 @@ export default async function ForSalePage({
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 
                 href="/buyer-agent-request" 
-                className="bg-primary-600 text-white px-8 py-3 rounded-lg hover:bg-primary-700 transition-colors font-medium"
+                className="bg-teal-600 text-white px-8 py-3 rounded-lg hover:bg-teal-700 transition-colors font-medium"
               >
                 Request a Buyer's Agent
               </Link>
               <Link 
                 href="/appraisal-request" 
-                className="bg-white text-primary-600 border border-primary-600 px-8 py-3 rounded-lg hover:bg-primary-50 transition-colors font-medium"
+                className="bg-white text-teal-600 border border-teal-600 px-8 py-3 rounded-lg hover:bg-teal-50 transition-colors font-medium"
               >
                 Get Property Appraisal
               </Link>

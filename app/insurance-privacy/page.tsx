@@ -6,7 +6,7 @@ export default function InsurancePrivacyPage() {
       <div className="mb-8">
         <Link
           href="/"
-          className="inline-flex items-center text-primary-600 hover:text-primary-800 transition-colors duration-200"
+          className="inline-flex items-center text-teal-600 hover:text-teal-800 transition-colors duration-200"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
             <path
@@ -24,14 +24,14 @@ export default function InsurancePrivacyPage() {
         <p className="text-gray-600 mb-8">Last updated: January 1, 2023</p>
 
         <div className="prose max-w-none">
-          <h2 className="text-2xl font-semibold text-primary-600 mb-4">Introduction</h2>
+          <h2 className="text-2xl font-semibold text-teal-600 mb-4">Introduction</h2>
           <p>
             This Insurance Privacy Policy explains how Gardian Real Estate ("we," "our," or "us") collects, uses,
             discloses, and safeguards your personal information specifically in relation to insurance services we may
             offer or recommend. This policy should be read in conjunction with our general Privacy Policy.
           </p>
 
-          <h2 className="text-2xl font-semibold text-primary-600 mt-8 mb-4">
+          <h2 className="text-2xl font-semibold text-teal-600 mt-8 mb-4">
             Information We Collect for Insurance Purposes
           </h2>
           <p>
@@ -47,7 +47,7 @@ export default function InsurancePrivacyPage() {
             <li>Risk assessment information</li>
           </ul>
 
-          <h2 className="text-2xl font-semibold text-primary-600 mt-8 mb-4">How We Use Your Insurance Information</h2>
+          <h2 className="text-2xl font-semibold text-teal-600 mt-8 mb-4">How We Use Your Insurance Information</h2>
           <p>We may use the information we collect for insurance purposes to:</p>
           <ul className="list-disc pl-6 mb-6">
             <li>Assess your insurance needs</li>
@@ -58,7 +58,7 @@ export default function InsurancePrivacyPage() {
             <li>Comply with legal and regulatory requirements</li>
           </ul>
 
-          <h2 className="text-2xl font-semibold text-primary-600 mt-8 mb-4">
+          <h2 className="text-2xl font-semibold text-teal-600 mt-8 mb-4">
             Disclosure of Your Insurance Information
           </h2>
           <p>We may share your insurance-related information with:</p>
@@ -70,14 +70,14 @@ export default function InsurancePrivacyPage() {
             <li>Legal representatives (in the event of a claim or dispute)</li>
           </ul>
 
-          <h2 className="text-2xl font-semibold text-primary-600 mt-8 mb-4">Your Consent</h2>
+          <h2 className="text-2xl font-semibold text-teal-600 mt-8 mb-4">Your Consent</h2>
           <p>
             We will obtain your explicit consent before collecting, using, or disclosing sensitive information for
             insurance purposes. You have the right to withdraw your consent at any time, though this may affect our
             ability to provide certain services.
           </p>
 
-          <h2 className="text-2xl font-semibold text-primary-600 mt-8 mb-4">Security of Your Insurance Information</h2>
+          <h2 className="text-2xl font-semibold text-teal-600 mt-8 mb-4">Security of Your Insurance Information</h2>
           <p>We take additional precautions to protect sensitive insurance information, including:</p>
           <ul className="list-disc pl-6 mb-6">
             <li>Enhanced encryption for sensitive data</li>
@@ -86,14 +86,14 @@ export default function InsurancePrivacyPage() {
             <li>Secure disposal of information when no longer needed</li>
           </ul>
 
-          <h2 className="text-2xl font-semibold text-primary-600 mt-8 mb-4">Retention of Insurance Information</h2>
+          <h2 className="text-2xl font-semibold text-teal-600 mt-8 mb-4">Retention of Insurance Information</h2>
           <p>
             We retain insurance-related information for as long as necessary to fulfill the purposes outlined in this
             policy, unless a longer retention period is required or permitted by law. This typically includes the
             duration of your insurance policy plus any applicable statutory retention periods.
           </p>
 
-          <h2 className="text-2xl font-semibold text-primary-600 mt-8 mb-4">
+          <h2 className="text-2xl font-semibold text-teal-600 mt-8 mb-4">
             Your Rights Regarding Insurance Information
           </h2>
           <p>
@@ -107,7 +107,7 @@ export default function InsurancePrivacyPage() {
             <li>The right to object to automated decision-making related to insurance underwriting or claims</li>
           </ul>
 
-          <h2 className="text-2xl font-semibold text-primary-600 mt-8 mb-4">
+          <h2 className="text-2xl font-semibold text-teal-600 mt-8 mb-4">
             Changes to This Insurance Privacy Policy
           </h2>
           <p>
@@ -116,7 +116,7 @@ export default function InsurancePrivacyPage() {
             periodically for any changes.
           </p>
 
-          <h2 className="text-2xl font-semibold text-primary-600 mt-8 mb-4">Contact Us</h2>
+          <h2 className="text-2xl font-semibold text-teal-600 mt-8 mb-4">Contact Us</h2>
           <p>If you have any questions about this Insurance Privacy Policy, please contact us at:</p>
           <p>
             Gardian Real Estate

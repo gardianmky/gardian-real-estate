@@ -137,7 +137,7 @@ export default function LogoDropdownMenu({ className = "" }: LogoDropdownMenuPro
       {/* Logo Trigger */}
       <button
         onClick={handleClick}
-        className="flex items-center space-x-2 p-1 rounded-lg hover:bg-gray-50 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+        className="flex items-center space-x-2 p-1 rounded-lg hover:bg-gray-50 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
         aria-label="Gardian Services Menu"
         aria-expanded={isOpen}
       >

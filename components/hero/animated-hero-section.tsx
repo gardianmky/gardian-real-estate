@@ -129,15 +129,15 @@ export default function AnimatedHeroSection() {
       {/* Inject keyframes using a style tag */}
       <style dangerouslySetInnerHTML={{ __html: keyframes }} />
       
-      <section className="relative min-h-[90vh] sm:min-h-[85vh] bg-gradient-to-br from-primary-50 via-emerald-50 to-teal-50 overflow-hidden flex items-center" style={{ paddingBottom: '0.5em' }}>
+      <section className="relative min-h-[90vh] sm:min-h-[85vh] bg-gradient-to-br from-teal-50 via-emerald-50 to-teal-50 overflow-hidden flex items-center" style={{ paddingBottom: '0.5em' }}>
         {/* Enhanced Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           {/* Large floating orbs with enhanced animations - responsive sizes */}
-          <div className="absolute top-1/4 left-1/4 w-48 h-48 sm:w-72 sm:h-72 lg:w-96 lg:h-96 bg-gradient-to-br from-primary-200/10 to-emerald-200/10 rounded-full blur-3xl" 
+          <div className="absolute top-1/4 left-1/4 w-48 h-48 sm:w-72 sm:h-72 lg:w-96 lg:h-96 bg-gradient-to-br from-teal-200/10 to-emerald-200/10 rounded-full blur-3xl" 
                style={{
                  animation: 'float 30s ease-in-out infinite, drift 40s ease-in-out infinite'
                }}></div>
-          <div className="absolute top-3/4 right-1/4 w-40 h-40 sm:w-64 sm:h-64 lg:w-80 lg:h-80 bg-gradient-to-br from-teal-200/10 to-primary-200/10 rounded-full blur-3xl" 
+          <div className="absolute top-3/4 right-1/4 w-40 h-40 sm:w-64 sm:h-64 lg:w-80 lg:h-80 bg-gradient-to-br from-teal-200/10 to-teal-200/10 rounded-full blur-3xl" 
                style={{
                  animation: 'float 35s ease-in-out infinite 8s, drift 45s ease-in-out infinite 5s'
                }}></div>
@@ -147,7 +147,7 @@ export default function AnimatedHeroSection() {
                }}></div>
           
           {/* Smaller sparkle elements */}
-          <div className="absolute top-1/3 right-1/3 w-3 h-3 sm:w-4 sm:h-4 bg-primary-300/20 rounded-full" 
+          <div className="absolute top-1/3 right-1/3 w-3 h-3 sm:w-4 sm:h-4 bg-teal-300/20 rounded-full" 
                style={{ animation: 'sparkle 6s ease-in-out infinite' }}></div>
           <div className="absolute top-2/3 left-1/5 w-2 h-2 sm:w-3 sm:h-3 bg-emerald-300/20 rounded-full" 
                style={{ animation: 'sparkle 6s ease-in-out infinite 3s' }}></div>
@@ -179,7 +179,7 @@ export default function AnimatedHeroSection() {
                  }}></div>
             
             {/* Dynamic Typography with Enhanced Animations - Improved responsive text sizes */}
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black mb-4 sm:mb-6 lg:mb-8 text-gray-800 leading-tight drop-shadow-sm relative z-10 transition-all duration-700 hover:scale-102 hover:text-primary-700 px-2"
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black mb-4 sm:mb-6 lg:mb-8 text-gray-800 leading-tight drop-shadow-sm relative z-10 transition-all duration-700 hover:scale-102 hover:text-teal-700 px-2"
                 style={{
                   marginTop: '1em',
                   animation: 'fadeInUp 1.5s ease-out, textGlow 12s ease-in-out infinite'
@@ -209,7 +209,7 @@ export default function AnimatedHeroSection() {
                    onMouseLeave={(e) => {
                      e.currentTarget.style.animation = 'pulseGlow 6s ease-in-out infinite';
                    }}>
-                <div className="absolute inset-0 bg-gradient-to-r from-primary-200/10 to-emerald-200/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-teal-200/10 to-emerald-200/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <SearchBar />
               </div>
             </div>

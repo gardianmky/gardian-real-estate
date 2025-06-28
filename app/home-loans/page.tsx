@@ -31,7 +31,7 @@ export default function HomeLoansPage() {
               </Link>
               <Link
                 href="/appraisals"
-                className="bg-primary-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-800 transition-colors text-center"
+                className="bg-teal-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-teal-800 transition-colors text-center"
               >
                 Get Property Appraisal
               </Link>
@@ -91,7 +91,7 @@ export default function HomeLoansPage() {
                     </select>
                   </div>
                   
-                  <button className="w-full bg-primary-600 text-white py-3 rounded-lg hover:bg-primary-700 transition-colors font-semibold">
+                  <button className="w-full bg-teal-600 text-white py-3 rounded-lg hover:bg-teal-700 transition-colors font-semibold">
                     Calculate Repayments
                   </button>
                 </div>
@@ -284,7 +284,7 @@ export default function HomeLoansPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact?service=pre-approval"
-              className="bg-primary-600 text-white px-8 py-3 rounded-lg hover:bg-primary-700 transition-colors font-semibold"
+              className="bg-teal-600 text-white px-8 py-3 rounded-lg hover:bg-teal-700 transition-colors font-semibold"
             >
               Get Pre-Approved
             </Link>

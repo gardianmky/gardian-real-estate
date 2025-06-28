@@ -45,7 +45,7 @@ function ListingCard({ listing }: ListingCardProps) {
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
         {/* Property Type Badge */}
-        <div className="absolute top-3 left-3 bg-primary-600 text-white text-xs font-semibold px-2 py-1 rounded">
+        <div className="absolute top-3 left-3 bg-teal-600 text-white text-xs font-semibold px-2 py-1 rounded">
           {isCommercial ? "Commercial" : "Residential"}
         </div>
         {/* Price Badge */}
@@ -68,7 +68,7 @@ function ListingCard({ listing }: ListingCardProps) {
 
         {/* View Details Button */}
         <div className="mt-auto">
-          <button className="w-full bg-primary-50 hover:bg-primary-100 text-primary-700 font-medium py-2 px-4 rounded transition-colors duration-300 flex items-center justify-center">
+          <button className="w-full bg-teal-50 hover:bg-teal-100 text-teal-700 font-medium py-2 px-4 rounded transition-colors duration-300 flex items-center justify-center">
             View Details
             <svg
               className="w-4 h-4 ml-2"

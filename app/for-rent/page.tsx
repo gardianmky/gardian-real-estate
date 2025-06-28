@@ -79,7 +79,7 @@ export default async function ForRentPage({
       <div className="bg-white shadow-sm border-b border-gray-200">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center text-primary-600 hover:text-primary-700">
+            <Link href="/" className="flex items-center text-teal-600 hover:text-teal-700">
               <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
@@ -88,7 +88,7 @@ export default async function ForRentPage({
             
             {/* Breadcrumb */}
             <nav className="text-sm text-gray-500">
-              <Link href="/" className="hover:text-primary-600">Home</Link>
+              <Link href="/" className="hover:text-teal-600">Home</Link>
               <span className="mx-2">/</span>
               <span className="text-gray-800">Properties For Rent</span>
             </nav>
@@ -122,19 +122,19 @@ export default async function ForRentPage({
             <div className="flex flex-col sm:flex-row gap-2 sm:space-x-2 w-full sm:w-auto">
               <Link 
                 href="/for-sale" 
-                className="px-3 sm:px-4 py-2 text-center text-gray-600 hover:text-primary-600 text-sm font-medium transition-colors duration-200 rounded hover:bg-gray-50"
+                className="px-3 sm:px-4 py-2 text-center text-gray-600 hover:text-teal-600 text-sm font-medium transition-colors duration-200 rounded hover:bg-gray-50"
               >
                 For Sale
               </Link>
               <Link 
                 href="/for-rent" 
-                className="px-3 sm:px-4 py-2 text-center bg-primary-600 text-white rounded text-sm font-medium"
+                className="px-3 sm:px-4 py-2 text-center bg-teal-600 text-white rounded text-sm font-medium"
               >
                 For Rent
               </Link>
               <Link 
                 href="/commercial" 
-                className="px-3 sm:px-4 py-2 text-center text-gray-600 hover:text-primary-600 text-sm font-medium transition-colors duration-200 rounded hover:bg-gray-50"
+                className="px-3 sm:px-4 py-2 text-center text-gray-600 hover:text-teal-600 text-sm font-medium transition-colors duration-200 rounded hover:bg-gray-50"
               >
                 Commercial
               </Link>
@@ -161,7 +161,7 @@ export default async function ForRentPage({
               <p className="text-gray-600 mb-6">{error}</p>
               <button 
                 onClick={() => window.location.reload()}
-                className="bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 transition-colors"
+                className="bg-teal-600 text-white px-6 py-2 rounded-lg hover:bg-teal-700 transition-colors"
               >
                 Try Again
               </button>
@@ -183,10 +183,10 @@ export default async function ForRentPage({
                   Try adjusting your search criteria or browse our other property types.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                  <Link href="/for-sale" className="bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 transition-colors">
+                  <Link href="/for-sale" className="bg-teal-600 text-white px-6 py-2 rounded-lg hover:bg-teal-700 transition-colors">
                     View Properties For Sale
                   </Link>
-                  <Link href="/commercial" className="bg-white text-primary-600 border border-primary-600 px-6 py-2 rounded-lg hover:bg-primary-50 transition-colors">
+                  <Link href="/commercial" className="bg-white text-teal-600 border border-teal-600 px-6 py-2 rounded-lg hover:bg-teal-50 transition-colors">
                     Commercial Properties
                   </Link>
                 </div>
@@ -226,13 +226,13 @@ export default async function ForRentPage({
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 
                 href="/rental-assistance" 
-                className="bg-primary-600 text-white px-8 py-3 rounded-lg hover:bg-primary-700 transition-colors font-medium"
+                className="bg-teal-600 text-white px-8 py-3 rounded-lg hover:bg-teal-700 transition-colors font-medium"
               >
                 Get Rental Assistance
               </Link>
               <Link 
                 href="/contact" 
-                className="bg-white text-primary-600 border border-primary-600 px-8 py-3 rounded-lg hover:bg-primary-50 transition-colors font-medium"
+                className="bg-white text-teal-600 border border-teal-600 px-8 py-3 rounded-lg hover:bg-teal-50 transition-colors font-medium"
               >
                 Contact Our Team
               </Link>

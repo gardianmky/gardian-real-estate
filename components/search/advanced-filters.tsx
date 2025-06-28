@@ -110,7 +110,7 @@ export default function AdvancedFilters() {
     <div className="bg-white rounded-lg shadow-sm mb-6 border border-gray-100">
       <div className="flex justify-between items-center p-4 cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
         <div className="flex items-center">
-          <Filter className="h-5 w-5 mr-2 text-primary-500" />
+          <Filter className="h-5 w-5 mr-2 text-teal-500" />
           <span className="font-medium">Advanced Filters</span>
           {hasActiveFilters() && (
             <span className="ml-2 bg-accent-100 text-accent-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
@@ -132,7 +132,7 @@ export default function AdvancedFilters() {
               <select
                 value={minPrice}
                 onChange={(e) => setMinPrice(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
               >
                 {priceOptions.map((option) => (
                   <option key={`min-${option.value}`} value={option.value}>
@@ -147,7 +147,7 @@ export default function AdvancedFilters() {
               <select
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
               >
                 {priceOptions.map((option) => (
                   <option key={`max-${option.value}`} value={option.value}>
@@ -163,7 +163,7 @@ export default function AdvancedFilters() {
               <select
                 value={bedrooms}
                 onChange={(e) => setBedrooms(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
               >
                 <option value="">Any</option>
                 <option value="1">1+</option>
@@ -180,7 +180,7 @@ export default function AdvancedFilters() {
               <select
                 value={bathrooms}
                 onChange={(e) => setBathrooms(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
               >
                 <option value="">Any</option>
                 <option value="1">1+</option>
@@ -196,7 +196,7 @@ export default function AdvancedFilters() {
               <select
                 value={carSpaces}
                 onChange={(e) => setCarSpaces(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
               >
                 <option value="">Any</option>
                 <option value="1">1+</option>
@@ -212,7 +212,7 @@ export default function AdvancedFilters() {
               <select
                 value={landSize}
                 onChange={(e) => setLandSize(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
               >
                 <option value="">Any</option>
                 <option value="300">300m²+</option>
@@ -230,7 +230,7 @@ export default function AdvancedFilters() {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
               >
                 <option value="newest">Newest</option>
                 <option value="price_low">Price (Low to High)</option>
@@ -250,14 +250,14 @@ export default function AdvancedFilters() {
                   key={feature.id}
                   className={`flex items-center p-2 rounded-md cursor-pointer ${
                     features.includes(feature.id)
-                      ? "bg-primary-50 border border-primary-200"
+                      ? "bg-teal-50 border border-teal-200"
                       : "hover:bg-gray-50 border border-gray-100"
                   }`}
                   onClick={() => toggleFeature(feature.id)}
                 >
                   <div
                     className={`h-4 w-4 rounded-sm mr-2 flex items-center justify-center ${
-                      features.includes(feature.id) ? "bg-primary-500" : "border border-gray-300"
+                      features.includes(feature.id) ? "bg-teal-500" : "border border-gray-300"
                     }`}
                   >
                     {features.includes(feature.id) && <Check className="h-3 w-3 text-white" />}
@@ -273,7 +273,7 @@ export default function AdvancedFilters() {
             <button
               type="button"
               onClick={resetFilters}
-              className="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+              className="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
             >
               Reset Filters
             </button>

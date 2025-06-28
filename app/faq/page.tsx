@@ -96,7 +96,7 @@ export default function FAQPage() {
       <div className="mb-8">
         <Link
           href="/"
-          className="inline-flex items-center text-primary-600 hover:text-primary-800 transition-colors duration-200"
+          className="inline-flex items-center text-teal-600 hover:text-teal-800 transition-colors duration-200"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
             <path
@@ -124,7 +124,7 @@ export default function FAQPage() {
               onClick={() => setActiveCategory(category.id)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
                 activeCategory === category.id
-                  ? "bg-primary-600 text-white"
+                  ? "bg-teal-600 text-white"
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200"
               }`}
             >
@@ -139,11 +139,11 @@ export default function FAQPage() {
             <div key={index} className="border border-gray-200 rounded-lg overflow-hidden">
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full flex items-center justify-between p-4 text-left font-medium text-gray-700 hover:text-primary-600 transition-colors duration-200 bg-gray-50 hover:bg-gray-100"
+                className="w-full flex items-center justify-between p-4 text-left font-medium text-gray-700 hover:text-teal-600 transition-colors duration-200 bg-gray-50 hover:bg-gray-100"
               >
                 <span>{faq.question}</span>
                 {activeIndex === index ? (
-                  <ChevronUp className="h-5 w-5 text-primary-600" />
+                  <ChevronUp className="h-5 w-5 text-teal-600" />
                 ) : (
                   <ChevronDown className="h-5 w-5" />
                 )}
@@ -166,7 +166,7 @@ export default function FAQPage() {
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center bg-primary-600 hover:bg-primary-700 text-white px-5 py-2 rounded-lg transition-colors duration-300"
+            className="inline-flex items-center bg-teal-600 hover:bg-teal-700 text-white px-5 py-2 rounded-lg transition-colors duration-300"
           >
             Contact Us
           </Link>

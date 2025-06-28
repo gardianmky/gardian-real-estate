@@ -24,7 +24,7 @@ export default function ComplaintsPage() {
       <div className="mb-8">
         <Link
           href="/"
-          className="inline-flex items-center text-primary-600 hover:text-primary-800 transition-colors duration-200"
+          className="inline-flex items-center text-teal-600 hover:text-teal-800 transition-colors duration-200"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
             <path
@@ -47,11 +47,11 @@ export default function ComplaintsPage() {
             services, we want to hear from you so we can address the issue and improve our service.
           </p>
 
-          <h2 className="text-2xl font-semibold text-primary-600 mb-4">Our Complaints Process</h2>
+          <h2 className="text-2xl font-semibold text-teal-600 mb-4">Our Complaints Process</h2>
 
           <div className="space-y-6 mb-8">
             <div className="bg-gray-50 p-6 rounded-lg border border-gray-100">
-              <h3 className="text-xl font-semibold mb-3 text-primary-700">Step 1: Initial Contact</h3>
+              <h3 className="text-xl font-semibold mb-3 text-teal-700">Step 1: Initial Contact</h3>
               <p className="text-gray-700">
                 In the first instance, please discuss your concerns with the staff member you have been dealing with.
                 They will try to resolve your complaint immediately.
@@ -59,7 +59,7 @@ export default function ComplaintsPage() {
             </div>
 
             <div className="bg-gray-50 p-6 rounded-lg border border-gray-100">
-              <h3 className="text-xl font-semibold mb-3 text-primary-700">Step 2: Escalation</h3>
+              <h3 className="text-xl font-semibold mb-3 text-teal-700">Step 2: Escalation</h3>
               <p className="text-gray-700">
                 If you are not satisfied with the response, or if you prefer not to discuss the matter with the staff
                 member involved, please contact our Office Manager at (07) 4957 7424 or email
@@ -68,7 +68,7 @@ export default function ComplaintsPage() {
             </div>
 
             <div className="bg-gray-50 p-6 rounded-lg border border-gray-100">
-              <h3 className="text-xl font-semibold mb-3 text-primary-700">Step 3: Formal Complaint</h3>
+              <h3 className="text-xl font-semibold mb-3 text-teal-700">Step 3: Formal Complaint</h3>
               <p className="text-gray-700">
                 If your complaint cannot be resolved informally, we invite you to submit a formal complaint using the
                 form below. We will acknowledge receipt of your complaint within 2 business days.
@@ -76,7 +76,7 @@ export default function ComplaintsPage() {
             </div>
 
             <div className="bg-gray-50 p-6 rounded-lg border border-gray-100">
-              <h3 className="text-xl font-semibold mb-3 text-primary-700">Step 4: Investigation</h3>
+              <h3 className="text-xl font-semibold mb-3 text-teal-700">Step 4: Investigation</h3>
               <p className="text-gray-700">
                 We will investigate your complaint thoroughly and aim to provide a full response within 14 days. If more
                 time is needed, we will keep you informed of our progress.
@@ -84,14 +84,14 @@ export default function ComplaintsPage() {
             </div>
 
             <div className="bg-gray-50 p-6 rounded-lg border border-gray-100">
-              <h3 className="text-xl font-semibold mb-3 text-primary-700">Step 5: Resolution</h3>
+              <h3 className="text-xl font-semibold mb-3 text-teal-700">Step 5: Resolution</h3>
               <p className="text-gray-700">
                 Once we have completed our investigation, we will contact you with our findings and proposed resolution.
               </p>
             </div>
           </div>
 
-          <h2 className="text-2xl font-semibold text-primary-600 mb-4">External Resolution</h2>
+          <h2 className="text-2xl font-semibold text-teal-600 mb-4">External Resolution</h2>
           <p>
             If you are not satisfied with our response to your complaint, you may contact the following external bodies:
           </p>
@@ -116,7 +116,7 @@ export default function ComplaintsPage() {
                   id="firstName"
                   name="firstName"
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                 />
               </div>
 
@@ -129,7 +129,7 @@ export default function ComplaintsPage() {
                   id="lastName"
                   name="lastName"
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                 />
               </div>
             </div>
@@ -144,7 +144,7 @@ export default function ComplaintsPage() {
                   id="email"
                   name="email"
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                 />
               </div>
 
@@ -157,7 +157,7 @@ export default function ComplaintsPage() {
                   id="phone"
                   name="phone"
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                 />
               </div>
             </div>
@@ -170,7 +170,7 @@ export default function ComplaintsPage() {
                 id="complaintType"
                 name="complaintType"
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
               >
                 <option value="">Select a category</option>
                 <option value="sales">Sales Service</option>
@@ -191,7 +191,7 @@ export default function ComplaintsPage() {
                 name="complaintDetails"
                 rows={6}
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                 placeholder="Please provide as much detail as possible about your complaint, including dates, names of staff involved, and any relevant documentation."
               ></textarea>
             </div>
@@ -204,7 +204,7 @@ export default function ComplaintsPage() {
                 id="desiredOutcome"
                 name="desiredOutcome"
                 rows={3}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                 placeholder="What would you like us to do to resolve your complaint?"
               ></textarea>
             </div>
@@ -213,7 +213,7 @@ export default function ComplaintsPage() {
               <button
                 type="submit"
                 disabled={formStatus === "submitting"}
-                className="inline-flex items-center bg-gradient-to-r from-primary-600 to-teal-600 text-white px-6 py-3 rounded-md shadow-md hover:shadow-lg transition-all duration-300 disabled:opacity-70"
+                className="inline-flex items-center bg-gradient-to-r from-teal-600 to-teal-600 text-white px-6 py-3 rounded-md shadow-md hover:shadow-lg transition-all duration-300 disabled:opacity-70"
               >
                 {formStatus === "submitting" ? (
                   <>

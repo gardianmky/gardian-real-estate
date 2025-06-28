@@ -15,7 +15,7 @@ export default function AboutPage() {
       <div className="mb-8">
         <Link
           href="/"
-          className="inline-flex items-center text-primary-600 hover:text-primary-800 transition-colors duration-200"
+          className="inline-flex items-center text-teal-600 hover:text-teal-800 transition-colors duration-200"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
             <path
@@ -42,7 +42,7 @@ export default function AboutPage() {
         </div>
 
         <div className="prose max-w-none">
-          <h2 className="text-2xl font-semibold text-primary-600 mb-4">Our Story</h2>
+          <h2 className="text-2xl font-semibold text-teal-600 mb-4">Our Story</h2>
           <p>
             Founded in 2005, Gardian Real Estate has established itself as a leading real estate agency in Mackay and
             surrounding areas. With a commitment to excellence and a deep understanding of the local market, we have
@@ -55,7 +55,7 @@ export default function AboutPage() {
             best outcomes for our clients.
           </p>
 
-          <h2 className="text-2xl font-semibold text-primary-600 mt-8 mb-4">Our Mission</h2>
+          <h2 className="text-2xl font-semibold text-teal-600 mt-8 mb-4">Our Mission</h2>
           <p>
             At Gardian Real Estate, our mission is to provide exceptional real estate services that exceed our clients'
             expectations. We are committed to:
@@ -69,11 +69,11 @@ export default function AboutPage() {
             <li>Contributing positively to the communities we serve</li>
           </ul>
 
-          <h2 className="text-2xl font-semibold text-primary-600 mt-8 mb-4">Our Values</h2>
+          <h2 className="text-2xl font-semibold text-teal-600 mt-8 mb-4">Our Values</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6 mb-8">
             <div className="bg-gray-50 p-6 rounded-lg border border-gray-100">
-              <h3 className="text-xl font-semibold mb-3 text-primary-700">Integrity</h3>
+              <h3 className="text-xl font-semibold mb-3 text-teal-700">Integrity</h3>
               <p className="text-gray-700">
                 We conduct our business with honesty, transparency, and ethical practices, building trust with our
                 clients and the community.
@@ -81,7 +81,7 @@ export default function AboutPage() {
             </div>
 
             <div className="bg-gray-50 p-6 rounded-lg border border-gray-100">
-              <h3 className="text-xl font-semibold mb-3 text-primary-700">Excellence</h3>
+              <h3 className="text-xl font-semibold mb-3 text-teal-700">Excellence</h3>
               <p className="text-gray-700">
                 We strive for excellence in everything we do, from customer service to marketing strategies and
                 negotiation skills.
@@ -89,7 +89,7 @@ export default function AboutPage() {
             </div>
 
             <div className="bg-gray-50 p-6 rounded-lg border border-gray-100">
-              <h3 className="text-xl font-semibold mb-3 text-primary-700">Community</h3>
+              <h3 className="text-xl font-semibold mb-3 text-teal-700">Community</h3>
               <p className="text-gray-700">
                 We are committed to giving back to the community that supports us, through sponsorships, volunteering,
                 and local initiatives.
@@ -97,7 +97,7 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <h2 className="text-2xl font-semibold text-primary-600 mt-8 mb-4">Our Services</h2>
+          <h2 className="text-2xl font-semibold text-teal-600 mt-8 mb-4">Our Services</h2>
           <p>Gardian Real Estate offers a comprehensive range of real estate services, including:</p>
 
           <ul className="list-disc pl-6 mb-6">
@@ -109,12 +109,12 @@ export default function AboutPage() {
             <li>Marketing and advertising strategies</li>
           </ul>
 
-          <h2 className="text-2xl font-semibold text-primary-600 mt-8 mb-4">Visit Our Office</h2>
+          <h2 className="text-2xl font-semibold text-teal-600 mt-8 mb-4">Visit Our Office</h2>
 
           <div className="bg-gray-50 p-6 rounded-lg border border-gray-100 flex flex-col md:flex-row gap-8">
             <div className="md:w-1/2">
               <div className="flex items-start mb-4">
-                <MapPin className="h-5 w-5 text-primary-600 mt-1 mr-3 flex-shrink-0" />
+                <MapPin className="h-5 w-5 text-teal-600 mt-1 mr-3 flex-shrink-0" />
                 <div>
                   <h3 className="font-medium text-gray-900">Address</h3>
                   <p className="text-gray-700">123 Real Estate Avenue, Mackay, QLD 4740</p>
@@ -122,7 +122,7 @@ export default function AboutPage() {
               </div>
 
               <div className="flex items-start mb-4">
-                <Phone className="h-5 w-5 text-primary-600 mt-1 mr-3 flex-shrink-0" />
+                <Phone className="h-5 w-5 text-teal-600 mt-1 mr-3 flex-shrink-0" />
                 <div>
                   <h3 className="font-medium text-gray-900">Phone</h3>
                   <p className="text-gray-700">(07) 4957 7424</p>
@@ -130,7 +130,7 @@ export default function AboutPage() {
               </div>
 
               <div className="flex items-start mb-4">
-                <Mail className="h-5 w-5 text-primary-600 mt-1 mr-3 flex-shrink-0" />
+                <Mail className="h-5 w-5 text-teal-600 mt-1 mr-3 flex-shrink-0" />
                 <div>
                   <h3 className="font-medium text-gray-900">Email</h3>
                   <p className="text-gray-700">info@gardianrealestate.com.au</p>
@@ -138,7 +138,7 @@ export default function AboutPage() {
               </div>
 
               <div className="flex items-start">
-                <Clock className="h-5 w-5 text-primary-600 mt-1 mr-3 flex-shrink-0" />
+                <Clock className="h-5 w-5 text-teal-600 mt-1 mr-3 flex-shrink-0" />
                 <div>
                   <h3 className="font-medium text-gray-900">Office Hours</h3>
                   <p className="text-gray-700">Monday - Friday: 9:00 AM - 5:00 PM</p>

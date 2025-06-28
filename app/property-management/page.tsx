@@ -6,7 +6,7 @@ export default function PropertyManagementPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-r from-primary-600 to-primary-700 text-white">
+      <div className="relative bg-gradient-to-r from-teal-600 to-teal-700 text-white">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.2),transparent_70%)] opacity-70"></div>
         </div>
@@ -22,7 +22,7 @@ export default function PropertyManagementPage() {
               </p>
               <Link
                 href="#get-started"
-                className="inline-flex items-center bg-white text-primary-700 px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition-colors duration-300"
+                className="inline-flex items-center bg-white text-teal-700 px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition-colors duration-300"
               >
                 Get started
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -54,8 +54,8 @@ export default function PropertyManagementPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
             {/* Feature 1 */}
             <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-              <div className="bg-primary-100 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4">
-                <Users className="h-7 w-7 text-primary-600" />
+              <div className="bg-teal-100 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4">
+                <Users className="h-7 w-7 text-teal-600" />
               </div>
               <h3 className="text-xl font-semibold mb-3">Tenant screening</h3>
               <p className="text-gray-600">
@@ -66,8 +66,8 @@ export default function PropertyManagementPage() {
 
             {/* Feature 2 */}
             <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-              <div className="bg-primary-100 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4">
-                <ClipboardCheck className="h-7 w-7 text-primary-600" />
+              <div className="bg-teal-100 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4">
+                <ClipboardCheck className="h-7 w-7 text-teal-600" />
               </div>
               <h3 className="text-xl font-semibold mb-3">Lease management</h3>
               <p className="text-gray-600">
@@ -77,8 +77,8 @@ export default function PropertyManagementPage() {
 
             {/* Feature 3 */}
             <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-              <div className="bg-primary-100 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4">
-                <Home className="h-7 w-7 text-primary-600" />
+              <div className="bg-teal-100 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4">
+                <Home className="h-7 w-7 text-teal-600" />
               </div>
               <h3 className="text-xl font-semibold mb-3">Property maintenance</h3>
               <p className="text-gray-600">
@@ -89,8 +89,8 @@ export default function PropertyManagementPage() {
 
             {/* Feature 4 */}
             <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-              <div className="bg-primary-100 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4">
-                <DollarSign className="h-7 w-7 text-primary-600" />
+              <div className="bg-teal-100 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4">
+                <DollarSign className="h-7 w-7 text-teal-600" />
               </div>
               <h3 className="text-xl font-semibold mb-3">Rent collection</h3>
               <p className="text-gray-600">
@@ -112,7 +112,7 @@ export default function PropertyManagementPage() {
                 <ul className="space-y-3">
                   <li className="flex items-start">
                     <svg
-                      className="h-6 w-6 text-primary-600 mr-2 flex-shrink-0"
+                      className="h-6 w-6 text-teal-600 mr-2 flex-shrink-0"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -123,7 +123,7 @@ export default function PropertyManagementPage() {
                   </li>
                   <li className="flex items-start">
                     <svg
-                      className="h-6 w-6 text-primary-600 mr-2 flex-shrink-0"
+                      className="h-6 w-6 text-teal-600 mr-2 flex-shrink-0"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -134,7 +134,7 @@ export default function PropertyManagementPage() {
                   </li>
                   <li className="flex items-start">
                     <svg
-                      className="h-6 w-6 text-primary-600 mr-2 flex-shrink-0"
+                      className="h-6 w-6 text-teal-600 mr-2 flex-shrink-0"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -145,7 +145,7 @@ export default function PropertyManagementPage() {
                   </li>
                   <li className="flex items-start">
                     <svg
-                      className="h-6 w-6 text-primary-600 mr-2 flex-shrink-0"
+                      className="h-6 w-6 text-teal-600 mr-2 flex-shrink-0"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -183,7 +183,7 @@ export default function PropertyManagementPage() {
                 <ul className="space-y-3">
                   <li className="flex items-start">
                     <svg
-                      className="h-6 w-6 text-primary-600 mr-2 flex-shrink-0"
+                      className="h-6 w-6 text-teal-600 mr-2 flex-shrink-0"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -194,7 +194,7 @@ export default function PropertyManagementPage() {
                   </li>
                   <li className="flex items-start">
                     <svg
-                      className="h-6 w-6 text-primary-600 mr-2 flex-shrink-0"
+                      className="h-6 w-6 text-teal-600 mr-2 flex-shrink-0"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -205,7 +205,7 @@ export default function PropertyManagementPage() {
                   </li>
                   <li className="flex items-start">
                     <svg
-                      className="h-6 w-6 text-primary-600 mr-2 flex-shrink-0"
+                      className="h-6 w-6 text-teal-600 mr-2 flex-shrink-0"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -216,7 +216,7 @@ export default function PropertyManagementPage() {
                   </li>
                   <li className="flex items-start">
                     <svg
-                      className="h-6 w-6 text-primary-600 mr-2 flex-shrink-0"
+                      className="h-6 w-6 text-teal-600 mr-2 flex-shrink-0"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -264,7 +264,7 @@ export default function PropertyManagementPage() {
                 <ul className="space-y-3">
                   <li className="flex items-start">
                     <svg
-                      className="h-6 w-6 text-primary-600 mr-2 flex-shrink-0"
+                      className="h-6 w-6 text-teal-600 mr-2 flex-shrink-0"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -275,7 +275,7 @@ export default function PropertyManagementPage() {
                   </li>
                   <li className="flex items-start">
                     <svg
-                      className="h-6 w-6 text-primary-600 mr-2 flex-shrink-0"
+                      className="h-6 w-6 text-teal-600 mr-2 flex-shrink-0"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -286,7 +286,7 @@ export default function PropertyManagementPage() {
                   </li>
                   <li className="flex items-start">
                     <svg
-                      className="h-6 w-6 text-primary-600 mr-2 flex-shrink-0"
+                      className="h-6 w-6 text-teal-600 mr-2 flex-shrink-0"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -297,7 +297,7 @@ export default function PropertyManagementPage() {
                   </li>
                   <li className="flex items-start">
                     <svg
-                      className="h-6 w-6 text-primary-600 mr-2 flex-shrink-0"
+                      className="h-6 w-6 text-teal-600 mr-2 flex-shrink-0"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -316,15 +316,15 @@ export default function PropertyManagementPage() {
             <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">Our Property Management Fees</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="border border-gray-200 rounded-xl p-6 hover:border-primary-300 transition-colors duration-300">
+              <div className="border border-gray-200 rounded-xl p-6 hover:border-teal-300 transition-colors duration-300">
                 <h3 className="text-xl font-semibold mb-2">Management Fee</h3>
-                <p className="text-3xl font-bold text-primary-600 mb-4">
+                <p className="text-3xl font-bold text-teal-600 mb-4">
                   7.7%<span className="text-sm text-gray-500 font-normal"> of rent collected</span>
                 </p>
                 <ul className="space-y-2 mb-6">
                   <li className="flex items-start">
                     <svg
-                      className="h-5 w-5 text-primary-600 mr-2 flex-shrink-0"
+                      className="h-5 w-5 text-teal-600 mr-2 flex-shrink-0"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -335,7 +335,7 @@ export default function PropertyManagementPage() {
                   </li>
                   <li className="flex items-start">
                     <svg
-                      className="h-5 w-5 text-primary-600 mr-2 flex-shrink-0"
+                      className="h-5 w-5 text-teal-600 mr-2 flex-shrink-0"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -346,7 +346,7 @@ export default function PropertyManagementPage() {
                   </li>
                   <li className="flex items-start">
                     <svg
-                      className="h-5 w-5 text-primary-600 mr-2 flex-shrink-0"
+                      className="h-5 w-5 text-teal-600 mr-2 flex-shrink-0"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -358,18 +358,18 @@ export default function PropertyManagementPage() {
                 </ul>
               </div>
 
-              <div className="border border-primary-300 rounded-xl p-6 shadow-md relative">
-                <div className="absolute top-0 right-0 bg-primary-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">
+              <div className="border border-teal-300 rounded-xl p-6 shadow-md relative">
+                <div className="absolute top-0 right-0 bg-teal-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">
                   MOST POPULAR
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Full Service Package</h3>
-                <p className="text-3xl font-bold text-primary-600 mb-4">
+                <p className="text-3xl font-bold text-teal-600 mb-4">
                   8.8%<span className="text-sm text-gray-500 font-normal"> of rent collected</span>
                 </p>
                 <ul className="space-y-2 mb-6">
                   <li className="flex items-start">
                     <svg
-                      className="h-5 w-5 text-primary-600 mr-2 flex-shrink-0"
+                      className="h-5 w-5 text-teal-600 mr-2 flex-shrink-0"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -380,7 +380,7 @@ export default function PropertyManagementPage() {
                   </li>
                   <li className="flex items-start">
                     <svg
-                      className="h-5 w-5 text-primary-600 mr-2 flex-shrink-0"
+                      className="h-5 w-5 text-teal-600 mr-2 flex-shrink-0"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -391,7 +391,7 @@ export default function PropertyManagementPage() {
                   </li>
                   <li className="flex items-start">
                     <svg
-                      className="h-5 w-5 text-primary-600 mr-2 flex-shrink-0"
+                      className="h-5 w-5 text-teal-600 mr-2 flex-shrink-0"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -402,7 +402,7 @@ export default function PropertyManagementPage() {
                   </li>
                   <li className="flex items-start">
                     <svg
-                      className="h-5 w-5 text-primary-600 mr-2 flex-shrink-0"
+                      className="h-5 w-5 text-teal-600 mr-2 flex-shrink-0"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -414,15 +414,15 @@ export default function PropertyManagementPage() {
                 </ul>
               </div>
 
-              <div className="border border-gray-200 rounded-xl p-6 hover:border-primary-300 transition-colors duration-300">
+              <div className="border border-gray-200 rounded-xl p-6 hover:border-teal-300 transition-colors duration-300">
                 <h3 className="text-xl font-semibold mb-2">Leasing Fee</h3>
-                <p className="text-3xl font-bold text-primary-600 mb-4">
+                <p className="text-3xl font-bold text-teal-600 mb-4">
                   2 weeks<span className="text-sm text-gray-500 font-normal"> rent + GST</span>
                 </p>
                 <ul className="space-y-2 mb-6">
                   <li className="flex items-start">
                     <svg
-                      className="h-5 w-5 text-primary-600 mr-2 flex-shrink-0"
+                      className="h-5 w-5 text-teal-600 mr-2 flex-shrink-0"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -433,7 +433,7 @@ export default function PropertyManagementPage() {
                   </li>
                   <li className="flex items-start">
                     <svg
-                      className="h-5 w-5 text-primary-600 mr-2 flex-shrink-0"
+                      className="h-5 w-5 text-teal-600 mr-2 flex-shrink-0"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -444,7 +444,7 @@ export default function PropertyManagementPage() {
                   </li>
                   <li className="flex items-start">
                     <svg
-                      className="h-5 w-5 text-primary-600 mr-2 flex-shrink-0"
+                      className="h-5 w-5 text-teal-600 mr-2 flex-shrink-0"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -465,7 +465,7 @@ export default function PropertyManagementPage() {
           {/* Get Started Section */}
           <div
             id="get-started"
-            className="bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl shadow-lg p-8 text-white"
+            className="bg-gradient-to-r from-teal-600 to-teal-700 rounded-xl shadow-lg p-8 text-white"
           >
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl font-bold mb-4">Ready to simplify your property management?</h2>
@@ -476,7 +476,7 @@ export default function PropertyManagementPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Link
                   href="/contact"
-                  className="bg-white text-primary-700 px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition-colors duration-300"
+                  className="bg-white text-teal-700 px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition-colors duration-300"
                 >
                   Get a management quote
                 </Link>
@@ -624,7 +624,7 @@ export default function PropertyManagementPage() {
           </div>
 
           <div className="text-center mt-10">
-            <Link href="/faq" className="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium">
+            <Link href="/faq" className="inline-flex items-center text-teal-600 hover:text-teal-700 font-medium">
               View all FAQs
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>

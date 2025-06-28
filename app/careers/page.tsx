@@ -152,7 +152,7 @@ export default function CareersPage() {
       <div className="mb-8">
         <Link
           href="/"
-          className="inline-flex items-center text-primary-600 hover:text-primary-800 transition-colors duration-200"
+          className="inline-flex items-center text-teal-600 hover:text-teal-800 transition-colors duration-200"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
             <path
@@ -170,7 +170,7 @@ export default function CareersPage() {
           <h1 className="text-3xl font-bold mb-6">Apply for: {selectedJob?.title}</h1>
           <button
             onClick={() => setShowApplicationForm(false)}
-            className="mb-6 text-primary-600 hover:text-primary-800 underline"
+            className="mb-6 text-teal-600 hover:text-teal-800 underline"
           >
             ← Back to job listings
           </button>
@@ -186,7 +186,7 @@ export default function CareersPage() {
                   id="firstName"
                   name="firstName"
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                 />
               </div>
 
@@ -199,7 +199,7 @@ export default function CareersPage() {
                   id="lastName"
                   name="lastName"
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                 />
               </div>
             </div>
@@ -214,7 +214,7 @@ export default function CareersPage() {
                   id="email"
                   name="email"
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                 />
               </div>
 
@@ -227,7 +227,7 @@ export default function CareersPage() {
                   id="phone"
                   name="phone"
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                 />
               </div>
             </div>
@@ -242,7 +242,7 @@ export default function CareersPage() {
                   <div className="flex text-sm text-gray-600">
                     <label
                       htmlFor="file-upload"
-                      className="relative cursor-pointer bg-white rounded-md font-medium text-primary-600 hover:text-primary-500"
+                      className="relative cursor-pointer bg-white rounded-md font-medium text-teal-600 hover:text-teal-500"
                     >
                       <span>Upload a file</span>
                       <input id="file-upload" name="file-upload" type="file" className="sr-only" required />
@@ -262,7 +262,7 @@ export default function CareersPage() {
                 id="coverLetter"
                 name="coverLetter"
                 rows={5}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                 placeholder="Tell us why you're interested in this position and what makes you a great candidate..."
               ></textarea>
             </div>
@@ -270,7 +270,7 @@ export default function CareersPage() {
             <div>
               <button
                 type="submit"
-                className="inline-flex items-center bg-gradient-to-r from-primary-600 to-teal-600 text-white px-6 py-3 rounded-md shadow-md hover:shadow-lg transition-all duration-300"
+                className="inline-flex items-center bg-gradient-to-r from-teal-600 to-teal-600 text-white px-6 py-3 rounded-md shadow-md hover:shadow-lg transition-all duration-300"
               >
                 <Send className="h-5 w-5 mr-2" />
                 Submit Application
@@ -294,7 +294,7 @@ export default function CareersPage() {
             </div>
 
             <div className="prose max-w-none mb-8">
-              <h2 className="text-2xl font-semibold text-primary-600 mb-4">Join Our Team</h2>
+              <h2 className="text-2xl font-semibold text-teal-600 mb-4">Join Our Team</h2>
               <p>
                 At Gardian Real Estate, we're always looking for talented, passionate individuals to join our team. We
                 believe that our success is built on the strength of our people, and we're committed to creating a
@@ -307,11 +307,11 @@ export default function CareersPage() {
                 training, and a positive work culture that celebrates achievements and encourages innovation.
               </p>
 
-              <h2 className="text-2xl font-semibold text-primary-600 mt-8 mb-4">Why Work With Us</h2>
+              <h2 className="text-2xl font-semibold text-teal-600 mt-8 mb-4">Why Work With Us</h2>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6 mb-8">
                 <div className="bg-gray-50 p-6 rounded-lg border border-gray-100">
-                  <h3 className="text-xl font-semibold mb-3 text-primary-700">Growth Opportunities</h3>
+                  <h3 className="text-xl font-semibold mb-3 text-teal-700">Growth Opportunities</h3>
                   <p className="text-gray-700">
                     We invest in our team's professional development through training, mentoring, and advancement
                     opportunities.
@@ -319,7 +319,7 @@ export default function CareersPage() {
                 </div>
 
                 <div className="bg-gray-50 p-6 rounded-lg border border-gray-100">
-                  <h3 className="text-xl font-semibold mb-3 text-primary-700">Supportive Culture</h3>
+                  <h3 className="text-xl font-semibold mb-3 text-teal-700">Supportive Culture</h3>
                   <p className="text-gray-700">
                     Our collaborative environment encourages teamwork, knowledge sharing, and celebrating each other's
                     successes.
@@ -327,7 +327,7 @@ export default function CareersPage() {
                 </div>
 
                 <div className="bg-gray-50 p-6 rounded-lg border border-gray-100">
-                  <h3 className="text-xl font-semibold mb-3 text-primary-700">Work-Life Balance</h3>
+                  <h3 className="text-xl font-semibold mb-3 text-teal-700">Work-Life Balance</h3>
                   <p className="text-gray-700">
                     We value the importance of balance and offer flexible arrangements to help our team thrive
                     professionally and personally.
@@ -378,7 +378,7 @@ export default function CareersPage() {
                           </div>
                         </div>
                         <button
-                          className="mt-4 md:mt-0 bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-md transition-colors duration-300"
+                          className="mt-4 md:mt-0 bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-md transition-colors duration-300"
                           onClick={(e) => {
                             e.stopPropagation()
                             handleApplyNow(job)
@@ -427,7 +427,7 @@ export default function CareersPage() {
                         </div>
 
                         <button
-                          className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-2 rounded-md transition-colors duration-300"
+                          className="bg-teal-600 hover:bg-teal-700 text-white px-6 py-2 rounded-md transition-colors duration-300"
                           onClick={() => handleApplyNow(job)}
                         >
                           Apply for this position

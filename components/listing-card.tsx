@@ -36,13 +36,13 @@ export default function ListingCard({ listing }: ListingCardProps) {
 
         <div className="p-6">
           <div className="mb-3">
-            <h2 className="text-xl font-semibold line-clamp-1 group-hover:text-primary-600 transition-colors duration-200">
+            <h2 className="text-xl font-semibold line-clamp-1 group-hover:text-teal-600 transition-colors duration-200">
               {heading}
             </h2>
             <p className="text-gray-600 text-sm mb-2">{`${address.street}, ${address.suburb}, ${address.state} ${address.postcode}`}</p>
           </div>
 
-          <p className="text-xl font-bold text-primary-600 mb-5">{price}</p>
+          <p className="text-xl font-bold text-teal-600 mb-5">{price}</p>
 
           <div className="border-t border-gray-100 pt-4 mb-5">
             <PropertyFeaturesInline listing={listing} />
