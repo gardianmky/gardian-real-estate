@@ -8,7 +8,7 @@ import SearchBar from "components/search/search-bar"
 
 export default function RentPage() {
   return (
-    
+    <SearchProvider>
       <div className="container mx-auto px-4 py-12">
         <div className="mb-8">
           <Link href="/" className="inline-flex items-center text-teal-600 hover:text-teal-800 transition-colors duration-200" >
@@ -39,6 +39,6 @@ export default function RentPage() {
           <SearchResults propertyType="rent" />
         </div>
       </div>
-    
+    </SearchProvider>
   )
 }

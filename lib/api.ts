@@ -124,13 +124,19 @@ export async function fetchAllPropertiesFromAPI({
 }) {
   try {
     // Skip API calls during build phase - return empty array for build performance
-    if (process.env.NEXT_PHASE === 'phase-production-build' || 
-        (!process.env.RENET_API_TOKEN && !process.env.NEXT_PUBLIC_API_TOKEN)) {
+    if (process.env.NEXT_PHASE === 'phase-production-build') {
       console.log('🏗️ Build phase detected - skipping comprehensive property fetch');
       return [];
     }
 
+    // For production, always try to fetch (fallback token is available)
+    if (typeof window !== 'undefined') {
+      console.log('🌐 Client-side fetch detected - proceeding with API call');
+    }
+
     console.log(`🚀 Fetching ALL ${type || 'all'} properties for ${disposalMethod}...`);
+    console.log(`🔑 API Token available: ${!!process.env.RENET_API_TOKEN || !!process.env.NEXT_PUBLIC_API_TOKEN}`);
+    console.log(`🌍 Environment: ${process.env.NODE_ENV}`);
 
     // Build base API request parameters
     const baseParams = new URLSearchParams();
@@ -231,9 +237,8 @@ export async function fetchListingsIndex({
   [key: string]: any;
 }) {
   try {
-    // Skip API calls during build phase or if no token available
-    if (process.env.NEXT_PHASE === 'phase-production-build' || 
-        (!process.env.RENET_API_TOKEN && !process.env.NEXT_PUBLIC_API_TOKEN)) {
+    // Skip API calls during build phase only (fallback token is available)
+    if (process.env.NEXT_PHASE === 'phase-production-build') {
       return { 
         listings: [], 
         pagination: { 
