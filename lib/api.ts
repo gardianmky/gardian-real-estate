@@ -13,7 +13,9 @@ const API_CONFIG = {
   GARDIAN_AGENTS: ['chris bonanno', 'cecelia reed', 'mark kelly', 'ben kerrisk', 'mick mcleod', 'ryan patton', 'gardian leasing team'],
   // Default pagination settings for better data fetching
   DEFAULT_PAGE_SIZE: 50, // Increased from 12 to fetch more data per request
-  MAX_PAGE_SIZE: 100     // Maximum allowed by most APIs
+  MAX_PAGE_SIZE: 100,    // Maximum allowed by most APIs per request
+  PRODUCTION_FETCH_SIZE: 500, // Large number for comprehensive fetching
+  MAX_TOTAL_PROPERTIES: 1000  // Safety limit for total properties
 };
 
 // API Endpoints
@@ -107,6 +109,102 @@ export async function fetchListingById(id: string): Promise<Listing | null> {
   } catch (error) {
     console.error('Error fetching listing by ID:', error);
     return null;
+  }
+}
+
+// Fetch ALL properties from API (production-ready)
+export async function fetchAllPropertiesFromAPI({
+  disposalMethod = 'forSale',
+  type = '',
+  ...filters
+}: {
+  disposalMethod?: 'forSale' | 'forRent' | 'sold' | 'leased';
+  type?: string;
+  [key: string]: any;
+}) {
+  try {
+    // Skip API calls during build phase - return empty array for build performance
+    if (process.env.NEXT_PHASE === 'phase-production-build' || 
+        (!process.env.RENET_API_TOKEN && !process.env.NEXT_PUBLIC_API_TOKEN)) {
+      console.log('🏗️ Build phase detected - skipping comprehensive property fetch');
+      return [];
+    }
+
+    console.log(`🚀 Fetching ALL ${type || 'all'} properties for ${disposalMethod}...`);
+
+    // Build base API request parameters
+    const baseParams = new URLSearchParams();
+    baseParams.append('disposalMethod', disposalMethod);
+    baseParams.append('orderBy', 'dateListed');
+    baseParams.append('orderDirection', 'desc');
+    baseParams.append('agencyID', API_CONFIG.AGENCY_ID);
+
+    if (type) {
+      baseParams.append('type', type);
+    }
+
+    // Add additional filters
+    Object.entries(filters).forEach(([key, value]) => {
+      if (value !== undefined && value !== null && value !== '') {
+        baseParams.append(key, value.toString());
+      }
+    });
+
+    let allProperties: any[] = [];
+    let currentPage = 1;
+    let totalPages = 1;
+    let totalFetched = 0;
+
+    do {
+      const params = new URLSearchParams(baseParams);
+      params.append('page', currentPage.toString());
+      params.append('resultsPerPage', API_CONFIG.PRODUCTION_FETCH_SIZE.toString());
+
+      const url = `${API_CONFIG.BASE_URL}${ENDPOINTS.LISTINGS.ALL}?${params.toString()}`;
+
+      const response = await fetch(url, {
+        headers: API_CONFIG.HEADERS,
+        cache: 'no-store'
+      });
+
+      if (!response.ok) {
+        console.warn(`API request failed for page ${currentPage} with status: ${response.status}`);
+        break;
+      }
+
+      const pageProperties = await response.json();
+      const pagePropertiesArray = Array.isArray(pageProperties) ? pageProperties : [];
+
+      // Get pagination info
+      const totalResults = parseInt(response.headers.get('x-totalResults') || response.headers.get('X-totalResults') || '0');
+      totalPages = Math.ceil(totalResults / API_CONFIG.PRODUCTION_FETCH_SIZE);
+
+      allProperties = allProperties.concat(pagePropertiesArray);
+      totalFetched += pagePropertiesArray.length;
+
+      console.log(`📦 Fetched page ${currentPage}/${totalPages}: ${pagePropertiesArray.length} properties (Total: ${totalFetched}/${totalResults})`);
+
+      currentPage++;
+
+      // Safety check to prevent infinite loops
+      if (allProperties.length >= API_CONFIG.MAX_TOTAL_PROPERTIES) {
+        console.warn(`⚠️ Reached maximum property limit (${API_CONFIG.MAX_TOTAL_PROPERTIES}), stopping fetch.`);
+        break;
+      }
+
+      // Break if we got fewer properties than expected (end of data)
+      if (pagePropertiesArray.length < API_CONFIG.PRODUCTION_FETCH_SIZE && currentPage > totalPages) {
+        break;
+      }
+
+    } while (currentPage <= totalPages);
+
+    console.log(`✅ Successfully fetched ${allProperties.length} total properties!`);
+    return allProperties;
+
+  } catch (error) {
+    console.error('❌ Error fetching all properties:', error);
+    return [];
   }
 }
 

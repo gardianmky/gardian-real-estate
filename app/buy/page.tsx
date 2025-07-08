@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { Metadata } from 'next';
-import { fetchListingsIndex } from '@/lib/api';
+import { fetchListingsIndex, fetchAllPropertiesFromAPI } from '@/lib/api';
 import PropertyCard from '@/components/property-card';
 import { PropertyFeaturesInline } from '@/components/ui/property-features';
 
@@ -113,19 +113,16 @@ function Pagination({
 
 async function getListings(page: number) {
   try {
-    // Fetch all results to properly handle pagination after filtering
-    const { listings } = await fetchListingsIndex({
-      page: 1, // Always fetch from page 1 since we need to filter first
+    console.log(`🏠 Fetching ALL residential properties for sale (Page ${page})`);
+    
+    // Fetch ALL properties from API using new comprehensive strategy
+    const allProperties = await fetchAllPropertiesFromAPI({
       disposalMethod: 'forSale',
-      type: 'Residential', // API type filter doesn't work, but keep for future compatibility
-      fetchAll: true, // Get all results for proper filtering and pagination
-      resultsPerPage: 200, // Large number to get most properties
-      orderBy: 'dateListed',
-      orderDirection: 'desc'
+      type: 'Residential' // Keep for API compatibility, but we'll filter client-side too
     });
 
-    // Client-side filtering since API type parameter is not working
-    const filteredListings = listings.filter((listing: any) => {
+    // Client-side filtering since API type parameter is not working properly
+    const filteredListings = allProperties.filter((listing: any) => {
       // Only include Residential properties
       const propertyType = listing.type || listing.propertyType || listing.category;
       if (propertyType !== 'Residential') {
@@ -155,13 +152,37 @@ async function getListings(page: number) {
       return true;
     });
 
+    // Enhance properties with standardized data
+    const enhancedListings = filteredListings.map((listing: any) => {
+      const standardId = listing.listingID || listing.id;
+      return {
+        ...listing,
+        id: standardId,
+        listingID: standardId,
+        bedBathCarLand: [
+          { key: 'bedrooms', label: 'Bedrooms', value: listing.bedrooms?.toString() || '0' },
+          { key: 'bathrooms', label: 'Bathrooms', value: listing.bathrooms?.toString() || '0' },
+          { key: 'carSpaces', label: 'Car Spaces', value: listing.carSpaces?.toString() || '0' },
+          { key: 'landSize', label: 'Land Size', value: listing.landSize?.toString() || '0' }
+        ],
+        description: listing.description || '',
+        agents: listing.agents || [],
+        images: listing.images?.map((img: any) => ({
+          ...img,
+          url: img.url?.replace('http://', 'https://') || img.url
+        })) || []
+      };
+    });
+
     // Apply proper pagination after filtering
     const resultsPerPage = 12;
-    const totalResults = filteredListings.length;
+    const totalResults = enhancedListings.length;
     const totalPages = Math.ceil(totalResults / resultsPerPage);
     const startIndex = (page - 1) * resultsPerPage;
     const endIndex = startIndex + resultsPerPage;
-    const paginatedListings = filteredListings.slice(startIndex, endIndex);
+    const paginatedListings = enhancedListings.slice(startIndex, endIndex);
+
+    console.log(`✅ Buy page: ${totalResults} total properties, showing ${paginatedListings.length} on page ${page}/${totalPages}`);
 
     return { 
       listings: paginatedListings, 

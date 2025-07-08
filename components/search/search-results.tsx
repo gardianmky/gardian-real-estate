@@ -2,7 +2,7 @@
 
 import { useSearchContext } from 'context/search-context';
 import { useState, useEffect } from 'react';
-import { fetchListingsIndex } from '@/lib/api';
+import { fetchListingsIndex, fetchAllPropertiesFromAPI } from '@/lib/api';
 import PropertyCard from '@/components/property-card';
 import { Listing } from '@/types/listing';
 
@@ -24,18 +24,18 @@ export default function SearchResults({ propertyType, data }: SearchResultsProps
       
       try {
         const disposalMethod = propertyType === 'buy' ? 'forSale' : 'forRent';
-        const result = await fetchListingsIndex({
+        console.log(`🔍 Search: Fetching ALL ${propertyType} properties...`);
+        
+        // Fetch ALL properties from API using new comprehensive strategy
+        const allProperties = await fetchAllPropertiesFromAPI({
           disposalMethod,
-          type: 'Residential', // API type filter doesn't work, but keep for future compatibility
-          fetchAll: true, // Get all results for proper filtering
-          page: 1,
-          resultsPerPage: 200,
+          type: 'Residential', // Keep for API compatibility, but we'll filter client-side too
           ...filters // Include current search filters
         });
         
-        // Client-side filtering since API type parameter is not working
-        const filteredListings = (result.listings || []).filter((listing: Listing) => {
-          const propertyType = listing.type || listing.propertyType || (listing as any).category;
+        // Client-side filtering since API type parameter is not working properly
+        const filteredListings = allProperties.filter((listing: any) => {
+          const propertyType = listing.type || listing.propertyType || listing.category;
           
           // Only include Residential properties
           if (propertyType !== 'Residential') {
@@ -45,7 +45,7 @@ export default function SearchResults({ propertyType, data }: SearchResultsProps
           // Additional validation: exclude obvious commercial indicators
           const heading = (listing.heading || '').toLowerCase();
           const description = (listing.description || '').toLowerCase();
-          const categories = (listing as any).categories || [];
+          const categories = listing.categories || [];
           
           const commercialIndicators = [
             'commercial', 'office', 'retail', 'industrial', 'warehouse', 
@@ -58,14 +58,37 @@ export default function SearchResults({ propertyType, data }: SearchResultsProps
           );
           
           if (hasCommercialIndicators) {
-            console.warn(`Filtering out potential commercial property from rent search: ${listing.heading}`);
+            console.warn(`Filtering out potential commercial property from search: ${listing.heading}`);
             return false;
           }
           
           return true;
         });
+
+        // Enhance properties with standardized data
+        const enhancedListings = filteredListings.map((listing: any) => {
+          const standardId = listing.listingID || listing.id;
+          return {
+            ...listing,
+            id: standardId,
+            listingID: standardId,
+            bedBathCarLand: [
+              { key: 'bedrooms', label: 'Bedrooms', value: listing.bedrooms?.toString() || '0' },
+              { key: 'bathrooms', label: 'Bathrooms', value: listing.bathrooms?.toString() || '0' },
+              { key: 'carSpaces', label: 'Car Spaces', value: listing.carSpaces?.toString() || '0' },
+              { key: 'landSize', label: 'Land Size', value: listing.landSize?.toString() || '0' }
+            ],
+            description: listing.description || '',
+            agents: listing.agents || [],
+            images: listing.images?.map((img: any) => ({
+              ...img,
+              url: img.url?.replace('http://', 'https://') || img.url
+            })) || []
+          };
+        });
         
-        setListings(filteredListings);
+        console.log(`✅ Search results: ${enhancedListings.length} total properties found`);
+        setListings(enhancedListings);
       } catch (err) {
         setError('Failed to load search results');
         console.error('Search error:', err);

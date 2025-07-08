@@ -1,4 +1,4 @@
-import { fetchListingsIndex } from "@/lib/api";
+import { fetchListingsIndex, fetchAllPropertiesFromAPI } from "@/lib/api";
 import PropertyCard from "@/components/property-card";
 import { PropertyCardSkeleton } from "@/components/property-card-skeleton";
 import Link from "next/link";
@@ -38,15 +38,12 @@ export default async function CommercialPage({
   let error = null;
 
   try {
-    // Fetch all results to properly handle pagination after filtering
-    const res = await fetchListingsIndex({
+    console.log(`🏢 Fetching ALL commercial properties (Page ${page})`);
+    
+    // Fetch ALL properties from API using new comprehensive strategy
+    const allProperties = await fetchAllPropertiesFromAPI({
       disposalMethod: (params?.disposalMethod as any) || "forSale",
-      type: "Commercial", // API type filter doesn't work, but keep for future compatibility
-      fetchAll: true, // Get all results for proper filtering and pagination
-      page: 1, // Always fetch from page 1 since we need to filter first
-      resultsPerPage: 200, // Large number to get most properties
-      orderBy: "dateListed",
-      orderDirection: "desc",
+      type: "Commercial", // Keep for API compatibility, but we'll filter client-side too
       // Add search filters from URL params
       suburb: typeof params?.suburb === 'string' ? params.suburb : undefined,
       minPrice: params?.minPrice ? Number(params.minPrice) : undefined,
@@ -58,11 +55,9 @@ export default async function CommercialPage({
       categories: params?.categories ? params.categories.split(',').filter(Boolean) : []
     });
     
-    const allListings = res.listings || [];
-    
-    // Client-side filtering since API type parameter is not working
-    const filteredListings = allListings.filter((listing: Listing) => {
-      const propertyType = listing.type || listing.propertyType || (listing as any).category;
+    // Client-side filtering since API type parameter is not working properly
+    const filteredListings = allProperties.filter((listing: any) => {
+      const propertyType = listing.type || listing.propertyType || listing.category;
       
       // Strict validation: only include properties explicitly marked as Commercial
       if (propertyType !== 'Commercial') {
@@ -72,8 +67,8 @@ export default async function CommercialPage({
       // Additional validation: exclude obvious residential indicators in commercial listings
       const heading = (listing.heading || '').toLowerCase();
       const description = (listing.description || '').toLowerCase();
-      const address = ((listing.address as any)?.displayAddress || '').toLowerCase();
-      const categories = (listing as any).categories || [];
+      const address = (listing.address?.displayAddress || '').toLowerCase();
+      const categories = listing.categories || [];
       
       const residentialIndicators = [
         'bedroom', 'bathroom', 'family home', 'house', 'residential',
@@ -92,13 +87,37 @@ export default async function CommercialPage({
       
       return true;
     });
+
+    // Enhance properties with standardized data
+    const enhancedListings = filteredListings.map((listing: any) => {
+      const standardId = listing.listingID || listing.id;
+      return {
+        ...listing,
+        id: standardId,
+        listingID: standardId,
+        bedBathCarLand: [
+          { key: 'bedrooms', label: 'Bedrooms', value: listing.bedrooms?.toString() || '0' },
+          { key: 'bathrooms', label: 'Bathrooms', value: listing.bathrooms?.toString() || '0' },
+          { key: 'carSpaces', label: 'Car Spaces', value: listing.carSpaces?.toString() || '0' },
+          { key: 'landSize', label: 'Land Size', value: listing.landSize?.toString() || '0' }
+        ],
+        description: listing.description || '',
+        agents: listing.agents || [],
+        images: listing.images?.map((img: any) => ({
+          ...img,
+          url: img.url?.replace('http://', 'https://') || img.url
+        })) || []
+      };
+    });
     
     // Apply proper pagination after filtering
     const startIndex = (page - 1) * GRID_PAGE_SIZE;
     const endIndex = startIndex + GRID_PAGE_SIZE;
-    listings = filteredListings.slice(startIndex, endIndex);
-    totalCount = filteredListings.length;
-    totalPages = Math.ceil(filteredListings.length / GRID_PAGE_SIZE);
+    listings = enhancedListings.slice(startIndex, endIndex);
+    totalCount = enhancedListings.length;
+    totalPages = Math.ceil(enhancedListings.length / GRID_PAGE_SIZE);
+
+    console.log(`✅ Commercial page: ${totalCount} total properties, showing ${listings.length} on page ${page}/${totalPages}`);
   } catch (err) {
     error = err instanceof Error ? err.message : "Failed to load commercial properties";
     console.log("Error fetching commercial properties:", error);
