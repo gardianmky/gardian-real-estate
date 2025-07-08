@@ -11,6 +11,27 @@ import { FaFacebookF } from 'react-icons/fa';
 import { FaTwitter } from 'react-icons/fa';
 import { FaLinkedinIn } from 'react-icons/fa';
 import { FaShare } from 'react-icons/fa';
+import { 
+  FaBed, 
+  FaBath, 
+  FaCar, 
+  FaRulerCombined, 
+  FaMapMarkerAlt, 
+  FaCalendarAlt,
+  FaHome,
+  FaCheckCircle,
+  FaInfo,
+  FaBuilding,
+  FaLeaf,
+  FaWifi,
+  FaSwimmingPool,
+  FaDumbbell,
+  FaParking,
+  FaSolarPanel,
+  FaShieldAlt,
+  FaThermometerHalf,
+  FaWater
+} from 'react-icons/fa';
 import { Listing } from 'types/listing';
 import { cleanPropertyTitle } from '@/lib/utils';
 
@@ -40,7 +61,8 @@ export default function ListingClient({ listing }: ListingClientProps) {
   const [showShareMenu, setShowShareMenu] = useState(false);
 
   return (
-    <div className="container mx-auto px-4 py-10">
+    <div className="min-h-screen bg-gray-50">
+      <div className="container mx-auto px-4 py-8 max-w-6xl">
       <Link
         href="/"
         className="inline-flex items-center mb-8 text-teal-600 hover:text-teal-800 transition-colors duration-200"
@@ -164,57 +186,182 @@ export default function ListingClient({ listing }: ListingClientProps) {
         </div>
 
         {/* Property Details */}
-        <div className="p-8">
-          <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-8">
+        <div className="p-6 md:p-8">
+          {/* Property Header */}
+          <div className="flex flex-col md:flex-row justify-between items-start gap-6 mb-10 pb-6 border-b border-gray-200">
             <div>
-              <h2 className="text-3xl md:text-4xl font-semibold mb-2">
+              <h2 className="text-3xl md:text-4xl font-bold mb-3 text-gray-800">
                 {cleanPropertyTitle(listing.heading)}
               </h2>
-              <p className="text-gray-600 text-lg">
-                {'street' in (listing.address ?? {}) 
-                  ? `${listing.address?.street ?? ''}, ${listing.address?.suburb ?? ''} ${listing.address?.state ?? ''} ${listing.address?.postcode ?? ''}`.trim()
-                  : ''}
-              </p>
+              <div className="flex items-start gap-2 text-gray-600">
+                <FaMapMarkerAlt className="w-5 h-5 mt-1 text-teal-500 flex-shrink-0" />
+                <p className="text-lg">
+                  {'street' in (listing.address ?? {}) 
+                    ? `${listing.address?.street ?? ''}, ${listing.address?.suburb ?? ''} ${listing.address?.state ?? ''} ${listing.address?.postcode ?? ''}`.trim()
+                    : 'Address not available'}
+                </p>
+              </div>
+              {listing.propertyType && (
+                <div className="flex items-center gap-2 mt-2">
+                  <FaBuilding className="w-4 h-4 text-gray-500" />
+                  <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium">
+                    {listing.propertyType}
+                  </span>
+                </div>
+              )}
             </div>
-            <div className="text-2xl font-bold text-teal-600">{listing.price}</div>
+            <div className="text-right">
+              <div className="text-3xl md:text-4xl font-bold text-teal-600 mb-1">
+                {listing.price}
+              </div>
+              {listing.disposalMethod && (
+                <div className="text-sm text-gray-500 uppercase tracking-wide font-medium">
+                  {listing.disposalMethod === 'forSale' ? 'For Sale' : listing.disposalMethod === 'forRent' ? 'For Rent' : listing.disposalMethod}
+                </div>
+              )}
+            </div>
           </div>
 
-          <div className="prose max-w-none mb-8">
-            <h2>Description</h2>
-            <p>{listing.description}</p>
+          {/* Property Description */}
+          <div className="mb-10">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="p-2 bg-teal-100 rounded-lg">
+                <FaInfo className="w-5 h-5 text-teal-600" />
+              </div>
+              <h2 className="text-2xl font-bold text-gray-800">Property Description</h2>
+            </div>
+            <div className="bg-gray-50 rounded-xl p-6">
+              <div className="prose prose-lg max-w-none">
+                <div 
+                  className="text-gray-700 leading-relaxed"
+                  dangerouslySetInnerHTML={{ 
+                    __html: listing.description?.replace(/\n/g, '<br>') || 'No description available.' 
+                  }}
+                />
+              </div>
+            </div>
           </div>
 
-          {/* Features Section */}
+          {/* Property Features */}
           {listing.features && listing.features.length > 0 && (
-            <div className="mb-8">
-              <h2 className="text-xl font-semibold mb-2">Features</h2>
-              <ul className="list-disc list-inside text-gray-700">
-                {listing.features.map((feature, idx) => (
-                  <li key={idx}>{feature}</li>
-                ))}
-              </ul>
+            <div className="mb-10">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 bg-emerald-100 rounded-lg">
+                  <FaCheckCircle className="w-5 h-5 text-emerald-600" />
+                </div>
+                <h2 className="text-2xl font-bold text-gray-800">Property Features</h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {listing.features.map((feature, idx) => {
+                  // Determine icon based on feature content
+                  const getFeatureIcon = (featureText: string) => {
+                    const text = featureText.toLowerCase();
+                    if (text.includes('pool') || text.includes('swimming')) return <FaSwimmingPool className="w-4 h-4 text-blue-500" />;
+                    if (text.includes('gym') || text.includes('fitness')) return <FaDumbbell className="w-4 h-4 text-purple-500" />;
+                    if (text.includes('parking') || text.includes('garage')) return <FaParking className="w-4 h-4 text-gray-600" />;
+                    if (text.includes('solar') || text.includes('energy')) return <FaSolarPanel className="w-4 h-4 text-yellow-500" />;
+                    if (text.includes('security') || text.includes('alarm')) return <FaShieldAlt className="w-4 h-4 text-red-500" />;
+                    if (text.includes('air') || text.includes('heating') || text.includes('cooling')) return <FaThermometerHalf className="w-4 h-4 text-blue-400" />;
+                    if (text.includes('water') || text.includes('tank')) return <FaWater className="w-4 h-4 text-blue-600" />;
+                    if (text.includes('wifi') || text.includes('internet')) return <FaWifi className="w-4 h-4 text-green-500" />;
+                    if (text.includes('garden') || text.includes('yard') || text.includes('outdoor')) return <FaLeaf className="w-4 h-4 text-green-600" />;
+                    return <FaCheckCircle className="w-4 h-4 text-emerald-500" />;
+                  };
+                  
+                  return (
+                    <div key={idx} className="flex items-start gap-3 p-3 bg-white rounded-lg border border-gray-100 hover:border-teal-200 transition-colors">
+                      <div className="mt-0.5">
+                        {getFeatureIcon(feature)}
+                      </div>
+                      <span className="text-gray-700 leading-relaxed">{feature}</span>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           )}
 
           {/* Property Highlights */}
-          <div className="grid grid-cols-2 gap-4 mb-8">
-            {[
-              { key: "bedrooms", icon: "bed", label: "Beds" },
-              { key: "bathrooms", icon: "bath", label: "Baths" },
-              { key: "carSpaces", icon: "car", label: "Car Spaces" },
-              { key: "landSize", icon: "land", label: "sqm Land" }
-            ].map((item) => (
-              <div key={item.key} className="flex items-center gap-4">
-                <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center">
-                  <span className="text-xl">{item.icon}</span>
+          <div className="mb-10">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="p-2 bg-blue-100 rounded-lg">
+                <FaHome className="w-5 h-5 text-blue-600" />
+              </div>
+              <h2 className="text-2xl font-bold text-gray-800">Property Details</h2>
+            </div>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              {[
+                { key: "bedrooms", icon: <FaBed className="w-6 h-6 text-purple-500" />, label: "Bedrooms", bgColor: "bg-purple-50", borderColor: "border-purple-200" },
+                { key: "bathrooms", icon: <FaBath className="w-6 h-6 text-blue-500" />, label: "Bathrooms", bgColor: "bg-blue-50", borderColor: "border-blue-200" },
+                { key: "carSpaces", icon: <FaCar className="w-6 h-6 text-gray-600" />, label: "Parking", bgColor: "bg-gray-50", borderColor: "border-gray-200" },
+                { key: "landSize", icon: <FaRulerCombined className="w-6 h-6 text-green-500" />, label: "Land Size", bgColor: "bg-green-50", borderColor: "border-green-200" }
+              ].map((item) => {
+                const value = listing.bedBathCarLand?.find((i) => i.key === item.key)?.value || "0";
+                const displayValue = item.key === "landSize" && value !== "0" ? `${value} sqm` : value;
+                
+                return (
+                  <div key={item.key} className={`${item.bgColor} ${item.borderColor} border rounded-xl p-4 text-center hover:shadow-md transition-shadow`}>
+                    <div className="flex justify-center mb-3">
+                      {item.icon}
+                    </div>
+                    <div className="text-2xl font-bold text-gray-800 mb-1">
+                      {displayValue}
+                    </div>
+                    <div className="text-sm text-gray-600 font-medium">
+                      {item.label}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Property Information Timeline */}
+          <div className="mb-10">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="p-2 bg-indigo-100 rounded-lg">
+                <FaCalendarAlt className="w-5 h-5 text-indigo-600" />
+              </div>
+              <h2 className="text-2xl font-bold text-gray-800">Property Information</h2>
+            </div>
+            <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl p-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {/* Property Type */}
+                <div className="bg-white rounded-lg p-4 border border-gray-200">
+                  <div className="flex items-center gap-3 mb-2">
+                    <FaBuilding className="w-5 h-5 text-gray-600" />
+                    <span className="text-sm font-medium text-gray-500 uppercase tracking-wide">Property Type</span>
+                  </div>
+                  <div className="text-lg font-bold text-gray-800">
+                    {listing.type || listing.propertyType || 'Not specified'}
+                  </div>
                 </div>
-                <div>
-                  <p className="font-medium">
-                    {listing.bedBathCarLand?.find((i) => i.key === item.key)?.value || "0"} {item.label}
-                  </p>
+
+                {/* Categories */}
+                {listing.categories && listing.categories.length > 0 && (
+                  <div className="bg-white rounded-lg p-4 border border-gray-200">
+                    <div className="flex items-center gap-3 mb-2">
+                      <FaHome className="w-5 h-5 text-gray-600" />
+                      <span className="text-sm font-medium text-gray-500 uppercase tracking-wide">Category</span>
+                    </div>
+                    <div className="text-lg font-bold text-gray-800">
+                      {listing.categories.join(', ')}
+                    </div>
+                  </div>
+                )}
+
+                {/* Listing ID */}
+                <div className="bg-white rounded-lg p-4 border border-gray-200">
+                  <div className="flex items-center gap-3 mb-2">
+                    <FaInfo className="w-5 h-5 text-gray-600" />
+                    <span className="text-sm font-medium text-gray-500 uppercase tracking-wide">Property ID</span>
+                  </div>
+                  <div className="text-lg font-bold text-gray-800">
+                    {listing.listingID || listing.id}
+                  </div>
                 </div>
               </div>
-            ))}
+            </div>
           </div>
 
           {/* Agent Information & CTAs */}
@@ -255,21 +402,31 @@ export default function ListingClient({ listing }: ListingClientProps) {
                         )}
                         
                         {/* Contact Info */}
-                        <div className="space-y-1 mb-4 text-sm text-gray-700">
+                        <div className="space-y-2 mb-4">
                           {agent.mobile && (
-                            <div className="flex items-center gap-2">
-                              <svg className="w-4 h-4 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                              </svg>
-                              <span>📱 {agent.mobile}</span>
+                            <div className="flex items-center gap-3 p-2 bg-white rounded-lg border border-gray-200">
+                              <div className="p-1.5 bg-teal-100 rounded-lg">
+                                <svg className="w-4 h-4 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                </svg>
+                              </div>
+                              <div>
+                                <div className="text-xs text-gray-500 uppercase tracking-wide">Mobile</div>
+                                <div className="text-sm font-medium text-gray-800">{agent.mobile}</div>
+                              </div>
                             </div>
                           )}
                           {agent.phone && (
-                            <div className="flex items-center gap-2">
-                              <svg className="w-4 h-4 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                              </svg>
-                              <span>📞 {agent.phone}</span>
+                            <div className="flex items-center gap-3 p-2 bg-white rounded-lg border border-gray-200">
+                              <div className="p-1.5 bg-blue-100 rounded-lg">
+                                <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                </svg>
+                              </div>
+                              <div>
+                                <div className="text-xs text-gray-500 uppercase tracking-wide">Office</div>
+                                <div className="text-sm font-medium text-gray-800">{agent.phone}</div>
+                              </div>
                             </div>
                           )}
                         </div>
@@ -369,6 +526,7 @@ export default function ListingClient({ listing }: ListingClientProps) {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
