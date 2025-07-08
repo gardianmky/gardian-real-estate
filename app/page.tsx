@@ -260,7 +260,7 @@ export default async function HomePage() {
                         </svg>
                       }
                     />
-                    <CountingNumber end={featuredProperties.length} />{' '}Handpicked Premium Properties
+                    <CountingNumber end={featuredProperties.length} /> Handpicked Premium Properties
                   </span>
                 </div>
               </ScrollReveal>
