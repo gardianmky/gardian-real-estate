@@ -14,7 +14,7 @@ const API_CONFIG = {
   // Default pagination settings for better data fetching
   DEFAULT_PAGE_SIZE: 50, // Increased from 12 to fetch more data per request
   MAX_PAGE_SIZE: 100,    // Maximum allowed by most APIs per request
-  PRODUCTION_FETCH_SIZE: 500, // Large number for comprehensive fetching
+  PRODUCTION_FETCH_SIZE: 100, // More conservative for production reliability
   MAX_TOTAL_PROPERTIES: 1000  // Safety limit for total properties
 };
 
@@ -137,6 +137,8 @@ export async function fetchAllPropertiesFromAPI({
     console.log(`🚀 Fetching ALL ${type || 'all'} properties for ${disposalMethod}...`);
     console.log(`🔑 API Token available: ${!!process.env.RENET_API_TOKEN || !!process.env.NEXT_PUBLIC_API_TOKEN}`);
     console.log(`🌍 Environment: ${process.env.NODE_ENV}`);
+    console.log(`📡 API Base URL: ${API_CONFIG.BASE_URL}`);
+    console.log(`🏢 Agency ID: ${API_CONFIG.AGENCY_ID}`);
 
     // Build base API request parameters
     const baseParams = new URLSearchParams();
@@ -175,6 +177,9 @@ export async function fetchAllPropertiesFromAPI({
 
       if (!response.ok) {
         console.warn(`API request failed for page ${currentPage} with status: ${response.status}`);
+        console.warn(`Request URL: ${url}`);
+        const errorText = await response.text();
+        console.warn(`Response: ${errorText}`);
         break;
       }
 
