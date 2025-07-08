@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Gallery from 'react-image-gallery';
 import { AiFillHeart } from 'react-icons/ai';
 import { AiOutlineHeart } from 'react-icons/ai';
@@ -59,6 +59,35 @@ interface ListingClientProps {
 export default function ListingClient({ listing }: ListingClientProps) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [showShareMenu, setShowShareMenu] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
+  // Auto-advance slides
+  useEffect(() => {
+    if (!isAutoPlaying || !listing.images?.length) return;
+    
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => 
+        prev === listing.images.length - 1 ? 0 : prev + 1
+      );
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [isAutoPlaying, listing.images?.length]);
+
+  const nextImage = () => {
+    setIsAutoPlaying(false);
+    setCurrentImageIndex((prev) => 
+      prev === listing.images.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  const prevImage = () => {
+    setIsAutoPlaying(false);
+    setCurrentImageIndex((prev) => 
+      prev === 0 ? listing.images.length - 1 : prev - 1
+    );
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -133,56 +162,173 @@ export default function ListingClient({ listing }: ListingClientProps) {
       )}
 
       <div className="bg-white rounded-xl shadow-soft overflow-hidden">
-        {/* Hero Section with Carousel */}
-        <div className="relative h-[600px] w-full">
+        {/* Hero Section with Parallax Carousel */}
+        <div className="relative h-[70vh] min-h-[600px] w-full overflow-hidden">
           {listing.images && listing.images.length > 0 ? (
-            <Gallery
-              items={listing.images.map((image) => ({
-                original: image.url.replace(/^http:\/\//i, 'https://'),
-                thumbnail: image.url.replace(/^http:\/\//i, 'https://'),
-              }))}
-              showPlayButton={false}
-              showFullscreenButton={true}
-              showNav={true}
-              showThumbnails={false}
-              autoPlay={true}
-              slideInterval={5000}
-              renderItem={(item) => (
-                <div className="relative h-full w-full">
-                  <Image
-                    src={item.original}
-                    alt={listing.heading}
-                    fill
-                    className="object-cover"
-                    sizes="100vw"
-                    priority
+            <>
+              {/* Background Images with Parallax Effect */}
+              <AnimatePresence mode="wait">
+                {listing.images.map((image, index) => (
+                  index === currentImageIndex && (
+                    <motion.div
+                      key={index}
+                      initial={{ scale: 1.1, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0.95, opacity: 0 }}
+                      transition={{ duration: 1.2, ease: "easeInOut" }}
+                      className="absolute inset-0"
+                    >
+                      <Image
+                        src={image.url.replace(/^http:\/\//i, 'https://')}
+                        alt={listing.heading}
+                        fill
+                        className="object-cover"
+                        sizes="100vw"
+                        priority={index === 0}
+                      />
+                    </motion.div>
+                  )
+                ))}
+              </AnimatePresence>
+
+              {/* Gradient Overlays */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/40"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30"></div>
+
+              {/* Navigation Arrows */}
+              <button
+                onClick={prevImage}
+                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 hover:scale-110 z-10"
+                onMouseEnter={() => setIsAutoPlaying(false)}
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button
+                onClick={nextImage}
+                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 hover:scale-110 z-10"
+                onMouseEnter={() => setIsAutoPlaying(false)}
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+
+              {/* Image Counter */}
+              <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium z-10">
+                {currentImageIndex + 1} / {listing.images.length}
+              </div>
+
+              {/* Dot Indicators */}
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                {listing.images.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => {
+                      setCurrentImageIndex(index);
+                      setIsAutoPlaying(false);
+                    }}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      index === currentImageIndex 
+                        ? 'bg-white scale-125' 
+                        : 'bg-white/50 hover:bg-white/80'
+                    }`}
                   />
-                </div>
-              )}
-            />
+                ))}
+              </div>
+
+              {/* Fullscreen Button */}
+              <button
+                onClick={() => {
+                  // You can integrate with react-image-gallery here for fullscreen
+                  const galleryElement = document.querySelector('.image-gallery');
+                  if (galleryElement) {
+                    // Trigger fullscreen gallery
+                  }
+                }}
+                className="absolute top-4 left-4 bg-black/50 hover:bg-black/70 backdrop-blur-sm text-white p-2 rounded-lg transition-all duration-300 z-10"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                </svg>
+              </button>
+            </>
           ) : (
             <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-              <p>No image available</p>
+              <div className="text-center">
+                <FaHome className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                <p className="text-gray-600">No images available</p>
+              </div>
             </div>
           )}
-          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-transparent to-gray-700 opacity-50"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center">
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
+
+          {/* Property Information Overlay */}
+          <div className="absolute inset-0 flex items-end justify-start p-6 md:p-8 z-10">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-4xl font-bold mb-4"
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="max-w-2xl"
             >
-              {cleanPropertyTitle(listing.heading)}
-            </motion.h1>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-teal-600 hover:bg-teal-700 text-white font-medium py-2 px-6 rounded-full transition-colors"
-            >
-              Schedule Viewing
-            </motion.button>
+              <motion.h1 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="text-3xl md:text-5xl font-bold mb-4 text-white drop-shadow-lg leading-tight"
+              >
+                {cleanPropertyTitle(listing.heading)}
+              </motion.h1>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                className="flex items-center gap-2 text-white/90 mb-6"
+              >
+                <FaMapMarkerAlt className="w-5 h-5 text-teal-400" />
+                <p className="text-lg md:text-xl">
+                  {'street' in (listing.address ?? {}) 
+                    ? `${listing.address?.street ?? ''}, ${listing.address?.suburb ?? ''} ${listing.address?.state ?? ''} ${listing.address?.postcode ?? ''}`.trim()
+                    : 'Address not available'}
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                className="flex flex-wrap items-center gap-4"
+              >
+                <div className="text-2xl md:text-3xl font-bold text-white bg-teal-600/90 px-4 py-2 rounded-lg backdrop-blur-sm">
+                  {listing.price}
+                </div>
+                
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-white text-teal-600 font-semibold py-3 px-6 rounded-lg hover:bg-gray-100 transition-colors shadow-lg"
+                >
+                  Schedule Viewing
+                </motion.button>
+              </motion.div>
+            </motion.div>
           </div>
+        </div>
+
+        {/* Hidden Gallery for Fullscreen (Optional) */}
+        <div className="hidden">
+          <Gallery
+            items={listing.images?.map((image) => ({
+              original: image.url.replace(/^http:\/\//i, 'https://'),
+              thumbnail: image.url.replace(/^http:\/\//i, 'https://'),
+            })) || []}
+            showPlayButton={false}
+            showFullscreenButton={true}
+            showNav={true}
+            showThumbnails={true}
+            startIndex={currentImageIndex}
+          />
         </div>
 
         {/* Property Details */}
