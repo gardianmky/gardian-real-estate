@@ -24,7 +24,7 @@ export default function FAQPage() {
     {
       question: "What documents do I need when applying for a rental property?",
       answer:
-        "When applying for a rental property, you'll typically need proof of identity (driver's license, passport), proof of income (pay slips, employment contract), rental history references, and personal references. Our application form will guide you through the specific requirements.",
+        "When applying for a rental property, you'll need proof of identity (driver's license, passport), proof of income (pay slips, employment contract), rental history references, and personal references. We use the official REIQ (Real Estate Institute of Queensland) application form to ensure compliance with all legal requirements.",
       category: "renting",
     },
     {
@@ -42,7 +42,7 @@ export default function FAQPage() {
     {
       question: "How long does the rental application process take?",
       answer:
-        "The rental application process typically takes 24-48 hours once we have received all required documentation. This includes time for us to check references and for the property owner to review your application.",
+        "The rental application process typically takes 24-48 hours once we have received all required documentation through the REIQ application form. This includes time for us to verify references and for the property owner to review your application. We aim to keep you informed throughout the process.",
       category: "renting",
     },
     {
@@ -60,7 +60,7 @@ export default function FAQPage() {
     {
       question: "What happens if there are maintenance issues during my tenancy?",
       answer:
-        "If you encounter maintenance issues during your tenancy, report them promptly through our tenant portal or by calling our property management team. Emergency repairs will be addressed immediately, while non-urgent matters will be attended to within a reasonable timeframe after obtaining owner approval.",
+        "If you encounter maintenance issues during your tenancy, report them promptly through our online maintenance request system or by calling our property management team at (07) 4957 7424. Emergency repairs will be addressed immediately, while non-urgent matters will be scheduled within a reasonable timeframe after obtaining owner approval and arranging suitable access times.",
       category: "renting",
     },
     {
@@ -74,6 +74,24 @@ export default function FAQPage() {
       answer:
         "Gardian Real Estate services Mackay and all surrounding suburbs, including Northern Beaches, Andergrove, Mount Pleasant, Glenella, Rural View, Slade Point, Eimeo, Bucasia, Shoal Point, Blacks Beach, Richmond, Beaconsfield, Ooralea, South Mackay, East Mackay, West Mackay, North Mackay, and Sarina.",
       category: "general",
+    },
+    {
+      question: "What are your property management fees?",
+      answer:
+        "Our standard property management fee is 7.7% of rent collected, with a leasing fee of two weeks' rent for new tenancies. We also offer a full service package at 8.8% which includes additional services. We provide transparent pricing with no hidden fees - contact us for a detailed quote based on your specific needs.",
+      category: "renting",
+    },
+    {
+      question: "Do you offer commercial property services?",
+      answer:
+        "Yes, we provide comprehensive commercial real estate services including sales, leasing, investment analysis, property management, and commercial appraisals. Our experienced commercial team specializes in office spaces, retail properties, industrial facilities, and storage solutions throughout the Mackay region.",
+      category: "general",
+    },
+    {
+      question: "How do I get a property appraisal?",
+      answer:
+        "You can request a property appraisal by contacting our office at (07) 4957 7424, using our online appraisal request form, or booking an appointment through our website. We provide complimentary market appraisals for residential properties and competitive pricing for commercial property valuations.",
+      category: "selling",
     },
   ]
 

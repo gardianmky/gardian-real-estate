@@ -61,7 +61,7 @@ export default function LandlordsPage() {
               {
                 icon: "🏠",
                 title: "Tenant Screening",
-                description: "Comprehensive background checks, credit history, and employment verification to ensure quality tenants"
+                description: "Comprehensive tenant screening including identity verification, employment verification, and reference checks to ensure quality tenants"
               },
               {
                 icon: "💰",
@@ -168,7 +168,7 @@ export default function LandlordsPage() {
               <div className="bg-white rounded-2xl p-8 shadow-lg border-2 border-teal-200">
                 <div className="text-center">
                   <h3 className="text-2xl font-bold text-gray-900 mb-4">Standard Management</h3>
-                  <div className="text-4xl font-bold text-teal-600 mb-2">7.5%</div>
+                  <div className="text-4xl font-bold text-teal-600 mb-2">7.7%</div>
                   <div className="text-gray-600 mb-6">of rental income + GST</div>
                   <ul className="text-left space-y-3 text-gray-600">
                     <li className="flex items-center">
@@ -198,7 +198,7 @@ export default function LandlordsPage() {
               <div className="bg-teal-600 text-white rounded-2xl p-8 shadow-lg">
                 <div className="text-center">
                   <h3 className="text-2xl font-bold mb-4">Premium Management</h3>
-                  <div className="text-4xl font-bold mb-2">8.5%</div>
+                  <div className="text-4xl font-bold mb-2">8.8%</div>
                   <div className="text-teal-100 mb-6">of rental income + GST</div>
                   <ul className="text-left space-y-3">
                     <li className="flex items-center">

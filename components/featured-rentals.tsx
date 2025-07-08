@@ -127,6 +127,16 @@ export default function FeaturedRentals() {
                       <PropertyFeaturesInline listing={property} />
                     </div>
 
+                    {/* Agent Information */}
+                    {property.agents && property.agents.length > 0 && (
+                      <div className="flex items-center text-sm text-gray-600 mb-4">
+                        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                        <span>{property.agents[0].name || 'Contact Agent'}</span>
+                      </div>
+                    )}
+
                     <button className="w-full bg-gray-50 hover:bg-gray-100 text-teal-600 py-2 rounded-lg font-medium transition-colors duration-200 mt-auto">
                       View Details
                     </button>

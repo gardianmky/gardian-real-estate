@@ -38,13 +38,13 @@ export default async function CommercialPage({
   let error = null;
 
   try {
-    // Fetch commercial properties with proper pagination
+    // Fetch all results to properly handle pagination after filtering
     const res = await fetchListingsIndex({
       disposalMethod: (params?.disposalMethod as any) || "forSale",
-      type: "Commercial",
-      fetchAll: false, // FIXED: Use proper pagination instead of fetching all
-      page,
-      resultsPerPage: GRID_PAGE_SIZE,
+      type: "Commercial", // API type filter doesn't work, but keep for future compatibility
+      fetchAll: true, // Get all results for proper filtering and pagination
+      page: 1, // Always fetch from page 1 since we need to filter first
+      resultsPerPage: 200, // Large number to get most properties
       orderBy: "dateListed",
       orderDirection: "desc",
       // Add search filters from URL params
@@ -58,9 +58,47 @@ export default async function CommercialPage({
       categories: params?.categories ? params.categories.split(',').filter(Boolean) : []
     });
     
-    listings = res.listings || [];
-    totalCount = res.pagination?.totalResults || 0;
-    totalPages = res.pagination?.totalPages || 1;
+    const allListings = res.listings || [];
+    
+    // Client-side filtering since API type parameter is not working
+    const filteredListings = allListings.filter((listing: Listing) => {
+      const propertyType = listing.type || listing.propertyType || (listing as any).category;
+      
+      // Strict validation: only include properties explicitly marked as Commercial
+      if (propertyType !== 'Commercial') {
+        return false;
+      }
+      
+      // Additional validation: exclude obvious residential indicators in commercial listings
+      const heading = (listing.heading || '').toLowerCase();
+      const description = (listing.description || '').toLowerCase();
+      const address = ((listing.address as any)?.displayAddress || '').toLowerCase();
+      const categories = (listing as any).categories || [];
+      
+      const residentialIndicators = [
+        'bedroom', 'bathroom', 'family home', 'house', 'residential',
+        'villa', 'townhouse', 'apartment', 'unit', 'duplex', 'cottage'
+      ];
+      
+      const hasResidentialIndicators = residentialIndicators.some(indicator => 
+        heading.includes(indicator) || description.includes(indicator) || address.includes(indicator) ||
+        categories.some((cat: string) => cat.toLowerCase().includes(indicator))
+      );
+      
+      if (hasResidentialIndicators) {
+        console.warn(`Filtering out potential residential property from commercial listings: ${listing.heading}`);
+        return false;
+      }
+      
+      return true;
+    });
+    
+    // Apply proper pagination after filtering
+    const startIndex = (page - 1) * GRID_PAGE_SIZE;
+    const endIndex = startIndex + GRID_PAGE_SIZE;
+    listings = filteredListings.slice(startIndex, endIndex);
+    totalCount = filteredListings.length;
+    totalPages = Math.ceil(filteredListings.length / GRID_PAGE_SIZE);
   } catch (err) {
     error = err instanceof Error ? err.message : "Failed to load commercial properties";
     console.log("Error fetching commercial properties:", error);
@@ -269,6 +307,12 @@ export default async function CommercialPage({
                 className="block w-full bg-white text-teal-600 border border-teal-600 px-6 py-3 rounded-lg hover:bg-teal-50 transition-colors font-medium text-center"
               >
                 Commercial Appraisal
+              </Link>
+              <Link 
+                href="/book-appointment?service=commercial" 
+                className="block w-full bg-gray-100 text-gray-700 border border-gray-300 px-6 py-3 rounded-lg hover:bg-gray-200 transition-colors font-medium text-center"
+              >
+                Book Commercial Consultation
               </Link>
             </div>
             

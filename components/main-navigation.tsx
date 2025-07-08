@@ -160,7 +160,7 @@ export default function MainNavigation() {
       {
         title: "GARDIAN Properties",
         items: [
-          { label: "All Properties", href: "/buy" },
+          { label: "All Residential", href: "/buy" },
           { label: "For Sale", href: "/for-sale" },
           { label: "Recently Sold", href: "/sold" },
         ],
@@ -210,6 +210,16 @@ export default function MainNavigation() {
           { label: "All Commercial", href: "/commercial" },
           { label: "Office Spaces", href: "/commercial/office" },
           { label: "Retail Properties", href: "/commercial/retail" },
+          { label: "Industrial", href: "/commercial/industrial" },
+          { label: "Storage Sheds", href: "/commercial/storage" },
+        ],
+      },
+      {
+        title: "Commercial Services",
+        items: [
+          { label: "Commercial Appraisal", href: "/appraisal-request?type=commercial" },
+          { label: "Book Consultation", href: "/book-appointment?service=commercial" },
+          { label: "Contact Commercial Team", href: "/contact?service=commercial" },
         ],
       },
     ],

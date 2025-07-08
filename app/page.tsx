@@ -6,6 +6,7 @@ import { cleanPropertyTitle } from '@/lib/utils';
 import Link from "next/link";
 import Image from "next/image";
 import { fetchListingsIndex } from '@/lib/api';
+import { ScrollReveal, StaggeredGrid, CountingNumber, FloatingIcon } from './page-client';
 
 export const dynamic = 'force-dynamic';
 
@@ -153,8 +154,7 @@ async function getFeaturedProperties() {
       .filter((property: any) => {
         const isResidential = property.type === 'Residential' || 
                              property.propertyType === 'Residential' ||
-                             property.category === 'Residential' ||
-                             !property.type;
+                             property.category === 'Residential';
         return isResidential && (property.listingID || property.id);
       })
       .filter((property: any, index: number, self: any[]) => {
@@ -178,27 +178,32 @@ export default async function HomePage() {
       <AnimatedHeroSection />
 
       {/* Featured Property Hero Section - Improved spacing */}
-      <section className="py-8 sm:py-12 lg:py-16 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <FeaturedPropertyHero 
-            properties={featuredProperties}
-            autoSelect="highestPrice"
-            enableCarousel={true}
-          />
-        </div>
-      </section>
+      <ScrollReveal>
+        <section className="py-8 sm:py-12 lg:py-16 bg-white">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <FeaturedPropertyHero 
+              properties={featuredProperties}
+              autoSelect="highestPrice"
+              enableCarousel={true}
+            />
+          </div>
+        </section>
+      </ScrollReveal>
 
       {/* Premium Residential Properties Section - Better mobile layout */}
       <section className="py-12 sm:py-16 lg:py-20 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-12 lg:mb-16">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 sm:mb-6 text-gray-800 px-2">Premium Residential Properties</h2>
-            <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto px-2">Discover exceptional residential homes for sale in Mackay and surrounding areas. Find your perfect family home today.</p>
-          </div>
+          <ScrollReveal>
+            <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 sm:mb-6 text-gray-800 px-2">Premium Residential Properties</h2>
+              <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto px-2">Discover exceptional residential homes for sale in Mackay and surrounding areas. Find your perfect family home today.</p>
+            </div>
+          </ScrollReveal>
           
           {/* Property Type Navigation - Enhanced mobile responsiveness */}
-          <div className="flex justify-center mb-8 sm:mb-12 px-2">
-            <div className="bg-white rounded-2xl p-1 sm:p-2 shadow-lg border border-gray-100 w-full max-w-sm sm:max-w-md lg:max-w-lg">
+          <ScrollReveal delay={200}>
+            <div className="flex justify-center mb-8 sm:mb-12 px-2">
+              <div className="bg-white rounded-2xl p-1 sm:p-2 shadow-lg border border-gray-100 w-full max-w-sm sm:max-w-md lg:max-w-lg hover:shadow-xl transition-all duration-300 animate-pulseGlow">
               <div className="flex flex-col sm:flex-row gap-1 sm:gap-0">
                 <Link 
                   href="/for-rent" 
@@ -213,7 +218,12 @@ export default async function HomePage() {
                 </Link>
                 <Link 
                   href="/for-sale" 
-                  className="px-3 sm:px-4 lg:px-6 py-2 sm:py-3 text-center text-xs sm:text-sm lg:text-base bg-teal-600 text-white rounded-lg sm:rounded-xl shadow-md font-medium flex-1 hover:bg-teal-700 transition-all duration-300 group"
+                  className="px-3 sm:px-4 lg:px-6 py-2 sm:py-3 text-center text-xs sm:text-sm lg:text-base bg-teal-600 text-white rounded-lg sm:rounded-xl shadow-md font-medium flex-1 hover:bg-teal-700 transition-all duration-300 group relative overflow-hidden"
+                  style={{
+                    background: 'linear-gradient(135deg, #0c6473 0%, #0a5460 50%, #0c6473 100%)',
+                    backgroundSize: '200% 200%',
+                    animation: 'shimmerSlow 3s ease-in-out infinite'
+                  }}
                 >
                   <span className="flex items-center justify-center">
                     <svg className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -233,28 +243,35 @@ export default async function HomePage() {
                     Commercial
                   </span>
                 </Link>
+                </div>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
 
           {featuredProperties && featuredProperties.length > 0 ? (
             <>
-              <div className="text-center mb-6 sm:mb-8">
-                <span className="inline-flex items-center px-3 sm:px-4 py-2 bg-teal-100 text-teal-800 rounded-full text-xs sm:text-sm font-semibold">
-                  <svg className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                  {featuredProperties.length} Handpicked Premium Properties
-                </span>
-              </div>
+              <ScrollReveal delay={400}>
+                <div className="text-center mb-6 sm:mb-8">
+                  <span className="inline-flex items-center px-3 sm:px-4 py-2 bg-teal-100 text-teal-800 rounded-full text-xs sm:text-sm font-semibold hover:bg-teal-200 transition-all duration-300 animate-floatGentle">
+                    <FloatingIcon
+                      icon={
+                        <svg className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      }
+                    />
+                    <CountingNumber end={featuredProperties.length} />{' '}Handpicked Premium Properties
+                  </span>
+                </div>
+              </ScrollReveal>
               
               {/* Property Grid - 3 tiles layout for desktop */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12">
+              <StaggeredGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12">
                 {featuredProperties.map((property: any, index: number) => {
                   const uniqueKey = property?.listingID || property?.id || `property-${index}`;
                   
                   return (
-                    <div key={uniqueKey} className="bg-white rounded-2xl sm:rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 group border border-gray-50">
+                    <div key={uniqueKey} className="opacity-0 translate-y-12 bg-white rounded-2xl sm:rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 group border border-gray-50 animate-cardHover">
                     {property?.images && property.images.length > 0 ? (
                       <div className="h-48 sm:h-56 lg:h-64 relative overflow-hidden">
                         <Image
@@ -345,7 +362,7 @@ export default async function HomePage() {
                   </div>
                   );
                 })}
-              </div>
+              </StaggeredGrid>
             </>
           ) : (
             <div className="text-center py-20">
@@ -391,18 +408,24 @@ export default async function HomePage() {
       {/* Service Cards Section - Enhanced mobile responsiveness */}
       <section className="py-12 sm:py-16 lg:py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-12 lg:mb-16">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 sm:mb-6 text-gray-800 px-2">Our Premium Services</h2>
-            <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto px-2">Comprehensive real estate solutions designed to exceed your expectations at every step</p>
-          </div>
+          <ScrollReveal>
+            <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 sm:mb-6 text-gray-800 px-2">Our Premium Services</h2>
+              <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto px-2">Comprehensive real estate solutions designed to exceed your expectations at every step</p>
+            </div>
+          </ScrollReveal>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
-            <Link href="/buy" className="group text-center bg-white p-6 sm:p-8 lg:p-10 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
-              <div className="w-16 h-16 sm:w-18 sm:h-18 lg:w-20 lg:h-20 bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
-                <svg className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                </svg>
-              </div>
+          <StaggeredGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
+            <Link href="/buy" className="opacity-0 translate-y-12 group text-center bg-white p-6 sm:p-8 lg:p-10 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 border border-gray-100">
+              <FloatingIcon
+                delay={0}
+                className="w-16 h-16 sm:w-18 sm:h-18 lg:w-20 lg:h-20 bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300"
+                icon={
+                  <svg className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                  </svg>
+                }
+              />
               <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-3 sm:mb-4 text-gray-800">Buy a Home</h3>
               <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">Expert guidance through every step of your property purchase, with transparent costs and professional advice.</p>
               <span className="inline-flex items-center text-teal-600 font-semibold group-hover:text-teal-700 transition-colors text-sm sm:text-base">
@@ -413,12 +436,16 @@ export default async function HomePage() {
               </span>
             </Link>
             
-            <Link href="/rent" className="group text-center bg-white p-6 sm:p-8 lg:p-10 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
-              <div className="w-16 h-16 sm:w-18 sm:h-18 lg:w-20 lg:h-20 bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
-                <svg className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
-                </svg>
-              </div>
+            <Link href="/rent" className="opacity-0 translate-y-12 group text-center bg-white p-6 sm:p-8 lg:p-10 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 border border-gray-100">
+              <FloatingIcon
+                delay={500}
+                className="w-16 h-16 sm:w-18 sm:h-18 lg:w-20 lg:h-20 bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300"
+                icon={
+                  <svg className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
+                  </svg>
+                }
+              />
               <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-3 sm:mb-4 text-gray-800">Rent a Home</h3>
               <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">Seamless rental experience from browsing our extensive network to application and ongoing support.</p>
               <span className="inline-flex items-center text-teal-600 font-semibold group-hover:text-teal-700 transition-colors text-sm sm:text-base">
@@ -429,12 +456,16 @@ export default async function HomePage() {
               </span>
             </Link>
             
-            <Link href="/sell" className="group text-center bg-white p-6 sm:p-8 lg:p-10 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 sm:col-span-2 lg:col-span-1">
-              <div className="w-16 h-16 sm:w-18 sm:h-18 lg:w-20 lg:h-20 bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
-                <svg className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                </svg>
-              </div>
+            <Link href="/sell" className="opacity-0 translate-y-12 group text-center bg-white p-6 sm:p-8 lg:p-10 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 border border-gray-100 sm:col-span-2 lg:col-span-1">
+              <FloatingIcon
+                delay={1000}
+                className="w-16 h-16 sm:w-18 sm:h-18 lg:w-20 lg:h-20 bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300"
+                icon={
+                  <svg className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                  </svg>
+                }
+              />
               <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-3 sm:mb-4 text-gray-800">Sell a Home</h3>
               <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">Professional marketing and strategic guidance to achieve the best possible outcome for your property sale.</p>
               <span className="inline-flex items-center text-teal-600 font-semibold group-hover:text-teal-700 transition-colors text-sm sm:text-base">
@@ -444,20 +475,21 @@ export default async function HomePage() {
                 </svg>
               </span>
             </Link>
-          </div>
+          </StaggeredGrid>
         </div>
       </section>
 
       {/* Finance & Insurance Section - Enhanced mobile responsiveness */}
       <section className="py-12 sm:py-16 bg-gradient-to-br from-teal-25 via-teal-50 to-emerald-50 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 left-10 w-24 h-24 sm:w-32 sm:h-32 bg-teal-200 rounded-full blur-xl"></div>
-          <div className="absolute bottom-10 right-10 w-32 h-32 sm:w-40 sm:h-40 bg-emerald-200 rounded-full blur-xl"></div>
+          <div className="absolute top-10 left-10 w-24 h-24 sm:w-32 sm:h-32 bg-teal-200 rounded-full blur-xl animate-floatGentle"></div>
+          <div className="absolute bottom-10 right-10 w-32 h-32 sm:w-40 sm:h-40 bg-emerald-200 rounded-full blur-xl animate-floatGentle" style={{ animationDelay: '1s' }}></div>
         </div>
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 lg:p-12 border border-teal-100">
+          <ScrollReveal>
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 lg:p-12 border border-teal-100 hover:shadow-3xl transition-all duration-500 animate-pulseGlow">
               <div className="flex flex-col sm:flex-row items-center justify-center mb-4 sm:mb-6">
                 <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-teal-500 to-teal-600 rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-0 sm:mr-4">
                   <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -534,8 +566,9 @@ export default async function HomePage() {
                   🏠 <strong>Gardian Advantage:</strong> Bundle your property purchase with finance and insurance for exclusive rates and seamless service!
                 </p>
               </div>
+              </div>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 

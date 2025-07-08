@@ -1,9 +1,9 @@
 // API Configuration - Enhanced for live data fetching
 const API_CONFIG = {
-  BASE_URL: 'https://api.renet.app',
+  BASE_URL: process.env.NEXT_PUBLIC_API_BASE_URL || 'https://api.renet.app',
   HEADERS: {
     'Accept': 'application/json',
-    'Authorization': 'Bearer MRhE2JztS7rewrkrttDgJOrCHa17vBarvKLVk5V2xBlBWiZCqGfamsXH',
+    'Authorization': `Bearer ${process.env.RENET_API_TOKEN || process.env.NEXT_PUBLIC_API_TOKEN || 'MRhE2JztS7rewrkrttDgJOrCHa17vBarvKLVk5V2xBlBWiZCqGfamsXH'}`,
     'User-Agent': 'RapidAPI/4.2.8 (Macintosh; OS X/15.3.0) GCDHTTPRequest',
     'Connection': 'close',
     'Content-Type': 'application/json'
@@ -90,10 +90,11 @@ export async function fetchListingById(id: string): Promise<Listing | null> {
     if (!data || (Array.isArray(data) && data.length === 0)) return null;
     
     const listing = Array.isArray(data) ? data[0] : data;
+    const standardId = listing.listingID || listing.id;
     return {
       ...listing,
-      id: listing.id || listing.listingID,
-      listingID: listing.listingID || listing.id,
+      id: standardId,
+      listingID: standardId,
       bedBathCarLand: [
         { key: 'bedrooms', label: 'Bedrooms', value: listing.bedrooms?.toString() || '0' },
         { key: 'bathrooms', label: 'Bathrooms', value: listing.bathrooms?.toString() || '0' },
@@ -132,8 +133,9 @@ export async function fetchListingsIndex({
   [key: string]: any;
 }) {
   try {
-    // Skip API calls during build phase
-    if (process.env.NEXT_PHASE === 'phase-production-build') {
+    // Skip API calls during build phase or if no token available
+    if (process.env.NEXT_PHASE === 'phase-production-build' || 
+        (!process.env.RENET_API_TOKEN && !process.env.NEXT_PUBLIC_API_TOKEN)) {
       return { 
         listings: [], 
         pagination: { 
@@ -186,8 +188,14 @@ export async function fetchListingsIndex({
       throw new Error(`API Error: ${response.status}`);
     }
 
-    let listings = await response.json();
-    listings = Array.isArray(listings) ? listings : [];
+    let listings;
+    try {
+      listings = await response.json();
+      listings = Array.isArray(listings) ? listings : [];
+    } catch (jsonError) {
+      console.error('Failed to parse API response JSON:', jsonError);
+      listings = [];
+    }
 
     // Extract pagination info from response headers
     const totalResults = parseInt(response.headers.get('x-totalResults') || response.headers.get('X-totalResults') || '0');
@@ -195,21 +203,43 @@ export async function fetchListingsIndex({
     const totalPagesFromAPI = parseInt(response.headers.get('x-totalPages') || response.headers.get('X-totalPages') || '1');
     const nextPageFromAPI = response.headers.get('x-NextPage') || response.headers.get('X-NextPage');
 
-    // MINIMAL client-side filtering only for data cleanup - NOT for agency filtering
-    // (Agency filtering should be done server-side via agencyID parameter)
-    const cleanedListings = listings.filter((item: any) => {
+    // Client-side data validation and cleanup
+    let invalidAgencyCount = 0;
+    let invalidTypeCount = 0;
+    const cleanedListings = Array.isArray(listings) ? listings.filter((item: any) => {
       // Remove obvious invalid entries
       if (!item || (!item.id && !item.listingID)) return false;
       
-      // Double-check agency filtering (fallback only)
+      // Double-check agency filtering (fallback validation)
       if (item.agencyID && item.agencyID !== API_CONFIG.AGENCY_ID) {
-        // Log this case as it should be filtered server-side
-        console.warn('Client-side agency filter triggered - API may not be respecting agencyID param');
+        invalidAgencyCount++;
         return false;
       }
       
+      // CRITICAL: Strict type validation - only include properties that exactly match the requested type
+      if (type) {
+        const propertyType = item.type || item.propertyType || item.category;
+        if (propertyType !== type) {
+          invalidTypeCount++;
+          return false;
+        }
+        // Additional validation: ensure we have a valid type value
+        if (!propertyType) {
+          invalidTypeCount++;
+          return false;
+        }
+      }
+      
       return true;
-    });
+    }) : [];
+
+    // Log filtering issues for monitoring (only if found)
+    if (invalidAgencyCount > 0) {
+      console.warn(`API agency filter bypass detected: ${invalidAgencyCount} listings from other agencies returned. Server-side agencyID filter may need attention.`);
+    }
+    if (invalidTypeCount > 0) {
+      console.warn(`API type filter bypass detected: ${invalidTypeCount} listings with incorrect type '${type}' returned. Server-side type filter may need attention.`);
+    }
 
     // Remove duplicates
     const uniqueListings = cleanedListings.filter((listing: any, index: number, self: any[]) => {
@@ -217,24 +247,27 @@ export async function fetchListingsIndex({
       return index === self.findIndex((l: any) => (l.listingID || l.id) === id);
     });
 
-    // Enhanced data mapping
-    const enhancedListings = uniqueListings.map((listing: any) => ({
-      ...listing,
-      id: listing.id || listing.listingID,
-      listingID: listing.listingID || listing.id,
-      bedBathCarLand: [
-        { key: 'bedrooms', label: 'Bedrooms', value: listing.bedrooms?.toString() || '0' },
-        { key: 'bathrooms', label: 'Bathrooms', value: listing.bathrooms?.toString() || '0' },
-        { key: 'carSpaces', label: 'Car Spaces', value: listing.carSpaces?.toString() || '0' },
-        { key: 'landSize', label: 'Land Size', value: listing.landSize?.toString() || '0' }
-      ],
-      description: listing.description || '',
-      agents: listing.agents || [],
-      images: listing.images?.map((img: any) => ({
-        ...img,
-        url: img.url?.replace('http://', 'https://') || img.url
-      })) || []
-    }));
+    // Enhanced data mapping with standardized ID handling
+    const enhancedListings = uniqueListings.map((listing: any) => {
+      const standardId = listing.listingID || listing.id;
+      return {
+        ...listing,
+        id: standardId,
+        listingID: standardId,
+        bedBathCarLand: [
+          { key: 'bedrooms', label: 'Bedrooms', value: listing.bedrooms?.toString() || '0' },
+          { key: 'bathrooms', label: 'Bathrooms', value: listing.bathrooms?.toString() || '0' },
+          { key: 'carSpaces', label: 'Car Spaces', value: listing.carSpaces?.toString() || '0' },
+          { key: 'landSize', label: 'Land Size', value: listing.landSize?.toString() || '0' }
+        ],
+        description: listing.description || '',
+        agents: listing.agents || [],
+        images: listing.images?.map((img: any) => ({
+          ...img,
+          url: img.url?.replace('http://', 'https://') || img.url
+        })) || []
+      };
+    });
 
     // For fetchAll, return all results with single page pagination
     if (fetchAll) {

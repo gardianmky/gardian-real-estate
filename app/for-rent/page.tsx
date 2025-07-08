@@ -44,13 +44,13 @@ export default async function ForRentPage({
   let error = null;
 
   try {
-    // Fetch residential properties for rent with proper pagination
+    // Fetch all results to properly handle pagination after filtering
     const res = await fetchListingsIndex({
       disposalMethod: "forRent",
-      type: "Residential",
-      fetchAll: false, // FIXED: Use proper pagination instead of fetching all
-      page,
-      resultsPerPage: GRID_PAGE_SIZE,
+      type: "Residential", // API type filter doesn't work, but keep for future compatibility
+      fetchAll: true, // Get all results for proper filtering and pagination
+      page: 1, // Always fetch from page 1 since we need to filter first
+      resultsPerPage: 200, // Large number to get most properties
       orderBy: "dateListed",
       orderDirection: "desc",
       // Add search filters from URL params
@@ -65,9 +65,46 @@ export default async function ForRentPage({
       categories: params?.categories ? params.categories.split(',').filter(Boolean) : []
     });
     
-    listings = res.listings || [];
-    totalCount = res.pagination?.totalResults || 0;
-    totalPages = res.pagination?.totalPages || 1;
+    const allListings = res.listings || [];
+    
+    // Client-side filtering since API type parameter is not working
+    const filteredListings = allListings.filter((listing: Listing) => {
+      const propertyType = listing.type || listing.propertyType || (listing as any).category;
+      
+      // Only include Residential properties
+      if (propertyType !== 'Residential') {
+        return false;
+      }
+      
+      // Additional validation: exclude obvious commercial indicators
+      const heading = (listing.heading || '').toLowerCase();
+      const description = (listing.description || '').toLowerCase();
+      const categories = (listing as any).categories || [];
+      
+      const commercialIndicators = [
+        'commercial', 'office', 'retail', 'industrial', 'warehouse', 
+        'development', 'subdivision', 'business', 'investment opportunity'
+      ];
+      
+      const hasCommercialIndicators = commercialIndicators.some(indicator => 
+        heading.includes(indicator) || description.includes(indicator) ||
+        categories.some((cat: string) => cat.toLowerCase().includes(indicator))
+      );
+      
+      if (hasCommercialIndicators) {
+        console.warn(`Filtering out potential commercial property from for-rent listings: ${listing.heading}`);
+        return false;
+      }
+      
+      return true;
+    });
+    
+    // Apply proper pagination after filtering
+    const startIndex = (page - 1) * GRID_PAGE_SIZE;
+    const endIndex = startIndex + GRID_PAGE_SIZE;
+    listings = filteredListings.slice(startIndex, endIndex);
+    totalCount = filteredListings.length;
+    totalPages = Math.ceil(filteredListings.length / GRID_PAGE_SIZE);
   } catch (err) {
     error = err instanceof Error ? err.message : "Failed to load properties";
     console.log("Error fetching properties:", error);

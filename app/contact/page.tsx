@@ -5,7 +5,7 @@ import type React from "react"
 import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { MapPin, Phone, Mail, Clock, Send } from "lucide-react"
+import { MapPin, Phone, Mail, Send } from "lucide-react"
 
 export default function ContactPage() {
   const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle")
@@ -200,7 +200,7 @@ export default function ContactPage() {
                 <MapPin className="h-6 w-6 text-teal-600 mt-1 mr-3 flex-shrink-0" />
                 <div>
                   <h3 className="font-medium text-gray-900 text-lg">Address</h3>
-                  <p className="text-gray-700">123 Real Estate Avenue, Mackay, QLD 4740</p>
+                  <p className="text-gray-700">94 Victoria Street, Mackay QLD 4740</p>
                 </div>
               </div>
 
@@ -217,16 +217,6 @@ export default function ContactPage() {
                 <div>
                   <h3 className="font-medium text-gray-900 text-lg">Email</h3>
                   <p className="text-gray-700">info@gardianrealestate.com.au</p>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <Clock className="h-6 w-6 text-teal-600 mt-1 mr-3 flex-shrink-0" />
-                <div>
-                  <h3 className="font-medium text-gray-900 text-lg">Office Hours</h3>
-                  <p className="text-gray-700">Monday - Friday: 9:00 AM - 5:00 PM</p>
-                  <p className="text-gray-700">Saturday: 9:00 AM - 12:00 PM</p>
-                  <p className="text-gray-700">Sunday: Closed</p>
                 </div>
               </div>
             </div>

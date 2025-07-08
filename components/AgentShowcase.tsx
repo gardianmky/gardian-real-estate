@@ -15,7 +15,7 @@ export default function AgentShowcase({ agents }: AgentShowcaseProps) {
         <div className="relative overflow-x-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 animate-slide">
             {agents.map((agent) => (
-              <Link key={agent.agentID} href={`/agent/${agent.agentID}`} className="text-center">
+              <Link key={agent.agentID} href={`/agents/${agent.agentID}`} className="text-center">
                 <img
                   src={agent.imageURL || '/placeholder-user.jpg'}
                   alt={agent.name}

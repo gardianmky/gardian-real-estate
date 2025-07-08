@@ -84,6 +84,51 @@ const config: Config = {
         orbFloatAlt: "orbFloat 15s infinite ease-in-out alternate-reverse",
         textScrollSlow: "textScrollSlow 120s linear infinite",
         textScrollReverseSlow: "textScrollReverseSlow 150s linear infinite",
+        // New enhanced microanimations
+        fadeInUp: "fadeInUp 0.7s ease-out forwards",
+        slideInUp: "slideInUp 0.6s ease-out forwards",
+        floatGentle: "floatGentle 4s ease-in-out infinite",
+        bounceClick: "bounceClick 0.2s ease-out",
+        pulseGlow: "pulseGlow 2s ease-in-out infinite",
+        shimmerSlow: "shimmerSlow 3s ease-in-out infinite",
+        iconFloat: "iconFloat 3s ease-in-out infinite",
+        cardHover: "cardHover 0.3s ease-out",
+      },
+      keyframes: {
+        fadeInUp: {
+          "0%": { opacity: "0", transform: "translateY(30px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        slideInUp: {
+          "0%": { opacity: "0", transform: "translateY(50px) scale(0.95)" },
+          "100%": { opacity: "1", transform: "translateY(0) scale(1)" },
+        },
+        floatGentle: {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-6px)" },
+        },
+        bounceClick: {
+          "0%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.05)" },
+          "100%": { transform: "scale(1)" },
+        },
+        pulseGlow: {
+          "0%, 100%": { boxShadow: "0 0 20px rgba(12, 100, 115, 0.1)" },
+          "50%": { boxShadow: "0 0 30px rgba(12, 100, 115, 0.2), 0 0 40px rgba(12, 100, 115, 0.1)" },
+        },
+        shimmerSlow: {
+          "0%": { backgroundPosition: "-200% 0" },
+          "100%": { backgroundPosition: "200% 0" },
+        },
+        iconFloat: {
+          "0%, 100%": { transform: "translateY(0px) rotate(0deg)" },
+          "25%": { transform: "translateY(-3px) rotate(1deg)" },
+          "75%": { transform: "translateY(-3px) rotate(-1deg)" },
+        },
+        cardHover: {
+          "0%": { transform: "translateY(0) scale(1)" },
+          "100%": { transform: "translateY(-8px) scale(1.02)" },
+        },
       },
     },
   },

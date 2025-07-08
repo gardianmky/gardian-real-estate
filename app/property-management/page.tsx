@@ -59,8 +59,8 @@ export default function PropertyManagementPage() {
               </div>
               <h3 className="text-xl font-semibold mb-3">Tenant screening</h3>
               <p className="text-gray-600">
-                We thoroughly vet potential tenants with comprehensive background and credit checks to find reliable
-                renters.
+                We thoroughly vet potential tenants through comprehensive screening processes including identity verification, 
+                income assessment, and reference checks to find reliable renters.
               </p>
             </div>
 
@@ -71,7 +71,7 @@ export default function PropertyManagementPage() {
               </div>
               <h3 className="text-xl font-semibold mb-3">Lease management</h3>
               <p className="text-gray-600">
-                Our team handles all aspects of lease agreements, from creation to renewals, ensuring legal compliance.
+                Our team handles all aspects of lease agreements, from initial preparation through to renewals, ensuring legal compliance and protecting your interests.
               </p>
             </div>
 
@@ -201,7 +201,7 @@ export default function PropertyManagementPage() {
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
-                    <span>Comprehensive background and credit checks</span>
+                    <span>Comprehensive tenant screening and verification</span>
                   </li>
                   <li className="flex items-start">
                     <svg

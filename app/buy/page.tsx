@@ -113,17 +113,66 @@ function Pagination({
 
 async function getListings(page: number) {
   try {
-    const { listings, pagination } = await fetchListingsIndex({
-      page,
+    // Fetch all results to properly handle pagination after filtering
+    const { listings } = await fetchListingsIndex({
+      page: 1, // Always fetch from page 1 since we need to filter first
       disposalMethod: 'forSale',
-      type: 'Residential',
-      fetchAll: false, // FIXED: Use proper pagination instead of fetching all
-      resultsPerPage: 12,
+      type: 'Residential', // API type filter doesn't work, but keep for future compatibility
+      fetchAll: true, // Get all results for proper filtering and pagination
+      resultsPerPage: 200, // Large number to get most properties
       orderBy: 'dateListed',
       orderDirection: 'desc'
     });
 
-    return { listings, pagination };
+    // Client-side filtering since API type parameter is not working
+    const filteredListings = listings.filter((listing: any) => {
+      // Only include Residential properties
+      const propertyType = listing.type || listing.propertyType || listing.category;
+      if (propertyType !== 'Residential') {
+        return false;
+      }
+      
+      // Additional validation: exclude obvious commercial indicators
+      const heading = (listing.heading || '').toLowerCase();
+      const description = (listing.description || '').toLowerCase();
+      const categories = listing.categories || [];
+      
+      const commercialIndicators = [
+        'commercial', 'office', 'retail', 'industrial', 'warehouse', 
+        'development', 'subdivision', 'business', 'investment opportunity'
+      ];
+      
+      const hasCommercialIndicators = commercialIndicators.some(indicator => 
+        heading.includes(indicator) || description.includes(indicator) ||
+        categories.some((cat: string) => cat.toLowerCase().includes(indicator))
+      );
+      
+      if (hasCommercialIndicators) {
+        console.warn(`Filtering out potential commercial property from buy listings: ${listing.heading}`);
+        return false;
+      }
+      
+      return true;
+    });
+
+    // Apply proper pagination after filtering
+    const resultsPerPage = 12;
+    const totalResults = filteredListings.length;
+    const totalPages = Math.ceil(totalResults / resultsPerPage);
+    const startIndex = (page - 1) * resultsPerPage;
+    const endIndex = startIndex + resultsPerPage;
+    const paginatedListings = filteredListings.slice(startIndex, endIndex);
+
+    return { 
+      listings: paginatedListings, 
+      pagination: {
+        currentPage: page,
+        totalPages: totalPages,
+        nextPage: page < totalPages ? page + 1 : null,
+        resultsPerPage: resultsPerPage,
+        totalResults: totalResults
+      }
+    };
   } catch (error) {
     console.error('Error fetching buy listings:', error);
     return { 

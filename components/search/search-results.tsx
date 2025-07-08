@@ -26,13 +26,46 @@ export default function SearchResults({ propertyType, data }: SearchResultsProps
         const disposalMethod = propertyType === 'buy' ? 'forSale' : 'forRent';
         const result = await fetchListingsIndex({
           disposalMethod,
-          type: 'Residential',
+          type: 'Residential', // API type filter doesn't work, but keep for future compatibility
+          fetchAll: true, // Get all results for proper filtering
           page: 1,
-          resultsPerPage: 20,
+          resultsPerPage: 200,
           ...filters // Include current search filters
         });
         
-        setListings(result.listings || []);
+        // Client-side filtering since API type parameter is not working
+        const filteredListings = (result.listings || []).filter((listing: Listing) => {
+          const propertyType = listing.type || listing.propertyType || (listing as any).category;
+          
+          // Only include Residential properties
+          if (propertyType !== 'Residential') {
+            return false;
+          }
+          
+          // Additional validation: exclude obvious commercial indicators
+          const heading = (listing.heading || '').toLowerCase();
+          const description = (listing.description || '').toLowerCase();
+          const categories = (listing as any).categories || [];
+          
+          const commercialIndicators = [
+            'commercial', 'office', 'retail', 'industrial', 'warehouse', 
+            'development', 'subdivision', 'business', 'investment opportunity'
+          ];
+          
+          const hasCommercialIndicators = commercialIndicators.some(indicator => 
+            heading.includes(indicator) || description.includes(indicator) ||
+            categories.some((cat: string) => cat.toLowerCase().includes(indicator))
+          );
+          
+          if (hasCommercialIndicators) {
+            console.warn(`Filtering out potential commercial property from rent search: ${listing.heading}`);
+            return false;
+          }
+          
+          return true;
+        });
+        
+        setListings(filteredListings);
       } catch (err) {
         setError('Failed to load search results');
         console.error('Search error:', err);

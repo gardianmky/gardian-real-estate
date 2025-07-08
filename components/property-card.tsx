@@ -58,9 +58,19 @@ export default function PropertyCard({ listing }: PropertyCardProps) {
           <div className="mt-auto pt-4 border-t border-gray-100 space-y-3">
             <PropertyFeaturesInline listing={listing} />
             
+            {/* Agent Information */}
+            {listing.agents && listing.agents.length > 0 && (
+              <div className="flex items-center text-sm text-gray-600">
+                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                <span>{listing.agents[0].name || 'Contact Agent'}</span>
+              </div>
+            )}
+            
             {/* Click-through button to listing page */}
             <Button asChild variant="primary" size="default" className="w-full">
-              <Link href={`/property/${listing.listingID || listing.id}`}>
+              <Link href={`/listing/${listing.listingID || listing.id}`}>
                 <span className="flex items-center justify-center">
                   View Property Details
                   <svg className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">

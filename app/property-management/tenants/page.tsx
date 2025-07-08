@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { TenantApplicationForm } from '@/components/forms/tenant-application-form';
+import TenantApplicationForm from '@/components/forms/tenant-application-form';
 
 export const metadata: Metadata = {
   title: 'Tenant Services | Property Management | Gardian Real Estate',
@@ -33,12 +33,12 @@ export default function TenantsPage() {
               >
                 Browse Rental Properties
               </Link>
-              <a
-                href="#rental-application"
+              <Link
+                href="/property-management/tenants#reiq-application"
                 className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-teal-600 transition-colors"
               >
                 Apply for Rental
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -203,7 +203,9 @@ export default function TenantsPage() {
       </div>
 
       {/* Enhanced Rental Application Form */}
-      <TenantApplicationForm />
+      <div id="reiq-application">
+        <TenantApplicationForm />
+      </div>
 
       {/* Maintenance Request Form */}
       <div className="bg-white py-16">
