@@ -89,48 +89,120 @@ export default function AboutPage() {
             </TealGradientSection>
           </div>
 
-          <h2 className="text-2xl font-semibold text-teal-600 mb-4">Our Services</h2>
-          <p>Gardian Real Estate offers a comprehensive range of services designed to meet all your property and financial needs in Mackay and the surrounding region:</p>
+          <h2 className="text-2xl font-semibold text-teal-600 mb-4">Our Comprehensive Services</h2>
+          <p className="mb-8">
+            Drawing on long-term experience as business owners, our team understands the pressures and opportunities involved in all aspects of property, finance, and insurance. We provide comprehensive solutions tailored to your specific needs:
+          </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-            <div>
-              <h3 className="text-lg font-semibold text-teal-600 mb-3">🏠 Real Estate Services</h3>
-              <ul className="list-disc pl-6 space-y-1">
-                <li>Residential property sales across Mackay region</li>
-                <li>Commercial property sales and leasing</li>
-                <li>Property purchasing assistance and buyer advocacy</li>
-                <li>Comprehensive property management (7.7% management fee)</li>
-                <li>Professional property appraisals and market analysis</li>
-                <li>Property asset management and investment advice</li>
-                <li>Qualified tradesman network for maintenance</li>
+          {/* Commercial Real Estate Services */}
+          <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm mb-8">
+            <h3 className="text-xl font-semibold text-teal-600 mb-4 flex items-center">
+              <span className="text-2xl mr-3">🏢</span>
+              Commercial Real Estate
+            </h3>
+            <p className="text-gray-700 mb-4">
+              Drawing on long-term experience as business owners, our commercial real estate team understand the pressures and opportunities involved in buying and leasing business premises.
+            </p>
+            <ul className="list-disc pl-6 space-y-2 text-gray-700">
+              <li>Commercial land and property sales</li>
+              <li>Commercial property management for owners</li>
+              <li>Commercial property leasing to tenants</li>
+            </ul>
+          </div>
+
+          {/* Residential Real Estate Services */}
+          <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm mb-8">
+            <h3 className="text-xl font-semibold text-teal-600 mb-4 flex items-center">
+              <span className="text-2xl mr-3">🏠</span>
+              Residential Real Estate
+            </h3>
+            <p className="text-gray-700 mb-4">
+              Our specialist sales teams are here to help you with all areas of buying and selling property – going above and beyond through our fresh and energetic marketing style.
+            </p>
+            <ul className="list-disc pl-6 space-y-2 text-gray-700">
+              <li>Residential land and property sales</li>
+              <li>Residential land and property purchasing</li>
+              <li>In room auctions</li>
+            </ul>
+          </div>
+
+          {/* Property Management Services */}
+          <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm mb-8">
+            <h3 className="text-xl font-semibold text-teal-600 mb-4 flex items-center">
+              <span className="text-2xl mr-3">🔧</span>
+              Property Management
+            </h3>
+            <p className="text-gray-700 mb-4">
+              We provide support and assistance to homeowners and tenants across all areas of property management, ensuring properties are both well maintained and providing a quality return.
+            </p>
+            <ul className="list-disc pl-6 space-y-2 text-gray-700">
+              <li>Assisting with finding a property to rent and call home</li>
+              <li>Managing your property assets</li>
+              <li>Maintaining your property with qualified tradesmen</li>
+              <li>Providing you with up-to-date policy information</li>
+            </ul>
+          </div>
+
+          {/* Financial Services */}
+          <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm mb-8">
+            <h3 className="text-xl font-semibold text-teal-600 mb-4 flex items-center">
+              <span className="text-2xl mr-3">💰</span>
+              Financial Services
+            </h3>
+            <p className="text-gray-700 mb-4">
+              As a long-established and respected financial services firm, with access to over 20 of Australia's leading lenders, we can compare hundreds of products to help you find the loan that's right for you, at no added cost to you.
+            </p>
+            <ul className="list-disc pl-6 space-y-2 text-gray-700">
+              <li>Home and investment loans (purchase or refinancing)</li>
+              <li>Debt consolidation</li>
+              <li>Commercial finance</li>
+              <li>Personal and car loans</li>
+              <li>Equipment finance and leasing</li>
+            </ul>
+          </div>
+
+          {/* Insurance Services */}
+          <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm mb-8">
+            <h3 className="text-xl font-semibold text-teal-600 mb-4 flex items-center">
+              <span className="text-2xl mr-3">🛡️</span>
+              Insurance Services
+            </h3>
+            <p className="text-gray-700 mb-4">
+              We specialise in general/heavy industry insurance advice and covers to align with your needs. We have an experienced team of brokers to be "with you, at every step" in all facets of general insurance, some of which include:
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <ul className="list-disc pl-6 space-y-2 text-gray-700">
+                <li>Business Insurance</li>
+                <li>Cyber risk solutions</li>
+                <li>Financial lines - management liability, professional indemnity</li>
+                <li>Public/Products liability</li>
+                <li>Commercial motor</li>
               </ul>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-semibold text-teal-600 mb-3">💰 Financial Services</h3>
-              <ul className="list-disc pl-6 space-y-1">
-                <li>Home loans through 20+ Australian lenders</li>
-                <li>Investment property finance and portfolio loans</li>
-                <li>Commercial finance and business loans</li>
-                <li>Personal loans and vehicle finance</li>
-                <li>Equipment finance for business needs</li>
-                <li>Debt consolidation strategies</li>
-                <li>Financial planning and wealth advisory</li>
-                <li>Life and income protection insurance</li>
-                <li>Superannuation and retirement planning</li>
+              <ul className="list-disc pl-6 space-y-2 text-gray-700">
+                <li>Mining/Civil contractors</li>
+                <li>Engineering/Construction</li>
+                <li>Marine risks</li>
+                <li>Personal lines - house, car, boat, caravan etc</li>
               </ul>
             </div>
           </div>
 
-          <div className="bg-teal-50 p-6 rounded-lg border border-teal-100">
-            <h3 className="text-lg font-semibold text-teal-600 mb-3">🛡️ Insurance Services</h3>
-            <ul className="list-disc pl-6 space-y-1">
-              <li>Landlord insurance for rental property protection</li>
-              <li>Building insurance with cyclone and storm coverage</li>
-              <li>Business insurance including public liability and cyber risk</li>
-              <li>Professional indemnity and commercial motor insurance</li>
-              <li>Personal insurance lines and family protection</li>
-              <li>Investment management and estate planning</li>
+          {/* Financial Planning Services */}
+          <div className="bg-teal-50 p-6 rounded-lg border border-teal-100 mb-8">
+            <h3 className="text-xl font-semibold text-teal-600 mb-4 flex items-center">
+              <span className="text-2xl mr-3">�</span>
+              Financial Planning & Advisory
+            </h3>
+            <p className="text-gray-700 mb-4">
+              Regardless of what you do or who you are, money will always play a significant role in your life. That's why it is so important to know how to properly manage your money. We believe all Australians should be able to access trustworthy and affordable financial advice.
+            </p>
+            <ul className="list-disc pl-6 space-y-2 text-gray-700">
+              <li>Life and income protection insurance</li>
+              <li>Superannuation advice and management</li>
+              <li>Wealth and finance advisory services</li>
+              <li>Cashflow and debt management strategies</li>
+              <li>Managed funds and investments</li>
+              <li>Estate planning advice</li>
             </ul>
           </div>
 
