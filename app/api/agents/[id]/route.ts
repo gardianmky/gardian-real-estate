@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://api.renet.app/Website";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://api.renet.app";
 const API_TOKEN = process.env.NEXT_PUBLIC_API_TOKEN || "MRhE2JztS7rewrkrttDgJOrCHa17vBarvKLVk5V2xBlBWiZCqGfamsXH";
 
 const API_HEADERS = {
@@ -25,7 +25,7 @@ export async function GET(
 
   try {
     // Fetch agent details
-    const agentResponse = await fetch(`${API_BASE_URL}/Agents/${id}`, {
+    const agentResponse = await fetch(`${API_BASE_URL}/Website/Agents/${id}`, {
       headers: API_HEADERS,
       cache: 'no-store',
     });
@@ -45,7 +45,7 @@ export async function GET(
 
     // Fetch agent's listings with pagination
     const listingsResponse = await fetch(
-      `${API_BASE_URL}/Listings?agentID=${id}&offset=${offset}&limit=${limit}`,
+      `${API_BASE_URL}/Website/Listings?agentID=${id}&offset=${offset}&limit=${limit}`,
       {
         headers: API_HEADERS,
         cache: 'no-store',
@@ -54,7 +54,7 @@ export async function GET(
 
     // Fetch total count of listings
     const totalListingsResponse = await fetch(
-      `${API_BASE_URL}/Listings?agentID=${id}&count=true`,
+      `${API_BASE_URL}/Website/Listings?agentID=${id}&count=true`,
       {
         headers: API_HEADERS,
         cache: 'no-store',

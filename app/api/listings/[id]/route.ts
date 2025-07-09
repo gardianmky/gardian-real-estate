@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { handleApiResponse, createValidationError, handleGenericError } from '@/lib/api-error-handler';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://api.renet.app/Website";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://api.renet.app";
 const API_TOKEN = process.env.NEXT_PUBLIC_API_TOKEN || "MRhE2JztS7rewrkrttDgJOrCHa17vBarvKLVk5V2xBlBWiZCqGfamsXH";
 
 const API_HEADERS = {
@@ -16,33 +17,22 @@ export async function GET(
   const { id } = await params;
 
   if (!id) {
-    return NextResponse.json({ error: 'Missing listing ID' }, { status: 400 });
+    const validationError = createValidationError('Missing listing ID');
+    return NextResponse.json(
+      { error: validationError.userMessage, code: validationError.code, timestamp: new Date().toISOString() },
+      { status: validationError.statusCode }
+    );
   }
 
   try {
-    const response = await fetch(`${API_BASE_URL}/Listings/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/Website/Listings/${id}`, {
       headers: API_HEADERS,
       cache: 'no-store',
     });
 
-    if (!response.ok) {
-      console.error(`API responded with status: ${response.status} for listing ID ${id}`);
-      if (response.status === 404) {
-        return NextResponse.json({ error: 'Listing not found' }, { status: 404 });
-      }
-      return NextResponse.json(
-        { error: 'Failed to fetch listing from external API' },
-        { status: response.status }
-      );
-    }
-
-    const listingData = await response.json();
+    const listingData = await handleApiResponse(response, `Listing fetch for ID ${id}`);
     return NextResponse.json(listingData);
   } catch (error) {
-    console.error(`Error fetching listing ID ${id}:`, error);
-    return NextResponse.json(
-      { error: 'Internal server error fetching listing' },
-      { status: 500 }
-    );
+    return handleGenericError(error, `Listing fetch for ID ${id}`);
   }
 } 

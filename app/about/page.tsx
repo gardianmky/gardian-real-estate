@@ -339,13 +339,13 @@ export default function AboutPage() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-lg mx-auto">
           <TealGradientButton
             href="/contact"
-            className="w-full sm:w-auto px-8 py-4 text-center font-semibold rounded-lg bg-white text-teal-600 hover:bg-gray-100 hover:shadow-lg transition-all duration-300"
+            className="w-full sm:w-auto px-8 py-4 text-center font-semibold rounded-lg bg-white text-teal-700 hover:bg-gray-50 hover:text-teal-800 hover:shadow-lg transition-all duration-300"
           >
             Contact Us Today
           </TealGradientButton>
           <TealGradientButton
             href="/for-sale"
-            className="w-full sm:w-auto px-8 py-4 text-center font-semibold rounded-lg bg-white/10 text-white hover:bg-white/20 border border-white/20 hover:border-white/40 transition-all duration-300"
+            className="w-full sm:w-auto px-8 py-4 text-center font-semibold rounded-lg bg-white/20 text-white hover:bg-white/30 border-2 border-white/40 hover:border-white/60 transition-all duration-300"
           >
             View Properties
           </TealGradientButton>

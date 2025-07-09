@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { handleApiResponse, createValidationError, handleGenericError } from '@/lib/api-error-handler';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://api.renet.app";
 const API_TOKEN = process.env.RENET_API_TOKEN || process.env.NEXT_PUBLIC_API_TOKEN || "MRhE2JztS7rewrkrttDgJOrCHa17vBarvKLVk5V2xBlBWiZCqGfamsXH";
@@ -18,18 +19,20 @@ export async function POST(request: NextRequest) {
     const missingFields = requiredFields.filter(field => !body[field]);
     
     if (missingFields.length > 0) {
+      const validationError = createValidationError(`Missing required fields: ${missingFields.join(', ')}`);
       return NextResponse.json(
-        { error: `Missing required fields: ${missingFields.join(', ')}` },
-        { status: 400 }
+        { error: validationError.userMessage, code: validationError.code, timestamp: new Date().toISOString() },
+        { status: validationError.statusCode }
       );
     }
 
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(body.email)) {
+      const validationError = createValidationError('Invalid email address format');
       return NextResponse.json(
-        { error: 'Invalid email address' },
-        { status: 400 }
+        { error: validationError.userMessage, code: validationError.code, timestamp: new Date().toISOString() },
+        { status: validationError.statusCode }
       );
     }
 
@@ -53,12 +56,7 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify([formPayload])
     });
 
-    if (!apiResponse.ok) {
-      console.error('ReNet API error:', apiResponse.status, await apiResponse.text());
-      throw new Error(`API submission failed: ${apiResponse.status}`);
-    }
-
-    const apiResult = await apiResponse.json();
+    const apiResult = await handleApiResponse(apiResponse, 'Contact form submission');
     console.log('Contact form submitted to ReNet API successfully:', apiResult);
 
     return NextResponse.json({
@@ -69,10 +67,6 @@ export async function POST(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Error processing contact form:', error);
-    return NextResponse.json(
-      { error: 'Internal server error. Please try again or contact us directly.' },
-      { status: 500 }
-    );
+    return handleGenericError(error, 'Contact form processing');
   }
 }
