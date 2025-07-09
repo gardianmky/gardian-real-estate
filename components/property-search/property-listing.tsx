@@ -1,38 +1,55 @@
-import Image from "next/image"
-import Link from "next/link"
-import { Home, Bath, Car, Building, DollarSign } from "lucide-react"
-import type { Listing } from "@/types/listing"
-import { PropertyFeaturesInline } from "@/components/ui/property-features"
+'use client';
 
-type ListingStatus = "forSale" | "forRent" | "sold" | "leased"
+import Image from "next/image";
+import Link from "next/link";
+import { Home, Bath, Car, Building, DollarSign } from "lucide-react";
+import type { Listing } from "@/types/listing";
+import { PropertyFeaturesCard } from "@/components/ui/property-features";
+import { RegularImageWithFallback } from "@/components/ui/image-with-fallback";
+
+type ListingStatus = "forSale" | "forRent" | "sold" | "leased";
 
 interface PropertyListingProps {
-  listing: Listing
-  category: ListingStatus
+  listing: Listing;
+  category: ListingStatus;
 }
 
-export default function PropertyListing({ listing, category }: PropertyListingProps) {
+export default function PropertyListing({
+  listing,
+  category,
+}: PropertyListingProps) {
   // Get the first image or use a placeholder
   const mainImage =
-    listing.images && listing.images.length > 0 ? listing.images[0].url : "/placeholder.svg?height=300&width=400"
+    listing.images && listing.images.length > 0
+      ? listing.images[0].url
+      : "/placeholder.svg?height=300&width=400";
 
   // Get badge text and icon based on category
   const getBadgeInfo = () => {
     switch (category) {
       case "forSale":
-        return { text: "For Sale", icon: <Home className="h-4 w-4 mr-1" /> }
+        return { text: "For Sale", icon: <Home className="h-4 w-4 mr-1" /> };
       case "forRent":
-        return { text: "For Rent", icon: <DollarSign className="h-4 w-4 mr-1" /> }
+        return {
+          text: "For Rent",
+          icon: <DollarSign className="h-4 w-4 mr-1" />,
+        };
       case "sold":
-        return { text: "Sold", icon: <Home className="h-4 w-4 mr-1" /> }
+        return { text: "Sold", icon: <Home className="h-4 w-4 mr-1" /> };
       case "leased":
-        return { text: "Leased", icon: <DollarSign className="h-4 w-4 mr-1" /> }
+        return {
+          text: "Leased",
+          icon: <DollarSign className="h-4 w-4 mr-1" />,
+        };
       default:
-        return { text: "Property", icon: <Building className="h-4 w-4 mr-1" /> }
+        return {
+          text: "Property",
+          icon: <Building className="h-4 w-4 mr-1" />,
+        };
     }
-  }
+  };
 
-  const badge = getBadgeInfo()
+  const badge = getBadgeInfo();
 
   return (
     <Link href={`/listing/${listing.listingID}`} className="block group">
@@ -54,27 +71,68 @@ export default function PropertyListing({ listing, category }: PropertyListingPr
 
         <div className="p-6">
           <div className="mb-3">
-            <h3 className="text-xl font-semibold line-clamp-1 group-hover:text-teal-600 transition-colors duration-200">
-              {listing.heading}
+            {/* Address as primary heading */}
+            <h3 className="text-xl font-semibold line-clamp-2 group-hover:text-teal-600 transition-colors duration-200">
+              {listing.address?.displayAddress ||
+                `${listing.address?.street || ""}, ${listing.address?.suburb || ""}`
+                  .trim()
+                  .replace(/^,|,$/, "") ||
+                listing.heading}
             </h3>
-            <p className="text-gray-600 text-sm mb-2">
-              {`${listing.address.street}, ${listing.address.suburb}, ${listing.address.state} ${listing.address.postcode}`}
-            </p>
+            {/* Property type/heading if different from address */}
+            {listing.heading &&
+              listing.heading !==
+                (listing.address?.displayAddress ||
+                  `${listing.address?.street || ""}, ${listing.address?.suburb || ""}`
+                    .trim()
+                    .replace(/^,|,$/, "")) && (
+                <p className="text-gray-600 text-sm mb-2">{listing.heading}</p>
+              )}
           </div>
 
-          <p className="text-xl font-bold text-teal-600 mb-2">{listing.price}</p>
+          <p className="text-xl font-bold text-teal-600 mb-4">
+            {listing.price}
+          </p>
 
-          <div className="border-t border-gray-100 pt-4 mb-5">
-            <PropertyFeaturesInline listing={listing} />
+          <div className="mb-4">
+            <PropertyFeaturesCard listing={listing} className="flex-wrap" />
           </div>
 
-          {/* Agent Information */}
+          {/* Agent Information with Photo */}
           {listing.agents && listing.agents.length > 0 && (
             <div className="flex items-center text-sm text-gray-600 mb-4">
-              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-              </svg>
-              <span>{listing.agents[0].name || 'Contact Agent'}</span>
+              <div className="flex items-center">
+                {listing.agents[0].imageURL ? (
+                  <RegularImageWithFallback
+                    src={listing.agents[0].imageURL}
+                    alt={listing.agents[0].name || "Agent"}
+                    className="w-8 h-8 rounded-full object-cover mr-3 border border-gray-200"
+                    onHide={() => {
+                      // This will be handled by the client component
+                    }}
+                  />
+                ) : null}
+                <div
+                  className={`w-8 h-8 rounded-full bg-teal-100 flex items-center justify-center mr-3 ${listing.agents[0].imageURL ? "hidden" : ""}`}
+                >
+                  <svg
+                    className="w-4 h-4 text-teal-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    />
+                  </svg>
+                </div>
+                <span className="font-medium">
+                  {listing.agents[0].name || "Contact Agent"}
+                </span>
+              </div>
             </div>
           )}
 
@@ -84,5 +142,5 @@ export default function PropertyListing({ listing, category }: PropertyListingPr
         </div>
       </div>
     </Link>
-  )
+  );
 }

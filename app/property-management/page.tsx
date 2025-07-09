@@ -364,7 +364,7 @@ export default function PropertyManagementPage() {
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Full Service Package</h3>
                 <p className="text-3xl font-bold text-teal-600 mb-4">
-                  8.8%<span className="text-sm text-gray-500 font-normal"> of rent collected</span>
+                  7.7%<span className="text-sm text-gray-500 font-normal"> of rent collected</span>
                 </p>
                 <ul className="space-y-2 mb-6">
                   <li className="flex items-start">

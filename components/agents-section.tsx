@@ -1,5 +1,5 @@
 import { Agent } from "types/index";
-import Image from "next/image";
+import { ImageWithFallback } from "./ui/image-with-fallback";
 
 interface AgentsSectionProps {
   agents: Agent[];
@@ -19,16 +19,13 @@ export default function AgentsSection({ agents }: AgentsSectionProps) {
           }`}
         >
           <div className="relative h-40 w-40 mx-auto rounded-full overflow-hidden mb-4">
-            <Image
+            <ImageWithFallback
               src={agent.imageURL || "/placeholder-user.jpg"}
               alt={agent.name}
               fill
               className="object-cover"
               sizes="160px"
-              onError={(e: any) => {
-                e.target.onerror = null;
-                e.target.src = "/placeholder-user.jpg";
-              }}
+              fallbackSrc="/placeholder-user.jpg"
             />
           </div>
           <h3 className="text-xl font-bold text-center text-gray-800">

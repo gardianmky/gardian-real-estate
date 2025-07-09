@@ -12,6 +12,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary: "bg-teal-600 text-white hover:bg-teal-700 focus-visible:ring-teal-600 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 rounded-2xl",
+        gradient: "teal-gradient-button shadow-md hover:shadow-lg transform hover:-translate-y-0.5 rounded-2xl text-white font-semibold",
         secondary: "bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 focus-visible:ring-teal-100 rounded-2xl",
         ghost: "text-gray-600 hover:text-teal-600 hover:bg-gray-50 focus-visible:ring-gray-300 rounded-xl",
         outline: "border border-gray-200 hover:bg-gray-50 hover:text-gray-900 focus-visible:ring-gray-300 rounded-2xl",

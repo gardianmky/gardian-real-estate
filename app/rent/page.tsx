@@ -29,6 +29,27 @@ export default function RentPage() {
           <div className="mb-8">
             <SearchBar variant="header" defaultPropertyType="rent" />
           </div>
+
+          {/* Rental Application Form Link */}
+          <div className="mt-6 p-4 bg-teal-50 rounded-lg border border-teal-200">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-lg font-semibold text-teal-800 mb-1">Ready to Apply?</h3>
+                <p className="text-sm text-teal-600">Download the official REIQ rental application form</p>
+              </div>
+              <a 
+                href="https://www.rta.qld.gov.au/sites/default/files/2025-03/Form-22-Rental-application.pdf" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-lg transition-colors font-medium"
+              >
+                Download REIQ Rental Application Form (PDF)
+              </a>
+            </div>
+            <p className="text-xs text-teal-500 mt-2">
+              Please complete and return this form to apply for a rental property
+            </p>
+          </div>
         </div>
 
         <div className="mb-6">

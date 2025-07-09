@@ -6,7 +6,7 @@ interface Listing {
     url: string;
     alt?: string;
   }>;
-  disposalMethod: 'forSale' | 'forRent' | 'sold';
+  disposalMethod: 'forSale' | 'forRent' | 'sold' | 'auction';
   type: 'Residential' | 'Commercial' | 'Land';
   bedrooms?: number;
   bathrooms?: number;

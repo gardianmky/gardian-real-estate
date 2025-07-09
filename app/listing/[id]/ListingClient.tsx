@@ -694,6 +694,18 @@ export default function ListingClient({ listing }: ListingClientProps) {
                   >
                     Request Appraisal
                   </Link>
+                  
+                  {/* Rental Application Form Link - only for rental properties */}
+                  {listing.disposalMethod === 'forRent' && (
+                    <a
+                      href="https://www.rta.qld.gov.au/sites/default/files/2025-03/Form-22-Rental-application.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-gray-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-700 transition-colors"
+                    >
+                      Download REIQ Rental Application Form (PDF)
+                    </a>
+                  )}
                 </div>
               </div>
             </div>

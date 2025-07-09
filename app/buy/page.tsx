@@ -1,61 +1,65 @@
-import { Suspense } from 'react';
-import { Metadata } from 'next';
-import { fetchListingsIndex } from '@/lib/api';
-import PropertyCard from '@/components/property-card';
-import { PropertyFeaturesInline } from '@/components/ui/property-features';
+import { Metadata } from "next";
+import { fetchListingsIndex } from "@/lib/api";
+import PropertyCard from "@/components/property-card";
 
 export const metadata: Metadata = {
-  title: 'Properties for Sale in Mackay | Gardian Real Estate',
-  description: 'Browse all properties for sale in Mackay and surrounding areas. Find your dream home with Gardian Real Estate - Mackay\'s trusted property experts.',
+  title: "Properties for Sale in Mackay | Gardian Real Estate",
+  description:
+    "Browse all properties for sale in Mackay and surrounding areas. Find your dream home with Gardian Real Estate - Mackay's trusted property experts.",
   openGraph: {
-    title: 'Properties for Sale in Mackay | Gardian Real Estate',
-    description: 'Browse all properties for sale in Mackay and surrounding areas. Find your dream home with Gardian Real Estate.',
-    type: 'website',
+    title: "Properties for Sale in Mackay | Gardian Real Estate",
+    description:
+      "Browse all properties for sale in Mackay and surrounding areas. Find your dream home with Gardian Real Estate.",
+    type: "website",
   },
 };
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 interface BuyPageProps {
-  searchParams: { 
-    page?: string; 
+  searchParams: Promise<{
+    page?: string;
     disposalMethod?: string;
     [key: string]: string | undefined;
-  };
+  }>;
 }
 
 // Pagination Component
-function Pagination({ 
-  currentPage, 
-  totalPages, 
-  basePath = '/buy'
-}: { 
-  currentPage: number; 
-  totalPages: number; 
+function Pagination({
+  currentPage,
+  totalPages,
+  basePath = "/buy",
+}: {
+  currentPage: number;
+  totalPages: number;
   basePath?: string;
 }) {
   if (totalPages <= 1) return null;
 
   const pages = [];
   const showEllipsis = totalPages > 7;
-  
+
   if (showEllipsis) {
     // Show first page
     pages.push(1);
-    
+
     if (currentPage > 4) {
-      pages.push('...');
+      pages.push("...");
     }
-    
+
     // Show pages around current page
-    for (let i = Math.max(2, currentPage - 1); i <= Math.min(totalPages - 1, currentPage + 1); i++) {
+    for (
+      let i = Math.max(2, currentPage - 1);
+      i <= Math.min(totalPages - 1, currentPage + 1);
+      i++
+    ) {
       pages.push(i);
     }
-    
+
     if (currentPage < totalPages - 3) {
-      pages.push('...');
+      pages.push("...");
     }
-    
+
     // Show last page
     if (totalPages > 1) {
       pages.push(totalPages);
@@ -81,15 +85,15 @@ function Pagination({
       {/* Page Numbers */}
       {pages.map((page, index) => (
         <span key={index}>
-          {page === '...' ? (
+          {page === "..." ? (
             <span className="px-3 py-2 text-gray-500">...</span>
           ) : (
             <a
               href={`${basePath}?page=${page}&disposalMethod=forSale`}
               className={`px-3 py-2 rounded-lg transition-colors ${
                 currentPage === page
-                  ? 'bg-teal-600 text-white'
-                  : 'border border-gray-300 text-gray-700 hover:bg-gray-50'
+                  ? "bg-teal-600 text-white"
+                  : "border border-gray-300 text-gray-700 hover:bg-gray-50"
               }`}
             >
               {page}
@@ -114,40 +118,61 @@ function Pagination({
 async function getListings(page: number) {
   try {
     console.log(`🏠 Fetching residential properties for sale (Page ${page})`);
-    
+
     // Use the simple, direct API endpoint as documented
-    const { listings, pagination } = await fetchListingsIndex({
+    const result = await fetchListingsIndex({
       page,
       type: "Residential",
       disposalMethod: "forSale",
-      resultsPerPage: 12
+      resultsPerPage: 12,
     });
 
-    console.log(`✅ Buy page: ${pagination.totalResults} total properties, showing ${listings.length} on page ${page}/${pagination.totalPages}`);
+    // Ensure we have valid data
+    const listings = Array.isArray(result?.listings) ? result.listings : [];
+    const pagination = result?.pagination || {
+      currentPage: page,
+      totalPages: 1,
+      nextPage: null,
+      resultsPerPage: 12,
+      totalResults: 0,
+    };
 
-    return { 
-      listings, 
-      pagination
+    console.log(
+      `✅ Buy page: ${pagination.totalResults} total properties, showing ${listings.length} on page ${page}/${pagination.totalPages}`,
+    );
+
+    return {
+      listings,
+      pagination,
     };
   } catch (error) {
-    console.error('Error fetching buy listings:', error);
-    return { 
-      listings: [], 
-      pagination: { 
-        currentPage: 1, 
-        totalPages: 1, 
-        nextPage: null, 
-        resultsPerPage: 12, 
-        totalResults: 0 
-      } 
+    console.error("Error fetching buy listings:", error);
+    return {
+      listings: [],
+      pagination: {
+        currentPage: page,
+        totalPages: 1,
+        nextPage: null,
+        resultsPerPage: 12,
+        totalResults: 0,
+      },
     };
   }
 }
 
 export default async function BuyPage({ searchParams }: BuyPageProps) {
   const resolvedSearchParams = await searchParams;
-  const currentPage = parseInt(resolvedSearchParams.page || '1', 10);
+  const currentPage = parseInt(resolvedSearchParams.page || "1", 10);
   const { listings, pagination } = await getListings(currentPage);
+
+  // Ensure pagination has default values
+  const safePagination = {
+    currentPage: pagination?.currentPage || currentPage,
+    totalPages: pagination?.totalPages || 1,
+    nextPage: pagination?.nextPage || null,
+    resultsPerPage: pagination?.resultsPerPage || 12,
+    totalResults: pagination?.totalResults || 0,
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -159,7 +184,9 @@ export default async function BuyPage({ searchParams }: BuyPageProps) {
               Properties for Sale in Mackay
             </h1>
             <p className="text-xl text-teal-100 max-w-3xl mx-auto">
-              Discover your dream home with Gardian Real Estate. Browse our extensive collection of properties for sale in Mackay and surrounding areas.
+              Discover your dream home with Gardian Real Estate. Browse our
+              extensive collection of properties for sale in Mackay and
+              surrounding areas.
             </p>
           </div>
         </div>
@@ -175,13 +202,16 @@ export default async function BuyPage({ searchParams }: BuyPageProps) {
                 Properties for Sale
               </h2>
               <p className="text-gray-600">
-                {pagination.totalResults} {pagination.totalResults === 1 ? 'property' : 'properties'} found
-                {currentPage > 1 && ` (Page ${currentPage} of ${pagination.totalPages})`}
+                {safePagination.totalResults}{" "}
+                {safePagination.totalResults === 1 ? "property" : "properties"}{" "}
+                found
+                {currentPage > 1 &&
+                  ` (Page ${currentPage} of ${safePagination.totalPages})`}
               </p>
             </div>
             <div className="mt-4 md:mt-0">
               <span className="bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-sm font-medium">
-                Page {pagination.currentPage} of {pagination.totalPages}
+                Page {safePagination.currentPage} of {safePagination.totalPages}
               </span>
             </div>
           </div>
@@ -197,9 +227,9 @@ export default async function BuyPage({ searchParams }: BuyPageProps) {
             </div>
 
             {/* Pagination */}
-            <Pagination 
-              currentPage={pagination.currentPage} 
-              totalPages={pagination.totalPages}
+            <Pagination
+              currentPage={safePagination.currentPage}
+              totalPages={safePagination.totalPages}
               basePath="/buy"
             />
           </>
@@ -207,16 +237,29 @@ export default async function BuyPage({ searchParams }: BuyPageProps) {
           <div className="text-center py-12">
             <div className="bg-white rounded-lg shadow-sm p-8 max-w-md mx-auto">
               <div className="text-gray-400 mb-4">
-                <svg className="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                <svg
+                  className="w-16 h-16 mx-auto"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1}
+                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                  />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">No Properties Found</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                No Properties Found
+              </h3>
               <p className="text-gray-600 mb-4">
-                We couldn't find any properties matching your criteria. Please try again later or contact us directly.
+                We couldn't find any properties matching your criteria. Please
+                try again later or contact us directly.
               </p>
-              <a 
-                href="/contact" 
+              <a
+                href="/contact"
                 className="inline-flex items-center bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition-colors"
               >
                 Contact Us
@@ -232,18 +275,19 @@ export default async function BuyPage({ searchParams }: BuyPageProps) {
               Can't Find What You're Looking For?
             </h3>
             <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-              Our experienced team at Gardian Real Estate can help you find the perfect property. 
-              Get in touch with us today for personalized assistance.
+              Our experienced team at Gardian Real Estate can help you find the
+              perfect property. Get in touch with us today for personalized
+              assistance.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
-                href="/contact" 
+              <a
+                href="/contact"
                 className="bg-teal-600 text-white px-6 py-3 rounded-lg hover:bg-teal-700 transition-colors font-medium"
               >
                 Contact Our Team
               </a>
-              <a 
-                href="/agents" 
+              <a
+                href="/agents"
                 className="border border-gray-300 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-50 transition-colors font-medium"
               >
                 View Our Agents

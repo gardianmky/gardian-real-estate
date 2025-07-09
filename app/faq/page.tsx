@@ -18,55 +18,55 @@ export default function FAQPage() {
     {
       question: "How do I schedule a property viewing?",
       answer:
-        "You can schedule a property viewing by contacting our office directly at (07) 4957 7424, using the contact form on our website, or by reaching out to the specific agent listed on the property details page. We recommend scheduling viewings at least 24 hours in advance.",
+        "You can schedule a property viewing by contacting our office directly at (07) 4957 7424, using the contact form on our website, or by reaching out to the specific agent listed on the property details page. We're flexible with viewing times and can often accommodate same-day requests. For after-hours emergencies, call 0407 440 222.",
       category: "buying",
     },
     {
       question: "What documents do I need when applying for a rental property?",
       answer:
-        "When applying for a rental property, you'll need proof of identity (driver's license, passport), proof of income (pay slips, employment contract), rental history references, and personal references. We use the official REIQ (Real Estate Institute of Queensland) application form to ensure compliance with all legal requirements.",
+        "When applying for a rental property, you'll need proof of identity (driver's license or passport), proof of income (recent pay slips or employment contract), rental history references, and personal references. At Gardian, we use the official REIQ (Real Estate Institute of Queensland) application form to ensure compliance with all legal requirements and make the process as smooth as possible for you.",
       category: "renting",
     },
     {
       question: "How much deposit do I need to buy a property?",
       answer:
-        "The deposit amount varies depending on the property price and your financial situation. Generally, most lenders require a minimum deposit of 5-20% of the property's purchase price. We recommend speaking with a financial advisor or mortgage broker to understand your specific requirements.",
+        "The deposit amount varies depending on the property price and your financial situation. Generally, most lenders require a minimum deposit of 5-20% of the property's purchase price. As part of our comprehensive services, Gardian Real Estate can connect you with our trusted finance partners who can help you understand your specific borrowing capacity and deposit requirements.",
       category: "buying",
     },
     {
       question: "What fees are involved in selling my property?",
       answer:
-        "The main fees involved in selling your property include agent commission (typically 2-3% of the sale price), marketing costs, professional photography, and potentially staging costs. During our initial consultation, we'll provide a detailed breakdown of all costs specific to your property.",
+        "At Gardian, we believe in transparent pricing. The main fees involved in selling your property include agent commission, marketing costs, professional photography, and potentially staging costs. During our initial consultation, we'll provide a detailed breakdown of all costs specific to your property with no hidden fees - what we quote is what you pay.",
       category: "selling",
     },
     {
       question: "How long does the rental application process take?",
       answer:
-        "The rental application process typically takes 24-48 hours once we have received all required documentation through the REIQ application form. This includes time for us to verify references and for the property owner to review your application. We aim to keep you informed throughout the process.",
+        "At Gardian, we understand that finding the right rental property is important. The rental application process typically takes 24-48 hours once we have received all required documentation through the REIQ application form. This includes time for us to verify references and for the property owner to review your application. We'll keep you informed throughout the process and let you know the outcome as soon as possible.",
       category: "renting",
     },
     {
       question: "What's the difference between a building and pest inspection?",
       answer:
-        "A building inspection assesses the structural integrity of the property, identifying issues like cracks, dampness, or roof problems. A pest inspection specifically looks for evidence of termites and other wood-destroying pests. While they're different inspections, they're often conducted together before purchasing a property.",
+        "A building inspection assesses the structural integrity of the property, identifying issues like cracks, dampness, or roof problems. A pest inspection specifically looks for evidence of termites and other wood-destroying pests. While they're different inspections, they're often conducted together before purchasing a property. At Gardian, we can recommend trusted, licensed inspectors to ensure you make an informed decision.",
       category: "buying",
     },
     {
       question: "How do you determine the value of my property?",
       answer:
-        "We determine your property's value through a comprehensive market analysis that considers recent comparable sales in your area, your property's unique features and condition, current market trends, and buyer demand. We provide a detailed valuation report explaining our assessment.",
+        "At Gardian, we determine your property's value through a comprehensive market analysis that considers recent comparable sales in your area, your property's unique features and condition, current market trends, and buyer demand. Our experienced agents use their deep local knowledge of the Mackay market to provide you with an accurate, detailed valuation report explaining our assessment.",
       category: "selling",
     },
     {
       question: "What happens if there are maintenance issues during my tenancy?",
       answer:
-        "If you encounter maintenance issues during your tenancy, report them promptly through our online maintenance request system or by calling our property management team at (07) 4957 7424. Emergency repairs will be addressed immediately, while non-urgent matters will be scheduled within a reasonable timeframe after obtaining owner approval and arranging suitable access times.",
+        "At Gardian, we care for and protect our people. If you encounter maintenance issues during your tenancy, report them promptly through our online maintenance request system or by calling our property management team at (07) 4957 7424. Emergency repairs will be addressed immediately, while non-urgent matters will be scheduled within a reasonable timeframe after obtaining owner approval and arranging suitable access times. For after-hours emergencies, call 0407 440 222.",
       category: "renting",
     },
     {
       question: "How long will it take to sell my property?",
       answer:
-        "The time it takes to sell a property varies depending on market conditions, property type, location, price point, and marketing strategy. In the current Mackay market, properties typically sell within 30-90 days, but we'll provide a more specific estimate based on your property's unique characteristics.",
+        "The time it takes to sell a property varies depending on market conditions, property type, location, price point, and marketing strategy. With our energetic marketing approach and deep knowledge of the Mackay market, properties typically sell within 30-90 days, but we'll provide a more specific estimate based on your property's unique characteristics during our initial consultation.",
       category: "selling",
     },
     {
@@ -78,7 +78,7 @@ export default function FAQPage() {
     {
       question: "What are your property management fees?",
       answer:
-        "Our standard property management fee is 7.7% of rent collected, with a leasing fee of two weeks' rent for new tenancies. We also offer a full service package at 8.8% which includes additional services. We provide transparent pricing with no hidden fees - contact us for a detailed quote based on your specific needs.",
+        "Our standard property management fee is 7.7% of rent collected, with a leasing fee of two weeks' rent for new tenancies. We provide transparent pricing with no hidden fees - contact us for a detailed quote based on your specific needs.",
       category: "renting",
     },
     {
@@ -90,7 +90,7 @@ export default function FAQPage() {
     {
       question: "How do I get a property appraisal?",
       answer:
-        "You can request a property appraisal by contacting our office at (07) 4957 7424, using our online appraisal request form, or booking an appointment through our website. We provide complimentary market appraisals for residential properties and competitive pricing for commercial property valuations.",
+        "You can request a property appraisal by contacting our office at (07) 4957 7424, using our online appraisal request form, or booking an appointment through our website. At Gardian, we provide complimentary market appraisals for residential properties and competitive pricing for commercial property valuations. Our experienced agents will visit your property and provide you with a comprehensive market analysis.",
       category: "selling",
     },
   ]

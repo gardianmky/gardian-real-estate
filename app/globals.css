@@ -2,6 +2,153 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Teal Gradient Utility Styles */
+:root {
+  --teal-gradient-primary: linear-gradient(135deg, #0f766e 0%, #14b8a6 100%);
+  --teal-gradient-secondary: linear-gradient(90deg, #0d9488 0%, #5eead4 100%);
+  --teal-gradient-diagonal: linear-gradient(45deg, #134e4a 0%, #2dd4bf 50%, #0f766e 100%);
+  --teal-gradient-horizontal: linear-gradient(90deg, #0f766e 0%, #14b8a6 50%, #0d9488 100%);
+  --teal-gradient-vertical: linear-gradient(180deg, #0f766e 0%, #14b8a6 100%);
+  --teal-fallback: #0f766e;
+}
+
+/* Main teal gradient background section */
+.teal-gradient-section {
+  background: var(--teal-fallback); /* Fallback color */
+  background: var(--teal-gradient-primary);
+  border-radius: 12px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.teal-gradient-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--teal-gradient-diagonal);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.teal-gradient-section:hover::before {
+  opacity: 1;
+}
+
+.teal-gradient-section:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Teal gradient buttons */
+.teal-gradient-button {
+  background: var(--teal-fallback);
+  background: var(--teal-gradient-horizontal);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.teal-gradient-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--teal-gradient-secondary);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.teal-gradient-button:hover::before {
+  opacity: 1;
+}
+
+.teal-gradient-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Teal gradient cards */
+.teal-gradient-card {
+  background: var(--teal-fallback);
+  background: var(--teal-gradient-vertical);
+  border-radius: 16px;
+  padding: 1.5rem;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.teal-gradient-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--teal-gradient-diagonal);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.teal-gradient-card:hover::after {
+  opacity: 0.2;
+}
+
+.teal-gradient-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Teal gradient hero section */
+.teal-gradient-hero {
+  background: var(--teal-fallback);
+  background: var(--teal-gradient-primary);
+  background-size: 200% 200%;
+  animation: gradientShift 6s ease infinite;
+  border-radius: 20px;
+  padding: 4rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.teal-gradient-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-rgb: 248, 250, 252;

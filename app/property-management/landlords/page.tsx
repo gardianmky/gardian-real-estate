@@ -198,7 +198,7 @@ export default function LandlordsPage() {
               <div className="bg-teal-600 text-white rounded-2xl p-8 shadow-lg">
                 <div className="text-center">
                   <h3 className="text-2xl font-bold mb-4">Premium Management</h3>
-                  <div className="text-4xl font-bold mb-2">8.8%</div>
+                  <div className="text-4xl font-bold mb-2">7.7%</div>
                   <div className="text-teal-100 mb-6">of rental income + GST</div>
                   <ul className="text-left space-y-3">
                     <li className="flex items-center">

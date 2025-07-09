@@ -186,7 +186,6 @@ export default function MainNavigation() {
           { label: "All Rentals", href: "/rent" },
           { label: "For Rent", href: "/for-rent" },
           { label: "Leased Properties", href: "/leased" },
-          { label: "Rental Assistance", href: "/rental-assistance" },
         ],
       },
       {

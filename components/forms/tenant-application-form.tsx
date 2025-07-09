@@ -5,8 +5,8 @@ import { Button } from '@/components/ui/button';
 
 export default function TenantApplicationForm() {
   const handleREIQFormRedirect = () => {
-    // Replace this URL with the actual REIQ form URL when provided
-    window.open('https://forms.reiq.com/rental-application', '_blank');
+    // Official REIQ Rental Application Form (PDF)
+    window.open('https://www.rta.qld.gov.au/sites/default/files/2025-03/Form-22-Rental-application.pdf', '_blank');
   };
 
   return (
@@ -53,11 +53,11 @@ export default function TenantApplicationForm() {
                   onClick={handleREIQFormRedirect}
                   className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 text-lg font-semibold"
                 >
-                  Complete REIQ Application Form
+                  Download REIQ Rental Application Form (PDF)
                 </Button>
                 
                 <p className="text-sm text-gray-500 mt-4">
-                  This will open the official REIQ form in a new window
+                  Please complete and return this form to apply for a rental property
                 </p>
               </div>
             </div>

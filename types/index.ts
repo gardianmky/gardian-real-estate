@@ -1,3 +1,5 @@
+import { PropertyCategory } from "@/lib/categories";
+
 export interface Listing {
   id: string;
   listingID: string;
@@ -8,8 +10,8 @@ export interface Listing {
     url: string;
     alt?: string;
   }>;
-  disposalMethod: 'forSale' | 'forRent' | 'sold';
-  type: 'Residential' | 'Commercial' | 'Land';
+  disposalMethod: "forSale" | "forRent" | "sold";
+  type: "Residential" | "Commercial" | "Land";
   bedrooms?: number;
   bathrooms?: number;
   carSpaces?: number;
@@ -30,7 +32,10 @@ export interface Listing {
     label: string;
     value: string;
   }>;
-  categories?: string[];
+  // ENHANCED: Strict category validation with approved enum values
+  categories?: PropertyCategory[];
+  // Legacy support for API responses that may use strings
+  category?: string;
   links?: Array<{
     url: string;
     description?: string;
@@ -72,12 +77,12 @@ export interface Pagination {
 }
 
 export interface FetchListingsParams {
-  disposalMethod?: 'forSale' | 'forRent' | 'sold';
-  type?: 'Residential' | 'Commercial' | 'Land';
+  disposalMethod?: "forSale" | "forRent" | "sold";
+  type?: "Residential" | "Commercial" | "Land";
   page?: number;
   pageSize?: number;
   orderBy?: string;
-  orderDirection?: 'asc' | 'desc';
+  orderDirection?: "asc" | "desc";
   suburb?: string;
   minPrice?: number;
   maxPrice?: number;
@@ -87,8 +92,20 @@ export interface FetchListingsParams {
   propertyType?: string;
   agentID?: string;
   agencyID?: string;
-  category?: string;
+  // ENHANCED: Strict category validation
+  category?: PropertyCategory;
+  categories?: PropertyCategory[];
+  // Legacy support for string-based category filtering
+  categoryString?: string;
   keywords?: string;
+}
+
+// ENHANCED: Category filtering validation result
+export interface CategoryFilterResult {
+  validCategories: PropertyCategory[];
+  invalidCategories: string[];
+  hasErrors: boolean;
+  errorMessage?: string;
 }
 
 export interface SearchParams {

@@ -6,6 +6,7 @@ import { Pagination } from "@/components/ui/pagination";
 import { Listing } from "@/types/listing";
 import SearchBar from "@/components/search/search-bar";
 import PropertyFilters from "@/components/property-filters";
+import { ReloadButton } from "@/components/ui/reload-button";
 
 const GRID_PAGE_SIZE = 12;
 
@@ -207,12 +208,9 @@ export default async function SoldPage({
                 </svg>
                 <h3 className="text-lg sm:text-xl font-medium text-gray-800 mb-2">Unable to Load Properties</h3>
                 <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">{error}</p>
-                <button 
-                  onClick={() => window.location.reload()}
-                  className="w-full sm:w-auto bg-teal-600 text-white px-6 py-3 rounded-lg hover:bg-teal-700 transition-colors font-medium"
-                >
+                <ReloadButton className="w-full sm:w-auto bg-teal-600 text-white px-6 py-3 rounded-lg hover:bg-teal-700 transition-colors font-medium">
                   Try Again
-                </button>
+                </ReloadButton>
               </div>
             </div>
           ) : listings.length === 0 ? (
