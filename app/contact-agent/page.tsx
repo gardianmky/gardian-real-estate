@@ -1,4 +1,8 @@
+'use client';
+
 import Link from "next/link";
+import { useState, useEffect } from "react";
+import { useFormSubmission } from "@/hooks/use-form-submission";
 
 export const dynamic = 'force-dynamic';
 
@@ -11,10 +15,50 @@ interface PageProps {
   }>;
 }
 
-export default async function ContactAgentPage({
+export default function ContactAgentPage({
   searchParams
 }: PageProps) {
-  const params = await searchParams;
+  const [params, setParams] = useState<{
+    agentID?: string;
+    listingID?: string;
+    agentName?: string;
+    subject?: string;
+  }>({});
+
+  // Handle search params
+  useEffect(() => {
+    const handleSearchParams = async () => {
+      const resolvedParams = await searchParams;
+      setParams(resolvedParams);
+    };
+    handleSearchParams();
+  }, [searchParams]);
+
+  const { state, formData, updateField, submitForm } = useFormSubmission({
+    endpoint: '/api/contact/agent',
+    resetOnSuccess: true
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    const formFields = [
+      { name: 'firstName', label: 'First Name', type: 'text' as const, required: true },
+      { name: 'lastName', label: 'Last Name', type: 'text' as const, required: true },
+      { name: 'email', label: 'Email Address', type: 'email' as const, required: true },
+      { name: 'message', label: 'Message', type: 'textarea' as const, required: true }
+    ];
+
+    const additionalData = {
+      ...(params.agentID && { agentID: params.agentID }),
+      ...(params.listingID && { listingID: params.listingID }),
+      phone: formData.phone || '',
+      subject: formData.subject || (params.subject || (params.listingID ? 'Property Inquiry' : 'General Inquiry')),
+      contactMethod: formData.contactMethod || 'email'
+    };
+
+    await submitForm(formFields, additionalData);
+  };
   
   return (
     <div className="min-h-screen bg-gray-50">
@@ -50,7 +94,39 @@ export default async function ContactAgentPage({
               Fill out the form below and we'll get back to you as soon as possible.
             </p>
 
-            <form className="space-y-6">
+            {/* Success Message */}
+            {state.isSuccess && (
+              <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+                <div className="flex">
+                  <div className="flex-shrink-0">
+                    <svg className="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div className="ml-3">
+                    <p className="text-sm font-medium text-green-800">{state.message}</p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Error Message */}
+            {state.error && (
+              <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+                <div className="flex">
+                  <div className="flex-shrink-0">
+                    <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div className="ml-3">
+                    <p className="text-sm font-medium text-red-800">{state.error}</p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-6">
               {/* Hidden fields for tracking */}
               {params.agentID && (
                 <input type="hidden" name="agentID" value={params.agentID} />
@@ -68,6 +144,8 @@ export default async function ContactAgentPage({
                     type="text"
                     id="firstName"
                     name="firstName"
+                    value={formData.firstName || ''}
+                    onChange={(e) => updateField('firstName', e.target.value)}
                     required
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500"
                   />
@@ -81,6 +159,8 @@ export default async function ContactAgentPage({
                     type="text"
                     id="lastName"
                     name="lastName"
+                    value={formData.lastName || ''}
+                    onChange={(e) => updateField('lastName', e.target.value)}
                     required
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500"
                   />
@@ -95,6 +175,8 @@ export default async function ContactAgentPage({
                   type="email"
                   id="email"
                   name="email"
+                  value={formData.email || ''}
+                  onChange={(e) => updateField('email', e.target.value)}
                   required
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500"
                 />
@@ -108,6 +190,8 @@ export default async function ContactAgentPage({
                   type="tel"
                   id="phone"
                   name="phone"
+                  value={formData.phone || ''}
+                  onChange={(e) => updateField('phone', e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500"
                 />
               </div>
@@ -120,7 +204,8 @@ export default async function ContactAgentPage({
                   type="text"
                   id="subject"
                   name="subject"
-                  defaultValue={params.subject || (params.listingID ? 'Property Inquiry' : 'General Inquiry')}
+                  value={formData.subject || params.subject || (params.listingID ? 'Property Inquiry' : 'General Inquiry')}
+                  onChange={(e) => updateField('subject', e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500"
                 />
               </div>
@@ -133,8 +218,9 @@ export default async function ContactAgentPage({
                   id="message"
                   name="message"
                   rows={6}
+                  value={formData.message || (params.listingID ? `Hi, I'm interested in this property (ID: ${params.listingID}). Please contact me with more information.` : '')}
+                  onChange={(e) => updateField('message', e.target.value)}
                   required
-                  defaultValue={params.listingID ? `Hi, I'm interested in this property (ID: ${params.listingID}). Please contact me with more information.` : ''}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500"
                   placeholder="Please provide details about your inquiry..."
                 />
@@ -147,6 +233,8 @@ export default async function ContactAgentPage({
                 <select
                   id="contactMethod"
                   name="contactMethod"
+                  value={formData.contactMethod || 'email'}
+                  onChange={(e) => updateField('contactMethod', e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500"
                 >
                   <option value="email">Email</option>
@@ -160,6 +248,8 @@ export default async function ContactAgentPage({
                   id="consent"
                   name="consent"
                   type="checkbox"
+                  checked={formData.consent || false}
+                  onChange={(e) => updateField('consent', e.target.checked)}
                   required
                   className="h-4 w-4 text-teal-600 focus:ring-teal-500 border-gray-300 rounded"
                 />
@@ -171,9 +261,10 @@ export default async function ContactAgentPage({
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
                   type="submit"
-                  className="flex-1 bg-teal-600 text-white px-6 py-3 rounded-lg hover:bg-teal-700 transition-colors font-medium"
+                  disabled={state.isSubmitting}
+                  className="flex-1 bg-teal-600 text-white px-6 py-3 rounded-lg hover:bg-teal-700 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Send Message
+                  {state.isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
                 
                 <Link

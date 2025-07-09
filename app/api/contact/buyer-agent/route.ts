@@ -53,11 +53,11 @@ export async function POST(request: NextRequest) {
       ]
     };
 
-    // Submit to ReNet API
+    // Submit to ReNet API - Forms endpoint expects an array
     const apiResponse = await fetch(`${API_BASE_URL}/Website/Forms`, {
       method: 'POST',
       headers: API_HEADERS,
-      body: JSON.stringify(formPayload)
+      body: JSON.stringify([formPayload])
     });
 
     if (!apiResponse.ok) {

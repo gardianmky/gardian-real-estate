@@ -1,14 +1,33 @@
-import { Metadata } from 'next';
+'use client';
+
 import Link from 'next/link';
 import { Calendar, MapPin, Clock, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useState } from 'react';
+import { useFormSubmission } from '@/hooks/use-form-submission';
 
-export const metadata: Metadata = {
-  title: 'Book Appointment - Gardian Real Estate',
-  description: 'Book a consultation with our experienced real estate team in Mackay.'
-};
+// Metadata moved to layout.tsx for client components
 
 export default function BookAppointmentPage() {
+  const { state, formData, updateField, submitForm } = useFormSubmission({
+    endpoint: '/api/contact/appointment',
+    resetOnSuccess: true
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    const formFields = [
+      { name: 'firstName', label: 'First Name', type: 'text' as const, required: true },
+      { name: 'lastName', label: 'Last Name', type: 'text' as const, required: true },
+      { name: 'email', label: 'Email', type: 'email' as const, required: true },
+      { name: 'phone', label: 'Phone', type: 'tel' as const, required: true },
+      { name: 'appointmentType', label: 'Appointment Type', type: 'select' as const, required: true },
+      { name: 'preferredDate', label: 'Preferred Date', type: 'text' as const, required: true }
+    ];
+
+    await submitForm(formFields);
+  };
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
@@ -38,12 +57,46 @@ export default function BookAppointmentPage() {
             <div className="bg-white rounded-xl shadow-sm p-8">
               <h2 className="text-2xl font-semibold mb-6">Schedule Your Consultation</h2>
               
-              <form className="space-y-6">
+              {/* Success Message */}
+              {state.isSuccess && (
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+                  <div className="flex">
+                    <div className="flex-shrink-0">
+                      <svg className="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div className="ml-3">
+                      <p className="text-sm font-medium text-green-800">{state.message}</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Error Message */}
+              {state.error && (
+                <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+                  <div className="flex">
+                    <div className="flex-shrink-0">
+                      <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div className="ml-3">
+                      <p className="text-sm font-medium text-red-800">{state.error}</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+              
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">First Name*</label>
                     <input
                       type="text"
+                      value={formData.firstName || ''}
+                      onChange={(e) => updateField('firstName', e.target.value)}
                       required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                     />
@@ -52,6 +105,8 @@ export default function BookAppointmentPage() {
                     <label className="block text-sm font-medium text-gray-700 mb-2">Last Name*</label>
                     <input
                       type="text"
+                      value={formData.lastName || ''}
+                      onChange={(e) => updateField('lastName', e.target.value)}
                       required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                     />
@@ -62,6 +117,8 @@ export default function BookAppointmentPage() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">Email*</label>
                   <input
                     type="email"
+                    value={formData.email || ''}
+                    onChange={(e) => updateField('email', e.target.value)}
                     required
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                   />
@@ -71,6 +128,8 @@ export default function BookAppointmentPage() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">Phone*</label>
                   <input
                     type="tel"
+                    value={formData.phone || ''}
+                    onChange={(e) => updateField('phone', e.target.value)}
                     required
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                   />
@@ -78,7 +137,11 @@ export default function BookAppointmentPage() {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Appointment Type*</label>
-                  <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500">
+                  <select 
+                    value={formData.appointmentType || ''}
+                    onChange={(e) => updateField('appointmentType', e.target.value)}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                  >
                     <option value="">Select appointment type</option>
                     <option value="buying">Buying Property</option>
                     <option value="selling">Selling Property</option>
@@ -94,13 +157,19 @@ export default function BookAppointmentPage() {
                     <label className="block text-sm font-medium text-gray-700 mb-2">Preferred Date*</label>
                     <input
                       type="date"
+                      value={formData.preferredDate || ''}
+                      onChange={(e) => updateField('preferredDate', e.target.value)}
                       required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Preferred Time*</label>
-                    <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500">
+                    <select 
+                      value={formData.preferredTime || ''}
+                      onChange={(e) => updateField('preferredTime', e.target.value)}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                    >
                       <option value="">Select time</option>
                       <option value="09:00">9:00 AM</option>
                       <option value="10:00">10:00 AM</option>
@@ -116,13 +185,15 @@ export default function BookAppointmentPage() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
                   <textarea
                     rows={4}
+                    value={formData.message || ''}
+                    onChange={(e) => updateField('message', e.target.value)}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                     placeholder="Tell us about your property needs..."
                   ></textarea>
                 </div>
 
-                <Button type="submit" variant="primary" size="lg" className="w-full">
-                  Book Appointment
+                <Button type="submit" variant="primary" size="lg" className="w-full" disabled={state.isSubmitting}>
+                  {state.isSubmitting ? 'Booking...' : 'Book Appointment'}
                 </Button>
               </form>
             </div>

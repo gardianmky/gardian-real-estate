@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
     const apiResponse = await fetch(`${API_BASE_URL}/Website/Forms`, {
       method: 'POST',
       headers: API_HEADERS,
-      body: JSON.stringify(formPayload)
+      body: JSON.stringify([formPayload])
     });
 
     if (!apiResponse.ok) {

@@ -1,13 +1,40 @@
-import { Metadata } from 'next';
+'use client';
+
 import Link from 'next/link';
 import { UserPlus, Search, Mail, Phone } from 'lucide-react';
+import { useFormSubmission } from '@/hooks/use-form-submission';
 
-export const metadata: Metadata = {
-  title: 'Buyer Agent Request - Gardian Real Estate',
-  description: 'Request a dedicated buyer\'s agent to help you find and purchase your ideal property in Mackay.'
-};
+// Metadata moved to layout.tsx for client components
 
 export default function BuyerAgentRequestPage() {
+  const { state, formData, updateField, submitForm } = useFormSubmission({
+    endpoint: '/api/contact/buyer-agent',
+    resetOnSuccess: true
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    const formFields = [
+      { name: 'firstName', label: 'First Name', type: 'text' as const, required: true },
+      { name: 'lastName', label: 'Last Name', type: 'text' as const, required: true },
+      { name: 'email', label: 'Email', type: 'email' as const, required: true },
+      { name: 'phone', label: 'Phone', type: 'tel' as const, required: true },
+      { name: 'budgetRange', label: 'Budget Range', type: 'select' as const, required: true },
+      { name: 'propertyType', label: 'Property Type', type: 'select' as const, required: true }
+    ];
+
+    const additionalData = {
+      bedrooms: formData.bedrooms || '',
+      bathrooms: formData.bathrooms || '',
+      carSpaces: formData.carSpaces || '',
+      preferredSuburbs: formData.preferredSuburbs || '',
+      timeline: formData.timeline || '',
+      additionalRequirements: formData.additionalRequirements || ''
+    };
+
+    await submitForm(formFields, additionalData);
+  };
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
@@ -56,12 +83,46 @@ export default function BuyerAgentRequestPage() {
             <div className="bg-white rounded-xl shadow-sm p-8">
               <h2 className="text-2xl font-semibold mb-6">Tell Us What You're Looking For</h2>
               
-              <form className="space-y-6">
+              {/* Success Message */}
+              {state.isSuccess && (
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+                  <div className="flex">
+                    <div className="flex-shrink-0">
+                      <svg className="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div className="ml-3">
+                      <p className="text-sm font-medium text-green-800">{state.message}</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Error Message */}
+              {state.error && (
+                <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+                  <div className="flex">
+                    <div className="flex-shrink-0">
+                      <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div className="ml-3">
+                      <p className="text-sm font-medium text-red-800">{state.error}</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+              
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">First Name*</label>
                     <input
                       type="text"
+                      value={formData.firstName || ''}
+                      onChange={(e) => updateField('firstName', e.target.value)}
                       required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                     />
@@ -70,6 +131,8 @@ export default function BuyerAgentRequestPage() {
                     <label className="block text-sm font-medium text-gray-700 mb-2">Last Name*</label>
                     <input
                       type="text"
+                      value={formData.lastName || ''}
+                      onChange={(e) => updateField('lastName', e.target.value)}
                       required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                     />
@@ -80,6 +143,8 @@ export default function BuyerAgentRequestPage() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">Email*</label>
                   <input
                     type="email"
+                    value={formData.email || ''}
+                    onChange={(e) => updateField('email', e.target.value)}
                     required
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                   />
@@ -89,6 +154,8 @@ export default function BuyerAgentRequestPage() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">Phone*</label>
                   <input
                     type="tel"
+                    value={formData.phone || ''}
+                    onChange={(e) => updateField('phone', e.target.value)}
                     required
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                   />
@@ -97,7 +164,11 @@ export default function BuyerAgentRequestPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Budget Range*</label>
-                    <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500">
+                    <select 
+                      value={formData.budgetRange || ''}
+                      onChange={(e) => updateField('budgetRange', e.target.value)}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                    >
                       <option value="">Select budget range</option>
                       <option value="300000-400000">$300,000 - $400,000</option>
                       <option value="400000-500000">$400,000 - $500,000</option>
@@ -109,7 +180,11 @@ export default function BuyerAgentRequestPage() {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Property Type*</label>
-                    <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500">
+                    <select 
+                      value={formData.propertyType || ''}
+                      onChange={(e) => updateField('propertyType', e.target.value)}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                    >
                       <option value="">Select property type</option>
                       <option value="house">House</option>
                       <option value="apartment">Apartment</option>
@@ -158,6 +233,8 @@ export default function BuyerAgentRequestPage() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">Preferred Suburbs</label>
                   <input
                     type="text"
+                    value={formData.preferredSuburbs || ''}
+                    onChange={(e) => updateField('preferredSuburbs', e.target.value)}
                     placeholder="e.g. North Mackay, West Mackay, Andergrove"
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                   />
@@ -179,6 +256,8 @@ export default function BuyerAgentRequestPage() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">Additional Requirements</label>
                   <textarea
                     rows={4}
+                    value={formData.additionalRequirements || ''}
+                    onChange={(e) => updateField('additionalRequirements', e.target.value)}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                     placeholder="Tell us about any specific requirements, features you must have, or questions..."
                   ></textarea>
@@ -186,9 +265,10 @@ export default function BuyerAgentRequestPage() {
 
                 <button
                   type="submit"
-                  className="w-full bg-teal-600 text-white py-3 px-6 rounded-lg hover:bg-teal-700 transition-colors font-semibold"
+                  disabled={state.isSubmitting}
+                  className="w-full bg-teal-600 text-white py-3 px-6 rounded-lg hover:bg-teal-700 transition-colors font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Request Buyer's Agent
+                  {state.isSubmitting ? 'Submitting...' : 'Request Buyer\'s Agent'}
                 </button>
               </form>
             </div>

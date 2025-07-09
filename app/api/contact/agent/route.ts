@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     
     // Validate required fields
-    const requiredFields = ['firstName', 'lastName', 'email', 'phone', 'enquiry'];
+    const requiredFields = ['firstName', 'lastName', 'email', 'message'];
     const missingFields = requiredFields.filter(field => !body[field]);
     
     if (missingFields.length > 0) {
@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
       lastName: body.lastName,
       email: body.email,
       phone: body.phone,
-      enquiry: body.enquiry
+      enquiry: body.message
     };
 
     // Submit to ReNet API Enquiries endpoint
