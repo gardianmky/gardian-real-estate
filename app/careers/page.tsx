@@ -139,12 +139,47 @@ export default function CareersPage() {
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
-  const handleSubmitApplication = (e: React.FormEvent) => {
+  const handleSubmitApplication = async (e: React.FormEvent) => {
     e.preventDefault()
-    // In a real application, this would submit the form data to a server
-    alert("Thank you for your application! We will review it and contact you soon.")
-    setShowApplicationForm(false)
-    setSelectedJob(null)
+    
+    try {
+      const formData = new FormData(e.currentTarget as HTMLFormElement)
+      const formPayload = {
+        firstName: formData.get('firstName'),
+        lastName: formData.get('lastName'),
+        email: formData.get('email'),
+        phone: formData.get('phone'),
+        position: selectedJob?.title || 'General Application',
+        experience: formData.get('experience'),
+        availability: formData.get('availability'),
+        coverLetter: formData.get('coverLetter'),
+        resume: formData.get('resume') ? 'Resume file attached' : 'No resume uploaded',
+        portfolio: formData.get('portfolio'),
+        timestamp: new Date().toISOString(),
+        source: 'Gardian Real Estate Website'
+      }
+
+      const response = await fetch('/api/contact/careers', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formPayload),
+      })
+
+      const result = await response.json()
+
+      if (!response.ok) {
+        throw new Error(result.error || `Server error: ${response.status}`)
+      }
+
+      alert("Thank you for your application! We will review it and contact you soon.")
+      setShowApplicationForm(false)
+      setSelectedJob(null)
+    } catch (error) {
+      console.error('Form submission error:', error)
+      alert("There was an error submitting your application. Please try again or contact us directly.")
+    }
   }
 
   return (

@@ -2,7 +2,7 @@
 
 import { useSearchContext } from 'context/search-context';
 import { useState, useEffect } from 'react';
-import { fetchListingsIndex, fetchAllPropertiesFromAPI } from '@/lib/api';
+import { fetchListingsIndex } from '@/lib/api';
 import PropertyCard from '@/components/property-card';
 import { Listing } from '@/types/listing';
 
@@ -26,69 +26,16 @@ export default function SearchResults({ propertyType, data }: SearchResultsProps
         const disposalMethod = propertyType === 'buy' ? 'forSale' : 'forRent';
         console.log(`🔍 Search: Fetching ALL ${propertyType} properties...`);
         
-        // Fetch ALL properties from API using new comprehensive strategy
-        const allProperties = await fetchAllPropertiesFromAPI({
+        // Use the simple, direct API endpoint as documented
+        const { listings: fetchedListings, pagination } = await fetchListingsIndex({
           disposalMethod,
-          type: 'Residential', // Keep for API compatibility, but we'll filter client-side too
+          type: 'Residential',
+          resultsPerPage: 50,
           ...filters // Include current search filters
         });
         
-        // Client-side filtering since API type parameter is not working properly
-        const filteredListings = allProperties.filter((listing: any) => {
-          const propertyType = listing.type || listing.propertyType || listing.category;
-          
-          // Only include Residential properties
-          if (propertyType !== 'Residential') {
-            return false;
-          }
-          
-          // Additional validation: exclude obvious commercial indicators
-          const heading = (listing.heading || '').toLowerCase();
-          const description = (listing.description || '').toLowerCase();
-          const categories = listing.categories || [];
-          
-          const commercialIndicators = [
-            'commercial', 'office', 'retail', 'industrial', 'warehouse', 
-            'development', 'subdivision', 'business', 'investment opportunity'
-          ];
-          
-          const hasCommercialIndicators = commercialIndicators.some(indicator => 
-            heading.includes(indicator) || description.includes(indicator) ||
-            categories.some((cat: string) => cat.toLowerCase().includes(indicator))
-          );
-          
-          if (hasCommercialIndicators) {
-            console.warn(`Filtering out potential commercial property from search: ${listing.heading}`);
-            return false;
-          }
-          
-          return true;
-        });
-
-        // Enhance properties with standardized data
-        const enhancedListings = filteredListings.map((listing: any) => {
-          const standardId = listing.listingID || listing.id;
-          return {
-            ...listing,
-            id: standardId,
-            listingID: standardId,
-            bedBathCarLand: [
-              { key: 'bedrooms', label: 'Bedrooms', value: listing.bedrooms?.toString() || '0' },
-              { key: 'bathrooms', label: 'Bathrooms', value: listing.bathrooms?.toString() || '0' },
-              { key: 'carSpaces', label: 'Car Spaces', value: listing.carSpaces?.toString() || '0' },
-              { key: 'landSize', label: 'Land Size', value: listing.landSize?.toString() || '0' }
-            ],
-            description: listing.description || '',
-            agents: listing.agents || [],
-            images: listing.images?.map((img: any) => ({
-              ...img,
-              url: img.url?.replace('http://', 'https://') || img.url
-            })) || []
-          };
-        });
-        
-        console.log(`✅ Search results: ${enhancedListings.length} total properties found`);
-        setListings(enhancedListings);
+        console.log(`✅ Search results: ${fetchedListings.length} total properties found`);
+        setListings(fetchedListings);
       } catch (err) {
         setError('Failed to load search results');
         console.error('Search error:', err);

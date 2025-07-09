@@ -13,10 +13,45 @@ export default function ComplaintsPage() {
     e.preventDefault()
     setFormStatus("submitting")
 
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      const formData = new FormData(e.currentTarget)
+      const formPayload = {
+        firstName: formData.get('firstName'),
+        lastName: formData.get('lastName'),
+        email: formData.get('email'),
+        phone: formData.get('phone'),
+        complainantType: formData.get('complainantType'),
+        propertyAgent: formData.get('propertyAgent'),
+        incidentDate: formData.get('incidentDate'),
+        complaintDetails: formData.get('complaintDetails'),
+        desiredResolution: formData.get('desiredResolution'),
+        attemptedResolution: formData.get('attemptedResolution'),
+        urgency: formData.get('urgency'),
+        timestamp: new Date().toISOString(),
+        source: 'Gardian Real Estate Website'
+      }
+
+      const response = await fetch('/api/contact/complaints', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formPayload),
+      })
+
+      const result = await response.json()
+
+      if (!response.ok) {
+        throw new Error(result.error || `Server error: ${response.status}`)
+      }
+
       setFormStatus("success")
-    }, 1500)
+      // Reset form on success
+      e.currentTarget.reset()
+    } catch (error) {
+      console.error('Form submission error:', error)
+      setFormStatus("error")
+    }
   }
 
   return (

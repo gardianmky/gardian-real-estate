@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Home, TrendingUp, FileText, Clock, CheckCircle, Calculator } from 'lucide-react';
@@ -9,6 +9,55 @@ export const metadata: Metadata = {
 };
 
 export default function AppraisalRequestPage() {
+  const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle")
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setFormStatus("submitting")
+
+    try {
+      const formData = new FormData(e.currentTarget)
+      const formPayload = {
+        firstName: formData.get('firstName'),
+        lastName: formData.get('lastName'),
+        email: formData.get('email'),
+        phone: formData.get('phone'),
+        propertyAddress: formData.get('propertyAddress'),
+        suburb: formData.get('suburb'),
+        state: formData.get('state'),
+        postcode: formData.get('postcode'),
+        propertyType: formData.get('propertyType'),
+        bedrooms: formData.get('bedrooms'),
+        bathrooms: formData.get('bathrooms'),
+        purpose: formData.get('purpose'),
+        timeframe: formData.get('timeframe'),
+        additionalInfo: formData.get('additionalInfo'),
+        timestamp: new Date().toISOString(),
+        source: 'Gardian Real Estate Website'
+      }
+
+      const response = await fetch('/api/contact/appraisal', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formPayload),
+      })
+
+      const result = await response.json()
+
+      if (!response.ok) {
+        throw new Error(result.error || `Server error: ${response.status}`)
+      }
+
+      setFormStatus("success")
+      // Reset form on success
+      e.currentTarget.reset()
+    } catch (error) {
+      console.error('Form submission error:', error)
+      setFormStatus("error")
+    }
+  }
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
@@ -177,7 +226,7 @@ export default function AppraisalRequestPage() {
         {/* Appraisal Request Form */}
         <div id="appraisal-form" className="bg-white rounded-xl shadow-lg p-8">
           <h3 className="text-2xl font-bold text-gray-900 mb-6">Request Your Free Property Appraisal</h3>
-          <form className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
@@ -371,10 +420,23 @@ export default function AppraisalRequestPage() {
 
             <button
               type="submit"
-              className="w-full bg-teal-600 text-white py-3 px-6 rounded-lg hover:bg-teal-700 transition-colors font-semibold"
+              disabled={formStatus === "submitting"}
+              className="w-full bg-teal-600 text-white py-3 px-6 rounded-lg hover:bg-teal-700 transition-colors font-semibold disabled:opacity-70"
             >
-              Submit Appraisal Request
+              {formStatus === "submitting" ? "Submitting..." : "Submit Appraisal Request"}
             </button>
+
+            {formStatus === "success" && (
+              <div className="p-4 bg-green-50 text-green-700 rounded-md border border-green-200">
+                Thank you for your appraisal request! Our team will contact you within 24 hours to arrange a property inspection.
+              </div>
+            )}
+
+            {formStatus === "error" && (
+              <div className="p-4 bg-red-50 text-red-700 rounded-md border border-red-200">
+                There was an error submitting your request. Please try again or contact us directly.
+              </div>
+            )}
           </form>
         </div>
       </div>
