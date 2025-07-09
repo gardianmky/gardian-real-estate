@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { Metadata } from 'next';
-import { fetchListingsIndex, fetchAllPropertiesFromAPI } from '@/lib/api';
+import { fetchListingsIndex } from '@/lib/api';
 import PropertyCard from '@/components/property-card';
 import { PropertyFeaturesInline } from '@/components/ui/property-features';
 
@@ -113,86 +113,21 @@ function Pagination({
 
 async function getListings(page: number) {
   try {
-    console.log(`🏠 Fetching ALL residential properties for sale (Page ${page})`);
+    console.log(`🏠 Fetching residential properties for sale (Page ${page})`);
     
-    // Fetch ALL properties from API using new comprehensive strategy
-    const allProperties = await fetchAllPropertiesFromAPI({
-      disposalMethod: 'forSale',
-      type: 'Residential' // Keep for API compatibility, but we'll filter client-side too
+    // Use the simple, direct API endpoint as documented
+    const { listings, pagination } = await fetchListingsIndex({
+      page,
+      type: "Residential",
+      disposalMethod: "forSale",
+      resultsPerPage: 12
     });
 
-    // Client-side filtering since API type parameter is not working properly
-    const filteredListings = allProperties.filter((listing: any) => {
-      // Only include Residential properties
-      const propertyType = listing.type || listing.propertyType || listing.category;
-      if (propertyType !== 'Residential') {
-        return false;
-      }
-      
-      // Additional validation: exclude obvious commercial indicators
-      const heading = (listing.heading || '').toLowerCase();
-      const description = (listing.description || '').toLowerCase();
-      const categories = listing.categories || [];
-      
-      const commercialIndicators = [
-        'commercial', 'office', 'retail', 'industrial', 'warehouse', 
-        'development', 'subdivision', 'business', 'investment opportunity'
-      ];
-      
-      const hasCommercialIndicators = commercialIndicators.some(indicator => 
-        heading.includes(indicator) || description.includes(indicator) ||
-        categories.some((cat: string) => cat.toLowerCase().includes(indicator))
-      );
-      
-      if (hasCommercialIndicators) {
-        console.warn(`Filtering out potential commercial property from buy listings: ${listing.heading}`);
-        return false;
-      }
-      
-      return true;
-    });
-
-    // Enhance properties with standardized data
-    const enhancedListings = filteredListings.map((listing: any) => {
-      const standardId = listing.listingID || listing.id;
-      return {
-        ...listing,
-        id: standardId,
-        listingID: standardId,
-        bedBathCarLand: [
-          { key: 'bedrooms', label: 'Bedrooms', value: listing.bedrooms?.toString() || '0' },
-          { key: 'bathrooms', label: 'Bathrooms', value: listing.bathrooms?.toString() || '0' },
-          { key: 'carSpaces', label: 'Car Spaces', value: listing.carSpaces?.toString() || '0' },
-          { key: 'landSize', label: 'Land Size', value: listing.landSize?.toString() || '0' }
-        ],
-        description: listing.description || '',
-        agents: listing.agents || [],
-        images: listing.images?.map((img: any) => ({
-          ...img,
-          url: img.url?.replace('http://', 'https://') || img.url
-        })) || []
-      };
-    });
-
-    // Apply proper pagination after filtering
-    const resultsPerPage = 12;
-    const totalResults = enhancedListings.length;
-    const totalPages = Math.ceil(totalResults / resultsPerPage);
-    const startIndex = (page - 1) * resultsPerPage;
-    const endIndex = startIndex + resultsPerPage;
-    const paginatedListings = enhancedListings.slice(startIndex, endIndex);
-
-    console.log(`✅ Buy page: ${totalResults} total properties, showing ${paginatedListings.length} on page ${page}/${totalPages}`);
+    console.log(`✅ Buy page: ${pagination.totalResults} total properties, showing ${listings.length} on page ${page}/${pagination.totalPages}`);
 
     return { 
-      listings: paginatedListings, 
-      pagination: {
-        currentPage: page,
-        totalPages: totalPages,
-        nextPage: page < totalPages ? page + 1 : null,
-        resultsPerPage: resultsPerPage,
-        totalResults: totalResults
-      }
+      listings, 
+      pagination
     };
   } catch (error) {
     console.error('Error fetching buy listings:', error);
