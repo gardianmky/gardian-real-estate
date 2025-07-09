@@ -1,5 +1,6 @@
 import { Agent } from "types/index";
 import { ImageWithFallback } from "./ui/image-with-fallback";
+import { Phone } from "lucide-react";
 
 interface AgentsSectionProps {
   agents: Agent[];
@@ -31,7 +32,13 @@ export default function AgentsSection({ agents }: AgentsSectionProps) {
           <h3 className="text-xl font-bold text-center text-gray-800">
             {agent.name}
           </h3>
-          <p className="text-gray-600 text-center">{agent.title}</p>
+          <p className="text-gray-600 text-center mb-2">{agent.title}</p>
+          {(agent.mobile || agent.phone) && (
+            <div className="flex items-center justify-center text-teal-600">
+              <Phone className="h-4 w-4 mr-1" />
+              <span className="text-sm">{agent.mobile || agent.phone}</span>
+            </div>
+          )}
         </div>
       ))}
     </div>

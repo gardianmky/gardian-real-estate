@@ -103,7 +103,44 @@ async function getAllAgents() {
   try {
     // Fetch all agents without pagination
     const { agents, pagination } = await fetchAgents(1, { resultsPerPage: 100 }); // Large number to get all
-    return { agents, totalAgents: agents.length };
+    
+    // Priority agents to show first
+    const priorityAgents = ['ben kerrisk', 'stacey'];
+    
+    // Sort agents to put priority agents first
+    const sortedAgents = agents.sort((a, b) => {
+      const aName = a.name?.toLowerCase() || '';
+      const bName = b.name?.toLowerCase() || '';
+      
+      // Check if agent a is a priority agent
+      const aIsPriority = priorityAgents.some(priority => 
+        aName.includes(priority.toLowerCase())
+      );
+      
+      // Check if agent b is a priority agent
+      const bIsPriority = priorityAgents.some(priority => 
+        bName.includes(priority.toLowerCase())
+      );
+      
+      // If both are priority or both are not priority, maintain original order
+      if (aIsPriority && bIsPriority) {
+        // Sort Ben Kerrisk before Stacey within priority agents
+        if (aName.includes('ben kerrisk')) return -1;
+        if (bName.includes('ben kerrisk')) return 1;
+        if (aName.includes('stacey')) return -1;
+        if (bName.includes('stacey')) return 1;
+        return 0;
+      }
+      
+      // Priority agents come first
+      if (aIsPriority && !bIsPriority) return -1;
+      if (!aIsPriority && bIsPriority) return 1;
+      
+      // Both are non-priority, maintain original order
+      return 0;
+    });
+    
+    return { agents: sortedAgents, totalAgents: sortedAgents.length };
   } catch (error) {
     console.error('Error fetching agents:', error);
     return { 
