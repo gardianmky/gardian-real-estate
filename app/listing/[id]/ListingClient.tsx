@@ -334,7 +334,7 @@ export default function ListingClient({ listing }: ListingClientProps) {
         {/* Property Details */}
         <div className="p-6 md:p-8">
           {/* Property Header */}
-          <div className="flex flex-col md:flex-row justify-between items-start gap-6 mb-10 pb-6 border-b border-gray-200">
+          <div className="flex flex-col md:flex-row justify-between items-start gap-6 mb-6 pb-6 border-b border-gray-200">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold mb-3 text-gray-800">
                 {cleanPropertyTitle(listing.heading)}
@@ -365,6 +365,78 @@ export default function ListingClient({ listing }: ListingClientProps) {
                   {listing.disposalMethod === 'forSale' ? 'For Sale' : listing.disposalMethod === 'forRent' ? 'For Rent' : listing.disposalMethod}
                 </div>
               )}
+            </div>
+          </div>
+
+          {/* Save and Share Actions */}
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-10 p-4 bg-gray-50 rounded-xl">
+            <div className="flex items-center gap-4">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white font-medium py-2.5 px-6 rounded-full transition-colors shadow-sm"
+                onClick={() => setIsFavorite(!isFavorite)}
+              >
+                {isFavorite ? <AiFillHeart className="text-red-400" /> : <AiOutlineHeart />}
+                {isFavorite ? "Saved" : "Save Property"}
+              </motion.button>
+
+              <div className="relative">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center gap-2 bg-white hover:bg-gray-100 text-gray-800 font-medium py-2.5 px-6 rounded-full transition-colors border border-gray-200 shadow-sm"
+                  onClick={() => setShowShareMenu(!showShareMenu)}
+                >
+                  <FaShare />
+                  Share Property
+                </motion.button>
+
+                {showShareMenu && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="absolute top-full left-0 mt-2 bg-white shadow-lg rounded-lg p-3 z-10 border border-gray-200"
+                  >
+                    <div className="flex gap-2">
+                      <button 
+                        className="p-2.5 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+                        onClick={() => {
+                          const url = encodeURIComponent(window.location.href);
+                          const text = encodeURIComponent(`Check out this property: ${listing.heading}`);
+                          window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+                        }}
+                      >
+                        <FaFacebookF />
+                      </button>
+                      <button 
+                        className="p-2.5 rounded-full bg-sky-500 text-white hover:bg-sky-600 transition-colors"
+                        onClick={() => {
+                          const url = encodeURIComponent(window.location.href);
+                          const text = encodeURIComponent(`Check out this property: ${listing.heading}`);
+                          window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
+                        }}
+                      >
+                        <FaTwitter />
+                      </button>
+                      <button 
+                        className="p-2.5 rounded-full bg-blue-700 text-white hover:bg-blue-800 transition-colors"
+                        onClick={() => {
+                          const url = encodeURIComponent(window.location.href);
+                          const title = encodeURIComponent(listing.heading);
+                          window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}&title=${title}`, '_blank');
+                        }}
+                      >
+                        <FaLinkedinIn />
+                      </button>
+                    </div>
+                  </motion.div>
+                )}
+              </div>
+            </div>
+            
+            <div className="text-sm text-gray-500">
+              Property ID: {listing.listingID || listing.id}
             </div>
           </div>
 
@@ -627,50 +699,6 @@ export default function ListingClient({ listing }: ListingClientProps) {
             </div>
           )}
 
-          {/* Action Buttons */}
-          <div className="flex gap-4 mb-8">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white font-medium py-2 px-6 rounded-full transition-colors"
-              onClick={() => setIsFavorite(!isFavorite)}
-            >
-              {isFavorite ? <AiFillHeart className="text-red-500" /> : <AiOutlineHeart />}
-              {isFavorite ? "Saved" : "Save"}
-            </motion.button>
-
-            <div className="relative">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-2 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-6 rounded-full transition-colors"
-                onClick={() => setShowShareMenu(!showShareMenu)}
-              >
-                <FaShare />
-                Share
-              </motion.button>
-
-              {showShareMenu && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="absolute top-full left-0 mt-2 bg-white shadow-lg rounded-lg p-2 z-10"
-                >
-                  <div className="flex gap-2">
-                    <button className="p-2 rounded-full bg-teal-600 text-white">
-                      <FaFacebookF />
-                    </button>
-                    <button className="p-2 rounded-full bg-teal-500 text-white">
-                      <FaTwitter />
-                    </button>
-                    <button className="p-2 rounded-full bg-teal-700 text-white">
-                      <FaLinkedinIn />
-                    </button>
-                  </div>
-                </motion.div>
-              )}
-            </div>
-          </div>
         </div>
       </div>
       </div>
