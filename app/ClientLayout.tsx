@@ -1,13 +1,14 @@
-"use client"
+"use client";
 
-import React from "react"
-import "./globals.css"
-import MainNavigation from "../components/main-navigation"
+import React from "react";
+import "./globals.css";
+import MainNavigation from "../components/main-navigation";
+import Footer from "../components/footer";
 
 export default function ClientLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <>
@@ -35,6 +36,7 @@ export default function ClientLayout({
 
         {children}
       </main>
+      <Footer />
     </>
-  )
+  );
 }
