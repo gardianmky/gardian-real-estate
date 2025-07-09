@@ -216,6 +216,7 @@ export default function MainNavigation() {
       {
         title: "Commercial Services",
         items: [
+          { label: "Our Commercial Services", href: "/commercial/services" },
           { label: "Commercial Appraisal", href: "/appraisal-request?type=commercial" },
           { label: "Book Consultation", href: "/book-appointment?service=commercial" },
           { label: "Contact Commercial Team", href: "/contact?service=commercial" },
