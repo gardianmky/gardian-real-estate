@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     
     // Validate required fields
-    const requiredFields = ['firstName', 'lastName', 'email', 'phone', 'propertyAddress'];
+    const requiredFields = ['firstName', 'lastName', 'email', 'phone', 'enquiry'];
     const missingFields = requiredFields.filter(field => !body[field]);
     
     if (missingFields.length > 0) {
@@ -33,36 +33,24 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Prepare ReNet API form submission payload
-    const formPayload = {
-      type: "Property Management Inquiry",
+    // Prepare ReNet API enquiry submission payload
+    const enquiryPayload = {
+      type: body.listingID ? "listing" : "general",
       sourceURL: request.url,
+      ...(body.agentID && { agentID: parseInt(body.agentID) }),
+      ...(body.listingID && { listingID: parseInt(body.listingID) }),
       firstName: body.firstName,
       lastName: body.lastName,
       email: body.email,
       phone: body.phone,
-      comments: `Property Management Inquiry for ${body.propertyAddress}. ${body.additionalInfo || ''}`,
-      address: {
-        street: body.propertyAddress,
-        suburb: body.suburb || "",
-        state: body.state || "QLD",
-        postcode: body.postcode || ""
-      },
-      additionalFields: [
-        ...(body.propertyType ? [{ field: "propertyType", value: body.propertyType }] : []),
-        ...(body.bedrooms ? [{ field: "bedrooms", value: body.bedrooms.toString() }] : []),
-        ...(body.bathrooms ? [{ field: "bathrooms", value: body.bathrooms.toString() }] : []),
-        ...(body.expectedRent ? [{ field: "expectedRent", value: body.expectedRent.toString() }] : []),
-        ...(body.managementType ? [{ field: "managementType", value: body.managementType }] : []),
-        ...(body.availabilityDate ? [{ field: "availabilityDate", value: body.availabilityDate }] : [])
-      ]
+      enquiry: body.enquiry
     };
 
-    // Submit to ReNet API
-    const apiResponse = await fetch(`${API_BASE_URL}/Website/Forms`, {
+    // Submit to ReNet API Enquiries endpoint
+    const apiResponse = await fetch(`${API_BASE_URL}/Website/Enquiries`, {
       method: 'POST',
       headers: API_HEADERS,
-      body: JSON.stringify(formPayload)
+      body: JSON.stringify(enquiryPayload)
     });
 
     if (!apiResponse.ok) {
@@ -71,17 +59,19 @@ export async function POST(request: NextRequest) {
     }
 
     const apiResult = await apiResponse.json();
-    console.log('Form submitted to ReNet API successfully:', apiResult);
+    console.log('Enquiry submitted to ReNet API successfully:', apiResult);
 
     return NextResponse.json({
       success: true,
-      message: 'Thank you for your inquiry! Our property management team will contact you within 24 hours to discuss your requirements and arrange a free property appraisal.',
+      message: body.listingID 
+        ? 'Thank you for your enquiry! The agent will contact you within 24 hours regarding this property.'
+        : 'Thank you for your enquiry! Our team will contact you within 24 hours.',
       timestamp: new Date().toISOString(),
       submissionId: apiResult.id || apiResult.submissionId
     });
 
   } catch (error) {
-    console.error('Error processing landlord inquiry:', error);
+    console.error('Error processing agent enquiry:', error);
     return NextResponse.json(
       { error: 'Internal server error. Please try again or contact us directly.' },
       { status: 500 }
