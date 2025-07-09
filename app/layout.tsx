@@ -296,7 +296,7 @@ export default function RootLayout({
             <div className="border-t border-gray-200 mt-12 pt-8">
               <div className="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
                 <p className="text-gray-500 text-sm lg:text-base text-center lg:text-left">
-                  © {new Date().getFullYear()} Gardian Real Estate. All rights reserved. | ABN: 123 456 789
+                  © {new Date().getFullYear()} Gardian Real Estate. All rights reserved.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6 text-sm text-gray-500">
                   <span>🏡 Mackay's Trusted Real Estate Partner Since 2000</span>
