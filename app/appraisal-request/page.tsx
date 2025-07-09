@@ -1,12 +1,8 @@
+"use client"
+
 import React, { useState } from 'react';
-import { Metadata } from 'next';
 import Link from 'next/link';
 import { Home, TrendingUp, FileText, Clock, CheckCircle, Calculator } from 'lucide-react';
-
-export const metadata: Metadata = {
-  title: 'Property Appraisal Request - Gardian Real Estate',
-  description: 'Get a free, professional property appraisal from our experienced team. Know your property\'s current market value.',
-};
 
 export default function AppraisalRequestPage() {
   const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle")

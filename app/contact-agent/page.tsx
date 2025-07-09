@@ -217,7 +217,7 @@ export default async function ContactAgentPage({
                 </svg>
                 <div>
                   <p className="font-medium text-gray-800">Office</p>
-                  <p className="text-gray-600">123 Victoria Street, Mackay QLD 4740</p>
+                  <p className="text-gray-600">94 Victoria Street, Mackay QLD 4740</p>
                 </div>
               </div>
               

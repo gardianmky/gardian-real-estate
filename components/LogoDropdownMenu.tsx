@@ -29,7 +29,7 @@ const services: ServiceItem[] = [
     icon: <CreditCard className="w-6 h-6" />,
     title: "Finance / Home Loans",
     subtitle: "Get pre-approved with competitive rates",
-    href: "/finance",
+    href: "https://www.gardian.com.au/en/home-loans",
     color: "from-teal-600 to-teal-500"
   },
   {
@@ -37,7 +37,7 @@ const services: ServiceItem[] = [
     icon: <Shield className="w-6 h-6" />,
     title: "Insurance",
     subtitle: "Protect your property and assets",
-    href: "/insurance",
+    href: "https://www.gardian.com.au/en/gardian-insurance",
     color: "from-teal-600 to-teal-500"
   },
   {
@@ -53,7 +53,7 @@ const services: ServiceItem[] = [
     icon: <TrendingUp className="w-6 h-6" />,
     title: "Financial Planning",
     subtitle: "Build wealth with expert guidance",
-    href: "/financial-planning",
+    href: "https://www.gardian.com.au/en/mackay-financial-planning",
     color: "from-teal-600 to-teal-500"
   },
   {
@@ -74,7 +74,7 @@ export default function LogoDropdownMenu({ className = "" }: LogoDropdownMenuPro
   const [isOpen, setIsOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
-  const timeoutRef = useRef<NodeJS.Timeout>()
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   // Detect mobile screen size
   useEffect(() => {
@@ -201,44 +201,87 @@ export default function LogoDropdownMenu({ className = "" }: LogoDropdownMenuPro
                       ease: "easeOut"
                     }}
                   >
-                    <Link
-                      href={service.href}
-                      onClick={handleLinkClick}
-                      className="group block p-3 rounded-lg border border-gray-100 hover:border-teal-200 hover:bg-teal-50 transition-all duration-200"
-                    >
-                      <div className="flex items-start space-x-3">
-                        {/* Icon */}
-                        <div className={`
-                          w-10 h-10 rounded-lg bg-gradient-to-br ${service.color} 
-                          flex items-center justify-center text-white flex-shrink-0
-                          group-hover:scale-105 transition-transform duration-200
-                        `}>
-                          {service.icon}
-                        </div>
+                    {service.href.startsWith('http') ? (
+                      <a
+                        href={service.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={handleLinkClick}
+                        className="group block p-3 rounded-lg border border-gray-100 hover:border-teal-200 hover:bg-teal-50 transition-all duration-200"
+                      >
+                        <div className="flex items-start space-x-3">
+                          {/* Icon */}
+                          <div className={`
+                            w-10 h-10 rounded-lg bg-gradient-to-br ${service.color} 
+                            flex items-center justify-center text-white flex-shrink-0
+                            group-hover:scale-105 transition-transform duration-200
+                          `}>
+                            {service.icon}
+                          </div>
 
-                        {/* Content */}
-                        <div className="flex-1 min-w-0">
-                          <h4 className="text-gray-900 font-semibold text-sm mb-1 group-hover:text-teal-700 transition-colors">
-                            {service.title}
-                          </h4>
-                          <p className="text-gray-600 text-xs leading-relaxed">
-                            {service.subtitle}
-                          </p>
-                        </div>
+                          {/* Content */}
+                          <div className="flex-1 min-w-0">
+                            <h4 className="text-gray-900 font-semibold text-sm mb-1 group-hover:text-teal-700 transition-colors">
+                              {service.title}
+                            </h4>
+                            <p className="text-gray-600 text-xs leading-relaxed">
+                              {service.subtitle}
+                            </p>
+                          </div>
 
-                        {/* Arrow */}
-                        <div className="flex-shrink-0 mt-1">
-                          <svg 
-                            className="w-4 h-4 text-gray-400 group-hover:text-teal-600 group-hover:translate-x-0.5 transition-all duration-200" 
-                            fill="none" 
-                            stroke="currentColor" 
-                            viewBox="0 0 24 24"
-                          >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                          </svg>
+                          {/* Arrow */}
+                          <div className="flex-shrink-0 mt-1">
+                            <svg 
+                              className="w-4 h-4 text-gray-400 group-hover:text-teal-600 group-hover:translate-x-0.5 transition-all duration-200" 
+                              fill="none" 
+                              stroke="currentColor" 
+                              viewBox="0 0 24 24"
+                            >
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                          </div>
                         </div>
-                      </div>
-                    </Link>
+                      </a>
+                    ) : (
+                      <Link
+                        href={service.href}
+                        onClick={handleLinkClick}
+                        className="group block p-3 rounded-lg border border-gray-100 hover:border-teal-200 hover:bg-teal-50 transition-all duration-200"
+                      >
+                        <div className="flex items-start space-x-3">
+                          {/* Icon */}
+                          <div className={`
+                            w-10 h-10 rounded-lg bg-gradient-to-br ${service.color} 
+                            flex items-center justify-center text-white flex-shrink-0
+                            group-hover:scale-105 transition-transform duration-200
+                          `}>
+                            {service.icon}
+                          </div>
+
+                          {/* Content */}
+                          <div className="flex-1 min-w-0">
+                            <h4 className="text-gray-900 font-semibold text-sm mb-1 group-hover:text-teal-700 transition-colors">
+                              {service.title}
+                            </h4>
+                            <p className="text-gray-600 text-xs leading-relaxed">
+                              {service.subtitle}
+                            </p>
+                          </div>
+
+                          {/* Arrow */}
+                          <div className="flex-shrink-0 mt-1">
+                            <svg 
+                              className="w-4 h-4 text-gray-400 group-hover:text-teal-600 group-hover:translate-x-0.5 transition-all duration-200" 
+                              fill="none" 
+                              stroke="currentColor" 
+                              viewBox="0 0 24 24"
+                            >
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                          </div>
+                        </div>
+                      </Link>
+                    )}
                   </motion.div>
                 ))}
               </div>
