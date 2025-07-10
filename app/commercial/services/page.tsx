@@ -422,7 +422,7 @@ export default function CommercialServicesPage() {
           <div className="text-center mt-8">
             <p className="text-sm text-gray-500 italic">
               All fees are negotiable based on property value, transaction complexity, and client relationship. 
-              Contact us for a personalized quote.
+              Contact us for a personalised quote.
             </p>
           </div>
         </div>

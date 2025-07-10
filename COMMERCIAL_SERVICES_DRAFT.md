@@ -84,7 +84,7 @@
 "Advanced market analytics, digital marketing platforms, and streamlined processes deliver results efficiently and transparently."
 
 **Personalized Service**
-"Every commercial client receives dedicated attention with customized strategies tailored to their specific business objectives and timeline."
+"Every commercial client receives dedicated attention with customised strategies tailored to their specific business objectives and timeline."
 
 ---
 
@@ -112,7 +112,7 @@
 - Market analysis reports: $500-$1,500 + GST depending on scope
 - Development consulting: Custom pricing based on project complexity
 
-*All fees are negotiable based on property value, transaction complexity, and client relationship. Contact us for a personalized quote.*
+*All fees are negotiable based on property value, transaction complexity, and client relationship. Contact us for a personalised quote.*
 
 ---
 
@@ -129,7 +129,7 @@
 
 **Case Study 2: Industrial Warehouse Leasing**
 - **Property:** 2,500m² warehouse facility with office component
-- **Challenge:** Niche property requiring specialized tenant
+- **Challenge:** Niche property requiring specialised tenant
 - **Solution:** Targeted marketing to logistics and manufacturing sectors
 - **Result:** Secured 5-year lease at premium market rate
 - **Client Testimonial:** *"The Gardian team understood our property's unique features and found the perfect tenant. Professional service from start to finish."* - Industrial Property Owner

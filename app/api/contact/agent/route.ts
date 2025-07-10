@@ -33,24 +33,27 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Prepare ReNet API enquiry submission payload
-    const enquiryPayload = {
-      type: body.listingID ? "listing" : "general",
+    // Prepare ReNet API form submission payload
+    const formPayload = {
+      type: body.listingID ? "Property Enquiry" : "Agent Contact Request",
       sourceURL: request.url,
-      ...(body.agentID && { agentID: parseInt(body.agentID) }),
-      ...(body.listingID && { listingID: parseInt(body.listingID) }),
       firstName: body.firstName,
       lastName: body.lastName,
       email: body.email,
-      phone: body.phone,
-      enquiry: body.message
+      phone: body.phone || "",
+      comments: body.message,
+      additionalFields: [
+        ...(body.agentID ? [{ field: "agentID", value: body.agentID }] : []),
+        ...(body.listingID ? [{ field: "listingID", value: body.listingID }] : []),
+        ...(body.propertyAddress ? [{ field: "propertyAddress", value: body.propertyAddress }] : [])
+      ]
     };
 
-    // Submit to ReNet API Enquiries endpoint
-    const apiResponse = await fetch(`${API_BASE_URL}/Website/Enquiries`, {
+    // Submit to ReNet API Forms endpoint - expects an array
+    const apiResponse = await fetch(`${API_BASE_URL}/Website/Forms`, {
       method: 'POST',
       headers: API_HEADERS,
-      body: JSON.stringify(enquiryPayload)
+      body: JSON.stringify([formPayload])
     });
 
     if (!apiResponse.ok) {

@@ -23,6 +23,16 @@ export default function HomepageSearch() {
   const [hasMore, setHasMore] = useState(true);
   const router = useRouter()
 
+  // Load last property type selection from localStorage on mount
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const lastPropertyType = localStorage.getItem('lastPropertyType');
+      if (lastPropertyType && ['sale', 'rent', 'commercial'].includes(lastPropertyType)) {
+        setPropertyType(lastPropertyType as "sale" | "rent" | "commercial");
+      }
+    }
+  }, []);
+
   useEffect(() => {
     const loadAgents = async () => {
       try {
@@ -40,21 +50,36 @@ export default function HomepageSearch() {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
 
+    // Save the last property type selection to localStorage
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('lastPropertyType', propertyType);
+    }
+
     let searchUrl = ""
+    const hasSearchTerms = searchTerm.trim() || location.trim();
 
     switch (propertyType) {
       case "rent":
-        searchUrl = `/rent?keywords=${encodeURIComponent(searchTerm)}`
+        searchUrl = `/rent`
         break
       case "commercial":
-        searchUrl = `/commercial?keywords=${encodeURIComponent(searchTerm)}`
+        searchUrl = `/commercial`
         break
       default:
-        searchUrl = `/buy?keywords=${encodeURIComponent(searchTerm)}`
+        searchUrl = `/buy`
     }
 
-    if (location) {
-      searchUrl += `&location=${encodeURIComponent(location)}`
+    // Add search parameters if provided
+    const params = new URLSearchParams();
+    if (searchTerm.trim()) {
+      params.set('keywords', searchTerm.trim());
+    }
+    if (location.trim()) {
+      params.set('location', location.trim());
+    }
+
+    if (params.toString()) {
+      searchUrl += `?${params.toString()}`;
     }
 
     router.push(searchUrl)
@@ -145,8 +170,25 @@ export default function HomepageSearch() {
             className="bg-accent-500 hover:bg-accent-600 text-white px-6 py-3 rounded-lg transition-colors duration-200 flex items-center justify-center w-full md:w-auto md:self-end"
           >
             <Search className="h-5 w-5 mr-2" />
-            <span>Search Properties</span>
+            <span>
+              {(searchTerm.trim() || location.trim()) ? 'Search Properties' : `Browse All ${propertyType === 'sale' ? 'Properties for Sale' : propertyType === 'rent' ? 'Rentals' : 'Commercial Properties'}`}
+            </span>
           </button>
+        </div>
+
+        {/* Search Help Text */}
+        <div className="mt-4 text-center">
+          <p className="text-sm text-gray-600">
+            {(searchTerm.trim() || location.trim()) ? (
+              <span>
+                Searching for properties matching your criteria
+              </span>
+            ) : (
+              <span>
+                Search for specific properties or browse all available {propertyType === 'sale' ? 'properties for sale' : propertyType === 'rent' ? 'rental properties' : 'commercial listings'}
+              </span>
+            )}
+          </p>
         </div>
       </form>
 

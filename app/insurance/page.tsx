@@ -171,7 +171,7 @@ export default function InsurancePage() {
         <div className="bg-gradient-to-r from-teal-600 to-teal-700 rounded-xl shadow-lg p-8 text-white text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Protect Your Investment?</h2>
           <p className="text-xl mb-8 text-white/90 max-w-2xl mx-auto">
-            Get personalized insurance advice and competitive quotes tailored to your property 
+            Get personalised insurance advice and competitive quotes tailored to your property 
             and business needs in Mackay.
           </p>
           

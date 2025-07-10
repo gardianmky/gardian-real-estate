@@ -20,6 +20,13 @@ interface BuyPageProps {
   searchParams: Promise<{
     page?: string;
     disposalMethod?: string;
+    keywords?: string;
+    location?: string;
+    minPrice?: string;
+    maxPrice?: string;
+    bedrooms?: string;
+    bathrooms?: string;
+    propertyType?: string;
     [key: string]: string | undefined;
   }>;
 }
@@ -29,12 +36,32 @@ function Pagination({
   currentPage,
   totalPages,
   basePath = "/buy",
+  searchParams,
 }: {
   currentPage: number;
   totalPages: number;
   basePath?: string;
+  searchParams?: any;
 }) {
   if (totalPages <= 1) return null;
+
+  // Build query string preserving search parameters
+  const buildQueryString = (page: number) => {
+    const params = new URLSearchParams();
+    params.set('page', page.toString());
+    params.set('disposalMethod', 'forSale');
+    
+    // Preserve search parameters
+    if (searchParams?.keywords) params.set('keywords', searchParams.keywords);
+    if (searchParams?.location) params.set('location', searchParams.location);
+    if (searchParams?.minPrice) params.set('minPrice', searchParams.minPrice);
+    if (searchParams?.maxPrice) params.set('maxPrice', searchParams.maxPrice);
+    if (searchParams?.bedrooms) params.set('bedrooms', searchParams.bedrooms);
+    if (searchParams?.bathrooms) params.set('bathrooms', searchParams.bathrooms);
+    if (searchParams?.propertyType) params.set('propertyType', searchParams.propertyType);
+    
+    return `${basePath}?${params.toString()}`;
+  };
 
   const pages = [];
   const showEllipsis = totalPages > 7;
@@ -75,7 +102,7 @@ function Pagination({
       {/* Previous Button */}
       {currentPage > 1 && (
         <a
-          href={`${basePath}?page=${currentPage - 1}&disposalMethod=forSale`}
+          href={buildQueryString(currentPage - 1)}
           className="px-3 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
         >
           Previous
@@ -89,7 +116,7 @@ function Pagination({
             <span className="px-3 py-2 text-gray-500">...</span>
           ) : (
             <a
-              href={`${basePath}?page=${page}&disposalMethod=forSale`}
+              href={buildQueryString(page as number)}
               className={`px-3 py-2 rounded-lg transition-colors ${
                 currentPage === page
                   ? "bg-teal-600 text-white"
@@ -105,7 +132,7 @@ function Pagination({
       {/* Next Button */}
       {currentPage < totalPages && (
         <a
-          href={`${basePath}?page=${currentPage + 1}&disposalMethod=forSale`}
+          href={buildQueryString(currentPage + 1)}
           className="px-3 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
         >
           Next
@@ -115,17 +142,47 @@ function Pagination({
   );
 }
 
-async function getListings(page: number) {
+async function getListings(page: number, searchParams: any) {
   try {
+    const hasSearchCriteria = searchParams.keywords || searchParams.location;
+    
     console.log(`🏠 Fetching residential properties for sale (Page ${page})`);
+    if (hasSearchCriteria) {
+      console.log(`🔍 Search criteria: keywords="${searchParams.keywords || ''}", location="${searchParams.location || ''}"`);
+    }
 
-    // Use the simple, direct API endpoint as documented
-    const result = await fetchListingsIndex({
+    // Build API parameters with search filters
+    const apiParams: any = {
       page,
       type: "Residential",
       disposalMethod: "forSale",
       resultsPerPage: 12,
-    });
+    };
+
+    // Add search parameters if provided
+    if (searchParams.keywords) {
+      apiParams.keywords = searchParams.keywords;
+    }
+    if (searchParams.location) {
+      apiParams.suburb = searchParams.location;
+    }
+    if (searchParams.minPrice) {
+      apiParams.minPrice = parseInt(searchParams.minPrice);
+    }
+    if (searchParams.maxPrice) {
+      apiParams.maxPrice = parseInt(searchParams.maxPrice);
+    }
+    if (searchParams.bedrooms) {
+      apiParams.bedrooms = parseInt(searchParams.bedrooms);
+    }
+    if (searchParams.bathrooms) {
+      apiParams.bathrooms = parseInt(searchParams.bathrooms);
+    }
+    if (searchParams.propertyType) {
+      apiParams.propertyTypes = searchParams.propertyType;
+    }
+
+    const result = await fetchListingsIndex(apiParams);
 
     // Ensure we have valid data
     const listings = Array.isArray(result?.listings) ? result.listings : [];
@@ -144,6 +201,11 @@ async function getListings(page: number) {
     return {
       listings,
       pagination,
+      hasSearchCriteria,
+      searchCriteria: {
+        keywords: searchParams.keywords || '',
+        location: searchParams.location || ''
+      }
     };
   } catch (error) {
     console.error("Error fetching buy listings:", error);
@@ -156,6 +218,8 @@ async function getListings(page: number) {
         resultsPerPage: 12,
         totalResults: 0,
       },
+      hasSearchCriteria: false,
+      searchCriteria: { keywords: '', location: '' }
     };
   }
 }
@@ -163,7 +227,7 @@ async function getListings(page: number) {
 export default async function BuyPage({ searchParams }: BuyPageProps) {
   const resolvedSearchParams = await searchParams;
   const currentPage = parseInt(resolvedSearchParams.page || "1", 10);
-  const { listings, pagination } = await getListings(currentPage);
+  const { listings, pagination, hasSearchCriteria, searchCriteria } = await getListings(currentPage, resolvedSearchParams);
 
   // Ensure pagination has default values
   const safePagination = {
@@ -194,17 +258,49 @@ export default async function BuyPage({ searchParams }: BuyPageProps) {
 
       {/* Listings Section */}
       <div className="container mx-auto px-4 py-12">
+        {/* Search Status Bar */}
+        {hasSearchCriteria && (
+          <div className="mb-6 bg-teal-50 border border-teal-200 rounded-lg p-4">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+              <div>
+                <p className="text-teal-900 font-medium">
+                  Searching for: 
+                  {searchCriteria.keywords && <span className="ml-2 font-normal">"{searchCriteria.keywords}"</span>}
+                  {searchCriteria.keywords && searchCriteria.location && <span className="mx-2">in</span>}
+                  {searchCriteria.location && <span className="font-normal">"{searchCriteria.location}"</span>}
+                </p>
+                <p className="text-teal-700 text-sm mt-1">
+                  {safePagination.totalResults} {safePagination.totalResults === 1 ? "result" : "results"} found
+                </p>
+              </div>
+              <a
+                href="/buy"
+                className="mt-3 md:mt-0 inline-flex items-center px-4 py-2 bg-white border border-teal-300 text-teal-700 rounded-lg hover:bg-teal-50 transition-colors text-sm font-medium"
+              >
+                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                Clear Search
+              </a>
+            </div>
+          </div>
+        )}
+
         {/* Results Header */}
         <div className="mb-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between">
             <div>
               <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-                Properties for Sale
+                {hasSearchCriteria ? "Search Results" : "Properties for Sale"}
               </h2>
               <p className="text-gray-600">
-                {safePagination.totalResults}{" "}
-                {safePagination.totalResults === 1 ? "property" : "properties"}{" "}
-                found
+                {!hasSearchCriteria && (
+                  <>
+                    {safePagination.totalResults}{" "}
+                    {safePagination.totalResults === 1 ? "property" : "properties"}{" "}
+                    available
+                  </>
+                )}
                 {currentPage > 1 &&
                   ` (Page ${currentPage} of ${safePagination.totalPages})`}
               </p>
@@ -231,6 +327,7 @@ export default async function BuyPage({ searchParams }: BuyPageProps) {
               currentPage={safePagination.currentPage}
               totalPages={safePagination.totalPages}
               basePath="/buy"
+              searchParams={resolvedSearchParams}
             />
           </>
         ) : (
@@ -276,7 +373,7 @@ export default async function BuyPage({ searchParams }: BuyPageProps) {
             </h3>
             <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
               Our experienced team at Gardian Real Estate can help you find the
-              perfect property. Get in touch with us today for personalized
+              perfect property. Get in touch with us today for personalised
               assistance.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

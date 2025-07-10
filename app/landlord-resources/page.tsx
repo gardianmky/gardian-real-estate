@@ -320,7 +320,7 @@ export default async function LandlordResourcesPage() {
               </div>
               <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-3 sm:mb-4 text-gray-800">Expert Support</h3>
               <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">
-                Connect with our experienced property management team for personalized advice and support.
+                Connect with our experienced property management team for personalised advice and support.
               </p>
               <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
                 <div className="flex items-center text-xs sm:text-sm text-gray-600">

@@ -7,6 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { fetchListingsIndex } from '@/lib/api';
 import { ScrollReveal, StaggeredGrid, CountingNumber, FloatingIcon } from './page-client';
+import GoogleReviews from '@/components/google-reviews';
 
 export const dynamic = 'force-dynamic';
 
@@ -402,6 +403,24 @@ export default async function HomePage() {
               </Link>
             </Button>
           </div>
+        </div>
+      </section>
+
+      {/* Client Testimonials Section - Google Reviews */}
+      <section className="py-12 sm:py-16 lg:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollReveal>
+            <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 sm:mb-6 text-gray-800 px-2">What Our Clients Say</h2>
+              <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto px-2">Real experiences from real clients who've trusted Gardian Real Estate with their property journey</p>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal delay={200}>
+            <div className="max-w-4xl mx-auto">
+              <GoogleReviews />
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 

@@ -70,7 +70,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      message: 'Thank you for your buyer\'s agent request! Our dedicated buyer\'s agent will contact you within 24 hours to discuss your requirements and begin your personalized property search.',
+      message: 'Thank you for your buyer\'s agent request! Our dedicated buyer\'s agent will contact you within 24 hours to discuss your requirements and begin your personalised property search.',
       timestamp: new Date().toISOString(),
       submissionId: apiResult.id || apiResult.submissionId
     });

@@ -458,7 +458,7 @@ export default function PropertyManagementPage() {
             </div>
 
             <p className="text-center text-gray-600 mt-6">
-              Additional services available. Contact us for a customized property management solution.
+              Additional services available. Contact us for a customised property management solution.
             </p>
           </div>
 

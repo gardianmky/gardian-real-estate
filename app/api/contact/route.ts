@@ -45,8 +45,10 @@ export async function POST(request: NextRequest) {
       email: body.email,
       phone: body.phone || "",
       comments: `${body.subject}\n\n${body.message}`,
-      subject: body.subject,
-      message: body.message
+      additionalFields: [
+        { field: "subject", value: body.subject },
+        { field: "message", value: body.message }
+      ]
     };
 
     // Submit to ReNet API - Forms endpoint expects an array

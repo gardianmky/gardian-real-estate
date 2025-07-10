@@ -28,6 +28,7 @@ export function ImageWithFallback({
 }: ImageWithFallbackProps) {
   const [imgSrc, setImgSrc] = useState(src);
   const [hasError, setHasError] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
   const handleError = () => {
     if (!hasError) {
@@ -37,15 +38,20 @@ export function ImageWithFallback({
     }
   };
 
+  const handleLoad = () => {
+    setLoaded(true);
+  };
+
   if (fill) {
     return (
       <Image
         src={imgSrc}
         alt={alt}
         fill
-        className={className}
+        className={`${className} ${loaded ? "image-loaded" : "image-loading"}`}
         sizes={sizes}
         onError={handleError}
+        onLoad={handleLoad}
       />
     );
   }
@@ -56,9 +62,10 @@ export function ImageWithFallback({
       alt={alt}
       width={width || 400}
       height={height || 300}
-      className={className}
+      className={`${className} ${loaded ? "image-loaded" : "image-loading"}`}
       sizes={sizes}
       onError={handleError}
+      onLoad={handleLoad}
     />
   );
 }
@@ -76,12 +83,24 @@ export function RegularImageWithFallback({
   className,
   onHide,
 }: RegularImageWithFallbackProps) {
+  const [loaded, setLoaded] = useState(false);
+
   const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     e.currentTarget.style.display = "none";
     onHide?.();
   };
 
+  const handleLoad = () => {
+    setLoaded(true);
+  };
+
   return (
-    <img src={src} alt={alt} className={className} onError={handleError} />
+    <img
+      src={src}
+      alt={alt}
+      className={`${className} ${loaded ? "image-loaded" : "image-loading"}`}
+      onError={handleError}
+      onLoad={handleLoad}
+    />
   );
 }

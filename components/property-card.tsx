@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { Listing } from "@/types/listing";
 import { PropertyFeaturesCard } from "@/components/ui/property-features";
@@ -47,7 +47,7 @@ export default function PropertyCard({ listing }: PropertyCardProps) {
   }
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+    <div className="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 card-hover">
       <div className="relative overflow-hidden">
         <img
           src={image}

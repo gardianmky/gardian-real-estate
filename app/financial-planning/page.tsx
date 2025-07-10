@@ -47,7 +47,7 @@ export default function FinancialPlanningPage() {
               </div>
               <h3 className="text-xl font-semibold mb-4">Wealth Building Strategies</h3>
               <p className="text-gray-600 mb-4">
-                Develop personalized strategies to build long-term wealth through property investment, 
+                Develop personalised strategies to build long-term wealth through property investment, 
                 diversified portfolios, and tax-effective structures.
               </p>
               <ul className="space-y-2">
@@ -225,7 +225,7 @@ export default function FinancialPlanningPage() {
               <div className="bg-teal-600 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 text-xl font-bold">2</div>
               <h3 className="font-semibold mb-2">Strategy</h3>
               <p className="text-sm text-gray-600">
-                Develop personalized financial strategies aligned with your objectives
+                Develop personalised financial strategies aligned with your objectives
               </p>
             </div>
             

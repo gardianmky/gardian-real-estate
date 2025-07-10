@@ -137,7 +137,7 @@ function TealGradientCallToAction() {
         Ready to Find Your Dream Property?
       </h2>
       <p className="mb-6 opacity-90">
-        Contact our expert team today for a personalized consultation
+        Contact our expert team today for a personalised consultation
       </p>
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
         <TealGradientButton>
