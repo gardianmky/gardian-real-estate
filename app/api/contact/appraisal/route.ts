@@ -33,35 +33,23 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Prepare ReNet API form submission payload
-    const formPayload = {
-      type: "Property Appraisal Request",
+    // Prepare ReNet API enquiry submission payload (for property appraisals)
+    const enquiryPayload = {
+      type: "general",
       sourceURL: request.url,
       firstName: body.firstName,
       lastName: body.lastName,
       email: body.email,
       phone: body.phone,
-      comments: `Property Appraisal Request for ${body.propertyAddress}. Purpose: ${body.purpose || 'Not specified'}. ${body.additionalInfo || ''}`,
-      address: {
-        street: body.propertyAddress,
-        suburb: body.suburb || "",
-        state: body.state || "QLD",
-        postcode: body.postcode || ""
-      },
-      additionalFields: [
-        ...(body.propertyType ? [{ field: "propertyType", value: body.propertyType }] : []),
-        ...(body.bedrooms ? [{ field: "bedrooms", value: body.bedrooms.toString() }] : []),
-        ...(body.bathrooms ? [{ field: "bathrooms", value: body.bathrooms.toString() }] : []),
-        ...(body.purpose ? [{ field: "purpose", value: body.purpose }] : []),
-        ...(body.timeframe ? [{ field: "timeframe", value: body.timeframe }] : [])
-      ]
+      enquiry: `Property Appraisal Request for ${body.propertyAddress}. Purpose: ${body.purpose || 'Not specified'}. ${body.additionalInfo || ''}`,
+      address: `${body.propertyAddress}${body.suburb ? ', ' + body.suburb : ''}${body.state ? ' ' + body.state : ' QLD'}${body.postcode ? ' ' + body.postcode : ''}`
     };
 
-    // Submit to ReNet API - Forms endpoint expects an array
-    const apiResponse = await fetch(`${API_BASE_URL}/Website/Forms`, {
+    // Submit to ReNet API - Enquiry endpoint for property-related submissions
+    const apiResponse = await fetch(`${API_BASE_URL}/Website/Enquiry`, {
       method: 'POST',
       headers: API_HEADERS,
-      body: JSON.stringify([formPayload])
+      body: JSON.stringify(enquiryPayload)
     });
 
     if (!apiResponse.ok) {

@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
 
     // Prepare ReNet API form submission payload
     const formPayload = {
-      type: "General Contact Inquiry",
+      type: "Contact",
       sourceURL: request.url,
       firstName: body.firstName,
       lastName: body.lastName,
